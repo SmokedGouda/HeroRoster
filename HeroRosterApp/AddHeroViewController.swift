@@ -11,7 +11,8 @@ import UIKit
 class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var heroStatsTable: UITableView!
-    
+    @IBOutlet weak var heroNameField: UITextField!
+    @IBOutlet weak var heroNumberField: UITextField!
     
     var statToDisplay = Int()
     var classSelected = String()
@@ -20,12 +21,12 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var levelSelected = String()
     let detailsToEdit = ["Class", "Race", "Gender", "Level"]
     var cellLabel = String()
+    var newHero = Hero?()
+    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -36,7 +37,6 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-       
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,35 +81,56 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         return cell
     }
     
+    @IBAction func addHeroButtonPressed(sender: UIButton) {
+        let newHeroName = heroNameField.text
+        
+        let newHeroNumber = heroNumberField.text
+        let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
+        print(createdHero.name, createdHero.number, createdHero.heroClass, createdHero.race, createdHero.gender, createdHero.level)
+        newHero = createdHero
+    }
+   
+  
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        let newHeroName = heroNameField.text
+       
+//        let newHeroNumber = heroNumberField.text
+//        let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
+//        print(createdHero.name, createdHero.number, createdHero.heroClass, createdHero.race, createdHero.gender, createdHero.level)
+//        newHero = createdHero
+    }
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display the appropriate tableview based on which cell was touched.
         // This segue will also send the string value of the touched cell over to the next view so that the user can see which one is still active by displaying a checkmark.
+        if segue.identifier == "heroStatOptionsSegue" {
+            let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
         
-        let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
-        
-        let selectedIndex = heroStatsTable.indexPathForCell(sender as! UITableViewCell)
-        cellLabel = detailsToEdit[(selectedIndex?.row)!]
-        destVC.navBarTitle = cellLabel
-        switch cellLabel {
-        case "Class":
-            destVC.heroStatsArrayToDisplay = HeroStats().heroClass
-            destVC.statFromPreviousView = classSelected
+            let selectedIndex = heroStatsTable.indexPathForCell(sender as! UITableViewCell)
+            cellLabel = detailsToEdit[(selectedIndex?.row)!]
+            destVC.navBarTitle = cellLabel
+            switch cellLabel {
+            case "Class":
+                destVC.heroStatsArrayToDisplay = HeroStats().heroClass
+                destVC.statFromPreviousView = classSelected
             
-        case "Race":
-            destVC.heroStatsArrayToDisplay = HeroStats().race
-            destVC.statFromPreviousView = raceSelected
+            case "Race":
+                destVC.heroStatsArrayToDisplay = HeroStats().race
+                destVC.statFromPreviousView = raceSelected
             
-        case "Gender":
-            destVC.heroStatsArrayToDisplay = HeroStats().gender
-            destVC.statFromPreviousView = genderSelected
+            case "Gender":
+                destVC.heroStatsArrayToDisplay = HeroStats().gender
+                destVC.statFromPreviousView = genderSelected
             
-        case "Level":
-            destVC.heroStatsArrayToDisplay = HeroStats().level
-            destVC.statFromPreviousView = levelSelected
+            case "Level":
+                destVC.heroStatsArrayToDisplay = HeroStats().level
+                destVC.statFromPreviousView = levelSelected
             
-        default:
-            print("no action")
+            default:
+                print("no action")
+            }
         }
     }
     

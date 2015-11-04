@@ -70,6 +70,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>
+                    <connections>
+                        <outlet property="userNameField" destination="Jwe-Py-7tX" id="52Y-uf-W3W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2O-xn-XPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -91,15 +94,38 @@
                                 <rect key="frame" x="20" y="0.0" width="560" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Q0E-yp-KHx">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="heroNameCell" textLabel="zMZ-2c-7BH" detailTextLabel="Uvr-zl-bb5" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="Q0E-yp-KHx">
                                         <rect key="frame" x="0.0" y="92" width="560" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q0E-yp-KHx" id="eAa-tO-4Rj">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zMZ-2c-7BH">
+                                                    <rect key="frame" x="15" y="14" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uvr-zl-bb5">
+                                                    <rect key="frame" x="15" y="33.5" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Zam-v3-zoE" kind="show" identifier="heroDetailSegue" id="A5O-va-yqY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Nak-u7-1JD" id="DBj-MY-zq9"/>
+                                    <outlet property="delegate" destination="Nak-u7-1JD" id="xDF-P2-N08"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,10 +151,31 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="heroRosterTable" destination="zJt-42-fjb" id="cMJ-Ay-piC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gll-At-5NJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1700" y="21"/>
+        </scene>
+        <!--Hero Detail View Controller-->
+        <scene sceneID="7Cd-Ao-rSZ">
+            <objects>
+                <viewController id="Zam-v3-zoE" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F98-jT-hP9"/>
+                        <viewControllerLayoutGuide type="bottom" id="nzo-iX-AC2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q81-17-oiF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1TZ-KW-pSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2429" y="47"/>
         </scene>
         <!--Hero Stat Options View Controller-->
         <scene sceneID="ool-oz-D7p">
@@ -270,6 +317,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc4-PO-j3U">
+                                <rect key="frame" x="268" y="424" width="65" height="30"/>
+                                <state key="normal" title="Add Hero"/>
+                                <connections>
+                                    <action selector="addHeroButtonPressed:" destination="U2Z-HO-3fb" eventType="touchUpInside" id="VIq-Kv-aun"/>
+                                    <segue destination="gey-4F-HPg" kind="unwind" unwindAction="unwindForSegue:towardsViewController:" id="CZa-6P-MNg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -277,8 +332,10 @@
                             <constraint firstAttribute="trailing" secondItem="83y-dw-w1v" secondAttribute="trailing" constant="20" id="0ca-VP-WEp"/>
                             <constraint firstItem="5Y9-jS-syd" firstAttribute="top" secondItem="83y-dw-w1v" secondAttribute="bottom" constant="152" id="1E3-pH-MJI"/>
                             <constraint firstItem="hTh-AW-l2A" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="3j4-2I-hXZ"/>
+                            <constraint firstItem="5Y9-jS-syd" firstAttribute="top" secondItem="Cc4-PO-j3U" secondAttribute="bottom" constant="102" id="6dR-DK-Pen"/>
                             <constraint firstItem="0od-EK-Cpx" firstAttribute="leading" secondItem="PPi-5Z-1rK" secondAttribute="trailing" constant="8" id="7FC-qA-00w"/>
                             <constraint firstItem="u08-sK-qQJ" firstAttribute="leading" secondItem="hTh-AW-l2A" secondAttribute="trailing" constant="24" id="9Us-7P-t2h"/>
+                            <constraint firstItem="Cc4-PO-j3U" firstAttribute="centerX" secondItem="VOQ-le-gb5" secondAttribute="centerX" id="BnK-Yo-Fgb"/>
                             <constraint firstItem="u08-sK-qQJ" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="8" id="FyQ-Sa-oK3"/>
                             <constraint firstItem="83y-dw-w1v" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="Ltp-LA-asL"/>
                             <constraint firstItem="hTh-AW-l2A" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="8" symbolic="YES" id="QBA-nX-xcq"/>
@@ -289,6 +346,7 @@
                             <constraint firstItem="PPi-5Z-1rK" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="qPB-sT-9eq"/>
                             <constraint firstItem="PPi-5Z-1rK" firstAttribute="top" secondItem="hTh-AW-l2A" secondAttribute="bottom" constant="27" id="qUg-yG-rgl"/>
                             <constraint firstItem="5Y9-jS-syd" firstAttribute="top" secondItem="83y-dw-w1v" secondAttribute="bottom" constant="183" id="qUy-xD-gqC"/>
+                            <constraint firstItem="Cc4-PO-j3U" firstAttribute="top" secondItem="83y-dw-w1v" secondAttribute="bottom" constant="101" id="qsS-8w-GKd"/>
                             <constraint firstItem="hTh-AW-l2A" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="12" id="uaq-xe-aO6"/>
                             <constraint firstAttribute="trailing" secondItem="u08-sK-qQJ" secondAttribute="trailing" constant="20" id="wZF-cT-p9C"/>
                             <constraint firstAttribute="trailing" secondItem="0od-EK-Cpx" secondAttribute="trailing" constant="20" id="zSI-J9-tTv"/>
@@ -304,14 +362,15 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add Hero" id="3ca-4T-j0D">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="3sv-Mv-Us7"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Add Hero" id="3ca-4T-j0D"/>
                     <connections>
+                        <outlet property="heroNameField" destination="u08-sK-qQJ" id="vmz-UW-TkN"/>
+                        <outlet property="heroNumberField" destination="0od-EK-Cpx" id="2R8-59-PKj"/>
                         <outlet property="heroStatsTable" destination="83y-dw-w1v" id="2ER-Zm-Ukn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLv-FR-NDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gey-4F-HPg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2421" y="-688"/>
         </scene>

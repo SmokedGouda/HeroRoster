@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HeroDetailViewController.swift
 //  HeroRosterApp
 //
 //  Created by Craig Carlson on 11/3/15.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
-    @IBOutlet weak var userNameField: UITextField!
+class HeroDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,11 +21,15 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
-        destVC.userRoster.userName = userNameField.text!
-    }
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
-

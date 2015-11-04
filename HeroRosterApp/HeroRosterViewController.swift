@@ -8,28 +8,51 @@
 
 import UIKit
 
-class HeroRosterViewController: UIViewController, UINavigationBarDelegate {
+class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var heroRosterTable: UITableView!
 
+    var userRoster = Roster(userName: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        print(userRoster.userName)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        heroRosterTable.reloadData()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userRoster.heros.count
     }
-    */
-
+ 
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
+        cell?.textLabel!.text = userRoster.heros[indexPath.row].name
+        cell?.detailTextLabel!.text = userRoster.heros[indexPath.row].heroClass
+        return cell!
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "heroDetailSegue" {
+            let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
+        }
+    }
+    
+    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        
+        if(unwindSegue.sourceViewController .isKindOfClass(AddHeroViewController)) {
+            let newHeroFromAddHeroView: AddHeroViewController = unwindSegue.sourceViewController as! AddHeroViewController
+            let newHero = newHeroFromAddHeroView.newHero
+            print(newHero!)
+            userRoster.addHeroToRoster(newHero!)
+        }
+    }
 }
