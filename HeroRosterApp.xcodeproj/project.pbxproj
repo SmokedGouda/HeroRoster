@@ -146,9 +146,9 @@
 			isa = PBXGroup;
 			children = (
 				3F2B89B81BE9413F00CE037C /* LogInViewController.swift */,
-				3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */,
 				3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */,
 				3F2B89EB1BE94C3F00CE037C /* AddHeroViewController.swift */,
+				3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
