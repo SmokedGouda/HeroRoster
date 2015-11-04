@@ -8,10 +8,13 @@
 
 import UIKit
 
-class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet weak var heroNameLabel: UILabel!
-    @IBOutlet weak var heroNumberLabel: UILabel!
+class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
+    
+    @IBOutlet weak var heroDetailTable: UITableView!
+    @IBOutlet weak var heroNameTextField: UITextField!
+    @IBOutlet weak var heroNumberTextField: UITextField!
+    @IBOutlet weak var editHeroButton: UIButton!
+    
     var usedHeroNames = [String]()
     var classDisplayed = String()
     var raceDisplayed = String()
@@ -19,16 +22,21 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var levelDisplayed = String()
     let detailToDisplay = ["Class", "Race", "Gender", "Level"]
     var heroDisplayed = Hero?()
+    var tableEditState = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        heroNameTextField.enabled = false
+        heroNumberTextField.enabled = false
         
         let tabBarVC = self.tabBarController as? HeroTabBarController
         heroDisplayed = tabBarVC!.heroSelected
         usedHeroNames = tabBarVC!.activeRosterUsedHeroNames
-        heroNameLabel.text = heroDisplayed?.name
-        heroNumberLabel.text = heroDisplayed?.number
+        heroNameTextField.text = heroDisplayed?.name
+        heroNumberTextField.text = heroDisplayed?.number
+      
+        
         
 
 
@@ -48,6 +56,14 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier("heroCell") as UITableViewCell!
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
+            
+        }
+        if tableEditState == true {
+            heroDetailTable.allowsSelection = true
+            cell.accessoryType = .DisclosureIndicator
+        } else {
+            heroDetailTable.allowsSelection = false
+            cell.accessoryType = .None
         }
         cell.textLabel!.text = detailToDisplay[indexPath.row]
         let statLabel = cell.textLabel!.text
@@ -76,6 +92,27 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             print("not a valid return")
         }
         return cell
-
+    }
+  
+    @IBAction func editHeroButtonPressed(sender: UIButton) {
+        let buttonLabel = editHeroButton.titleLabel!.text!
+        switch buttonLabel{
+            case "Edit Hero":
+            tableEditState = true
+            heroNameTextField.enabled = true
+            heroNumberTextField.enabled = true
+            heroDetailTable.reloadData()
+            editHeroButton.titleLabel!.text = "Save"
+            
+            case "Save":
+            tableEditState = false
+            heroNameTextField.enabled = false
+            heroNumberTextField.enabled = false
+            heroDetailTable.reloadData()
+            editHeroButton.titleLabel!.text = "Edit Hero"
+            
+        default:
+            print("Nothing happened")
+        }
     }
 }
