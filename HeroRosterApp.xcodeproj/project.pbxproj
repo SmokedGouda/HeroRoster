@@ -19,6 +19,7 @@
 		3F2B89EA1BE94A5A00CE037C /* HeroRosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */; };
 		3F2B89EC1BE94C3F00CE037C /* AddHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89EB1BE94C3F00CE037C /* AddHeroViewController.swift */; };
 		3F2B89EE1BE9535D00CE037C /* HeroStatOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */; };
+		3F797A131BEA4D7E0028CF73 /* HeroTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F797A121BEA4D7E0028CF73 /* HeroTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroRosterViewController.swift; sourceTree = "<group>"; };
 		3F2B89EB1BE94C3F00CE037C /* AddHeroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHeroViewController.swift; sourceTree = "<group>"; };
 		3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroStatOptionsViewController.swift; sourceTree = "<group>"; };
+		3F797A121BEA4D7E0028CF73 /* HeroTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				3F2B89EB1BE94C3F00CE037C /* AddHeroViewController.swift */,
 				3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */,
 				3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */,
+				3F797A121BEA4D7E0028CF73 /* HeroTabBarController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				3F2B89B91BE9413F00CE037C /* LogInViewController.swift in Sources */,
 				3F2B89EA1BE94A5A00CE037C /* HeroRosterViewController.swift in Sources */,
 				3F27CDE61BE9B6C300D4B759 /* HeroDetailViewController.swift in Sources */,
+				3F797A131BEA4D7E0028CF73 /* HeroTabBarController.swift in Sources */,
 				3F2B89B71BE9413F00CE037C /* AppDelegate.swift in Sources */,
 				3F2B89E81BE945A300CE037C /* HeroModel.swift in Sources */,
 				3F2B89EC1BE94C3F00CE037C /* AddHeroViewController.swift in Sources */,

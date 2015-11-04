@@ -105,20 +105,20 @@
                                                     <rect key="frame" x="15" y="14" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uvr-zl-bb5">
                                                     <rect key="frame" x="15" y="33.5" width="40.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Zam-v3-zoE" kind="show" identifier="heroDetailSegue" id="A5O-va-yqY"/>
+                                            <segue destination="Z2f-mL-ynM" kind="show" identifier="heroDetailSegue" id="l7H-gW-lJN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -159,23 +159,61 @@
             </objects>
             <point key="canvasLocation" x="1700" y="21"/>
         </scene>
-        <!--Hero Detail View Controller-->
-        <scene sceneID="7Cd-Ao-rSZ">
+        <!--Item 2-->
+        <scene sceneID="H7D-VS-0dm">
             <objects>
-                <viewController id="Zam-v3-zoE" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wxh-R7-Jia" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="F98-jT-hP9"/>
-                        <viewControllerLayoutGuide type="bottom" id="nzo-iX-AC2"/>
+                        <viewControllerLayoutGuide type="top" id="cgJ-am-axw"/>
+                        <viewControllerLayoutGuide type="bottom" id="PG0-dx-Sbv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="q81-17-oiF">
+                    <view key="view" contentMode="scaleToFill" id="eVE-tD-ixm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="Ipe-AN-V4Q"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1TZ-KW-pSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lKm-Ez-oOT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429" y="47"/>
+            <point key="canvasLocation" x="2990" y="899"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="6FZ-p4-piN">
+            <objects>
+                <viewController id="HrD-Kb-B4S" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EzO-Pd-DY4"/>
+                        <viewControllerLayoutGuide type="bottom" id="XJj-KF-tvE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="314-EC-unr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="jfD-uT-z88"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ksu-Mu-PIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2050" y="899"/>
+        </scene>
+        <!--Hero Tab Bar Controller-->
+        <scene sceneID="HuJ-5e-4sF">
+            <objects>
+                <tabBarController id="Z2f-mL-ynM" customClass="HeroTabBarController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ouM-6Q-HjB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="HrD-Kb-B4S" kind="relationship" relationship="viewControllers" id="uzO-RJ-fAa"/>
+                        <segue destination="Wxh-R7-Jia" kind="relationship" relationship="viewControllers" id="078-GJ-Krd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bO1-2s-68k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2496" y="21"/>
         </scene>
         <!--Hero Stat Options View Controller-->
         <scene sceneID="ool-oz-D7p">
