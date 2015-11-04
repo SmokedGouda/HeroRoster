@@ -82,9 +82,7 @@ class Roster {
     }
     
     func addHeroToRoster(heroToAdd: Hero) {
-        if usedHeroNames.contains(heroToAdd.name) == true {
-            print("That hero names already exists.  Please choose another")
-        } else {
+        if usedHeroNames.contains(heroToAdd.name) == false {
             heros.append(heroToAdd)
             usedHeroNames.append(heroToAdd.name)
         }

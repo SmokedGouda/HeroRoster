@@ -322,7 +322,6 @@
                                 <state key="normal" title="Add Hero"/>
                                 <connections>
                                     <action selector="addHeroButtonPressed:" destination="U2Z-HO-3fb" eventType="touchUpInside" id="VIq-Kv-aun"/>
-                                    <segue destination="gey-4F-HPg" kind="unwind" unwindAction="unwindForSegue:towardsViewController:" id="CZa-6P-MNg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -367,6 +366,7 @@
                         <outlet property="heroNameField" destination="u08-sK-qQJ" id="vmz-UW-TkN"/>
                         <outlet property="heroNumberField" destination="0od-EK-Cpx" id="2R8-59-PKj"/>
                         <outlet property="heroStatsTable" destination="83y-dw-w1v" id="2ER-Zm-Ukn"/>
+                        <segue destination="gey-4F-HPg" kind="unwind" identifier="addHeroSegue" unwindAction="unwindForSegue:towardsViewController:" id="tEo-2g-t9Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLv-FR-NDG" userLabel="First Responder" sceneMemberID="firstResponder"/>

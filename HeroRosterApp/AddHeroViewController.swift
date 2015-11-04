@@ -14,6 +14,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     @IBOutlet weak var heroNameField: UITextField!
     @IBOutlet weak var heroNumberField: UITextField!
     
+    var usedHeroNames = [String]()
     var statToDisplay = Int()
     var classSelected = String()
     var raceSelected = String()
@@ -27,13 +28,13 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(usedHeroNames)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         heroStatsTable.reloadData()
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,24 +84,23 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     
     @IBAction func addHeroButtonPressed(sender: UIButton) {
         let newHeroName = heroNameField.text
-        
+        if usedHeroNames.contains(newHeroName!) == true {
+            let alert = UIAlertController(
+                title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+            let action = UIAlertAction(
+                title: "Ok", style: .Default, handler: nil)
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            
         let newHeroNumber = heroNumberField.text
         let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
         print(createdHero.name, createdHero.number, createdHero.heroClass, createdHero.race, createdHero.gender, createdHero.level)
         newHero = createdHero
+        self.performSegueWithIdentifier("addHeroSegue", sender: self)
+            
+        }
     }
-   
-  
-    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        let newHeroName = heroNameField.text
-       
-//        let newHeroNumber = heroNumberField.text
-//        let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
-//        print(createdHero.name, createdHero.number, createdHero.heroClass, createdHero.race, createdHero.gender, createdHero.level)
-//        newHero = createdHero
-    }
-    
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display the appropriate tableview based on which cell was touched.

@@ -43,6 +43,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "heroDetailSegue" {
             let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
+        } else {
+            let destVC: AddHeroViewController = segue.destinationViewController as! AddHeroViewController
+            destVC.usedHeroNames = userRoster.usedHeroNames
         }
     }
     
