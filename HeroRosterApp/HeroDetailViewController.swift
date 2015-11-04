@@ -27,6 +27,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         heroNameTextField.enabled = false
         heroNumberTextField.enabled = false
         
@@ -96,23 +97,20 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
   
     @IBAction func editHeroButtonPressed(sender: UIButton) {
         let buttonLabel = editHeroButton.titleLabel!.text!
-        switch buttonLabel{
+        switch buttonLabel {
             case "Edit Hero":
-            tableEditState = true
-            heroNameTextField.enabled = true
-            heroNumberTextField.enabled = true
-            heroDetailTable.reloadData()
-            editHeroButton.titleLabel!.text = "Save"
+                editHeroButton.setTitle("Save", forState: UIControlState.Normal)
+                tableEditState = true
+                heroNameTextField.enabled = true
+                heroNumberTextField.enabled = true
+                heroDetailTable.reloadData()
             
-            case "Save":
-            tableEditState = false
-            heroNameTextField.enabled = false
-            heroNumberTextField.enabled = false
-            heroDetailTable.reloadData()
-            editHeroButton.titleLabel!.text = "Edit Hero"
-            
-        default:
-            print("Nothing happened")
-        }
+            default:
+                editHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
+                tableEditState = false
+                heroNameTextField.enabled = false
+                heroNumberTextField.enabled = false
+                heroDetailTable.reloadData()
+         }
     }
 }

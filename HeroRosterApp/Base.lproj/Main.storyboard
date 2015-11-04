@@ -178,7 +178,7 @@
             </objects>
             <point key="canvasLocation" x="3400" y="847"/>
         </scene>
-        <!--Title-->
+        <!--Item 1-->
         <scene sceneID="6FZ-p4-piN">
             <objects>
                 <viewController id="HrD-Kb-B4S" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -256,7 +256,8 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5Q-w3-G0n">
-                                <rect key="frame" x="268" y="419" width="64" height="30"/>
+                                <rect key="frame" x="268.5" y="419" width="63" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Edit Hero"/>
                                 <connections>
                                     <action selector="editHeroButtonPressed:" destination="HrD-Kb-B4S" eventType="touchUpInside" id="EJB-Jf-UBZ"/>
@@ -291,9 +292,6 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="jfD-uT-z88"/>
-                    <navigationItem key="navigationItem" title="Title" id="55F-LY-MY1">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="CjY-ex-5Mv"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="editHeroButton" destination="j5Q-w3-G0n" id="JOg-0X-93O"/>
                         <outlet property="heroDetailTable" destination="rnZ-zz-9FG" id="lUp-hU-L3o"/>
