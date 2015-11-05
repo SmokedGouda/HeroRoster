@@ -49,7 +49,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             destVC.activeRoster = userRoster
         } else {
             let destVC: AddHeroViewController = segue.destinationViewController as! AddHeroViewController
-            destVC.usedHeroNames = userRoster.usedHeroNames
+            destVC.activeRoster = userRoster
         }
     }
     
@@ -57,9 +57,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         
         if(unwindSegue.sourceViewController .isKindOfClass(AddHeroViewController)) {
             let newHeroFromAddHeroView: AddHeroViewController = unwindSegue.sourceViewController as! AddHeroViewController
-            let newHero = newHeroFromAddHeroView.newHero
-            print(newHero!)
-            userRoster.addHeroToRoster(newHero!)
         }
     }
 }

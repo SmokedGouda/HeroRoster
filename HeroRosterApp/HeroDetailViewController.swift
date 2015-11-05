@@ -152,6 +152,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                             }
                         }
                         activeRoster!.usedHeroNames.append(heroNameTextField.text!)
+                        print(activeRoster!.usedHeroNames)
                         heroNameBeforeEdit = heroNameTextField.text!
                         saveEditedHero()
                     }

@@ -14,7 +14,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     @IBOutlet weak var heroNameField: UITextField!
     @IBOutlet weak var heroNumberField: UITextField!
     
-    var usedHeroNames = [String]()
+    
     var statToDisplay = Int()
     var classSelected = String()
     var raceSelected = String()
@@ -22,13 +22,13 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var levelSelected = String()
     let detailsToEdit = HeroStatTableViewTitles()
     var cellLabel = String()
-    var newHero = Hero?()
+    var activeRoster = Roster?()
     
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(usedHeroNames)
+      
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -84,7 +84,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     
     @IBAction func addHeroButtonPressed(sender: UIButton) {
         let newHeroName = heroNameField.text
-        if usedHeroNames.contains(newHeroName!) == true {
+        if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
             let alert = UIAlertController(
                 title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
             let action = UIAlertAction(
@@ -95,7 +95,8 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
             
         let newHeroNumber = heroNumberField.text
         let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
-        newHero = createdHero
+        activeRoster!.addHeroToRoster(createdHero)
+            print(activeRoster!.usedHeroNames)
         self.performSegueWithIdentifier("addHeroSegue", sender: self)
             
         }
