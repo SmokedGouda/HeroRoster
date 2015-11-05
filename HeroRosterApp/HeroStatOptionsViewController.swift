@@ -23,14 +23,11 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         navigationBarTitle.title = navBarTitle
-
-        
+        navigationBarTitle.title = navBarTitle
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-     
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,10 +63,4 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         }
         return cell
     }
-    
-
-    
-
-
-
 }

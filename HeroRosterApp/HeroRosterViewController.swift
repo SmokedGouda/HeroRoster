@@ -22,6 +22,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         heroRosterTable.reloadData()
+        print(userRoster.usedHeroNames)
+        
     }
 
 
@@ -39,6 +41,16 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         cell?.textLabel!.text = userRoster.heros[indexPath.row].name
         cell?.detailTextLabel!.text = userRoster.heros[indexPath.row].heroClass
         return cell!
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let heroToDelete = userRoster.heros[indexPath.row]
+            userRoster.deleteHeroFromRoster(heroToDelete)
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -50,7 +50,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
- 
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,8 +60,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCellWithIdentifier("heroCell") as UITableViewCell!
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
-            
         }
+        
         if tableEditState == true {
             heroDetailTable.allowsSelection = true
             cell.accessoryType = .DisclosureIndicator
@@ -70,6 +69,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             heroDetailTable.allowsSelection = false
             cell.accessoryType = .None
         }
+        
         cell.textLabel!.text = detailsToDisplay.statTitles[indexPath.row]
         let statLabel = cell.textLabel!.text
         let buttonLabel = editHeroButton.titleLabel!.text!
@@ -171,9 +171,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let updatedHeroName = heroNameTextField.text
         let updatedHeroNumber = heroNumberTextField.text
         activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed)
-        
-        
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -215,5 +212,4 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             statToDisplay = heroStat.chosenStat
         }
     }
-
 }
