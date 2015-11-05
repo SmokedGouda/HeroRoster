@@ -20,7 +20,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var raceSelected = String()
     var genderSelected = String()
     var levelSelected = String()
-    let detailsToEdit = ["Class", "Race", "Gender", "Level"]
+    let detailsToEdit = HeroStatTableViewTitles()
     var cellLabel = String()
     var newHero = Hero?()
     
@@ -49,7 +49,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
         }
-        cell.textLabel!.text = detailsToEdit[indexPath.row]
+        cell.textLabel!.text = detailsToEdit.statTitles[indexPath.row]
         let statLabel = cell.textLabel!.text
         switch statLabel! {
         case "Class":
@@ -109,7 +109,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
         
             let selectedIndex = heroStatsTable.indexPathForCell(sender as! UITableViewCell)
-            cellLabel = detailsToEdit[(selectedIndex?.row)!]
+            cellLabel = detailsToEdit.statTitles[(selectedIndex?.row)!]
             destVC.navBarTitle = cellLabel
             switch cellLabel {
             case "Class":

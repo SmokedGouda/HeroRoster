@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
+class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var heroDetailTable: UITableView!
     @IBOutlet weak var heroNameTextField: UITextField!
@@ -16,12 +16,14 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var editHeroButton: UIButton!
     
     var usedHeroNames = [String]()
+    var statToDisplay = Int()
     var classDisplayed = String()
     var raceDisplayed = String()
     var genderDisplayed = String()
     var levelDisplayed = String()
-    let detailToDisplay = ["Class", "Race", "Gender", "Level"]
+    let detailsToDisplay = HeroStatTableViewTitles()
     var heroDisplayed = Hero?()
+    var cellLabel = String()
     var tableEditState = false
     
     
@@ -36,12 +38,11 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         usedHeroNames = tabBarVC!.activeRosterUsedHeroNames
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
-      
-        
-        
-
-
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        heroDetailTable.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,28 +67,54 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             heroDetailTable.allowsSelection = false
             cell.accessoryType = .None
         }
-        cell.textLabel!.text = detailToDisplay[indexPath.row]
+        cell.textLabel!.text = detailsToDisplay.statTitles[indexPath.row]
         let statLabel = cell.textLabel!.text
+        let buttonLabel = editHeroButton.titleLabel!.text!
+        
         switch statLabel! {
         case "Class":
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = HeroStats().heroClass[statToDisplay]
+            } else if buttonLabel == "Save" {
+                cell.detailTextLabel!.text = classDisplayed
+            } else {
                 cell.detailTextLabel!.text = heroDisplayed?.heroClass
-                cell.detailTextLabel?.hidden = false
-                classDisplayed = cell.detailTextLabel!.text!
+            }
+            cell.detailTextLabel?.hidden = false
+            classDisplayed = cell.detailTextLabel!.text!
 
         case "Race":
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = HeroStats().race[statToDisplay]
+            } else if buttonLabel == "Save" {
+                cell.detailTextLabel!.text = raceDisplayed
+            } else {
                 cell.detailTextLabel!.text = heroDisplayed?.race
-                cell.detailTextLabel?.hidden = false
-                raceDisplayed = cell.detailTextLabel!.text!
+            }
+            cell.detailTextLabel?.hidden = false
+            raceDisplayed = cell.detailTextLabel!.text!
           
         case "Gender":
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = HeroStats().gender[statToDisplay]
+            } else if buttonLabel == "Save" {
+                cell.detailTextLabel!.text = genderDisplayed
+            } else {
                 cell.detailTextLabel!.text = heroDisplayed?.gender
-                cell.detailTextLabel?.hidden = false
-                genderDisplayed = cell.detailTextLabel!.text!
+            }
+            cell.detailTextLabel?.hidden = false
+            genderDisplayed = cell.detailTextLabel!.text!
             
         case "Level":
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
+            } else if buttonLabel == "Save"{
+                cell.detailTextLabel!.text = levelDisplayed
+            } else {
                 cell.detailTextLabel!.text = heroDisplayed?.level
-                cell.detailTextLabel?.hidden = false
-                levelDisplayed = cell.detailTextLabel!.text!
+            }
+            cell.detailTextLabel?.hidden = false
+            levelDisplayed = cell.detailTextLabel!.text!
             
         default:
             print("not a valid return")
@@ -113,4 +140,45 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 heroDetailTable.reloadData()
          }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // This segue will display the appropriate tableview based on which cell was touched.
+        // This segue will also send the string value of the touched cell over to the next view so that the user can see which one is still active by displaying a checkmark.
+        if segue.identifier == "heroStatOptionsSegueTwo" {
+            let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
+            
+            let selectedIndex = heroDetailTable.indexPathForCell(sender as! UITableViewCell)
+            cellLabel = detailsToDisplay.statTitles[(selectedIndex?.row)!]
+            destVC.navBarTitle = cellLabel
+            switch cellLabel {
+            case "Class":
+                destVC.heroStatsArrayToDisplay = HeroStats().heroClass
+                destVC.statFromPreviousView = classDisplayed
+                
+            case "Race":
+                destVC.heroStatsArrayToDisplay = HeroStats().race
+                destVC.statFromPreviousView = raceDisplayed
+                
+            case "Gender":
+                destVC.heroStatsArrayToDisplay = HeroStats().gender
+                destVC.statFromPreviousView = genderDisplayed
+                
+            case "Level":
+                destVC.heroStatsArrayToDisplay = HeroStats().level
+                destVC.statFromPreviousView = levelDisplayed
+                
+            default:
+                print("no action")
+            }
+        }
+    }
+    
+    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
+            let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
+            
+            statToDisplay = heroStat.chosenStat
+        }
+    }
+
 }

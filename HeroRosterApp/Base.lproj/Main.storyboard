@@ -159,7 +159,7 @@
             </objects>
             <point key="canvasLocation" x="1700" y="21"/>
         </scene>
-        <!--Item 2-->
+        <!--Session Log-->
         <scene sceneID="H7D-VS-0dm">
             <objects>
                 <viewController id="Wxh-R7-Jia" sceneMemberID="viewController">
@@ -172,13 +172,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Ipe-AN-V4Q"/>
+                    <tabBarItem key="tabBarItem" title="Session Log" id="Ipe-AN-V4Q"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lKm-Ez-oOT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3400" y="847"/>
         </scene>
-        <!--Item 1-->
+        <!--Hero Details-->
         <scene sceneID="6FZ-p4-piN">
             <objects>
                 <viewController id="HrD-Kb-B4S" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +230,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="3dl-4X-qzd" kind="presentation" id="o4b-B9-U7R"/>
+                                            <segue destination="3dl-4X-qzd" kind="presentation" identifier="heroStatOptionsSegueTwo" id="o4b-B9-U7R"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -291,7 +291,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="jfD-uT-z88"/>
+                    <tabBarItem key="tabBarItem" title="Hero Details" id="jfD-uT-z88"/>
                     <connections>
                         <outlet property="editHeroButton" destination="j5Q-w3-G0n" id="JOg-0X-93O"/>
                         <outlet property="heroDetailTable" destination="rnZ-zz-9FG" id="lUp-hU-L3o"/>
@@ -382,7 +382,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vW7-Tn-xfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jeg-yC-ist" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3238" y="-688"/>
+            <point key="canvasLocation" x="3386" y="-688"/>
         </scene>
         <!--Add Hero-->
         <scene sceneID="yNc-zQ-7OV">
