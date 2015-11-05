@@ -34,9 +34,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         heroNameTextField.enabled = false
         heroNumberTextField.enabled = false
         
-        let tabBarVC = self.tabBarController as? HeroTabBarController
-        heroDisplayed = tabBarVC!.heroSelected
-        activeRoster = tabBarVC!.activeRoster
+        
+       
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
         
