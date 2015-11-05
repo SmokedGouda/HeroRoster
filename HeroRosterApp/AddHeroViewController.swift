@@ -95,7 +95,6 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
             
         let newHeroNumber = heroNumberField.text
         let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
-        print(createdHero.name, createdHero.number, createdHero.heroClass, createdHero.race, createdHero.gender, createdHero.level)
         newHero = createdHero
         self.performSegueWithIdentifier("addHeroSegue", sender: self)
             

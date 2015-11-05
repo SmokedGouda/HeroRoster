@@ -15,7 +15,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var heroNumberTextField: UITextField!
     @IBOutlet weak var editHeroButton: UIButton!
     
-    var usedHeroNames = [String]()
+    var activeRoster = Roster?()
     var statToDisplay = Int()
     var classDisplayed = String()
     var raceDisplayed = String()
@@ -25,6 +25,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var heroDisplayed = Hero?()
     var cellLabel = String()
     var tableEditState = false
+    var heroNameBeforeEdit = String()
     
     
     override func viewDidLoad() {
@@ -35,9 +36,11 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         
         let tabBarVC = self.tabBarController as? HeroTabBarController
         heroDisplayed = tabBarVC!.heroSelected
-        usedHeroNames = tabBarVC!.activeRosterUsedHeroNames
+        activeRoster = tabBarVC!.activeRoster
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
+        
+        heroNameBeforeEdit = heroNameTextField.text!
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -133,12 +136,43 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 heroDetailTable.reloadData()
             
             default:
-                editHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
-                tableEditState = false
-                heroNameTextField.enabled = false
-                heroNumberTextField.enabled = false
-                heroDetailTable.reloadData()
-         }
+               
+               if heroNameTextField.text != heroNameBeforeEdit {
+                    if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
+                        let alert = UIAlertController(
+                            title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+                        let action = UIAlertAction(
+                            title: "Ok", style: .Default, handler: nil)
+                        alert.addAction(action)
+                        presentViewController(alert, animated: true, completion: nil)
+                    } else {
+                        for (index, value) in activeRoster!.usedHeroNames.enumerate(){
+                            if heroNameBeforeEdit == value {
+                                activeRoster!.usedHeroNames.removeAtIndex(index)
+                            }
+                        }
+                        activeRoster!.usedHeroNames.append(heroNameTextField.text!)
+                        heroNameBeforeEdit = heroNameTextField.text!
+                        saveEditedHero()
+                    }
+                } else {
+                    saveEditedHero()
+                }
+        }
+    }
+    
+    func saveEditedHero() {
+        editHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
+        tableEditState = false
+        heroNameTextField.enabled = false
+        heroNumberTextField.enabled = false
+        heroDetailTable.reloadData()
+        let updatedHeroName = heroNameTextField.text
+        let updatedHeroNumber = heroNumberTextField.text
+        activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed)
+        
+        
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

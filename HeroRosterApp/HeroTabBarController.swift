@@ -11,5 +11,5 @@ import UIKit
 class HeroTabBarController: UITabBarController {
 
     var heroSelected = Hero?()
-    var activeRosterUsedHeroNames = [String]()
+    var activeRoster = Roster?()
 }

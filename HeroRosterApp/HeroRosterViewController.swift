@@ -46,7 +46,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             let destVC: HeroTabBarController = segue.destinationViewController as! HeroTabBarController
             let selectedIndex = heroRosterTable.indexPathForCell(sender as! UITableViewCell)
             destVC.heroSelected = userRoster.heros[(selectedIndex?.row)!]
-            destVC.activeRosterUsedHeroNames = userRoster.usedHeroNames
+            destVC.activeRoster = userRoster
         } else {
             let destVC: AddHeroViewController = segue.destinationViewController as! AddHeroViewController
             destVC.usedHeroNames = userRoster.usedHeroNames

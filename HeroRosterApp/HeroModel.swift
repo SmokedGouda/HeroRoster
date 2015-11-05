@@ -106,7 +106,7 @@ class Roster {
     }
     
     func updateHero(heroToUpdate: Hero, newName: String, newNumber: String, newHeroClass: String, newRace: String, newGender: String, newLevel: String ) -> Hero {
-        let currentHeroName = heroToUpdate.name
+
         heroToUpdate.name = newName
         heroToUpdate.number = newNumber
         heroToUpdate.heroClass = newHeroClass
@@ -114,15 +114,6 @@ class Roster {
         heroToUpdate.gender = newGender
         heroToUpdate.level = newLevel
         
-        if currentHeroName != heroToUpdate.name {
-            print("I'm updating the usedHeroNames array by removing \(currentHeroName) and replacing it with \(newName)")
-            for (index, value) in usedHeroNames.enumerate() {
-                if currentHeroName == value {
-                    usedHeroNames.removeAtIndex(index)
-                }
-            }
-            usedHeroNames.append(newName)
-        }
         return heroToUpdate
     }
     
