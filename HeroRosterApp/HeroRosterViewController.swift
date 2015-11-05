@@ -22,14 +22,10 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         heroRosterTable.reloadData()
-        print(userRoster.usedHeroNames)
-        
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,11 +41,22 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            let heroToDelete = userRoster.heros[indexPath.row]
-            userRoster.deleteHeroFromRoster(heroToDelete)
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-            
+            func deleteHero() {
+                let heroToDelete = userRoster.heros[indexPath.row]
+                userRoster.deleteHeroFromRoster(heroToDelete)
+                
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+
+            let deleteAlert = UIAlertController(
+                title: "About to delete hero", message: "Are you sure?  This action is irreversible.", preferredStyle: .Alert)
+            let deleteAction = UIAlertAction(title: "Yes", style: .Destructive, handler: { (actionSheetController) -> Void in deleteHero()
+                })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            deleteAlert.addAction(cancelAction)
+            deleteAlert.addAction(deleteAction)
+            presentViewController(deleteAlert, animated: true, completion: nil)
         }
     }
     
