@@ -52,11 +52,4 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             destVC.activeRoster = userRoster
         }
     }
-    
-    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        
-        if(unwindSegue.sourceViewController .isKindOfClass(AddHeroViewController)) {
-            let newHeroFromAddHeroView: AddHeroViewController = unwindSegue.sourceViewController as! AddHeroViewController
-        }
-    }
 }
