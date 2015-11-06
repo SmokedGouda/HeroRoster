@@ -14,6 +14,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var sessionLogTable: UITableView!
     
     var heroDisplayed = Hero?()
+    var switchMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +47,12 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
          destVC.heroDisplayed = heroDisplayed
         if segue.identifier == "viewSessionLogSegue" {
             let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
-            print(heroDisplayed!.log[(selectedIndex?.row)!].name)
-            print(heroDisplayed!.log[(selectedIndex?.row)!].date)
-            print(heroDisplayed!.log[(selectedIndex?.row)!].notes)
-            
-            
+            switchMode = true
+            destVC.activateEditMode = switchMode
             destVC.sessionName = heroDisplayed!.log[(selectedIndex?.row)!].name
             destVC.date = heroDisplayed!.log[(selectedIndex?.row)!].date
             destVC.notes = heroDisplayed!.log[(selectedIndex?.row)!].notes
-            
+            destVC.heroLogDisplayed = heroDisplayed!.log[(selectedIndex?.row)!]
       
         }
        

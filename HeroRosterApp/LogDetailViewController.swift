@@ -16,10 +16,12 @@ class LogDetailViewController: UIViewController {
     @IBOutlet weak var buttonText: UIButton!
     
     var heroDisplayed = Hero?()
+    var heroLogDisplayed = SessionLog?()
     var sessionName = String()
     var date = String()
     var notes = String()
     var sessionLogNameBeforeEdit = String()
+    var activateEditMode = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print(heroDisplayed!.name)
@@ -28,9 +30,13 @@ class LogDetailViewController: UIViewController {
         dateTextField.text = date
         notesTextField.text = notes
         sessionLogNameBeforeEdit = sessionNameTextField.text!
-        
-
-   
+        if activateEditMode == true {
+            buttonText.setTitle("Edit Log", forState: UIControlState.Normal)
+            sessionNameTextField.enabled = false
+            dateTextField.enabled = false
+            notesTextField.editable = false
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,20 +44,18 @@ class LogDetailViewController: UIViewController {
   
     }
     
-
- 
     @IBAction func buttonPressed(sender: UIButton) {
         let buttonLabel = buttonText.titleLabel!.text!
         switch buttonLabel {
             
-            case "Edit":
+            case "Edit Log":
                 buttonText.setTitle("Save", forState: UIControlState.Normal)
                 sessionNameTextField.enabled = true
                 dateTextField.enabled = true
                 notesTextField.editable = true
             
             case "Save":
-                buttonText.setTitle("Edit", forState: UIControlState.Normal)
+                
                 if sessionNameTextField.text != sessionLogNameBeforeEdit {
                     if heroDisplayed!.usedLogNames.contains(sessionNameTextField.text!) == true {
                         let alert = UIAlertController(
@@ -60,11 +64,22 @@ class LogDetailViewController: UIViewController {
                             title: "Ok", style: .Default, handler: nil)
                         alert.addAction(action)
                         presentViewController(alert, animated: true, completion: nil)
-                    }
-            }
+                    } else {
+                        for (index, value) in heroDisplayed!.usedLogNames.enumerate(){
+                            if sessionLogNameBeforeEdit == value {
+                                heroDisplayed!.usedLogNames.removeAtIndex(index)
+                            }
+                        }
+                        heroDisplayed!.usedLogNames.append(sessionNameTextField.text!)
+                        print(heroDisplayed!.usedLogNames)
+                        sessionLogNameBeforeEdit = sessionNameTextField.text!
+                        saveEditedLog()
 
+                    }
+                } else {
+                    saveEditedLog()
+            }
             
-        
             default:
                 sessionName = sessionNameTextField.text!
                 date = dateTextField.text!
@@ -72,6 +87,19 @@ class LogDetailViewController: UIViewController {
                 let newSessionLog = SessionLog(name: sessionName, date: date, notes: notes)
                 heroDisplayed?.addSessionLog(newSessionLog)
         }
+    }
+    
+    func saveEditedLog() {
+        buttonText.setTitle("Edit Log", forState: UIControlState.Normal)
+        sessionNameTextField.enabled = false
+        dateTextField.enabled = false
+        notesTextField.editable = false
+        let updatedSessionName = sessionNameTextField.text
+        let updatedDate = dateTextField.text
+        let updatedNotes = notesTextField.text
+        heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedSessionName!, newDate: updatedDate!, newNotes: updatedNotes)
+
+        
     }
 
 }

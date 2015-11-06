@@ -58,6 +58,14 @@ class Hero {
             }
         }
     }
+    
+    func updateSessionLog(logToUpdate: SessionLog, newName: String, newDate: String, newNotes: String) -> SessionLog {
+        logToUpdate.name = newName
+        logToUpdate.date = newDate
+        logToUpdate.notes = newNotes
+        
+        return logToUpdate
+    }
 }
 
 class SessionLog {
