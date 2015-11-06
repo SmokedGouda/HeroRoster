@@ -22,6 +22,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         sessionLogTable.reloadData()
+        print(heroDisplayed!.name)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +36,32 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sessionLogCell")
         cell?.textLabel!.text = heroDisplayed!.log[indexPath.row].name
+        cell?.detailTextLabel!.text = heroDisplayed!.log[indexPath.row].date
         return cell!
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+      
+        let destVC: LogDetailViewController = segue.destinationViewController as! LogDetailViewController
+         destVC.heroDisplayed = heroDisplayed
+        if segue.identifier == "viewSessionLogSegue" {
+            let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
+            print(heroDisplayed!.log[(selectedIndex?.row)!].name)
+            print(heroDisplayed!.log[(selectedIndex?.row)!].date)
+            print(heroDisplayed!.log[(selectedIndex?.row)!].notes)
+            
+            
+            destVC.sessionName = heroDisplayed!.log[(selectedIndex?.row)!].name
+            destVC.date = heroDisplayed!.log[(selectedIndex?.row)!].date
+            destVC.notes = heroDisplayed!.log[(selectedIndex?.row)!].notes
+            
+      
+        }
+       
+    }
+    
+    func unwindForSegueHeroSession(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+          sessionLogTable.reloadData()
     }
   
 

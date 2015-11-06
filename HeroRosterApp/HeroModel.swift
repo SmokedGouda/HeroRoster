@@ -39,12 +39,10 @@ class Hero {
     }
     
     func addSessionLog(logToAdd: SessionLog) {
-        if usedLogNames.contains(logToAdd.name) == true {
-            print("That log name already exists.  Please choose another")
-        } else {
+       
             log.append(logToAdd)
             usedLogNames.append(logToAdd.name)
-        }
+        
     }
     
     func deleteSessionLog(logToDelete: SessionLog) {

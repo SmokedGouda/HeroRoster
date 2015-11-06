@@ -175,6 +175,11 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display the appropriate tableview based on which cell was touched.
         // This segue will also send the string value of the touched cell over to the next view so that the user can see which one is still active by displaying a checkmark.
+        if segue.identifier == "sessionTableSegue" {
+            let destVC: HeroSessionLogViewController = segue.destinationViewController as! HeroSessionLogViewController
+            destVC.heroDisplayed = heroDisplayed
+        }
+        
         if segue.identifier == "heroStatOptionsSegueTwo" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
             
