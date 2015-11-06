@@ -300,19 +300,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNq-bf-Km2">
-                                <rect key="frame" x="15" y="467" width="57" height="30"/>
+                                <rect key="frame" x="20" y="472" width="57" height="30"/>
                                 <state key="normal" title="Add Log"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="rmt-BO-U60" eventType="touchUpInside" id="wYr-0r-y4d"/>
+                                    <action selector="addLogButtonPressed:" destination="rmt-BO-U60" eventType="touchUpInside" id="9P6-IM-lW2"/>
                                     <segue destination="Smz-00-GYB" kind="unwind" unwindAction="unwindForSegue:towardsViewController:" id="Yyj-s0-OKP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEc-gw-3gM">
+                                <rect key="frame" x="88" y="472" width="56" height="30"/>
+                                <state key="normal" title="Edit Log"/>
+                                <connections>
+                                    <action selector="editLogButtonPressed:" destination="rmt-BO-U60" eventType="touchUpInside" id="Gx4-HO-FAP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="buttonText" destination="SNq-bf-Km2" id="AUs-ju-hNz"/>
+                        <outlet property="addLogButton" destination="SNq-bf-Km2" id="jAR-8M-sim"/>
                         <outlet property="dateTextField" destination="oer-UP-FMj" id="88X-Ig-eRT"/>
+                        <outlet property="editLogButton" destination="zEc-gw-3gM" id="rwX-p7-DIW"/>
                         <outlet property="notesTextField" destination="x9q-eZ-AUC" id="QB6-YV-Xpm"/>
                         <outlet property="sessionNameTextField" destination="ejv-Wv-owm" id="ypM-Sl-Olz"/>
                     </connections>
