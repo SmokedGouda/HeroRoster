@@ -172,11 +172,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-xq-g6h">
-                                <rect key="frame" x="0.0" y="209" width="600" height="339"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sessionLogCell" id="UhP-1j-Gfb">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhP-1j-Gfb" id="Lbg-3M-yCQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -206,11 +206,13 @@
                             <mask key="constraints">
                                 <exclude reference="2F9-cp-d5V"/>
                                 <exclude reference="Cl7-ZV-CeE"/>
+                                <exclude reference="JE8-rL-GlN"/>
                                 <exclude reference="Sg9-qI-MWe"/>
                                 <exclude reference="ZfD-b2-iTj"/>
                                 <exclude reference="b8p-2E-vRY"/>
                                 <exclude reference="yoE-yW-Ls2"/>
                                 <exclude reference="WAk-BI-CuP"/>
+                                <exclude reference="qNM-w0-Yhj"/>
                             </mask>
                         </variation>
                     </view>
@@ -251,7 +253,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rnZ-zz-9FG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rnZ-zz-9FG">
                                 <rect key="frame" x="20" y="217" width="560" height="101"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -304,7 +306,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5Q-w3-G0n">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5Q-w3-G0n">
                                 <rect key="frame" x="268.5" y="419" width="63" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Edit Hero"/>
@@ -341,6 +343,13 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Hero Details" id="jfD-uT-z88"/>
+                    <navigationItem key="navigationItem" title="Hero Details" id="YCq-GE-mRw">
+                        <barButtonItem key="rightBarButtonItem" title="Sessions" id="Loj-Ac-65u">
+                            <connections>
+                                <segue destination="Wxh-R7-Jia" kind="show" identifier="sessionTableSegue" id="1Yw-vi-fgd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="editHeroButton" destination="j5Q-w3-G0n" id="JOg-0X-93O"/>
                         <outlet property="heroDetailTable" destination="rnZ-zz-9FG" id="lUp-hU-L3o"/>

@@ -16,6 +16,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     var chosenStat = Int()
     var lastSelectedRow: NSIndexPath? = nil
     var statFromPreviousView = String()
+    var selectedRow: NSIndexPath?
     var heroStatsArrayToDisplay = [String]()
     var detailedStatFromStartView = String()
 
@@ -36,31 +37,29 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     
     @IBAction func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // This allows the checkmark to disappear from the current cell when a new cell is touched.
-        if let last = lastSelectedRow {
-            let oldSelectedCell = tableView.cellForRowAtIndexPath(last)
-            oldSelectedCell!.accessoryType = .None
+        let paths: [NSIndexPath]
+        if let previous = selectedRow {
+            paths = [indexPath, previous]
+        } else {
+            paths = [indexPath]
         }
         
-        // This will place a checkmark on the cell which is touched.
-        lastSelectedRow = indexPath
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell!.accessoryType = .Checkmark
-        
+        selectedRow = indexPath
+        tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
         chosenStat = indexPath.row
-        cell!.textLabel?.text = heroStatsArrayToDisplay[chosenStat]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath)
         cell.textLabel!.text = heroStatsArrayToDisplay[indexPath.row]
         
-        // When the table loads, this will put a checkmark on the cell which was displayed on the previous view.
-        
-        if cell.textLabel!.text! == statFromPreviousView {
+        if indexPath == selectedRow {
             cell.accessoryType = .Checkmark
-            lastSelectedRow = indexPath
+            
+        } else {
+            cell.accessoryType = .None
         }
+        
         return cell
     }
 }
