@@ -17,8 +17,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
