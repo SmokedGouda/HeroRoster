@@ -27,10 +27,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var tableEditState = false
     var heroNameBeforeEdit = String()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         heroNameTextField.enabled = false
         heroNumberTextField.enabled = false
         heroNameTextField.text = heroDisplayed?.name
@@ -56,7 +54,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
         }
-        
         if tableEditState == true {
             heroDetailTable.allowsSelection = true
             cell.accessoryType = .DisclosureIndicator
@@ -68,7 +65,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         cell.textLabel!.text = detailsToDisplay.statTitles[indexPath.row]
         let statLabel = cell.textLabel!.text
         let buttonLabel = editHeroButton.titleLabel!.text!
-        
         switch statLabel! {
             case "Class":
                 if cellLabel == statLabel {
@@ -131,7 +127,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 heroDetailTable.reloadData()
             
             default:
-               
                if heroNameTextField.text != heroNameBeforeEdit {
                     if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
                         let alert = UIAlertController(
@@ -169,16 +164,14 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // This segue will display the appropriate tableview based on which cell was touched.
-        // This segue will also send the string value of the touched cell over to the next view so that the user can see which one is still active by displaying a checkmark.
+        // This segue will display a tableview with all of the hero's session logs.
         if segue.identifier == "sessionTableSegue" {
             let destVC: HeroSessionLogViewController = segue.destinationViewController as! HeroSessionLogViewController
             destVC.heroDisplayed = heroDisplayed
         }
-        
+        // This segue will display the appropriate tableview based on which cell was touched.
         if segue.identifier == "heroStatOptionsSegueTwo" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
-            
             let selectedIndex = heroDetailTable.indexPathForCell(sender as! UITableViewCell)
             cellLabel = detailsToDisplay.statTitles[(selectedIndex?.row)!]
             destVC.navBarTitle = cellLabel

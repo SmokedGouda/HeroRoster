@@ -14,7 +14,6 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     @IBOutlet weak var heroNameField: UITextField!
     @IBOutlet weak var heroNumberField: UITextField!
     
-    
     var statToDisplay = Int()
     var classSelected = String()
     var raceSelected = String()
@@ -99,10 +98,8 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display the appropriate tableview based on which cell was touched.
-        
         if segue.identifier == "heroStatOptionsSegue" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
-        
             let selectedIndex = heroStatsTable.indexPathForCell(sender as! UITableViewCell)
             cellLabel = detailsToEdit.statTitles[(selectedIndex?.row)!]
             destVC.navBarTitle = cellLabel
@@ -132,7 +129,6 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
-            
             statToDisplay = heroStat.chosenStat
         }
     }

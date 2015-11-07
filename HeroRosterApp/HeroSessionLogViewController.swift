@@ -10,7 +10,6 @@ import UIKit
 
 class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
     @IBOutlet weak var sessionLogTable: UITableView!
     
     var heroDisplayed = Hero?()
@@ -22,7 +21,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         sessionLogTable.reloadData()
-        print(heroDisplayed!.name)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,11 +59,9 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
 
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      
         let destVC: LogDetailViewController = segue.destinationViewController as! LogDetailViewController
-         destVC.heroDisplayed = heroDisplayed
+        destVC.heroDisplayed = heroDisplayed
         if segue.identifier == "viewSessionLogSegue" {
             let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
             destVC.activateEditMode = true
