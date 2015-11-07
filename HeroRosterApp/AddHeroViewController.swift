@@ -24,11 +24,8 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var cellLabel = String()
     var activeRoster = Roster?()
     
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
-      
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -93,17 +90,16 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
             presentViewController(alert, animated: true, completion: nil)
         } else {
             
-        let newHeroNumber = heroNumberField.text
-        let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
-        activeRoster!.addHeroToRoster(createdHero)
-        self.performSegueWithIdentifier("addHeroSegue", sender: self)
-            
+            let newHeroNumber = heroNumberField.text
+            let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
+            activeRoster!.addHeroToRoster(createdHero)
+            self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display the appropriate tableview based on which cell was touched.
-        // This segue will also send the string value of the touched cell over to the next view so that the user can see which one is still active by displaying a checkmark.
+        
         if segue.identifier == "heroStatOptionsSegue" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
         
@@ -140,6 +136,4 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
             statToDisplay = heroStat.chosenStat
         }
     }
-
-
 }

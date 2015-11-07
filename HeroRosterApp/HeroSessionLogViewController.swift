@@ -73,14 +73,10 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             destVC.date = heroDisplayed!.log[(selectedIndex?.row)!].date
             destVC.notes = heroDisplayed!.log[(selectedIndex?.row)!].notes
             destVC.heroLogDisplayed = heroDisplayed!.log[(selectedIndex?.row)!]
-      
         }
-       
     }
     
     func unwindForSegueHeroSession(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
           sessionLogTable.reloadData()
     }
-  
-
 }

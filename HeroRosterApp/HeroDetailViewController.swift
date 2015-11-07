@@ -33,12 +33,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         
         heroNameTextField.enabled = false
         heroNumberTextField.enabled = false
-        
-        
-       
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
-        
         heroNameBeforeEdit = heroNameTextField.text!
     }
     
@@ -74,52 +70,52 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let buttonLabel = editHeroButton.titleLabel!.text!
         
         switch statLabel! {
-        case "Class":
-            if cellLabel == statLabel {
-                cell.detailTextLabel!.text = HeroStats().heroClass[statToDisplay]
-            } else if buttonLabel == "Save" {
-                cell.detailTextLabel!.text = classDisplayed
-            } else {
-                cell.detailTextLabel!.text = heroDisplayed?.heroClass
-            }
-            cell.detailTextLabel?.hidden = false
-            classDisplayed = cell.detailTextLabel!.text!
+            case "Class":
+                if cellLabel == statLabel {
+                    cell.detailTextLabel!.text = HeroStats().heroClass[statToDisplay]
+                } else if buttonLabel == "Save" {
+                    cell.detailTextLabel!.text = classDisplayed
+                } else {
+                    cell.detailTextLabel!.text = heroDisplayed?.heroClass
+                }
+                cell.detailTextLabel?.hidden = false
+                classDisplayed = cell.detailTextLabel!.text!
 
-        case "Race":
-            if cellLabel == statLabel {
-                cell.detailTextLabel!.text = HeroStats().race[statToDisplay]
-            } else if buttonLabel == "Save" {
-                cell.detailTextLabel!.text = raceDisplayed
-            } else {
-                cell.detailTextLabel!.text = heroDisplayed?.race
-            }
-            cell.detailTextLabel?.hidden = false
-            raceDisplayed = cell.detailTextLabel!.text!
+            case "Race":
+                if cellLabel == statLabel {
+                    cell.detailTextLabel!.text = HeroStats().race[statToDisplay]
+                } else if buttonLabel == "Save" {
+                    cell.detailTextLabel!.text = raceDisplayed
+                } else {
+                    cell.detailTextLabel!.text = heroDisplayed?.race
+                }
+                cell.detailTextLabel?.hidden = false
+                raceDisplayed = cell.detailTextLabel!.text!
           
-        case "Gender":
-            if cellLabel == statLabel {
-                cell.detailTextLabel!.text = HeroStats().gender[statToDisplay]
-            } else if buttonLabel == "Save" {
-                cell.detailTextLabel!.text = genderDisplayed
-            } else {
-                cell.detailTextLabel!.text = heroDisplayed?.gender
-            }
-            cell.detailTextLabel?.hidden = false
-            genderDisplayed = cell.detailTextLabel!.text!
+            case "Gender":
+                if cellLabel == statLabel {
+                    cell.detailTextLabel!.text = HeroStats().gender[statToDisplay]
+                } else if buttonLabel == "Save" {
+                    cell.detailTextLabel!.text = genderDisplayed
+                } else {
+                    cell.detailTextLabel!.text = heroDisplayed?.gender
+                }
+                cell.detailTextLabel?.hidden = false
+                genderDisplayed = cell.detailTextLabel!.text!
             
-        case "Level":
-            if cellLabel == statLabel {
-                cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
-            } else if buttonLabel == "Save"{
-                cell.detailTextLabel!.text = levelDisplayed
-            } else {
-                cell.detailTextLabel!.text = heroDisplayed?.level
-            }
-            cell.detailTextLabel?.hidden = false
-            levelDisplayed = cell.detailTextLabel!.text!
+            case "Level":
+                if cellLabel == statLabel {
+                    cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
+                } else if buttonLabel == "Save"{
+                    cell.detailTextLabel!.text = levelDisplayed
+                } else {
+                    cell.detailTextLabel!.text = heroDisplayed?.level
+                }
+                cell.detailTextLabel?.hidden = false
+                levelDisplayed = cell.detailTextLabel!.text!
             
-        default:
-            print("not a valid return")
+            default:
+                print("not a valid return")
         }
         return cell
     }
@@ -187,24 +183,24 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             cellLabel = detailsToDisplay.statTitles[(selectedIndex?.row)!]
             destVC.navBarTitle = cellLabel
             switch cellLabel {
-            case "Class":
-                destVC.heroStatsArrayToDisplay = HeroStats().heroClass
-                destVC.statFromPreviousView = classDisplayed
+                case "Class":
+                    destVC.heroStatsArrayToDisplay = HeroStats().heroClass
+                    destVC.statFromPreviousView = classDisplayed
                 
-            case "Race":
-                destVC.heroStatsArrayToDisplay = HeroStats().race
-                destVC.statFromPreviousView = raceDisplayed
+                case "Race":
+                    destVC.heroStatsArrayToDisplay = HeroStats().race
+                    destVC.statFromPreviousView = raceDisplayed
                 
-            case "Gender":
-                destVC.heroStatsArrayToDisplay = HeroStats().gender
-                destVC.statFromPreviousView = genderDisplayed
+                case "Gender":
+                    destVC.heroStatsArrayToDisplay = HeroStats().gender
+                    destVC.statFromPreviousView = genderDisplayed
                 
-            case "Level":
-                destVC.heroStatsArrayToDisplay = HeroStats().level
-                destVC.statFromPreviousView = levelDisplayed
+                case "Level":
+                    destVC.heroStatsArrayToDisplay = HeroStats().level
+                    destVC.statFromPreviousView = levelDisplayed
                 
-            default:
-                print("no action")
+                default:
+                    print("no action")
             }
         }
     }

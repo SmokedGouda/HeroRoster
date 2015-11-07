@@ -59,7 +59,6 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         } else {
             cell.accessoryType = .None
         }
-        
         return cell
     }
 }

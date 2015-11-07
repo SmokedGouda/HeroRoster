@@ -39,9 +39,8 @@ class Hero {
     }
     
     func addSessionLog(logToAdd: SessionLog) {
-       
-            log.append(logToAdd)
-            usedLogNames.append(logToAdd.name)
+        log.append(logToAdd)
+        usedLogNames.append(logToAdd.name)
         
     }
     
@@ -112,7 +111,6 @@ class Roster {
     }
     
     func updateHero(heroToUpdate: Hero, newName: String, newNumber: String, newHeroClass: String, newRace: String, newGender: String, newLevel: String ) -> Hero {
-
         heroToUpdate.name = newName
         heroToUpdate.number = newNumber
         heroToUpdate.heroClass = newHeroClass
@@ -122,6 +120,5 @@ class Roster {
         
         return heroToUpdate
     }
-    
 }
 
