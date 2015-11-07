@@ -139,7 +139,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                if heroNameTextField.text != heroNameBeforeEdit {
                     if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
                         let alert = UIAlertController(
-                            title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+                            title: "Can't edit hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
                         let action = UIAlertAction(
                             title: "Ok", style: .Default, handler: nil)
                         alert.addAction(action)

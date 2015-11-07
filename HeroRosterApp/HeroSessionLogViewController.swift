@@ -14,7 +14,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var sessionLogTable: UITableView!
     
     var heroDisplayed = Hero?()
-    var switchMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +40,35 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         return cell!
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            func deleteSession() {
+                let sessionToDelete = heroDisplayed?.log[indexPath.row]
+                heroDisplayed?.deleteSessionLog(sessionToDelete!)
+                
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            }
+            
+            let deleteAlert = UIAlertController(
+                title: "About to delete session log", message: "Are you sure?  This action is irreversible.", preferredStyle: .Alert)
+            let deleteAction = UIAlertAction(title: "Yes", style: .Destructive, handler: { (actionSheetController) -> Void in deleteSession()
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            deleteAlert.addAction(cancelAction)
+            deleteAlert.addAction(deleteAction)
+            presentViewController(deleteAlert, animated: true, completion: nil)
+        }
+    }
+
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       
         let destVC: LogDetailViewController = segue.destinationViewController as! LogDetailViewController
          destVC.heroDisplayed = heroDisplayed
         if segue.identifier == "viewSessionLogSegue" {
             let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
-            switchMode = true
-            destVC.activateEditMode = switchMode
+            destVC.activateEditMode = true
             destVC.sessionName = heroDisplayed!.log[(selectedIndex?.row)!].name
             destVC.date = heroDisplayed!.log[(selectedIndex?.row)!].date
             destVC.notes = heroDisplayed!.log[(selectedIndex?.row)!].notes
