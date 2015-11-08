@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class LogInViewController: UIViewController {
     @IBOutlet weak var userNameField: UITextField!
@@ -29,9 +30,6 @@ class LogInViewController: UIViewController {
     }
     
     override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        
     }
-
-
 }
 

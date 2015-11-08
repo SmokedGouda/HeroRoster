@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     

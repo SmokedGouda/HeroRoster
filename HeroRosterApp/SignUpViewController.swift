@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Parse
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var newUserNameTextField: UITextField!
+    
+    @IBOutlet weak var newUserPasswordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,8 +28,33 @@ class SignUpViewController: UIViewController {
     
 
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        self.performSegueWithIdentifier("signupSegue", sender: self)
+        if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" {
+            let user = PFUser()
+            user.username = newUserNameTextField.text
+            user.password = newUserPasswordTextField.text
+//            var userRoster = PFObject(className: "Roster")
+//            var heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [])
+//            userRoster["name"] = heroRoster.userName
+//            userRoster["heros"] = heroRoster.heros
+//            userRoster["usedHeroNames"] = heroRoster.usedHeroNames
+//            user["roster"] = heroRoster
+            
+            user.signUpInBackgroundWithBlock {
+                (succeeded: Bool, error: NSError?) -> Void in
+                if let error = error {
+                    let errorString = error.userInfo["error"] as? NSString
+                } else {
+                    print("account creation successfull")
+                    self.performSegueWithIdentifier("signupSegue", sender: self)
+                }
+            }
+        } else {
+            print("You need to enter a new username and password")
+        }
     }
    
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        self.performSegueWithIdentifier("signupSegue", sender: self)
+    }
 
 }

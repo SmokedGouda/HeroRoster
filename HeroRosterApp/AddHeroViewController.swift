@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -99,7 +100,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         } else {
             
             let newHeroNumber = heroNumberField.text
-            let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected)
+            let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [])
             activeRoster!.addHeroToRoster(createdHero)
             self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }

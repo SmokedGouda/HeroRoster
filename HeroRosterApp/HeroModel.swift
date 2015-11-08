@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 struct HeroStats {
     let heroClass = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Gunslinger", "Magus", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"]
@@ -26,16 +27,18 @@ class Hero {
     var race: String
     var gender: String
     var level: String
-    var log = [SessionLog]()
-    var usedLogNames = [String]()
+    var log: [SessionLog]
+    var usedLogNames: [String]
     
-    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String) {
+    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, log: [SessionLog], usedLogNames: [String]) {
         self.name = name
         self.number = number
         self.heroClass = heroClass
         self.race = race
         self.gender = gender
         self.level = level
+        self.log = log
+        self.usedLogNames = usedLogNames
     }
     
     func addSessionLog(logToAdd: SessionLog) {
@@ -81,11 +84,13 @@ class SessionLog {
 
 class Roster {
     var userName: String
-    var heros = [Hero]()
-    var usedHeroNames = [String]()
+    var heros: [Hero]
+    var usedHeroNames: [String]
     
-    init(userName: String) {
+    init(userName: String, heros: [Hero], usedHeroNames: [String]) {
         self.userName = userName
+        self.heros = heros
+        self.usedHeroNames = usedHeroNames
     }
     
     func addHeroToRoster(heroToAdd: Hero) {

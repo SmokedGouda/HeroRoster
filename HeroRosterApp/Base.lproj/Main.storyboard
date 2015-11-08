@@ -121,7 +121,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ncY-mW-VGm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W55-To-YTa">
                                 <rect key="frame" x="107" y="240" width="107" height="30"/>
@@ -130,11 +130,20 @@
                                     <action selector="createAccountButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="OnM-dV-cep"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zh-ad-ENd">
+                                <rect key="frame" x="136" y="300" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="Wcf-5W-GFe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="5Yy-El-LKJ"/>
+                            <constraint firstItem="8Zh-ad-ENd" firstAttribute="top" secondItem="W55-To-YTa" secondAttribute="bottom" constant="30" id="E5G-6y-diO"/>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="top" secondItem="pae-ys-fjH" secondAttribute="bottom" constant="33" id="GgD-oN-iNG"/>
+                            <constraint firstItem="8Zh-ad-ENd" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="buO-n5-K9q"/>
                             <constraint firstItem="W55-To-YTa" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="cit-eE-JT9"/>
                             <constraint firstItem="pae-ys-fjH" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="cni-QJ-SbE"/>
                             <constraint firstItem="pae-ys-fjH" firstAttribute="top" secondItem="EtV-8V-FVa" secondAttribute="bottom" constant="86" id="fGy-e3-Eqb"/>
@@ -145,6 +154,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Sm2-pC-BBX"/>
                     <connections>
+                        <outlet property="newUserNameTextField" destination="pae-ys-fjH" id="SpB-Uu-juC"/>
+                        <outlet property="newUserPasswordTextField" destination="5qn-dZ-0aF" id="M9d-wO-1lx"/>
                         <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="gjv-yk-hoc"/>
                     </connections>
                 </viewController>

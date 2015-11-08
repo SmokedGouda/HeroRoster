@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var heroRosterTable: UITableView!
 
-    var userRoster = Roster(userName: "")
+    var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        print(userRoster.userName, userRoster.heros, userRoster.usedHeroNames)
         heroRosterTable.reloadData()
     }
 
@@ -44,6 +46,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             func deleteHero() {
                 let heroToDelete = userRoster.heros[indexPath.row]
                 userRoster.deleteHeroFromRoster(heroToDelete)
+                print(userRoster.userName, userRoster.heros, userRoster.usedHeroNames)
                 
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
