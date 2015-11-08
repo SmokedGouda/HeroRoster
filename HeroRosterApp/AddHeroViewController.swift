@@ -19,7 +19,12 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var raceSelected = String()
     var genderSelected = String()
     var levelSelected = String()
-    let detailsToEdit = HeroStatTableViewTitles()
+    // Index variables below are used to determine where the checkmark will be placed when the HeroStatOpionsViewController is segued to.  The values will be set in the tableView cellForRowAtIndexPath function
+    var classIndex: Int?
+    var raceIndex: Int?
+    var genderIndex: Int?
+    var levelIndex: Int?
+    
     var cellLabel = String()
     var activeRoster = Roster?()
     
@@ -45,7 +50,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
         }
-        cell.textLabel!.text = detailsToEdit.statTitles[indexPath.row]
+        cell.textLabel!.text = HeroStatTableViewTitles().statTitles[indexPath.row]
         let statLabel = cell.textLabel!.text
         switch statLabel! {
         case "Class":
@@ -53,24 +58,28 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
                 cell.detailTextLabel!.text = HeroStats().heroClass[statToDisplay]
                 cell.detailTextLabel?.hidden = false
                 classSelected = cell.detailTextLabel!.text!
+                classIndex = statToDisplay
             }
         case "Race":
             if cellLabel == statLabel {
                 cell.detailTextLabel!.text = HeroStats().race[statToDisplay]
                 cell.detailTextLabel?.hidden = false
                 raceSelected = cell.detailTextLabel!.text!
+                raceIndex = statToDisplay
             }
         case "Gender":
             if cellLabel == statLabel {
                 cell.detailTextLabel!.text = HeroStats().gender[statToDisplay]
                 cell.detailTextLabel?.hidden = false
                 genderSelected = cell.detailTextLabel!.text!
+                genderIndex = statToDisplay
             }
         case "Level":
             if cellLabel == statLabel {
                 cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
                 cell.detailTextLabel?.hidden = false
                 levelSelected = cell.detailTextLabel!.text!
+                levelIndex = statToDisplay
             }
         default:
             print("not a valid return")
@@ -101,24 +110,24 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         if segue.identifier == "heroStatOptionsSegue" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
             let selectedIndex = heroStatsTable.indexPathForCell(sender as! UITableViewCell)
-            cellLabel = detailsToEdit.statTitles[(selectedIndex?.row)!]
+            cellLabel = HeroStatTableViewTitles().statTitles[(selectedIndex?.row)!]
             destVC.navBarTitle = cellLabel
             switch cellLabel {
             case "Class":
                 destVC.heroStatsArrayToDisplay = HeroStats().heroClass
-                destVC.statFromPreviousView = classSelected
+                destVC.lastSelectedRow = classIndex
             
             case "Race":
                 destVC.heroStatsArrayToDisplay = HeroStats().race
-                destVC.statFromPreviousView = raceSelected
+                destVC.lastSelectedRow = raceIndex
             
             case "Gender":
                 destVC.heroStatsArrayToDisplay = HeroStats().gender
-                destVC.statFromPreviousView = genderSelected
+                destVC.lastSelectedRow = genderIndex
             
             case "Level":
                 destVC.heroStatsArrayToDisplay = HeroStats().level
-                destVC.statFromPreviousView = levelSelected
+                destVC.lastSelectedRow = levelIndex
             
             default:
                 print("no action")

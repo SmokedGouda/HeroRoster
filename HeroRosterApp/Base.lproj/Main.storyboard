@@ -49,7 +49,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Roster" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daB-YK-hbl">
-                                <rect key="frame" x="114" y="164" width="92" height="21"/>
+                                <rect key="frame" x="114" y="164" width="91.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -57,14 +57,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2Oe-Kc-DNB" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="269" id="4fF-B5-ywK"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="57" id="FTB-aT-X4D"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
                             <constraint firstItem="daB-YK-hbl" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="100" id="XHx-qg-kS5"/>
                             <constraint firstItem="Jwe-Py-7tX" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="bdT-l7-RoP"/>
                             <constraint firstAttribute="trailing" secondItem="Jwe-Py-7tX" secondAttribute="trailing" constant="20" id="cU5-WH-OlD"/>
-                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="205" id="d0v-rX-W21"/>
                             <constraint firstItem="daB-YK-hbl" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="ned-ld-30b"/>
+                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="centerY" secondItem="nIb-n7-L5w" secondAttribute="centerY" id="s54-3C-Iai"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>

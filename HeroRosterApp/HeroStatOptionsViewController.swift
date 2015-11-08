@@ -14,8 +14,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     
     var navBarTitle = String()
     var chosenStat = Int()
-    var lastSelectedRow: NSIndexPath? = nil
-    var statFromPreviousView = String()
+    var lastSelectedRow: Int?
     var selectedRow: NSIndexPath?
     var heroStatsArrayToDisplay = [String]()
     var detailedStatFromStartView = String()
@@ -23,6 +22,9 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarTitle.title = navBarTitle
+        if lastSelectedRow != nil {
+            selectedRow = NSIndexPath(forRow: lastSelectedRow!, inSection: 0)
+        }
     }
 
     override func didReceiveMemoryWarning() {

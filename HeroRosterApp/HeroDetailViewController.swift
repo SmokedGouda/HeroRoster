@@ -21,7 +21,12 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var raceDisplayed = String()
     var genderDisplayed = String()
     var levelDisplayed = String()
-    let detailsToDisplay = HeroStatTableViewTitles()
+    // Index variables below are used to determine where the checkmark will be placed when the HeroStatOpionsViewController is segued to.  The values will be set in the tableView cellForRowAtIndexPath function
+    var classIndex: Int?
+    var raceIndex: Int?
+    var genderIndex: Int?
+    var levelIndex: Int?
+    
     var heroDisplayed = Hero?()
     var cellLabel = String()
     var tableEditState = false
@@ -62,28 +67,40 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             cell.accessoryType = .None
         }
         
-        cell.textLabel!.text = detailsToDisplay.statTitles[indexPath.row]
+        cell.textLabel!.text = HeroStatTableViewTitles().statTitles[indexPath.row]
         let statLabel = cell.textLabel!.text
         let buttonLabel = editHeroButton.titleLabel!.text!
         switch statLabel! {
             case "Class":
                 if cellLabel == statLabel {
                     cell.detailTextLabel!.text = HeroStats().heroClass[statToDisplay]
+                    classIndex = statToDisplay
                 } else if buttonLabel == "Save" {
                     cell.detailTextLabel!.text = classDisplayed
                 } else {
                     cell.detailTextLabel!.text = heroDisplayed?.heroClass
+                    for (index, value) in HeroStats().heroClass.enumerate() {
+                        if cell.detailTextLabel!.text == value {
+                            classIndex = index
+                        }
+                    }
                 }
                 cell.detailTextLabel?.hidden = false
                 classDisplayed = cell.detailTextLabel!.text!
-
+            
             case "Race":
                 if cellLabel == statLabel {
                     cell.detailTextLabel!.text = HeroStats().race[statToDisplay]
+                    raceIndex = statToDisplay
                 } else if buttonLabel == "Save" {
                     cell.detailTextLabel!.text = raceDisplayed
                 } else {
                     cell.detailTextLabel!.text = heroDisplayed?.race
+                    for (index, value) in HeroStats().race.enumerate() {
+                        if cell.detailTextLabel!.text == value {
+                            raceIndex = index
+                        }
+                    }
                 }
                 cell.detailTextLabel?.hidden = false
                 raceDisplayed = cell.detailTextLabel!.text!
@@ -91,10 +108,16 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             case "Gender":
                 if cellLabel == statLabel {
                     cell.detailTextLabel!.text = HeroStats().gender[statToDisplay]
+                    genderIndex = statToDisplay
                 } else if buttonLabel == "Save" {
                     cell.detailTextLabel!.text = genderDisplayed
                 } else {
                     cell.detailTextLabel!.text = heroDisplayed?.gender
+                    for (index, value) in HeroStats().gender.enumerate() {
+                        if cell.detailTextLabel!.text == value {
+                            genderIndex = index
+                        }
+                    }
                 }
                 cell.detailTextLabel?.hidden = false
                 genderDisplayed = cell.detailTextLabel!.text!
@@ -102,10 +125,16 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             case "Level":
                 if cellLabel == statLabel {
                     cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
+                    levelIndex = statToDisplay
                 } else if buttonLabel == "Save"{
                     cell.detailTextLabel!.text = levelDisplayed
                 } else {
                     cell.detailTextLabel!.text = heroDisplayed?.level
+                    for (index, value) in HeroStats().level.enumerate() {
+                        if cell.detailTextLabel!.text == value {
+                            levelIndex = index
+                        }
+                    }
                 }
                 cell.detailTextLabel?.hidden = false
                 levelDisplayed = cell.detailTextLabel!.text!
@@ -173,24 +202,24 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         if segue.identifier == "heroStatOptionsSegueTwo" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
             let selectedIndex = heroDetailTable.indexPathForCell(sender as! UITableViewCell)
-            cellLabel = detailsToDisplay.statTitles[(selectedIndex?.row)!]
+            cellLabel = HeroStatTableViewTitles().statTitles[(selectedIndex?.row)!]
             destVC.navBarTitle = cellLabel
             switch cellLabel {
                 case "Class":
                     destVC.heroStatsArrayToDisplay = HeroStats().heroClass
-                    destVC.statFromPreviousView = classDisplayed
+                    destVC.lastSelectedRow = classIndex
                 
                 case "Race":
                     destVC.heroStatsArrayToDisplay = HeroStats().race
-                    destVC.statFromPreviousView = raceDisplayed
+                    destVC.lastSelectedRow = raceIndex
                 
                 case "Gender":
                     destVC.heroStatsArrayToDisplay = HeroStats().gender
-                    destVC.statFromPreviousView = genderDisplayed
+                    destVC.lastSelectedRow = genderIndex
                 
                 case "Level":
                     destVC.heroStatsArrayToDisplay = HeroStats().level
-                    destVC.statFromPreviousView = levelDisplayed
+                    destVC.lastSelectedRow = levelIndex
                 
                 default:
                     print("no action")
