@@ -26,7 +26,6 @@ class LogDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         sessionNameTextField.text = sessionName
         dateTextField.text = date
         notesTextField.text = notes
@@ -107,4 +106,18 @@ class LogDetailViewController: UIViewController {
         let updatedNotes = notesTextField.text
         heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedSessionName!, newDate: updatedDate!, newNotes: updatedNotes)
     }
+    
+   @IBAction func dateTextFieldEditing(sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateTextField.text = dateFormatter.stringFromDate(sender.date)
+        }
 }

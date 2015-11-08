@@ -9,22 +9,22 @@
 import UIKit
 
 class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var navigationBarTitle: UINavigationItem!
     
+    @IBOutlet weak var navigationBarTitle: UINavigationItem!
     
     var navBarTitle = String()
     var chosenStat = Int()
-    var lastSelectedRow: NSIndexPath? = nil
-    var statFromPreviousView = String()
+    var lastSelectedRow: Int?
     var selectedRow: NSIndexPath?
     var heroStatsArrayToDisplay = [String]()
     var detailedStatFromStartView = String()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationBarTitle.title = navBarTitle
+        if lastSelectedRow != nil {
+            selectedRow = NSIndexPath(forRow: lastSelectedRow!, inSection: 0)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,14 +36,12 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     }
     
     @IBAction func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         let paths: [NSIndexPath]
         if let previous = selectedRow {
             paths = [indexPath, previous]
         } else {
             paths = [indexPath]
         }
-        
         selectedRow = indexPath
         tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
         chosenStat = indexPath.row
@@ -52,10 +50,8 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath)
         cell.textLabel!.text = heroStatsArrayToDisplay[indexPath.row]
-        
         if indexPath == selectedRow {
             cell.accessoryType = .Checkmark
-            
         } else {
             cell.accessoryType = .None
         }
