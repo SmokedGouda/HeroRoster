@@ -22,8 +22,14 @@ class LogInViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "heroRosterSegue" {
         let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
         destVC.userRoster.userName = userNameField.text!
+        }
+    }
+    
+    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        
     }
 
 

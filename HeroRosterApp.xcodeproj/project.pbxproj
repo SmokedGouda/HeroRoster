@@ -21,6 +21,7 @@
 		3F2B89EE1BE9535D00CE037C /* HeroStatOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */; };
 		3F3A97DF1BED22E20011131F /* LogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */; };
 		3F4B057B1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B057A1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift */; };
+		3F624A9B1BEFD4B3009415CF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F624A9A1BEFD4B3009415CF /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroStatOptionsViewController.swift; sourceTree = "<group>"; };
 		3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDetailViewController.swift; sourceTree = "<group>"; };
 		3F4B057A1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroSessionLogViewController.swift; sourceTree = "<group>"; };
+		3F624A9A1BEFD4B3009415CF /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				3F2B89B81BE9413F00CE037C /* LogInViewController.swift */,
+				3F624A9A1BEFD4B3009415CF /* SignUpViewController.swift */,
 				3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */,
 				3F2B89EB1BE94C3F00CE037C /* AddHeroViewController.swift */,
 				3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */,
@@ -297,6 +300,7 @@
 				3F2B89EA1BE94A5A00CE037C /* HeroRosterViewController.swift in Sources */,
 				3F27CDE61BE9B6C300D4B759 /* HeroDetailViewController.swift in Sources */,
 				3F2B89B71BE9413F00CE037C /* AppDelegate.swift in Sources */,
+				3F624A9B1BEFD4B3009415CF /* SignUpViewController.swift in Sources */,
 				3F2B89E81BE945A300CE037C /* HeroModel.swift in Sources */,
 				3F4B057B1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift in Sources */,
 				3F2B89EC1BE94C3F00CE037C /* AddHeroViewController.swift in Sources */,

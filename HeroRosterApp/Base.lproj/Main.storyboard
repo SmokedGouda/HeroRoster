@@ -33,15 +33,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fr-N3-ydt">
-                                <rect key="frame" x="104" y="356" width="112" height="30"/>
-                                <state key="normal" title="View your roster"/>
-                                <connections>
-                                    <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegue" id="ho5-GD-MX3"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your username here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jwe-Py-7tX">
-                                <rect key="frame" x="20" y="269" width="280" height="30"/>
+                                <rect key="frame" x="20" y="231" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7ON-B8-fAV"/>
                                 </constraints>
@@ -54,16 +47,43 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-ZB-kdh">
+                                <rect key="frame" x="100" y="438" width="119" height="30"/>
+                                <state key="normal" title="New User Signup"/>
+                                <connections>
+                                    <segue destination="Lqv-yd-VT7" kind="modal" identifier="signupSegue" id="v94-fA-Ejd"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2O-fg-BPs">
+                                <rect key="frame" x="20" y="311" width="280" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UMh-3z-ctk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fr-N3-ydt">
+                                <rect key="frame" x="141" y="378" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegue" id="ho5-GD-MX3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9fr-N3-ydt" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="57" id="FTB-aT-X4D"/>
+                            <constraint firstItem="NSR-ZB-kdh" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="2ry-BJ-b8k"/>
+                            <constraint firstItem="c2O-fg-BPs" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="50" id="Ib6-rM-ApL"/>
+                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="daB-YK-hbl" secondAttribute="bottom" constant="46.5" id="R4y-5E-gCI"/>
+                            <constraint firstItem="NSR-ZB-kdh" firstAttribute="top" secondItem="9fr-N3-ydt" secondAttribute="bottom" constant="30" id="TUT-Wh-7xu"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
-                            <constraint firstItem="daB-YK-hbl" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="100" id="XHx-qg-kS5"/>
                             <constraint firstItem="Jwe-Py-7tX" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="bdT-l7-RoP"/>
                             <constraint firstAttribute="trailing" secondItem="Jwe-Py-7tX" secondAttribute="trailing" constant="20" id="cU5-WH-OlD"/>
+                            <constraint firstAttribute="trailing" secondItem="c2O-fg-BPs" secondAttribute="trailing" constant="20" id="mg1-fs-BFP"/>
                             <constraint firstItem="daB-YK-hbl" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="ned-ld-30b"/>
-                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="centerY" secondItem="nIb-n7-L5w" secondAttribute="centerY" id="s54-3C-Iai"/>
+                            <constraint firstItem="9fr-N3-ydt" firstAttribute="top" secondItem="c2O-fg-BPs" secondAttribute="bottom" constant="37" id="oqI-v0-pmd"/>
+                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="167" id="p0E-1N-cyC"/>
+                            <constraint firstItem="c2O-fg-BPs" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="szL-gI-tKl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>
@@ -74,6 +94,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2O-xn-XPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="466" y="19"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="nCZ-T3-ilW">
+            <objects>
+                <viewController id="Lqv-yd-VT7" customClass="SignUpViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EtV-8V-FVa"/>
+                        <viewControllerLayoutGuide type="bottom" id="gpc-YF-iaV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wni-Gu-I4x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your username here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pae-ys-fjH">
+                                <rect key="frame" x="20" y="106" width="280" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="O96-R5-j5C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your password here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qn-dZ-0aF">
+                                <rect key="frame" x="20" y="169" width="280" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ncY-mW-VGm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W55-To-YTa">
+                                <rect key="frame" x="107" y="240" width="107" height="30"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="createAccountButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="OnM-dV-cep"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5qn-dZ-0aF" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="5Yy-El-LKJ"/>
+                            <constraint firstItem="5qn-dZ-0aF" firstAttribute="top" secondItem="pae-ys-fjH" secondAttribute="bottom" constant="33" id="GgD-oN-iNG"/>
+                            <constraint firstItem="W55-To-YTa" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="cit-eE-JT9"/>
+                            <constraint firstItem="pae-ys-fjH" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="cni-QJ-SbE"/>
+                            <constraint firstItem="pae-ys-fjH" firstAttribute="top" secondItem="EtV-8V-FVa" secondAttribute="bottom" constant="86" id="fGy-e3-Eqb"/>
+                            <constraint firstItem="W55-To-YTa" firstAttribute="top" secondItem="5qn-dZ-0aF" secondAttribute="bottom" constant="41" id="jnI-nm-Xhh"/>
+                            <constraint firstAttribute="trailing" secondItem="5qn-dZ-0aF" secondAttribute="trailing" constant="20" id="lNP-x2-GEE"/>
+                            <constraint firstAttribute="trailing" secondItem="pae-ys-fjH" secondAttribute="trailing" constant="20" id="xCi-hq-Jxe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sm2-pC-BBX"/>
+                    <connections>
+                        <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="gjv-yk-hoc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="NBY-9p-VC0" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="466" y="735"/>
         </scene>
         <!--Hero Roster-->
         <scene sceneID="KXq-Re-Hwa">
@@ -135,6 +213,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Hero Roster" id="xOr-OI-TQp">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="cL1-5w-khZ">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="Nak-u7-1JD" id="GIT-rK-n4c"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add Hero" id="5kK-9J-TTs">
                             <connections>
                                 <segue destination="U2Z-HO-3fb" kind="push" identifier="addHeroSegue" id="LAe-sW-ph4"/>
@@ -634,6 +717,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="gNp-wK-UXN"/>
-        <segue reference="o4b-B9-U7R"/>
+        <segue reference="V7N-qI-02U"/>
     </inferredMetricsTieBreakers>
 </document>

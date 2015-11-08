@@ -24,6 +24,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         navigationBarTitle.title = navBarTitle
         if lastSelectedRow != nil {
             selectedRow = NSIndexPath(forRow: lastSelectedRow!, inSection: 0)
+            chosenStat = selectedRow!.row
         }
     }
 

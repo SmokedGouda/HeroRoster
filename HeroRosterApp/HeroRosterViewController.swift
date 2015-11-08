@@ -15,7 +15,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
         print(userRoster.userName)
     }
     
@@ -70,5 +69,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             let destVC: AddHeroViewController = segue.destinationViewController as! AddHeroViewController
             destVC.activeRoster = userRoster
         }
+    }
+    
+    @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
+        navigationController?.popToRootViewControllerAnimated(true)
     }
 }
