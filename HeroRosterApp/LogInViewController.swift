@@ -15,7 +15,7 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var currentUser = PFUser.currentUser()
+        let currentUser = PFUser.currentUser()
         if currentUser != nil {
             self.performSegueWithIdentifier("heroRosterSegue", sender: self)
         }
@@ -32,8 +32,7 @@ class LogInViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        if segue.identifier == "heroRosterSegue" {
-            let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
-            destVC.userRoster.userName = userNameField.text!
+//            let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
             userNameField.text = ""
             userPasswordField.text = ""
         }

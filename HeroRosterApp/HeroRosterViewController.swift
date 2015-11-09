@@ -13,10 +13,30 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     @IBOutlet weak var heroRosterTable: UITableView!
 
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
-    
+    var activeUser = PFUser.currentUser()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(userRoster.userName)
+        let rosterName = "\(activeUser!.username!)'s hero roster"
+        print(activeUser!.username!)
+        let query = PFQuery(className: "Roster")
+        query.whereKey("name", equalTo: rosterName)
+        query.findObjectsInBackgroundWithBlock {
+            (Roster: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                print("Retreived \(Roster!.count) objects")
+                
+                for object:PFObject in Roster! {
+                        print("the object retrieved is \(object)")
+                    self.userRoster.userName = object["name"] as! String
+                    if object["hero"] != nil {
+                    self.userRoster.heros = object["hero"] as! [Hero]
+                    }
+                    self.userRoster.usedHeroNames = object["usedHeroNames"] as! [String]
+                    }
+            } else {
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

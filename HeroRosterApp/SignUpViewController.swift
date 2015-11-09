@@ -28,11 +28,12 @@ class SignUpViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "heroRosterSegueTwo" {
             let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
-            destVC.userRoster.userName = newUserNameTextField.text!
+//            destVC.activeUser = newUserNameTextField.text!
         }
     }
     
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
+        // Attempt to create a new user and save it to Parse.com
         if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" {
             let user = PFUser()
             user.username = newUserNameTextField.text
@@ -44,12 +45,13 @@ class SignUpViewController: UIViewController {
                     let errorString = error.userInfo["error"] as? NSString
                 } else {
                     print("account creation successfull")
+                    // Automatically log in the new user after successful account creation
                     PFUser.logInWithUsernameInBackground(self.newUserNameTextField.text!, password: self.newUserPasswordTextField.text!) {
                         (user: PFUser?, error: NSError?) -> Void in
                         if user != nil {
                             print("Login successful")
-                            self.performSegueWithIdentifier("heroRosterSegueTwo", sender: self)
-                        } else {
+                            self.createUserRoster()
+                                } else {
                             print("Login failed")
                         }
                     }
@@ -59,11 +61,22 @@ class SignUpViewController: UIViewController {
             print("You need to enter a new username and password")
         }
     }
-    //            var userRoster = PFObject(className: "Roster")
-    //            var heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [])
-    //            userRoster["name"] = heroRoster.userName
-    //            userRoster["heros"] = heroRoster.heros
-    //            userRoster["usedHeroNames"] = heroRoster.usedHeroNames
-    //            user["roster"] = heroRoster
-
+  
+    // Create the instance of Roster for the user which will be saved to Parse and store all of the users heros and their session logs.
+    func createUserRoster () {
+        let userRoster = PFObject(className: "Roster")
+        let heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [])
+        userRoster["name"] = heroRoster.userName
+        userRoster["heros"] = heroRoster.heros
+        userRoster["usedHeroNames"] = heroRoster.usedHeroNames
+        userRoster.saveInBackgroundWithBlock {
+            (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                print("Roster object successfully saved to user's account.")
+                self.performSegueWithIdentifier("heroRosterSegueTwo", sender: self)
+            } else {
+                print("Roster object failed to save to user's account.")
+            }
+        }
+    }
 }
