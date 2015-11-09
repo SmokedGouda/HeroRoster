@@ -51,7 +51,7 @@
                                 <rect key="frame" x="100" y="438" width="119" height="30"/>
                                 <state key="normal" title="New User Signup"/>
                                 <connections>
-                                    <segue destination="Lqv-yd-VT7" kind="modal" identifier="signupSegue" id="v94-fA-Ejd"/>
+                                    <segue destination="Lqv-yd-VT7" kind="push" identifier="signupSegue" id="v94-fA-Ejd"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2O-fg-BPs">
@@ -66,7 +66,7 @@
                                 <rect key="frame" x="141" y="378" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegue" id="ho5-GD-MX3"/>
+                                    <action selector="loginButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="mLM-Bk-b7c"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -89,6 +89,8 @@
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>
                     <connections>
                         <outlet property="userNameField" destination="Jwe-Py-7tX" id="52Y-uf-W3W"/>
+                        <outlet property="userPasswordField" destination="c2O-fg-BPs" id="T4r-QK-wpC"/>
+                        <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegue" id="s8S-Wt-Nvp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2O-xn-XPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,23 +132,14 @@
                                     <action selector="createAccountButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="OnM-dV-cep"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zh-ad-ENd">
-                                <rect key="frame" x="136" y="300" width="48" height="30"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="cancelButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="Wcf-5W-GFe"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="5Yy-El-LKJ"/>
-                            <constraint firstItem="8Zh-ad-ENd" firstAttribute="top" secondItem="W55-To-YTa" secondAttribute="bottom" constant="30" id="E5G-6y-diO"/>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="top" secondItem="pae-ys-fjH" secondAttribute="bottom" constant="33" id="GgD-oN-iNG"/>
-                            <constraint firstItem="8Zh-ad-ENd" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="buO-n5-K9q"/>
                             <constraint firstItem="W55-To-YTa" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="cit-eE-JT9"/>
                             <constraint firstItem="pae-ys-fjH" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="cni-QJ-SbE"/>
-                            <constraint firstItem="pae-ys-fjH" firstAttribute="top" secondItem="EtV-8V-FVa" secondAttribute="bottom" constant="86" id="fGy-e3-Eqb"/>
+                            <constraint firstItem="pae-ys-fjH" firstAttribute="top" secondItem="EtV-8V-FVa" secondAttribute="bottom" constant="42" id="fGy-e3-Eqb"/>
                             <constraint firstItem="W55-To-YTa" firstAttribute="top" secondItem="5qn-dZ-0aF" secondAttribute="bottom" constant="41" id="jnI-nm-Xhh"/>
                             <constraint firstAttribute="trailing" secondItem="5qn-dZ-0aF" secondAttribute="trailing" constant="20" id="lNP-x2-GEE"/>
                             <constraint firstAttribute="trailing" secondItem="pae-ys-fjH" secondAttribute="trailing" constant="20" id="xCi-hq-Jxe"/>
@@ -157,6 +150,7 @@
                         <outlet property="newUserNameTextField" destination="pae-ys-fjH" id="SpB-Uu-juC"/>
                         <outlet property="newUserPasswordTextField" destination="5qn-dZ-0aF" id="M9d-wO-1lx"/>
                         <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="gjv-yk-hoc"/>
+                        <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegueTwo" id="chN-vc-Ri0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -727,6 +721,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="chN-vc-Ri0"/>
         <segue reference="gNp-wK-UXN"/>
         <segue reference="V7N-qI-02U"/>
     </inferredMetricsTieBreakers>

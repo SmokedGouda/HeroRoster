@@ -75,6 +75,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     }
     
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
+        PFUser.logOut()
+        var currentUser = PFUser.currentUser()
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }
