@@ -13,6 +13,8 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
 
+    var activeUser = PFUser.currentUser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let currentUser = PFUser.currentUser()
@@ -32,7 +34,7 @@ class LogInViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        if segue.identifier == "heroRosterSegue" {
-//            let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
+           let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
             userNameField.text = ""
             userPasswordField.text = ""
         }
@@ -40,11 +42,13 @@ class LogInViewController: UIViewController {
     
     override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
     }
-    @IBAction func loginButtonPressed(sender: AnyObject) {
+    
+   @IBAction func loginButtonPressed(sender: AnyObject) {
         PFUser.logInWithUsernameInBackground(userNameField.text!, password: userPasswordField.text!) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 print("Login successful")
+                self.activeUser = PFUser.currentUser()
                 self.performSegueWithIdentifier("heroRosterSegue", sender: self)
             } else {
                 print("Login failed")

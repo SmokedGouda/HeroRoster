@@ -25,7 +25,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var raceIndex: Int?
     var genderIndex: Int?
     var levelIndex: Int?
-    
+    var createdHero: Hero?
     var cellLabel = String()
     var activeRoster = Roster?()
     
@@ -100,8 +100,9 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         } else {
             
             let newHeroNumber = heroNumberField.text
-            let createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [])
-            activeRoster!.addHeroToRoster(createdHero)
+            createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [], parseObjectId: "")
+            activeRoster!.addHeroToRoster(createdHero!)
+            createHeroOnParse(createdHero!)
             self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }
     }
@@ -140,6 +141,26 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             statToDisplay = heroStat.chosenStat
+        }
+    }
+    
+    func createHeroOnParse(heroToCreate: Hero) {
+        let parseHero = PFObject(className: "Hero")
+        parseHero["owner"] = activeRoster!.userName
+        parseHero["name"] = heroToCreate.name
+        parseHero["number"] = heroToCreate.number
+        parseHero["heroClass"] = heroToCreate.heroClass
+        parseHero["race"] = heroToCreate.race
+        parseHero["gender"] = heroToCreate.gender
+        parseHero["level"] = heroToCreate.level
+//        parseHero["log"] = heroToCreate.log
+//        parseHero["usedLogNames"] = heroToCreate.usedLogNames
+        parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                print("hero saved to parse")
+            } else {
+                print("hero did not save to parse")
+            }
         }
     }
 }

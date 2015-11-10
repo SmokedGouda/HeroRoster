@@ -11,38 +11,32 @@ import Parse
 
 class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var heroRosterTable: UITableView!
-
+    
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
     var activeUser = PFUser.currentUser()
+    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", log: [], usedLogNames: [], parseObjectId: "")
+    var parseHeroName = [String]()
+    var parseHeroNumber = [String]()
+    var parseHeroClass = [String]()
+    var parseHeroRace = [String]()
+    var parseHeroGender = [String]()
+    var parseHeroLevel = [String]()
+    var parseHeroLog: [SessionLog] = []
+    var parseHeroUsedLogNames: [String] = []
+    var parseHeroObjectId = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rosterName = "\(activeUser!.username!)'s hero roster"
-        print(activeUser!.username!)
-        let query = PFQuery(className: "Roster")
-        query.whereKey("name", equalTo: rosterName)
-        query.findObjectsInBackgroundWithBlock {
-            (Roster: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                print("Retreived \(Roster!.count) objects")
-                
-                for object:PFObject in Roster! {
-                        print("the object retrieved is \(object)")
-                    self.userRoster.userName = object["name"] as! String
-                    if object["hero"] != nil {
-                    self.userRoster.heros = object["hero"] as! [Hero]
-                    }
-                    self.userRoster.usedHeroNames = object["usedHeroNames"] as! [String]
-                    }
-            } else {
-                print("Error: \(error!) \(error!.userInfo)")
-            }
-        }
+        getRosterFromParse()
+        getHerosFromParse()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print(userRoster.userName, userRoster.heros, userRoster.usedHeroNames)
+        print(userRoster.userName, userRoster.usedHeroNames)
         heroRosterTable.reloadData()
+        print(userRoster.heros.count)
+        print(userRoster.heros[0].name, userRoster.heros[0].parseObjectId)
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,6 +86,78 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             let destVC: AddHeroViewController = segue.destinationViewController as! AddHeroViewController
             destVC.activeRoster = userRoster
         }
+    }
+    
+    func getRosterFromParse() {
+        let rosterName = "\(activeUser!.username!)'s hero roster"
+        let query = PFQuery(className: "Roster")
+        query.whereKey("name", equalTo: rosterName)
+        
+        query.findObjectsInBackgroundWithBlock {
+            (Roster: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    print("Retreived \(Roster!.count) roster")
+                    
+                    for object:PFObject in Roster! {
+                        print("the object retrieved is \(object)")
+                        self.userRoster.userName = object["name"] as! String
+                        if object["hero"] != nil {
+                            self.userRoster.heros = object["hero"] as! [Hero]
+                        }
+                        self.userRoster.usedHeroNames = object["usedHeroNames"] as! [String]
+                    }
+                }
+            } else {
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+    }
+    
+    func getHerosFromParse() {
+        let rosterName = "\(activeUser!.username!)'s hero roster"
+        let query = PFQuery(className: "Hero")
+        query.whereKey("owner", equalTo: rosterName)
+        query.findObjectsInBackgroundWithBlock{ (Hero: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                print("Retreived \(Hero!.count) heros")
+                dispatch_async(dispatch_get_main_queue()) {
+                    for object in Hero! {
+                        print("The hero retrieved is \(object)")
+                        self.downloadedHero.name = object["name"] as! String
+                        self.downloadedHero.number = object["number"] as! String
+                        self.downloadedHero.heroClass = object["heroClass"] as! String
+                        self.downloadedHero.race = object["race"] as! String
+                        self.downloadedHero.gender = object["gender"] as! String
+                        self.downloadedHero.level = object["level"] as! String
+
+//                        if object["log"] != nil {
+//                            self.downloadedHero.log = object["log"] as! [SessionLog]
+//                        }
+//                        self.downloadedHero.usedLogNames = object["usedLogNames"] as! [String]
+                        self.parseHeroName.append(self.downloadedHero.name)
+                        self.parseHeroNumber.append(self.downloadedHero.number)
+                        self.parseHeroClass.append(self.downloadedHero.heroClass)
+                        self.parseHeroRace.append(self.downloadedHero.race)
+                        self.parseHeroGender.append(self.downloadedHero.gender)
+                        self.parseHeroLevel.append(self.downloadedHero.level)
+//                        self.parseHeroLog = (self.downloadedHero.log)
+//                        self.parseHeroUsedLogNames = (self.downloadedHero.usedLogNames)
+                        self.parseHeroObjectId.append(object.objectId! as String)
+
+                        print(self.parseHeroName, self.parseHeroNumber, self.parseHeroClass, self.parseHeroRace, self.parseHeroGender, self.parseHeroLevel, self.parseHeroObjectId)
+                        print(self.parseHeroName.count)
+                        self.populateUserRoster()
+                    }
+                }
+            }
+        }
+    }
+    
+    func populateUserRoster() {
+        for (index,_) in parseHeroName.enumerate() {
+            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index]))
+            }
     }
     
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {

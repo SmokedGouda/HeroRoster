@@ -29,8 +29,9 @@ class Hero {
     var level: String
     var log: [SessionLog]
     var usedLogNames: [String]
+    var parseObjectId: String
     
-    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, log: [SessionLog], usedLogNames: [String]) {
+    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, log: [SessionLog], usedLogNames: [String], parseObjectId: String) {
         self.name = name
         self.number = number
         self.heroClass = heroClass
@@ -39,6 +40,7 @@ class Hero {
         self.level = level
         self.log = log
         self.usedLogNames = usedLogNames
+        self.parseObjectId = parseObjectId
     }
     
     func addSessionLog(logToAdd: SessionLog) {
