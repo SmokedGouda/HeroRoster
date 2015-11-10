@@ -25,7 +25,6 @@ class LogInViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -43,9 +42,11 @@ class LogInViewController: UIViewController {
         PFUser.logInWithUsernameInBackground(userNameField.text!, password: userPasswordField.text!) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
+                dispatch_async(dispatch_get_main_queue()){
                 print("Login successful")
                 self.activeUser = PFUser.currentUser()
                 self.performSegueWithIdentifier("heroRosterSegue", sender: self)
+                }
             } else {
                 print("Login failed")
             }

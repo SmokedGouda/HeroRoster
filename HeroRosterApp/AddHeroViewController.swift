@@ -154,8 +154,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         parseHero["race"] = heroToCreate.race
         parseHero["gender"] = heroToCreate.gender
         parseHero["level"] = heroToCreate.level
-//        parseHero["log"] = heroToCreate.log
-//        parseHero["usedLogNames"] = heroToCreate.usedLogNames
+
         parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){

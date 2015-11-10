@@ -218,6 +218,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         if segue.identifier == "sessionTableSegue" {
             let destVC: HeroSessionLogViewController = segue.destinationViewController as! HeroSessionLogViewController
             destVC.heroDisplayed = heroDisplayed
+            destVC.activeRoster = activeRoster
         }
         // This segue will display the appropriate tableview based on which cell was touched.
         if segue.identifier == "heroStatOptionsSegueTwo" {

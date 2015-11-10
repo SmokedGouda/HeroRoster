@@ -16,6 +16,7 @@ class LogDetailViewController: UIViewController {
     @IBOutlet weak var notesTextField: UITextView!
     @IBOutlet weak var addLogButton: UIButton!
     
+    var activeRoster = Roster?()
     var heroDisplayed = Hero?()
     var heroLogDisplayed = SessionLog?()
     var sessionName = String()
@@ -24,6 +25,7 @@ class LogDetailViewController: UIViewController {
     var newSessionName = String()
     var sessionLogNameBeforeEdit = String()
     var activateEditMode = false
+    var newLogObjectId = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,8 +92,8 @@ class LogDetailViewController: UIViewController {
                 } else {
                     date = dateTextField.text!
                     notes = notesTextField.text!
-                    let newSessionLog = SessionLog(name: newSessionName, date: date, notes: notes)
-                    heroDisplayed?.addSessionLog(newSessionLog)
+                    let newSessionLog = SessionLog(name: newSessionName, date: date, notes: notes, parseObjectId: "")
+                    createSessionLogOnParse(newSessionLog)
                     self.performSegueWithIdentifier("addSessionLogSegue", sender: self)
                 }
         }
@@ -106,6 +108,7 @@ class LogDetailViewController: UIViewController {
         let updatedDate = dateTextField.text
         let updatedNotes = notesTextField.text
         heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedSessionName!, newDate: updatedDate!, newNotes: updatedNotes)
+        updateSessionLogOnParse()
     }
     
    @IBAction func dateTextFieldEditing(sender: UITextField) {
@@ -121,4 +124,42 @@ class LogDetailViewController: UIViewController {
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
         dateTextField.text = dateFormatter.stringFromDate(sender.date)
         }
+    
+    func createSessionLogOnParse(logToCreate: SessionLog) {
+        let parseLog = PFObject(className: "Log")
+        parseLog["owner"] = activeRoster!.userName
+        parseLog["logForHero"] = heroDisplayed?.name
+        parseLog["sessionName"] = logToCreate.name
+        parseLog["date"] = logToCreate.date
+        parseLog["notes"] = logToCreate.notes
+       
+        parseLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                dispatch_async(dispatch_get_main_queue()){
+                    print("hero saved to parse")
+                    self.newLogObjectId = parseLog.objectId!
+                    logToCreate.parseObjectId = self.newLogObjectId
+                    self.heroDisplayed?.addSessionLog(logToCreate)
+                }
+            } else {
+                print("hero did not save to parse")
+            }
+        }
+    }
+    
+    func updateSessionLogOnParse() {
+        let query = PFQuery(className:"Log")
+        query.getObjectInBackgroundWithId(heroLogDisplayed!.parseObjectId) {
+            (Log: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let log = Log {
+                log["sessionName"] = self.sessionNameTextField.text
+                log["date"] = self.dateTextField.text
+                log["notes"] = self.notesTextField.text
+                log.saveInBackground()
+                print("log updated on parse")
+            }
+        }
+    }
 }

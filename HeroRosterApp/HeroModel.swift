@@ -76,11 +76,13 @@ class SessionLog {
     var name: String
     var date: String
     var notes: String
+    var parseObjectId: String
     
-    init(name: String, date: String, notes: String) {
+    init(name: String, date: String, notes: String, parseObjectId: String) {
         self.name = name
         self.date = date
         self.notes = notes
+        self.parseObjectId = parseObjectId
     }
 }
 

@@ -21,7 +21,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     var parseHeroRace = [String]()
     var parseHeroGender = [String]()
     var parseHeroLevel = [String]()
-    var parseHeroLog: [SessionLog] = []
     var parseHeroUsedLogNames: [String] = []
     var parseHeroObjectId = [String]()
     var newHeroObjectId = String()
@@ -150,10 +149,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.downloadedHero.race = object["race"] as! String
                         self.downloadedHero.gender = object["gender"] as! String
                         self.downloadedHero.level = object["level"] as! String
-
-//                        if object["log"] != nil {
-//                            self.downloadedHero.log = object["log"] as! [SessionLog]
-//                        }
 //                        self.downloadedHero.usedLogNames = object["usedLogNames"] as! [String]
                         self.parseHeroName.append(self.downloadedHero.name)
                         self.parseHeroNumber.append(self.downloadedHero.number)
@@ -161,14 +156,12 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.parseHeroRace.append(self.downloadedHero.race)
                         self.parseHeroGender.append(self.downloadedHero.gender)
                         self.parseHeroLevel.append(self.downloadedHero.level)
-//                        self.parseHeroLog = (self.downloadedHero.log)
-//                        self.parseHeroUsedLogNames = (self.downloadedHero.usedLogNames)
                         self.parseHeroObjectId.append(object.objectId! as String)
 
                         print(self.parseHeroName, self.parseHeroNumber, self.parseHeroClass, self.parseHeroRace, self.parseHeroGender, self.parseHeroLevel, self.parseHeroObjectId)
                         print(self.parseHeroName.count)
                         self.populateUserRoster()
-                        
+                        self.heroRosterTable.reloadData()
                     }
                 }
             }
