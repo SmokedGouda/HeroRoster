@@ -60,6 +60,17 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             
             func deleteHero() {
                 let heroToDelete = userRoster.heros[indexPath.row]
+                let query = PFQuery(className:"Hero")
+                query.getObjectInBackgroundWithId(userRoster.heros[indexPath.row].parseObjectId) {
+                    (Hero: PFObject?, error: NSError?) -> Void in
+                    if error != nil {
+                        print(error)
+                    } else if let hero = Hero {
+                        hero.deleteInBackground()
+                        print("hero deleted from parse")
+                    }
+                }
+
                 userRoster.deleteHeroFromRoster(heroToDelete)
                 print(userRoster.userName, userRoster.heros, userRoster.usedHeroNames)
                 
