@@ -28,6 +28,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var createdHero: Hero?
     var cellLabel = String()
     var activeRoster = Roster?()
+    var newHeroObjectId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,9 +102,9 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
             
             let newHeroNumber = heroNumberField.text
             createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [], parseObjectId: "")
-            activeRoster!.addHeroToRoster(createdHero!)
             createHeroOnParse(createdHero!)
-            self.performSegueWithIdentifier("addHeroSegue", sender: self)
+            
+           self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }
     }
     
@@ -157,7 +158,12 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
 //        parseHero["usedLogNames"] = heroToCreate.usedLogNames
         parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
+                dispatch_async(dispatch_get_main_queue()){
                 print("hero saved to parse")
+                self.newHeroObjectId = parseHero.objectId!
+                    heroToCreate.parseObjectId = self.newHeroObjectId
+                self.activeRoster?.addHeroToRoster(heroToCreate)
+                }
             } else {
                 print("hero did not save to parse")
             }

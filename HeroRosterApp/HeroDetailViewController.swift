@@ -191,6 +191,26 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let updatedHeroName = heroNameTextField.text
         let updatedHeroNumber = heroNumberTextField.text
         activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed)
+        updateHeroOnParse()
+    }
+    
+    func updateHeroOnParse() {
+        let query = PFQuery(className:"Hero")
+        query.getObjectInBackgroundWithId(heroDisplayed!.parseObjectId) {
+            (Hero: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let hero = Hero {
+                hero["name"] = self.heroNameTextField.text
+                hero["number"] = self.heroNumberTextField.text
+                hero["heroClass"] = self.classDisplayed
+                hero["race"] = self.raceDisplayed
+                hero["gender"] = self.genderDisplayed
+                hero["level"] = self.levelDisplayed
+                hero.saveInBackground()
+                print("hero updated on parse")
+            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

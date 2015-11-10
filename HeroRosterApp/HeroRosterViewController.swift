@@ -24,6 +24,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     var parseHeroLog: [SessionLog] = []
     var parseHeroUsedLogNames: [String] = []
     var parseHeroObjectId = [String]()
+    var newHeroObjectId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +36,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         super.viewDidAppear(animated)
         print(userRoster.userName, userRoster.usedHeroNames)
         heroRosterTable.reloadData()
-        print(userRoster.heros.count)
-        print(userRoster.heros[0].name, userRoster.heros[0].parseObjectId)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +88,14 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             destVC.activeRoster = userRoster
         }
     }
+    
+    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        if(unwindSegue.sourceViewController .isKindOfClass(AddHeroViewController)) {
+            let addHero: AddHeroViewController = unwindSegue.sourceViewController as! AddHeroViewController
+            newHeroObjectId = addHero.newHeroObjectId
+        }
+    }
+
     
     func getRosterFromParse() {
         let rosterName = "\(activeUser!.username!)'s hero roster"
@@ -148,6 +157,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         print(self.parseHeroName, self.parseHeroNumber, self.parseHeroClass, self.parseHeroRace, self.parseHeroGender, self.parseHeroLevel, self.parseHeroObjectId)
                         print(self.parseHeroName.count)
                         self.populateUserRoster()
+                        
                     }
                 }
             }
@@ -159,7 +169,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index]))
             }
     }
-    
+        
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
         PFUser.logOut()
         var currentUser = PFUser.currentUser()

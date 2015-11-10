@@ -17,10 +17,6 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let currentUser = PFUser.currentUser()
-        if currentUser != nil {
-            self.performSegueWithIdentifier("heroRosterSegue", sender: self)
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
