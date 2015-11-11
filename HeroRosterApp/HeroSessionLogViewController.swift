@@ -48,7 +48,9 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sessionLogCell")
         cell?.textLabel!.text = heroDisplayed!.log[indexPath.row].name
+        cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         cell?.detailTextLabel!.text = heroDisplayed!.log[indexPath.row].date
+        cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
         return cell!
     }
     

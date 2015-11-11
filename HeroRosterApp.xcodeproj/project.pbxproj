@@ -48,6 +48,10 @@
 		3F624AB31BEFE3CC009415CF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA91BEFE3CC009415CF /* StoreKit.framework */; };
 		3F624AB41BEFE3CC009415CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */; };
 		3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AB51BEFE3ED009415CF /* CoreLocation.framework */; };
+		3F7001491BF381F400BC8684 /* illo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001481BF381F400BC8684 /* illo3.jpg */; };
+		3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014A1BF3865C00BC8684 /* Illo2.jpg */; };
+		3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014C1BF387AC00BC8684 /* Illo1.jpg */; };
+		3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014E1BF387BC00BC8684 /* illo4.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +120,10 @@
 		3F624AA91BEFE3CC009415CF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F624AB51BEFE3ED009415CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3F7001481BF381F400BC8684 /* illo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo3.jpg; path = ../HeroRosterApp/illo3.jpg; sourceTree = "<group>"; };
+		3F70014A1BF3865C00BC8684 /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo2.jpg; path = ../HeroRosterApp/Illo2.jpg; sourceTree = "<group>"; };
+		3F70014C1BF387AC00BC8684 /* Illo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo1.jpg; path = ../HeroRosterApp/Illo1.jpg; sourceTree = "<group>"; };
+		3F70014E1BF387BC00BC8684 /* illo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo4.jpg; path = ../HeroRosterApp/illo4.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,7 @@
 		3F2B89AA1BE9413F00CE037C = {
 			isa = PBXGroup;
 			children = (
+				3F7001501BF387D000BC8684 /* Background Images */,
 				3F1C824D1BF2E25C0063FDD8 /* D&DIcons */,
 				3F2B89B51BE9413F00CE037C /* HeroRosterApp */,
 				3F2B89CA1BE9413F00CE037C /* HeroRosterAppTests */,
@@ -271,6 +280,18 @@
 				3F624A9C1BEFE21F009415CF /* Bolts.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F7001501BF387D000BC8684 /* Background Images */ = {
+			isa = PBXGroup;
+			children = (
+				3F70014C1BF387AC00BC8684 /* Illo1.jpg */,
+				3F70014A1BF3865C00BC8684 /* Illo2.jpg */,
+				3F7001481BF381F400BC8684 /* illo3.jpg */,
+				3F70014E1BF387BC00BC8684 /* illo4.jpg */,
+			);
+			name = "Background Images";
+			path = "D&DIcons";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,8 +400,10 @@
 			files = (
 				3F1C82661BF2E25C0063FDD8 /* Rogue.png in Resources */,
 				3F1C82681BF2E25C0063FDD8 /* Warlock.png in Resources */,
+				3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */,
 				3F1C82651BF2E25C0063FDD8 /* Ranger.png in Resources */,
 				3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */,
+				3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */,
 				3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */,
 				3F2B89C11BE9413F00CE037C /* LaunchScreen.storyboard in Resources */,
 				3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */,
@@ -389,11 +412,13 @@
 				3F1C825E1BF2E25C0063FDD8 /* Cleric.png in Resources */,
 				3F1C825C1BF2E25C0063FDD8 /* Barbarian.png in Resources */,
 				3F1C82691BF2E25C0063FDD8 /* Wizard.png in Resources */,
+				3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */,
 				3F2B89BC1BE9413F00CE037C /* Main.storyboard in Resources */,
 				3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */,
 				3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */,
 				3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */,
 				3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */,
+				3F7001491BF381F400BC8684 /* illo3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

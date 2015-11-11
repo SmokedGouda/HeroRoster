@@ -33,10 +33,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print(userRoster.userName, userRoster.usedHeroNames)
         heroRosterTable.reloadData()
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,42 +46,13 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
  
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
-
         cell!.textLabel!.text = userRoster.heros[indexPath.row].name
+        cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         cell!.detailTextLabel!.text = userRoster.heros[indexPath.row].heroClass
-        let heroClassDisplayed = cell!.detailTextLabel!.text!
-        switch heroClassDisplayed {
-            case "Barbarian":
-                cell!.imageView?.image = UIImage(named: "Barbarian")
-            case "Bard":
-                cell!.imageView?.image = UIImage(named: "Bard")
-            case "Cleric":
-                cell!.imageView?.image = UIImage(named: "Cleric")
-            case "Druid":
-                cell!.imageView?.image = UIImage(named: "Druid")
-            case "Fighter":
-                cell!.imageView?.image = UIImage(named: "Fighter")
-            case "Gunslinger":
-                cell!.imageView?.image = UIImage(named: "Gunslinger")
-            case "Magus":
-                cell!.imageView?.image = UIImage(named: "Magus")
-            case "Monk":
-                cell!.imageView?.image = UIImage(named: "Monk")
-            case "Paladin":
-                cell!.imageView?.image = UIImage(named: "Paladin")
-            case "Ranger":
-                cell!.imageView?.image = UIImage(named: "Ranger")
-            case "Rogue":
-                cell!.imageView?.image = UIImage(named: "Rogue")
-            case "Sorcerer":
-                cell!.imageView?.image = UIImage(named: "Sorcerer")
-            case "Warlock":
-                cell!.imageView?.image = UIImage(named: "Warlock")
-            case "Wizard":
-                cell!.imageView?.image = UIImage(named: "Wizard")
-            default:
-                "No image"
-        }
+        cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
+        cell!.imageView?.image = UIImage(named: userRoster.heros[indexPath.row].heroClass)
+   
+        
         return cell!
     }
     
