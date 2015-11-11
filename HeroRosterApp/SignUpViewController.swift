@@ -21,17 +21,9 @@ class SignUpViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "heroRosterSegueTwo" {
-            let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
-            newUserNameTextField.text = ""
-            newUserPasswordTextField.text = ""
-        }
-    }
-    
+
+    // Attempt to create a new user and save it to Parse.com
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        // Attempt to create a new user and save it to Parse.com
         if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" {
             let user = PFUser()
             user.username = newUserNameTextField.text
@@ -39,8 +31,8 @@ class SignUpViewController: UIViewController {
             
             user.signUpInBackgroundWithBlock {
                 (succeeded: Bool, error: NSError?) -> Void in
-                if let error = error {
-                    let errorString = error.userInfo["error"] as? NSString
+                if error != nil {
+                    print("Error, account creation failed")
                 } else {
                     print("account creation successfull")
                     // Automatically log in the new user after successful account creation
@@ -60,7 +52,7 @@ class SignUpViewController: UIViewController {
         }
     }
   
-    // Create the instance of Roster for the user which will be saved to Parse and store all of the users heros and their session logs.
+    // Create the instance of Roster for the user which will be saved to Parse and store all of the users heros and their session logs.  Then segue to heroRosterViewController.
     func createUserRoster () {
         let userRoster = PFObject(className: "Roster")
         let heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [])

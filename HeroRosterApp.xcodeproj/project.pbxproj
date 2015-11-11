@@ -7,11 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */; };
+		3F1C825C1BF2E25C0063FDD8 /* Barbarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */; };
+		3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C824F1BF2E25C0063FDD8 /* Bard.png */; };
+		3F1C825E1BF2E25C0063FDD8 /* Cleric.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82501BF2E25C0063FDD8 /* Cleric.png */; };
+		3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82511BF2E25C0063FDD8 /* Druid.png */; };
+		3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82521BF2E25C0063FDD8 /* Fighter.png */; };
+		3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */; };
+		3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82541BF2E25C0063FDD8 /* Magus.png */; };
+		3F1C82631BF2E25C0063FDD8 /* Monk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82551BF2E25C0063FDD8 /* Monk.png */; };
+		3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82561BF2E25C0063FDD8 /* Paladin.png */; };
+		3F1C82651BF2E25C0063FDD8 /* Ranger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82571BF2E25C0063FDD8 /* Ranger.png */; };
+		3F1C82661BF2E25C0063FDD8 /* Rogue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82581BF2E25C0063FDD8 /* Rogue.png */; };
+		3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82591BF2E25C0063FDD8 /* Sorcerer.png */; };
+		3F1C82681BF2E25C0063FDD8 /* Warlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C825A1BF2E25C0063FDD8 /* Warlock.png */; };
+		3F1C82691BF2E25C0063FDD8 /* Wizard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C825B1BF2E25C0063FDD8 /* Wizard.png */; };
 		3F27CDE61BE9B6C300D4B759 /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */; };
 		3F2B89B71BE9413F00CE037C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89B61BE9413F00CE037C /* AppDelegate.swift */; };
 		3F2B89B91BE9413F00CE037C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89B81BE9413F00CE037C /* LogInViewController.swift */; };
 		3F2B89BC1BE9413F00CE037C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2B89BA1BE9413F00CE037C /* Main.storyboard */; };
-		3F2B89BE1BE9413F00CE037C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F2B89BD1BE9413F00CE037C /* Assets.xcassets */; };
 		3F2B89C11BE9413F00CE037C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F2B89BF1BE9413F00CE037C /* LaunchScreen.storyboard */; };
 		3F2B89CC1BE9413F00CE037C /* HeroRosterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89CB1BE9413F00CE037C /* HeroRosterAppTests.swift */; };
 		3F2B89D71BE9413F00CE037C /* HeroRosterAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89D61BE9413F00CE037C /* HeroRosterAppUITests.swift */; };
@@ -54,12 +68,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barbarian.png; sourceTree = "<group>"; };
+		3F1C824F1BF2E25C0063FDD8 /* Bard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bard.png; sourceTree = "<group>"; };
+		3F1C82501BF2E25C0063FDD8 /* Cleric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cleric.png; sourceTree = "<group>"; };
+		3F1C82511BF2E25C0063FDD8 /* Druid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Druid.png; sourceTree = "<group>"; };
+		3F1C82521BF2E25C0063FDD8 /* Fighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fighter.png; sourceTree = "<group>"; };
+		3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gunslinger.png; sourceTree = "<group>"; };
+		3F1C82541BF2E25C0063FDD8 /* Magus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magus.png; sourceTree = "<group>"; };
+		3F1C82551BF2E25C0063FDD8 /* Monk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Monk.png; sourceTree = "<group>"; };
+		3F1C82561BF2E25C0063FDD8 /* Paladin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paladin.png; sourceTree = "<group>"; };
+		3F1C82571BF2E25C0063FDD8 /* Ranger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ranger.png; sourceTree = "<group>"; };
+		3F1C82581BF2E25C0063FDD8 /* Rogue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rogue.png; sourceTree = "<group>"; };
+		3F1C82591BF2E25C0063FDD8 /* Sorcerer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sorcerer.png; sourceTree = "<group>"; };
+		3F1C825A1BF2E25C0063FDD8 /* Warlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warlock.png; sourceTree = "<group>"; };
+		3F1C825B1BF2E25C0063FDD8 /* Wizard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizard.png; sourceTree = "<group>"; };
 		3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
 		3F2B89B31BE9413F00CE037C /* HeroRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2B89B61BE9413F00CE037C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F2B89B81BE9413F00CE037C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		3F2B89BB1BE9413F00CE037C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3F2B89BD1BE9413F00CE037C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F2B89C01BE9413F00CE037C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F2B89C21BE9413F00CE037C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F2B89C71BE9413F00CE037C /* HeroRosterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeroRosterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,9 +155,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F1C824D1BF2E25C0063FDD8 /* D&DIcons */ = {
+			isa = PBXGroup;
+			children = (
+				3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */,
+				3F1C824F1BF2E25C0063FDD8 /* Bard.png */,
+				3F1C82501BF2E25C0063FDD8 /* Cleric.png */,
+				3F1C82511BF2E25C0063FDD8 /* Druid.png */,
+				3F1C82521BF2E25C0063FDD8 /* Fighter.png */,
+				3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */,
+				3F1C82541BF2E25C0063FDD8 /* Magus.png */,
+				3F1C82551BF2E25C0063FDD8 /* Monk.png */,
+				3F1C82561BF2E25C0063FDD8 /* Paladin.png */,
+				3F1C82571BF2E25C0063FDD8 /* Ranger.png */,
+				3F1C82581BF2E25C0063FDD8 /* Rogue.png */,
+				3F1C82591BF2E25C0063FDD8 /* Sorcerer.png */,
+				3F1C825A1BF2E25C0063FDD8 /* Warlock.png */,
+				3F1C825B1BF2E25C0063FDD8 /* Wizard.png */,
+			);
+			path = "D&DIcons";
+			sourceTree = "<group>";
+		};
 		3F2B89AA1BE9413F00CE037C = {
 			isa = PBXGroup;
 			children = (
+				3F1C824D1BF2E25C0063FDD8 /* D&DIcons */,
 				3F2B89B51BE9413F00CE037C /* HeroRosterApp */,
 				3F2B89CA1BE9413F00CE037C /* HeroRosterAppTests */,
 				3F2B89D51BE9413F00CE037C /* HeroRosterAppUITests */,
@@ -155,7 +205,7 @@
 				3F2B89E61BE9456F00CE037C /* Controllers */,
 				3F2B89E41BE9454D00CE037C /* Models */,
 				3F2B89B61BE9413F00CE037C /* AppDelegate.swift */,
-				3F2B89BD1BE9413F00CE037C /* Assets.xcassets */,
+				3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */,
 				3F2B89BF1BE9413F00CE037C /* LaunchScreen.storyboard */,
 				3F2B89C21BE9413F00CE037C /* Info.plist */,
 			);
@@ -327,9 +377,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1C82661BF2E25C0063FDD8 /* Rogue.png in Resources */,
+				3F1C82681BF2E25C0063FDD8 /* Warlock.png in Resources */,
+				3F1C82651BF2E25C0063FDD8 /* Ranger.png in Resources */,
+				3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */,
+				3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */,
 				3F2B89C11BE9413F00CE037C /* LaunchScreen.storyboard in Resources */,
-				3F2B89BE1BE9413F00CE037C /* Assets.xcassets in Resources */,
+				3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */,
+				3F1C82631BF2E25C0063FDD8 /* Monk.png in Resources */,
+				3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */,
+				3F1C825E1BF2E25C0063FDD8 /* Cleric.png in Resources */,
+				3F1C825C1BF2E25C0063FDD8 /* Barbarian.png in Resources */,
+				3F1C82691BF2E25C0063FDD8 /* Wizard.png in Resources */,
 				3F2B89BC1BE9413F00CE037C /* Main.storyboard in Resources */,
+				3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */,
+				3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */,
+				3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */,
+				3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,9 +35,6 @@ class LogInViewController: UIViewController {
         }
     }
     
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-    }
-    
    @IBAction func loginButtonPressed(sender: AnyObject) {
         PFUser.logInWithUsernameInBackground(userNameField.text!, password: userPasswordField.text!) {
             (user: PFUser?, error: NSError?) -> Void in

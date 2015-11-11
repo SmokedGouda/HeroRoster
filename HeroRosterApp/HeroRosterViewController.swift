@@ -11,7 +11,7 @@ import Parse
 
 class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var heroRosterTable: UITableView!
-    
+   
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
     var activeUser = PFUser.currentUser()
     var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", log: [], usedLogNames: [], parseObjectId: "")
@@ -49,8 +49,42 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
  
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
-        cell?.textLabel!.text = userRoster.heros[indexPath.row].name
-        cell?.detailTextLabel!.text = userRoster.heros[indexPath.row].heroClass
+
+        cell!.textLabel!.text = userRoster.heros[indexPath.row].name
+        cell!.detailTextLabel!.text = userRoster.heros[indexPath.row].heroClass
+        let heroClassDisplayed = cell!.detailTextLabel!.text!
+        switch heroClassDisplayed {
+            case "Barbarian":
+                cell!.imageView?.image = UIImage(named: "Barbarian")
+            case "Bard":
+                cell!.imageView?.image = UIImage(named: "Bard")
+            case "Cleric":
+                cell!.imageView?.image = UIImage(named: "Cleric")
+            case "Druid":
+                cell!.imageView?.image = UIImage(named: "Druid")
+            case "Fighter":
+                cell!.imageView?.image = UIImage(named: "Fighter")
+            case "Gunslinger":
+                cell!.imageView?.image = UIImage(named: "Gunslinger")
+            case "Magus":
+                cell!.imageView?.image = UIImage(named: "Magus")
+            case "Monk":
+                cell!.imageView?.image = UIImage(named: "Monk")
+            case "Paladin":
+                cell!.imageView?.image = UIImage(named: "Paladin")
+            case "Ranger":
+                cell!.imageView?.image = UIImage(named: "Ranger")
+            case "Rogue":
+                cell!.imageView?.image = UIImage(named: "Rogue")
+            case "Sorcerer":
+                cell!.imageView?.image = UIImage(named: "Sorcerer")
+            case "Warlock":
+                cell!.imageView?.image = UIImage(named: "Warlock")
+            case "Wizard":
+                cell!.imageView?.image = UIImage(named: "Wizard")
+            default:
+                "No image"
+        }
         return cell!
     }
     
@@ -106,7 +140,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         }
     }
 
-    
     func getRosterFromParse() {
         let rosterName = "\(activeUser!.username!)'s hero roster"
         let query = PFQuery(className: "Roster")
@@ -149,7 +182,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.downloadedHero.race = object["race"] as! String
                         self.downloadedHero.gender = object["gender"] as! String
                         self.downloadedHero.level = object["level"] as! String
-//                        self.downloadedHero.usedLogNames = object["usedLogNames"] as! [String]
+
                         self.parseHeroName.append(self.downloadedHero.name)
                         self.parseHeroNumber.append(self.downloadedHero.number)
                         self.parseHeroClass.append(self.downloadedHero.heroClass)
