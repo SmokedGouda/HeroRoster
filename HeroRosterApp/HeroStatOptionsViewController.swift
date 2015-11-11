@@ -52,6 +52,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath)
         cell.textLabel!.text = heroStatsArrayToDisplay[indexPath.row]
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         if indexPath == selectedRow {
             cell.accessoryType = .Checkmark
         } else {

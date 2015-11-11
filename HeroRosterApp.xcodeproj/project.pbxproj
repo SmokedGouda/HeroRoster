@@ -52,6 +52,9 @@
 		3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014A1BF3865C00BC8684 /* Illo2.jpg */; };
 		3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014C1BF387AC00BC8684 /* Illo1.jpg */; };
 		3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014E1BF387BC00BC8684 /* illo4.jpg */; };
+		3F7001521BF393E800BC8684 /* yura-kim-kimyura-knight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001511BF393E800BC8684 /* yura-kim-kimyura-knight.jpg */; };
+		3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001531BF39D7900BC8684 /* femaleKnight.jpg */; };
+		3F7001561BF3A3D800BC8684 /* book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001551BF3A3D800BC8684 /* book.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +127,9 @@
 		3F70014A1BF3865C00BC8684 /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo2.jpg; path = ../HeroRosterApp/Illo2.jpg; sourceTree = "<group>"; };
 		3F70014C1BF387AC00BC8684 /* Illo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo1.jpg; path = ../HeroRosterApp/Illo1.jpg; sourceTree = "<group>"; };
 		3F70014E1BF387BC00BC8684 /* illo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo4.jpg; path = ../HeroRosterApp/illo4.jpg; sourceTree = "<group>"; };
+		3F7001511BF393E800BC8684 /* yura-kim-kimyura-knight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "yura-kim-kimyura-knight.jpg"; sourceTree = "<group>"; };
+		3F7001531BF39D7900BC8684 /* femaleKnight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = femaleKnight.jpg; sourceTree = "<group>"; };
+		3F7001551BF3A3D800BC8684 /* book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +291,9 @@
 		3F7001501BF387D000BC8684 /* Background Images */ = {
 			isa = PBXGroup;
 			children = (
+				3F7001551BF3A3D800BC8684 /* book.jpg */,
+				3F7001531BF39D7900BC8684 /* femaleKnight.jpg */,
+				3F7001511BF393E800BC8684 /* yura-kim-kimyura-knight.jpg */,
 				3F70014C1BF387AC00BC8684 /* Illo1.jpg */,
 				3F70014A1BF3865C00BC8684 /* Illo2.jpg */,
 				3F7001481BF381F400BC8684 /* illo3.jpg */,
@@ -404,9 +413,11 @@
 				3F1C82651BF2E25C0063FDD8 /* Ranger.png in Resources */,
 				3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */,
 				3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */,
+				3F7001521BF393E800BC8684 /* yura-kim-kimyura-knight.jpg in Resources */,
 				3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */,
 				3F2B89C11BE9413F00CE037C /* LaunchScreen.storyboard in Resources */,
 				3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */,
+				3F7001561BF3A3D800BC8684 /* book.jpg in Resources */,
 				3F1C82631BF2E25C0063FDD8 /* Monk.png in Resources */,
 				3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */,
 				3F1C825E1BF2E25C0063FDD8 /* Cleric.png in Resources */,
@@ -415,6 +426,7 @@
 				3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */,
 				3F2B89BC1BE9413F00CE037C /* Main.storyboard in Resources */,
 				3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */,
+				3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */,
 				3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */,
 				3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */,
 				3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */,

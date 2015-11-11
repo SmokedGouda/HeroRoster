@@ -15,6 +15,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var heroNameTextField: UITextField!
     @IBOutlet weak var heroNumberTextField: UITextField!
     @IBOutlet weak var editHeroButton: UIButton!
+    @IBOutlet weak var heroNameLabel: UILabel!
+    @IBOutlet weak var heroNumberLabel: UILabel!
     
     var activeRoster = Roster?()
     var statToDisplay = Int()
@@ -30,13 +32,13 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     var heroDisplayed = Hero?()
     var cellLabel = String()
-    var tableEditState = false
+    var tableEditState = Bool?()
     var heroNameBeforeEdit = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        heroNameTextField.enabled = false
-        heroNumberTextField.enabled = false
+        roundTheLabelsAndButtons()
+        setViewToStaticMode()
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
         heroNameBeforeEdit = heroNameTextField.text!
@@ -57,6 +59,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroCell") as UITableViewCell!
+        cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
+        cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(17)
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
         }
@@ -150,11 +154,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let buttonLabel = editHeroButton.titleLabel!.text!
         switch buttonLabel {
             case "Edit Hero":
-                editHeroButton.setTitle("Save", forState: UIControlState.Normal)
-                tableEditState = true
-                heroNameTextField.enabled = true
-                heroNumberTextField.enabled = true
-                heroDetailTable.reloadData()
+                setViewToEditMode()
             
             default:
                if heroNameTextField.text != heroNameBeforeEdit {
@@ -172,7 +172,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                             }
                         }
                         activeRoster!.usedHeroNames.append(heroNameTextField.text!)
-                        print(activeRoster!.usedHeroNames)
                         heroNameBeforeEdit = heroNameTextField.text!
                         saveEditedHero()
                     }
@@ -183,11 +182,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func saveEditedHero() {
-        editHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
-        tableEditState = false
-        heroNameTextField.enabled = false
-        heroNumberTextField.enabled = false
-        heroDetailTable.reloadData()
+        setViewToStaticMode()
         let updatedHeroName = heroNameTextField.text
         let updatedHeroNumber = heroNumberTextField.text
         activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed)
@@ -216,6 +211,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display a tableview with all of the hero's session logs.
         if segue.identifier == "sessionTableSegue" {
+            setViewToStaticMode()
             let destVC: HeroSessionLogViewController = segue.destinationViewController as! HeroSessionLogViewController
             destVC.heroDisplayed = heroDisplayed
             destVC.activeRoster = activeRoster
@@ -256,4 +252,30 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             statToDisplay = heroStat.chosenStat
         }
     }
+    
+    func roundTheLabelsAndButtons() {
+        heroNameLabel.layer.cornerRadius = 5
+        heroNameLabel.clipsToBounds = true
+        heroNumberLabel.layer.cornerRadius = 5
+        heroNumberLabel.clipsToBounds = true
+        heroDetailTable.layer.cornerRadius = 5
+        editHeroButton.layer.cornerRadius = 5
+    }
+    
+    func setViewToStaticMode() {
+        editHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
+        tableEditState = false
+        heroNameTextField.enabled = false
+        heroNumberTextField.enabled = false
+        heroDetailTable.reloadData()
+    }
+    
+    func setViewToEditMode() {
+        editHeroButton.setTitle("Save", forState: UIControlState.Normal)
+        tableEditState = true
+        heroNameTextField.enabled = true
+        heroNumberTextField.enabled = true
+        heroDetailTable.reloadData()
+    }
+
 }

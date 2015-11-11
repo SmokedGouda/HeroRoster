@@ -12,11 +12,15 @@ import Parse
 class LogInViewController: UIViewController {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
+    @IBOutlet weak var heroRosterLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var newUserSignUpButton: UIButton!
 
     var activeUser = PFUser.currentUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        roundTheLabelsAndButtons()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -48,6 +52,13 @@ class LogInViewController: UIViewController {
                 print("Login failed")
             }
         }
+    }
+    
+    func roundTheLabelsAndButtons () {
+        heroRosterLabel.layer.cornerRadius = 2
+        heroRosterLabel.clipsToBounds = true
+        loginButton.layer.cornerRadius = 5
+        newUserSignUpButton.layer.cornerRadius = 5
     }
 }
 

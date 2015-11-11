@@ -14,6 +14,9 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     @IBOutlet weak var heroStatsTable: UITableView!
     @IBOutlet weak var heroNameField: UITextField!
     @IBOutlet weak var heroNumberField: UITextField!
+    @IBOutlet weak var heroNumberLabel: UILabel!
+    @IBOutlet weak var heroNameLabel: UILabel!
+    @IBOutlet weak var addHeroButton: UIButton!
     
     var statToDisplay = Int()
     var classSelected = String()
@@ -32,6 +35,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        roundTheLabelsAndButtons()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -49,6 +53,8 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroCell") as UITableViewCell!
+        cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
+        cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(17)
         if cell.detailTextLabel!.text == "Detail" {
             cell.detailTextLabel?.hidden = true
         }
@@ -167,5 +173,14 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
                 print("hero did not save to parse")
             }
         }
+    }
+    
+    func roundTheLabelsAndButtons () {
+        heroNameLabel.layer.cornerRadius = 5
+        heroNameLabel.clipsToBounds = true
+        heroNumberLabel.layer.cornerRadius = 5
+        heroNumberLabel.clipsToBounds = true
+        heroStatsTable.layer.cornerRadius = 5
+        addHeroButton.layer.cornerRadius = 5
     }
 }

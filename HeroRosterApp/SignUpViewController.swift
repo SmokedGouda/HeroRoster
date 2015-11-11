@@ -13,9 +13,11 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var newUserNameTextField: UITextField!
     @IBOutlet weak var newUserPasswordTextField: UITextField!
+    @IBOutlet weak var createAccountButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createAccountButton.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
