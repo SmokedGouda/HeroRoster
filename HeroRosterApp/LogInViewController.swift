@@ -33,7 +33,6 @@ class LogInViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        if segue.identifier == "heroRosterSegue" {
-           let destVC: HeroRosterViewController = segue.destinationViewController as! HeroRosterViewController
             userNameField.text = ""
             userPasswordField.text = ""
         }
@@ -55,7 +54,7 @@ class LogInViewController: UIViewController {
     }
     
     func roundTheLabelsAndButtons () {
-        heroRosterLabel.layer.cornerRadius = 2
+        heroRosterLabel.layer.cornerRadius = 5
         heroRosterLabel.clipsToBounds = true
         loginButton.layer.cornerRadius = 5
         newUserSignUpButton.layer.cornerRadius = 5

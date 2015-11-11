@@ -15,6 +15,10 @@ class LogDetailViewController: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var notesTextField: UITextView!
     @IBOutlet weak var addLogButton: UIButton!
+    @IBOutlet weak var sessionNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var notesLabel: UILabel!
+    
     
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
@@ -29,6 +33,7 @@ class LogDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        roundTheLabelsAndButtons()
         sessionNameTextField.text = sessionName
         dateTextField.text = date
         notesTextField.text = notes
@@ -161,5 +166,16 @@ class LogDetailViewController: UIViewController {
                 print("log updated on parse")
             }
         }
+    }
+    
+    func roundTheLabelsAndButtons() {
+        addLogButton.layer.cornerRadius = 5
+        sessionNameLabel.layer.cornerRadius = 5
+        sessionNameLabel.clipsToBounds = true
+        dateLabel.layer.cornerRadius = 5
+        dateLabel.clipsToBounds = true
+        notesLabel.layer.cornerRadius = 5
+        notesLabel.clipsToBounds = true
+        notesTextField.layer.cornerRadius = 5
     }
 }
