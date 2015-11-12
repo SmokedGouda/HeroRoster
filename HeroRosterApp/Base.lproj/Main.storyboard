@@ -44,7 +44,10 @@
                                     <constraint firstAttribute="height" constant="30" id="7ON-B8-fAV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="Qsr-Y4-z0h" eventType="editingDidEndOnExit" id="wcJ-KZ-7sV"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-ZB-kdh">
                                 <rect key="frame" x="90" y="438" width="140" height="30"/>
@@ -65,7 +68,10 @@
                                     <constraint firstAttribute="height" constant="30" id="UMh-3z-ctk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="Qsr-Y4-z0h" eventType="editingDidEndOnExit" id="kv0-pA-ZJb"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fr-N3-ydt">
                                 <rect key="frame" x="130" y="378" width="60" height="30"/>
@@ -140,7 +146,10 @@
                                     <constraint firstAttribute="height" constant="30" id="ncY-mW-VGm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="dUy-Aj-5kp"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W55-To-YTa">
                                 <rect key="frame" x="85" y="378" width="150" height="30"/>
@@ -161,7 +170,10 @@
                                     <constraint firstAttribute="height" constant="30" id="O96-R5-j5C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="ncl-oM-lxq"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -393,9 +405,12 @@
                                 <rect key="frame" x="20" y="110" width="280" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="rmt-BO-U60" eventType="editingDidEndOnExit" id="fQd-u2-sXV"/>
+                                </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-eZ-AUC">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-eZ-AUC">
                                 <rect key="frame" x="20" y="262" width="280" height="200"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -533,7 +548,10 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="HrD-Kb-B4S" eventType="editingDidEndOnExit" id="dl7-Zo-BaQ"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pD3-eT-3ma">
                                 <rect key="frame" x="151" y="120" width="149" height="30"/>
@@ -542,7 +560,10 @@
                                     <constraint firstAttribute="height" constant="30" id="lWC-b7-3Oa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="HrD-Kb-B4S" eventType="editingDidEndOnExit" id="Cxr-cR-UX9"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rnZ-zz-9FG">
                                 <rect key="frame" x="20" y="223" width="280" height="180"/>
@@ -746,7 +767,10 @@
                                     <constraint firstAttribute="height" constant="30" id="4TJ-Ue-S1M"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="U2Z-HO-3fb" eventType="editingDidEndOnExit" id="J6E-FG-7jp"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0od-EK-Cpx">
                                 <rect key="frame" x="151" y="120" width="149" height="30"/>
@@ -755,7 +779,10 @@
                                     <constraint firstAttribute="height" constant="30" id="CMR-Ac-aCs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="U2Z-HO-3fb" eventType="editingDidEndOnExit" id="jPW-UZ-Wvv"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-AW-l2A">
                                 <rect key="frame" x="20" y="72" width="123" height="30"/>
@@ -873,8 +900,8 @@
         <image name="knight.jpg" width="328" height="568"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="s8S-Wt-Nvp"/>
-        <segue reference="o4b-B9-U7R"/>
+        <segue reference="chN-vc-Ri0"/>
+        <segue reference="V7N-qI-02U"/>
         <segue reference="gNp-wK-UXN"/>
     </inferredMetricsTieBreakers>
 </document>

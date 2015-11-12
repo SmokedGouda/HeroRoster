@@ -33,12 +33,10 @@ class LogDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         roundTheLabelsAndButtons()
+        loadTheDateFieldWithCurrentDate()
         
         if activateEditMode == true {
-            sessionNameTextField.text = heroLogDisplayed!.name
-            dateTextField.text = heroLogDisplayed!.date
-            notesTextField.text = heroLogDisplayed!.notes
-            sessionLogNameBeforeEdit = sessionNameTextField.text!
+            loadTheViewWithSelectedSession()
             setViewToStaticMode()
         }
     }
@@ -108,7 +106,27 @@ class LogDetailViewController: UIViewController {
         datePickerView.datePickerMode = UIDatePickerMode.Date
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        if let dateString = heroLogDisplayed?.date {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+            datePickerView.date = dateFormatter.dateFromString(dateString)!
         }
+    }
+    
+    func loadTheDateFieldWithCurrentDate() {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateTextField.text = dateFormatter.stringFromDate(NSDate())
+    }
+    
+    func loadTheViewWithSelectedSession() {
+        sessionNameTextField.text = heroLogDisplayed!.name
+        dateTextField.text = heroLogDisplayed!.date
+        notesTextField.text = heroLogDisplayed!.notes
+        sessionLogNameBeforeEdit = sessionNameTextField.text!
+    }
     
     func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = NSDateFormatter()
@@ -178,5 +196,15 @@ class LogDetailViewController: UIViewController {
         notesLabel.layer.cornerRadius = 5
         notesLabel.clipsToBounds = true
         notesTextField.layer.cornerRadius = 5
+    }
+    
+    @IBAction func textFieldDoneEditing(sender: AnyObject) {
+        sender.resignFirstResponder()
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        sessionNameTextField.resignFirstResponder()
+        notesTextField.resignFirstResponder()
+        dateTextField.resignFirstResponder()
     }
 }

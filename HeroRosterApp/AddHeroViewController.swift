@@ -183,4 +183,9 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         heroStatsTable.layer.cornerRadius = 5
         addHeroButton.layer.cornerRadius = 5
     }
+    
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+
 }

@@ -46,5 +46,9 @@ class LogInViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         newUserSignUpButton.layer.cornerRadius = 5
     }
+    
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
 }
 

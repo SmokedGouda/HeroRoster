@@ -69,4 +69,8 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
 }

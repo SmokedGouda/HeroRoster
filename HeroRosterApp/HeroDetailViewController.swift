@@ -277,5 +277,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         heroNumberTextField.enabled = true
         heroDetailTable.reloadData()
     }
-
+    
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
 }
