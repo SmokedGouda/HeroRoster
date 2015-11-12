@@ -108,17 +108,14 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                             // The if/contains statment makes sure that as a log is fetched and added to the parse arrays, the for loop won't fetch the same log again if it has already been stored.
                             if self.parseSessionLogName.contains(object["sessionName"] as! String) == false {
     
-                        self.downloadedSessionLog.name = object["sessionName"] as! String
-                        self.downloadedSessionLog.date = object["date"] as! String
-                        self.downloadedSessionLog.notes = object["notes"] as! String
+                                self.downloadedSessionLog.name = object["sessionName"] as! String
+                                self.downloadedSessionLog.date = object["date"] as! String
+                                self.downloadedSessionLog.notes = object["notes"] as! String
           
-                        self.parseSessionLogName.append(self.downloadedSessionLog.name)
-                        self.parseSessionLogDate.append(self.downloadedSessionLog.date)
-                        self.parseSessionLogNotes.append(self.downloadedSessionLog.notes)
-                        self.parseSessionLogObjectId.append(object.objectId! as String)
-                        
-                        print(self.parseSessionLogName, self.parseSessionLogDate, self.parseSessionLogNotes, self.parseSessionLogObjectId)
-                        print(self.parseSessionLogName.count)
+                                self.parseSessionLogName.append(self.downloadedSessionLog.name)
+                                self.parseSessionLogDate.append(self.downloadedSessionLog.date)
+                                self.parseSessionLogNotes.append(self.downloadedSessionLog.notes)
+                                self.parseSessionLogObjectId.append(object.objectId! as String)
                             }
                         }
                     }

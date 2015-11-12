@@ -128,7 +128,7 @@ class LogDetailViewController: UIViewController {
         parseLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){
-                    print("hero saved to parse")
+                    print("session log saved to parse")
                     self.newLogObjectId = parseLog.objectId!
                     logToCreate.parseObjectId = self.newLogObjectId
                     self.heroDisplayed?.addSessionLog(logToCreate)
