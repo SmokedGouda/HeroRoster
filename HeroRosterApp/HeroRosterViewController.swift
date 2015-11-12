@@ -52,7 +52,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
         cell!.imageView?.image = UIImage(named: userRoster.heros[indexPath.row].heroClass)
    
-        
         return cell!
     }
     

@@ -28,6 +28,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     var raceIndex: Int?
     var genderIndex: Int?
     var levelIndex: Int?
+    
     var createdHero: Hero?
     var cellLabel = String()
     var activeRoster = Roster?()
