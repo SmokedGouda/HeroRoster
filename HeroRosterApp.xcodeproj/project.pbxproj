@@ -13,6 +13,8 @@
 		3F010D9B1BF4DD4B00B303E4 /* heroRosterIcon87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D961BF4DD4B00B303E4 /* heroRosterIcon87x87.png */; };
 		3F010D9C1BF4DD4B00B303E4 /* heroRosterIcon120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D971BF4DD4B00B303E4 /* heroRosterIcon120x120.png */; };
 		3F010D9D1BF4DD4B00B303E4 /* heroRosterIcon180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D981BF4DD4B00B303E4 /* heroRosterIcon180x180.png */; };
+		3F010D9F1BF4F21300B303E4 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D9E1BF4F21300B303E4 /* ApiKeys.plist */; };
+		3F010DA11BF4F38C00B303E4 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */; };
 		3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */; };
 		3F1C825C1BF2E25C0063FDD8 /* Barbarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */; };
 		3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C824F1BF2E25C0063FDD8 /* Bard.png */; };
@@ -87,6 +89,8 @@
 		3F010D961BF4DD4B00B303E4 /* heroRosterIcon87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon87x87.png; sourceTree = "<group>"; };
 		3F010D971BF4DD4B00B303E4 /* heroRosterIcon120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon120x120.png; sourceTree = "<group>"; };
 		3F010D981BF4DD4B00B303E4 /* heroRosterIcon180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon180x180.png; sourceTree = "<group>"; };
+		3F010D9E1BF4F21300B303E4 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
+		3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barbarian.png; sourceTree = "<group>"; };
 		3F1C824F1BF2E25C0063FDD8 /* Bard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bard.png; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 				3F2B89E61BE9456F00CE037C /* Controllers */,
 				3F2B89E41BE9454D00CE037C /* Models */,
 				3F2B89B61BE9413F00CE037C /* AppDelegate.swift */,
+				3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */,
+				3F010D9E1BF4F21300B303E4 /* ApiKeys.plist */,
 				3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */,
 				3F2B89BF1BE9413F00CE037C /* LaunchScreen.storyboard */,
 				3F2B89C21BE9413F00CE037C /* Info.plist */,
@@ -452,6 +458,7 @@
 				3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */,
 				3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */,
 				3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */,
+				3F010D9F1BF4F21300B303E4 /* ApiKeys.plist in Resources */,
 				3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */,
 				3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */,
 				3F7001491BF381F400BC8684 /* illo3.jpg in Resources */,
@@ -480,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F2B89B91BE9413F00CE037C /* LogInViewController.swift in Sources */,
+				3F010DA11BF4F38C00B303E4 /* ApiKeys.swift in Sources */,
 				3F2B89EA1BE94A5A00CE037C /* HeroRosterViewController.swift in Sources */,
 				3F27CDE61BE9B6C300D4B759 /* HeroDetailViewController.swift in Sources */,
 				3F2B89B71BE9413F00CE037C /* AppDelegate.swift in Sources */,

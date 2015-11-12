@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("2MMnl6JBpuyyQSiYIcSZ5xOD38peIRMTj9QNxvIw", clientKey: "gwZqBxsCLwnSdvtkpQBDpHchbzxjvv1BADYY1eR0")
+        Parse.setApplicationId(applicationId, clientKey: clientID)
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         PFUser.logOut()
