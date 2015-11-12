@@ -79,7 +79,7 @@
                                     <action selector="loginButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="mLM-Bk-b7c"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heroRosterLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogo640x140.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
                                 <rect key="frame" x="0.0" y="117" width="320" height="70"/>
                             </imageView>
                         </subviews>
@@ -863,11 +863,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="HeroRosterLogo640x140.png" width="640" height="140"/>
         <image name="Illo1.jpg" width="618" height="800"/>
         <image name="Illo2.jpg" width="582" height="800"/>
         <image name="book.jpg" width="364" height="500"/>
         <image name="femaleKnight.jpg" width="468" height="768"/>
-        <image name="heroRosterLogo.png" width="320" height="70"/>
         <image name="illo3.jpg" width="573" height="800"/>
         <image name="illo4.jpg" width="587" height="800"/>
         <image name="knight.jpg" width="328" height="568"/>
