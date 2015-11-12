@@ -72,8 +72,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                 }
 
                 userRoster.deleteHeroFromRoster(heroToDelete)
-                print(userRoster.userName, userRoster.heros, userRoster.usedHeroNames)
-                
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
 
@@ -119,7 +117,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     print("Retreived \(Roster!.count) roster")
                     
                     for object:PFObject in Roster! {
-                        print("the object retrieved is \(object)")
                         self.userRoster.userName = object["name"] as! String
                         if object["hero"] != nil {
                             self.userRoster.heros = object["hero"] as! [Hero]
@@ -142,7 +139,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                 print("Retreived \(Hero!.count) heros")
                 dispatch_async(dispatch_get_main_queue()) {
                     for object in Hero! {
-                        print("The hero retrieved is \(object)")
                         self.downloadedHero.name = object["name"] as! String
                         self.downloadedHero.number = object["number"] as! String
                         self.downloadedHero.heroClass = object["heroClass"] as! String
@@ -158,8 +154,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.parseHeroLevel.append(self.downloadedHero.level)
                         self.parseHeroObjectId.append(object.objectId! as String)
 
-                        print(self.parseHeroName, self.parseHeroNumber, self.parseHeroClass, self.parseHeroRace, self.parseHeroGender, self.parseHeroLevel, self.parseHeroObjectId)
-                        print(self.parseHeroName.count)
                         self.populateUserRoster()
                         self.heroRosterTable.reloadData()
                     }
@@ -172,6 +166,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index]))
             }
+         print(userRoster.usedHeroNames)
     }
         
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {

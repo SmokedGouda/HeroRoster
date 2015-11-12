@@ -19,7 +19,6 @@ class LogDetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
     
-    
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
     var heroLogDisplayed = SessionLog?()
@@ -34,51 +33,28 @@ class LogDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         roundTheLabelsAndButtons()
-        sessionNameTextField.text = sessionName
-        dateTextField.text = date
-        notesTextField.text = notes
-        sessionLogNameBeforeEdit = sessionNameTextField.text!
         
         if activateEditMode == true {
-            addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
-            sessionNameTextField.enabled = false
-            dateTextField.enabled = false
-            notesTextField.editable = false
+            sessionNameTextField.text = heroLogDisplayed!.name
+            dateTextField.text = heroLogDisplayed!.date
+            notesTextField.text = heroLogDisplayed!.notes
+            sessionLogNameBeforeEdit = sessionNameTextField.text!
+            setViewToStaticMode()
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @IBAction func addLogButtonPressed(sender: UIButton) {
         let buttonLabel = addLogButton.titleLabel!.text!
         switch buttonLabel {
             case "Edit Log":
-                addLogButton.setTitle("Save", forState: UIControlState.Normal)
-                sessionNameTextField.enabled = true
-                dateTextField.enabled = true
-                notesTextField.editable = true
+            setViewToEditMode()
             
             case "Save":
                 if sessionNameTextField.text != sessionLogNameBeforeEdit {
                     if heroDisplayed!.usedLogNames.contains(sessionNameTextField.text!) == true {
-                        let alert = UIAlertController(
-                            title: "Can't edit session!", message: "That session name has already been used.  Please choose another one.", preferredStyle: .Alert)
-                        let action = UIAlertAction(
-                            title: "Ok", style: .Default, handler: nil)
-                        alert.addAction(action)
-                        presentViewController(alert, animated: true, completion: nil)
-                    
+                        displayDuplicateSessionLogNameAlert()
                     } else {
-                        for (index, value) in heroDisplayed!.usedLogNames.enumerate(){
-                            if sessionLogNameBeforeEdit == value {
-                                heroDisplayed!.usedLogNames.removeAtIndex(index)
-                            }
-                        }
-                        heroDisplayed!.usedLogNames.append(sessionNameTextField.text!)
-                        print(heroDisplayed!.usedLogNames)
-                        sessionLogNameBeforeEdit = sessionNameTextField.text!
+                        updateTheUsedLogNamesArray()
                         saveEditedLog()
                     }
                 } else {
@@ -88,12 +64,7 @@ class LogDetailViewController: UIViewController {
             default:
                 newSessionName = sessionNameTextField.text!
                 if heroDisplayed!.usedLogNames.contains(newSessionName) == true  {
-                    let alert = UIAlertController(
-                        title: "Can't add session!", message: "That session name has already been used.  Please choose another one.", preferredStyle: .Alert)
-                    let action = UIAlertAction(
-                        title: "Ok", style: .Default, handler: nil)
-                    alert.addAction(action)
-                    presentViewController(alert, animated: true, completion: nil)
+                    displayDuplicateSessionLogNameAlert()
                 } else {
                     date = dateTextField.text!
                     notes = notesTextField.text!
@@ -104,11 +75,27 @@ class LogDetailViewController: UIViewController {
         }
     }
     
+    func displayDuplicateSessionLogNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't save session!", message: "That session name has already been used.  Please choose another one.", preferredStyle: .Alert)
+        let action = UIAlertAction(
+            title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func updateTheUsedLogNamesArray() {
+        for (index, value) in heroDisplayed!.usedLogNames.enumerate(){
+            if sessionLogNameBeforeEdit == value {
+                heroDisplayed!.usedLogNames.removeAtIndex(index)
+            }
+        }
+        heroDisplayed!.usedLogNames.append(sessionNameTextField.text!)
+        sessionLogNameBeforeEdit = sessionNameTextField.text!
+    }
+    
     func saveEditedLog() {
-        addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
-        sessionNameTextField.enabled = false
-        dateTextField.enabled = false
-        notesTextField.editable = false
+        setViewToStaticMode()
         let updatedSessionName = sessionNameTextField.text
         let updatedDate = dateTextField.text
         let updatedNotes = notesTextField.text
@@ -166,6 +153,20 @@ class LogDetailViewController: UIViewController {
                 print("log updated on parse")
             }
         }
+    }
+    
+    func setViewToStaticMode() {
+        addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
+        sessionNameTextField.enabled = false
+        dateTextField.enabled = false
+        notesTextField.editable = false
+    }
+    
+    func setViewToEditMode() {
+        addLogButton.setTitle("Save", forState: UIControlState.Normal)
+        sessionNameTextField.enabled = true
+        dateTextField.enabled = true
+        notesTextField.editable = true
     }
     
     func roundTheLabelsAndButtons() {

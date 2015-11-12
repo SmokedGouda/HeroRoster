@@ -20,11 +20,7 @@ class SignUpViewController: UIViewController {
         createAccountButton.layer.cornerRadius = 5
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    // Attempt to create a new user and save it to Parse.com
+    // Create a new user account, and if successfull, automatically log the user in.
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
         if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" {
             let user = PFUser()
@@ -37,24 +33,26 @@ class SignUpViewController: UIViewController {
                     print("Error, account creation failed")
                 } else {
                     print("account creation successfull")
-                    // Automatically log in the new user after successful account creation
-                    PFUser.logInWithUsernameInBackground(self.newUserNameTextField.text!, password: self.newUserPasswordTextField.text!) {
-                        (user: PFUser?, error: NSError?) -> Void in
-                        if user != nil {
-                            print("Login successful")
-                            self.createUserRoster()
-                                } else {
-                            print("Login failed")
-                        }
-                    }
+                    self.logInNewUser()
                 }
             }
         } else {
             print("You need to enter a new username and password")
         }
     }
-  
-    // Create the instance of Roster for the user which will be saved to Parse and store all of the users heros and their session logs.  Then segue to heroRosterViewController.
+
+    func logInNewUser() {
+        PFUser.logInWithUsernameInBackground(self.newUserNameTextField.text!, password: self.newUserPasswordTextField.text!) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                print("Login successful")
+                self.createUserRoster()
+            } else {
+                print("Login failed")
+            }
+        }
+    }
+    
     func createUserRoster () {
         let userRoster = PFObject(className: "Roster")
         let heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [])

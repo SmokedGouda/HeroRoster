@@ -12,7 +12,6 @@ import Parse
 class LogInViewController: UIViewController {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
-    @IBOutlet weak var heroRosterLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var newUserSignUpButton: UIButton!
 
@@ -20,22 +19,12 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        roundTheLabelsAndButtons()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        roundTheButtons()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       if segue.identifier == "heroRosterSegue" {
             userNameField.text = ""
             userPasswordField.text = ""
-        }
     }
     
    @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -53,9 +42,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func roundTheLabelsAndButtons () {
-        heroRosterLabel.layer.cornerRadius = 5
-        heroRosterLabel.clipsToBounds = true
+    func roundTheButtons () {
         loginButton.layer.cornerRadius = 5
         newUserSignUpButton.layer.cornerRadius = 5
     }

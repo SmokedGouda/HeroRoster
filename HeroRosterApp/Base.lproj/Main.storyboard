@@ -79,39 +79,34 @@
                                     <action selector="loginButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="mLM-Bk-b7c"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Roster" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daB-YK-hbl">
-                                <rect key="frame" x="45" y="142" width="230" height="43"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="JF5-Aa-TXM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heroRosterLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
+                                <rect key="frame" x="0.0" y="117" width="320" height="70"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NSR-ZB-kdh" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="2ry-BJ-b8k"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="50" id="Ib6-rM-ApL"/>
-                            <constraint firstItem="daB-YK-hbl" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="Kkp-Wl-YeH"/>
+                            <constraint firstItem="4yz-S2-bph" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" id="Pbp-zA-YHC"/>
                             <constraint firstItem="HO4-20-cqY" firstAttribute="top" secondItem="nIb-n7-L5w" secondAttribute="topMargin" id="RIt-Yb-4BS"/>
                             <constraint firstItem="NSR-ZB-kdh" firstAttribute="top" secondItem="9fr-N3-ydt" secondAttribute="bottom" constant="30" id="TUT-Wh-7xu"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
                             <constraint firstItem="Jwe-Py-7tX" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="bdT-l7-RoP"/>
                             <constraint firstItem="HO4-20-cqY" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leadingMargin" constant="-20" id="cD0-yh-1kN"/>
                             <constraint firstAttribute="trailing" secondItem="Jwe-Py-7tX" secondAttribute="trailing" constant="20" id="cU5-WH-OlD"/>
+                            <constraint firstAttribute="trailing" secondItem="4yz-S2-bph" secondAttribute="trailing" id="cce-ck-yQ1"/>
                             <constraint firstItem="2Oe-Kc-DNB" firstAttribute="top" secondItem="HO4-20-cqY" secondAttribute="bottom" id="dlF-Uw-Bw7"/>
                             <constraint firstAttribute="trailing" secondItem="c2O-fg-BPs" secondAttribute="trailing" constant="20" id="mg1-fs-BFP"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="top" secondItem="c2O-fg-BPs" secondAttribute="bottom" constant="37" id="oqI-v0-pmd"/>
                             <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="167" id="p0E-1N-cyC"/>
+                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="4yz-S2-bph" secondAttribute="bottom" constant="44" id="rYQ-cj-2bL"/>
+                            <constraint firstItem="4yz-S2-bph" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="53" id="rcn-eP-iYv"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="szL-gI-tKl"/>
-                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="daB-YK-hbl" secondAttribute="bottom" constant="46" id="vAd-HY-yFi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HO4-20-cqY" secondAttribute="trailing" constant="-20" id="wzZ-j0-fmt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>
                     <connections>
-                        <outlet property="heroRosterLabel" destination="daB-YK-hbl" id="low-ax-zdV"/>
                         <outlet property="loginButton" destination="9fr-N3-ydt" id="6xq-MU-GJD"/>
                         <outlet property="newUserSignUpButton" destination="NSR-ZB-kdh" id="nUL-X8-iui"/>
                         <outlet property="userNameField" destination="Jwe-Py-7tX" id="52Y-uf-W3W"/>
@@ -403,7 +398,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-eZ-AUC">
                                 <rect key="frame" x="20" y="262" width="280" height="200"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -873,12 +867,13 @@
         <image name="Illo2.jpg" width="582" height="800"/>
         <image name="book.jpg" width="364" height="500"/>
         <image name="femaleKnight.jpg" width="468" height="768"/>
+        <image name="heroRosterLogo.png" width="320" height="70"/>
         <image name="illo3.jpg" width="573" height="800"/>
         <image name="illo4.jpg" width="587" height="800"/>
         <image name="knight.jpg" width="328" height="568"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="chN-vc-Ri0"/>
+        <segue reference="s8S-Wt-Nvp"/>
         <segue reference="o4b-B9-U7R"/>
         <segue reference="gNp-wK-UXN"/>
     </inferredMetricsTieBreakers>

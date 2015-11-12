@@ -43,10 +43,6 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         super.viewDidAppear(animated)
         heroStatsTable.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -98,23 +94,50 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
     
     @IBAction func addHeroButtonPressed(sender: UIButton) {
         let newHeroName = heroNameField.text
+        let newHeroNumber = heroNumberField.text
         if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
-            let alert = UIAlertController(
-                title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
-            let action = UIAlertAction(
-                title: "Ok", style: .Default, handler: nil)
-            alert.addAction(action)
-            presentViewController(alert, animated: true, completion: nil)
+            displayDuplicateNameAlert()
         } else {
-            
-            let newHeroNumber = heroNumberField.text
             createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [], parseObjectId: "")
             createHeroOnParse(createdHero!)
-            
-           self.performSegueWithIdentifier("addHeroSegue", sender: self)
+            self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }
     }
     
+    func displayDuplicateNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+        let action = UIAlertAction(
+            title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    func createHeroOnParse(heroToCreate: Hero) {
+        let parseHero = PFObject(className: "Hero")
+        parseHero["owner"] = activeRoster!.userName
+        parseHero["name"] = heroToCreate.name
+        parseHero["number"] = heroToCreate.number
+        parseHero["heroClass"] = heroToCreate.heroClass
+        parseHero["race"] = heroToCreate.race
+        parseHero["gender"] = heroToCreate.gender
+        parseHero["level"] = heroToCreate.level
+        
+        parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                dispatch_async(dispatch_get_main_queue()){
+                    print("hero saved to parse")
+                    self.newHeroObjectId = parseHero.objectId!
+                    heroToCreate.parseObjectId = self.newHeroObjectId
+                    self.activeRoster?.addHeroToRoster(heroToCreate)
+                }
+            } else {
+                print("hero did not save to parse")
+            }
+        }
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // This segue will display the appropriate tableview based on which cell was touched.
         if segue.identifier == "heroStatOptionsSegue" {
@@ -149,30 +172,6 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             statToDisplay = heroStat.chosenStat
-        }
-    }
-    
-    func createHeroOnParse(heroToCreate: Hero) {
-        let parseHero = PFObject(className: "Hero")
-        parseHero["owner"] = activeRoster!.userName
-        parseHero["name"] = heroToCreate.name
-        parseHero["number"] = heroToCreate.number
-        parseHero["heroClass"] = heroToCreate.heroClass
-        parseHero["race"] = heroToCreate.race
-        parseHero["gender"] = heroToCreate.gender
-        parseHero["level"] = heroToCreate.level
-
-        parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                dispatch_async(dispatch_get_main_queue()){
-                print("hero saved to parse")
-                self.newHeroObjectId = parseHero.objectId!
-                    heroToCreate.parseObjectId = self.newHeroObjectId
-                self.activeRoster?.addHeroToRoster(heroToCreate)
-                }
-            } else {
-                print("hero did not save to parse")
-            }
         }
     }
     

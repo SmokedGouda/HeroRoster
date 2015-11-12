@@ -36,6 +36,7 @@
 		3F3A97DF1BED22E20011131F /* LogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */; };
 		3F43B40A1BF421ED00F58C7B /* knight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F43B4091BF421ED00F58C7B /* knight.jpg */; };
 		3F4B057B1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B057A1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift */; };
+		3F55ADF41BF43B560078EB4F /* heroRosterLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F55ADF31BF43B560078EB4F /* heroRosterLogo.png */; };
 		3F624A9B1BEFD4B3009415CF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F624A9A1BEFD4B3009415CF /* SignUpViewController.swift */; };
 		3F624A9E1BEFE21F009415CF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624A9C1BEFE21F009415CF /* Bolts.framework */; };
 		3F624A9F1BEFE21F009415CF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624A9D1BEFE21F009415CF /* Parse.framework */; };
@@ -110,6 +111,7 @@
 		3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDetailViewController.swift; sourceTree = "<group>"; };
 		3F43B4091BF421ED00F58C7B /* knight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knight.jpg; sourceTree = "<group>"; };
 		3F4B057A1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroSessionLogViewController.swift; sourceTree = "<group>"; };
+		3F55ADF31BF43B560078EB4F /* heroRosterLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterLogo.png; sourceTree = "<group>"; };
 		3F624A9A1BEFD4B3009415CF /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3F624A9C1BEFE21F009415CF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		3F624A9D1BEFE21F009415CF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -193,7 +195,7 @@
 		3F2B89AA1BE9413F00CE037C = {
 			isa = PBXGroup;
 			children = (
-				3F7001501BF387D000BC8684 /* Background Images */,
+				3F7001501BF387D000BC8684 /* Images */,
 				3F1C824D1BF2E25C0063FDD8 /* D&DIcons */,
 				3F2B89B51BE9413F00CE037C /* HeroRosterApp */,
 				3F2B89CA1BE9413F00CE037C /* HeroRosterAppTests */,
@@ -288,9 +290,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F7001501BF387D000BC8684 /* Background Images */ = {
+		3F7001501BF387D000BC8684 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3F55ADF31BF43B560078EB4F /* heroRosterLogo.png */,
 				3F7001551BF3A3D800BC8684 /* book.jpg */,
 				3F7001531BF39D7900BC8684 /* femaleKnight.jpg */,
 				3F43B4091BF421ED00F58C7B /* knight.jpg */,
@@ -299,7 +302,7 @@
 				3F7001481BF381F400BC8684 /* illo3.jpg */,
 				3F70014E1BF387BC00BC8684 /* illo4.jpg */,
 			);
-			name = "Background Images";
+			name = Images;
 			path = "D&DIcons";
 			sourceTree = "<group>";
 		};
@@ -425,6 +428,7 @@
 				3F1C82691BF2E25C0063FDD8 /* Wizard.png in Resources */,
 				3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */,
 				3F2B89BC1BE9413F00CE037C /* Main.storyboard in Resources */,
+				3F55ADF41BF43B560078EB4F /* heroRosterLogo.png in Resources */,
 				3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */,
 				3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */,
 				3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */,

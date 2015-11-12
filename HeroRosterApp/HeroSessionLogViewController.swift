@@ -31,14 +31,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if heroDisplayed?.log.count > 0 {
-          print(heroDisplayed?.log[0].parseObjectId)
-        }
         sessionLogTable.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,9 +84,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         if segue.identifier == "viewSessionLogSegue" {
             let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
             destVC.activateEditMode = true
-            destVC.sessionName = heroDisplayed!.log[(selectedIndex?.row)!].name
-            destVC.date = heroDisplayed!.log[(selectedIndex?.row)!].date
-            destVC.notes = heroDisplayed!.log[(selectedIndex?.row)!].notes
             destVC.heroLogDisplayed = heroDisplayed!.log[(selectedIndex?.row)!]
         }
     }
