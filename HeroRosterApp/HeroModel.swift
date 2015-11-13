@@ -48,7 +48,9 @@ class Hero {
     func addSessionLog(logToAdd: SessionLog) {
         log.append(logToAdd)
         usedLogNames.append(logToAdd.name)
-        logIds.append(logToAdd.parseObjectId)
+        if logIds.contains(logToAdd.parseObjectId) == false {
+            logIds.append(logToAdd.parseObjectId)
+        }
         
     }
     

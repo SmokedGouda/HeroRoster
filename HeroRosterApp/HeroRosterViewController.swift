@@ -67,7 +67,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     if error != nil {
                         print(error)
                     } else if let hero = Hero {
-                        for objectId in self.userRoster.heros[indexPath.row].logIds {
+                        print("The logIds to delete are \(heroToDelete.logIds)")
+                        for objectId in heroToDelete.logIds {
                             self.removeHeroToDeletesLogsOnParse(objectId)
                         }
                         hero.deleteInBackground()
