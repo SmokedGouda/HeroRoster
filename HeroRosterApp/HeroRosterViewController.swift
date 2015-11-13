@@ -14,7 +14,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
    
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
     var activeUser = PFUser.currentUser()
-    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", log: [], usedLogNames: [], parseObjectId: "")
+    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", log: [], usedLogNames: [], parseObjectId: "", logIds: [])
     var parseHeroName = [String]()
     var parseHeroNumber = [String]()
     var parseHeroClass = [String]()
@@ -23,6 +23,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     var parseHeroLevel = [String]()
     var parseHeroUsedLogNames: [String] = []
     var parseHeroObjectId = [String]()
+    var parseHeroLogIds = [[String]]()
     var newHeroObjectId = String()
     
     override func viewDidLoad() {
@@ -66,6 +67,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     if error != nil {
                         print(error)
                     } else if let hero = Hero {
+                        for objectId in self.userRoster.heros[indexPath.row].logIds {
+                            self.removeHeroToDeletesLogsOnParse(objectId)
+                        }
                         hero.deleteInBackground()
                         print("hero deleted from parse")
                     }
@@ -85,6 +89,21 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             presentViewController(deleteAlert, animated: true, completion: nil)
         }
     }
+    
+    func removeHeroToDeletesLogsOnParse(logObjectIdToDelete: String) {
+        let query = PFQuery(className:"Log")
+        query.getObjectInBackgroundWithId(logObjectIdToDelete) {
+            (Log: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let log = Log {
+                log.deleteInBackground()
+                
+                print("session log deleted from parse")
+            }
+        }
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "heroDetailSegue" {
@@ -145,6 +164,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.downloadedHero.race = object["race"] as! String
                         self.downloadedHero.gender = object["gender"] as! String
                         self.downloadedHero.level = object["level"] as! String
+                        self.downloadedHero.logIds = object["logIds"] as! [String]
 
                         self.parseHeroName.append(self.downloadedHero.name)
                         self.parseHeroNumber.append(self.downloadedHero.number)
@@ -153,6 +173,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.parseHeroGender.append(self.downloadedHero.gender)
                         self.parseHeroLevel.append(self.downloadedHero.level)
                         self.parseHeroObjectId.append(object.objectId! as String)
+                        self.parseHeroLogIds.append(self.downloadedHero.logIds)
+                    
 
                         self.populateUserRoster()
                         self.heroRosterTable.reloadData()
@@ -164,7 +186,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     func populateUserRoster() {
         for (index,_) in parseHeroName.enumerate() {
-            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index]))
+            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
             }
          print(userRoster.usedHeroNames)
     }

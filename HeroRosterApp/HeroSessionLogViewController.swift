@@ -52,6 +52,8 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             
             func deleteSession() {
                 let sessionToDelete = heroDisplayed?.log[indexPath.row]
+               
+                
                 let query = PFQuery(className:"Log")
                 query.getObjectInBackgroundWithId(heroDisplayed!.log[indexPath.row].parseObjectId) {
                     (Log: PFObject?, error: NSError?) -> Void in
@@ -59,10 +61,13 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                         print(error)
                     } else if let log = Log {
                         log.deleteInBackground()
+                        
                         print("session log deleted from parse")
                     }
                 }
                 heroDisplayed?.deleteSessionLog(sessionToDelete!)
+                print(heroDisplayed?.logIds)
+                updateHeroLogIdsParse()
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
             
@@ -131,4 +136,18 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             heroDisplayed?.addSessionLog(SessionLog(name: parseSessionLogName[index], date: parseSessionLogDate[index], notes: parseSessionLogNotes[index], parseObjectId: parseSessionLogObjectId[index]))
         }
     }
+    func updateHeroLogIdsParse() {
+        let query = PFQuery(className:"Hero")
+        query.getObjectInBackgroundWithId(heroDisplayed!.parseObjectId) {
+            (Hero: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let hero = Hero {
+                hero["logIds"] = self.heroDisplayed?.logIds
+                hero.saveInBackground()
+                print("hero updated on parse")
+            }
+        }
+    }
+
 }

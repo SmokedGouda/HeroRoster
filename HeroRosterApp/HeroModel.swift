@@ -30,8 +30,9 @@ class Hero {
     var log: [SessionLog]
     var usedLogNames: [String]
     var parseObjectId: String
+    var logIds: [String]
     
-    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, log: [SessionLog], usedLogNames: [String], parseObjectId: String) {
+    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, log: [SessionLog], usedLogNames: [String], parseObjectId: String, logIds: [String]) {
         self.name = name
         self.number = number
         self.heroClass = heroClass
@@ -41,11 +42,13 @@ class Hero {
         self.log = log
         self.usedLogNames = usedLogNames
         self.parseObjectId = parseObjectId
+        self.logIds = logIds
     }
     
     func addSessionLog(logToAdd: SessionLog) {
         log.append(logToAdd)
         usedLogNames.append(logToAdd.name)
+        logIds.append(logToAdd.parseObjectId)
         
     }
     
@@ -59,6 +62,12 @@ class Hero {
         for (index, value) in usedLogNames.enumerate() {
             if logToDelete.name == value {
                 usedLogNames.removeAtIndex(index)
+            }
+        }
+        
+        for (index, value) in logIds.enumerate() {
+            if logToDelete.parseObjectId == value {
+                logIds.removeAtIndex(index)
             }
         }
     }

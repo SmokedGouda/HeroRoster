@@ -98,7 +98,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
             displayDuplicateNameAlert()
         } else {
-            createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [], parseObjectId: "")
+            createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [], parseObjectId: "", logIds: [])
             createHeroOnParse(createdHero!)
             self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }

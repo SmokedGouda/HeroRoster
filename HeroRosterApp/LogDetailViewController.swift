@@ -150,6 +150,8 @@ class LogDetailViewController: UIViewController {
                     self.newLogObjectId = parseLog.objectId!
                     logToCreate.parseObjectId = self.newLogObjectId
                     self.heroDisplayed?.addSessionLog(logToCreate)
+                    print("The updated hero's log ids are \(self.heroDisplayed?.logIds)")
+                    self.updateHeroLogIdsParse()
                 }
             } else {
                 print("hero did not save to parse")
@@ -172,6 +174,21 @@ class LogDetailViewController: UIViewController {
             }
         }
     }
+    
+    func updateHeroLogIdsParse() {
+        let query = PFQuery(className:"Hero")
+        query.getObjectInBackgroundWithId(heroDisplayed!.parseObjectId) {
+            (Hero: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let hero = Hero {
+                hero["logIds"] = self.heroDisplayed?.logIds
+                hero.saveInBackground()
+                print("hero updated on parse")
+            }
+        }
+    }
+
     
     func setViewToStaticMode() {
         addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)

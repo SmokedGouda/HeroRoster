@@ -42,11 +42,13 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
         heroNameBeforeEdit = heroNameTextField.text!
+       
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         heroDetailTable.reloadData()
+        print(heroDisplayed!.logIds)
     }
 
     override func didReceiveMemoryWarning() {
