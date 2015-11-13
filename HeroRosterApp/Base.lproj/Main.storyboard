@@ -516,7 +516,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="E7K-jJ-JLo">
-                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
+                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Number:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-UD-Oy7">
                                 <rect key="frame" x="20" y="120" width="123" height="30"/>
@@ -630,7 +630,6 @@
                             <constraint firstAttribute="trailing" secondItem="Lr3-AJ-8Ok" secondAttribute="trailing" constant="20" id="FuW-IG-u0R"/>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="Pdb-aN-b5c"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="top" secondItem="Lr3-AJ-8Ok" secondAttribute="bottom" constant="18" id="TY2-La-tR4"/>
-                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" id="ZhG-jA-483"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="leading" secondItem="SdU-UD-Oy7" secondAttribute="trailing" constant="8" id="aAg-Yq-gy5"/>
                             <constraint firstItem="E7K-jJ-JLo" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leadingMargin" constant="-20" id="fNW-KZ-u1R"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="h0U-Ny-2ev"/>
@@ -640,6 +639,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="E7K-jJ-JLo" secondAttribute="trailing" constant="-20" id="nLQ-gd-fg7"/>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" constant="8" id="oYa-Jo-bjD"/>
                             <constraint firstItem="j5Q-w3-G0n" firstAttribute="top" secondItem="rnZ-zz-9FG" secondAttribute="bottom" constant="45" id="ra9-OR-mHZ"/>
+                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="top" secondItem="314-EC-unr" secondAttribute="top" id="sve-SB-xlt"/>
                             <constraint firstItem="E7K-jJ-JLo" firstAttribute="bottom" secondItem="314-EC-unr" secondAttribute="bottomMargin" id="xPt-Am-2nX"/>
                         </constraints>
                     </view>
@@ -901,7 +901,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="chN-vc-Ri0"/>
-        <segue reference="V7N-qI-02U"/>
+        <segue reference="o4b-B9-U7R"/>
         <segue reference="gNp-wK-UXN"/>
     </inferredMetricsTieBreakers>
 </document>
