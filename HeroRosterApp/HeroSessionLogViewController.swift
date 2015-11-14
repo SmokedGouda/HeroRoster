@@ -52,8 +52,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             
             func deleteSession() {
                 let sessionToDelete = heroDisplayed?.log[indexPath.row]
-               
-                
                 let query = PFQuery(className:"Log")
                 query.getObjectInBackgroundWithId(heroDisplayed!.log[indexPath.row].parseObjectId) {
                     (Log: PFObject?, error: NSError?) -> Void in
@@ -149,5 +147,4 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
     }
-
 }

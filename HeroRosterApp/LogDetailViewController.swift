@@ -49,12 +49,7 @@ class LogDetailViewController: UIViewController {
             
             case "Save":
                 if sessionNameTextField.text != sessionLogNameBeforeEdit {
-                    if heroDisplayed!.usedLogNames.contains(sessionNameTextField.text!) == true {
-                        displayDuplicateSessionLogNameAlert()
-                    } else {
-                        updateTheUsedLogNamesArray()
-                        saveEditedLog()
-                    }
+                    checkEditedLogNameAgainstUsedLogNames()
                 } else {
                     saveEditedLog()
                 }
@@ -70,6 +65,15 @@ class LogDetailViewController: UIViewController {
                     createSessionLogOnParse(newSessionLog)
                     self.performSegueWithIdentifier("addSessionLogSegue", sender: self)
                 }
+        }
+    }
+    
+    func checkEditedLogNameAgainstUsedLogNames() {
+        if heroDisplayed!.usedLogNames.contains(sessionNameTextField.text!) == true {
+            displayDuplicateSessionLogNameAlert()
+        } else {
+            updateTheUsedLogNamesArray()
+            saveEditedLog()
         }
     }
     
@@ -101,40 +105,6 @@ class LogDetailViewController: UIViewController {
         updateSessionLogOnParse()
     }
     
-   @IBAction func dateTextFieldEditing(sender: UITextField) {
-        let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.Date
-        sender.inputView = datePickerView
-        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        if let dateString = heroLogDisplayed?.date {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-            dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-            datePickerView.date = dateFormatter.dateFromString(dateString)!
-        }
-    }
-    
-    func loadTheDateFieldWithCurrentDate() {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateTextField.text = dateFormatter.stringFromDate(NSDate())
-    }
-    
-    func loadTheViewWithSelectedSession() {
-        sessionNameTextField.text = heroLogDisplayed!.name
-        dateTextField.text = heroLogDisplayed!.date
-        notesTextField.text = heroLogDisplayed!.notes
-        sessionLogNameBeforeEdit = sessionNameTextField.text!
-    }
-    
-    func datePickerValueChanged(sender:UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateTextField.text = dateFormatter.stringFromDate(sender.date)
-        }
-    
     func createSessionLogOnParse(logToCreate: SessionLog) {
         let parseLog = PFObject(className: "Log")
         parseLog["owner"] = activeRoster!.userName
@@ -142,7 +112,7 @@ class LogDetailViewController: UIViewController {
         parseLog["sessionName"] = logToCreate.name
         parseLog["date"] = logToCreate.date
         parseLog["notes"] = logToCreate.notes
-       
+        
         parseLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){
@@ -188,7 +158,40 @@ class LogDetailViewController: UIViewController {
             }
         }
     }
-
+    
+   @IBAction func dateTextFieldEditing(sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        if let dateString = heroLogDisplayed?.date {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+            datePickerView.date = dateFormatter.dateFromString(dateString)!
+        }
+    }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateTextField.text = dateFormatter.stringFromDate(sender.date)
+    }
+    
+    func loadTheDateFieldWithCurrentDate() {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateTextField.text = dateFormatter.stringFromDate(NSDate())
+    }
+    
+    func loadTheViewWithSelectedSession() {
+        sessionNameTextField.text = heroLogDisplayed!.name
+        dateTextField.text = heroLogDisplayed!.date
+        notesTextField.text = heroLogDisplayed!.notes
+        sessionLogNameBeforeEdit = sessionNameTextField.text!
+    }
     
     func setViewToStaticMode() {
         addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)

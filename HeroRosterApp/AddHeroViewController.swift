@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class AddHeroViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var heroStatsTable: UITableView!
     @IBOutlet weak var heroNameField: UITextField!
@@ -123,6 +123,7 @@ class AddHeroViewController: UIViewController, UINavigationBarDelegate, UITableV
         parseHero["race"] = heroToCreate.race
         parseHero["gender"] = heroToCreate.gender
         parseHero["level"] = heroToCreate.level
+        parseHero["logIds"] = heroToCreate.logIds
         
         parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {

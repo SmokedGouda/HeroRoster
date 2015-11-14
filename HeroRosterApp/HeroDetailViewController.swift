@@ -75,8 +75,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         cell.textLabel!.text = HeroStatTableViewTitles().statTitles[indexPath.row]
-        let statLabel = cell.textLabel!.text
         let buttonLabel = editHeroButton.titleLabel!.text!
+        let statLabel = cell.textLabel!.text
         switch statLabel! {
             case "Class":
                 if cellLabel == statLabel {
@@ -159,28 +159,40 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 setViewToEditMode()
             
             default:
-               if heroNameTextField.text != heroNameBeforeEdit {
-                    if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
-                        let alert = UIAlertController(
-                            title: "Can't edit hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
-                        let action = UIAlertAction(
-                            title: "Ok", style: .Default, handler: nil)
-                        alert.addAction(action)
-                        presentViewController(alert, animated: true, completion: nil)
-                    } else {
-                        for (index, value) in activeRoster!.usedHeroNames.enumerate(){
-                            if heroNameBeforeEdit == value {
-                                activeRoster!.usedHeroNames.removeAtIndex(index)
-                            }
-                        }
-                        activeRoster!.usedHeroNames.append(heroNameTextField.text!)
-                        heroNameBeforeEdit = heroNameTextField.text!
-                        saveEditedHero()
-                    }
+                if heroNameTextField.text != heroNameBeforeEdit {
+                    checkEditedHeroNameAgainstUsedHeroNames()
                 } else {
                     saveEditedHero()
                 }
         }
+    }
+    
+    func checkEditedHeroNameAgainstUsedHeroNames() {
+        if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
+            displayDuplicateNameAlert()
+        } else {
+            updateUsedHeroNamesWithTheEditedHeroName()
+            saveEditedHero()
+        }
+    }
+    
+    func displayDuplicateNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't save edited hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+        let action = UIAlertAction(
+            title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func updateUsedHeroNamesWithTheEditedHeroName() {
+        for (index, value) in activeRoster!.usedHeroNames.enumerate(){
+            if heroNameBeforeEdit == value {
+                activeRoster!.usedHeroNames.removeAtIndex(index)
+            }
+        }
+        activeRoster!.usedHeroNames.append(heroNameTextField.text!)
+        heroNameBeforeEdit = heroNameTextField.text!
     }
     
     func saveEditedHero() {

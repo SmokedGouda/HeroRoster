@@ -24,7 +24,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     var parseHeroUsedLogNames: [String] = []
     var parseHeroObjectId = [String]()
     var parseHeroLogIds = [[String]]()
-    var newHeroObjectId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +36,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         heroRosterTable.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userRoster.heros.count
     }
@@ -117,13 +112,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             destVC.activeRoster = userRoster
         }
     }
-    
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        if(unwindSegue.sourceViewController .isKindOfClass(AddHeroViewController)) {
-            let addHero: AddHeroViewController = unwindSegue.sourceViewController as! AddHeroViewController
-            newHeroObjectId = addHero.newHeroObjectId
-        }
-    }
 
     func getRosterFromParse() {
         let rosterName = "\(activeUser!.username!)'s hero roster"
@@ -138,10 +126,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     
                     for object:PFObject in Roster! {
                         self.userRoster.userName = object["name"] as! String
-                        if object["hero"] != nil {
-                            self.userRoster.heros = object["hero"] as! [Hero]
-                        }
-                        self.userRoster.usedHeroNames = object["usedHeroNames"] as! [String]
                     }
                 }
             } else {
@@ -175,11 +159,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.parseHeroLevel.append(self.downloadedHero.level)
                         self.parseHeroObjectId.append(object.objectId! as String)
                         self.parseHeroLogIds.append(self.downloadedHero.logIds)
-                    
-
-                        self.populateUserRoster()
-                        self.heroRosterTable.reloadData()
                     }
+                    self.populateUserRoster()
+                    self.heroRosterTable.reloadData()
                 }
             }
         }
@@ -189,7 +171,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
             }
-         print(userRoster.usedHeroNames)
+        print("The roster now contains \(userRoster.heros.count) heros.")
+        print(userRoster.usedHeroNames)
     }
         
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
