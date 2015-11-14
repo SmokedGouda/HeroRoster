@@ -172,6 +172,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             displayDuplicateNameAlert()
         } else {
             updateUsedHeroNamesWithTheEditedHeroName()
+            updateNameAssociatedWithHerosLogs()
             saveEditedHero()
         }
     }
@@ -218,6 +219,22 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 hero["level"] = self.levelDisplayed
                 hero.saveInBackground()
                 print("hero updated on parse")
+            }
+        }
+    }
+    
+    func updateNameAssociatedWithHerosLogs() {
+        for objectId in heroDisplayed!.logIds {
+            let query = PFQuery(className:"Log")
+            query.getObjectInBackgroundWithId(objectId) {
+                (Log: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if let log = Log {
+                    log["logForHero"] = self.heroNameTextField.text
+                    log.saveInBackground()
+                    print("logId \(objectId) updated with hero's new name on parse")
+                }
             }
         }
     }
