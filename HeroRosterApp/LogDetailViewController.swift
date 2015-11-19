@@ -9,8 +9,9 @@
 import UIKit
 import Parse
 
-class LogDetailViewController: UIViewController {
+class LogDetailViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var sessionNameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var notesTextField: UITextView!
@@ -18,7 +19,7 @@ class LogDetailViewController: UIViewController {
     @IBOutlet weak var sessionNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
-    
+      
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
     var heroLogDisplayed = SessionLog?()
@@ -32,6 +33,9 @@ class LogDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
         roundTheLabelsAndButtons()
         loadTheDateFieldWithCurrentDate()
         
@@ -39,6 +43,10 @@ class LogDetailViewController: UIViewController {
             loadTheViewWithSelectedSession()
             setViewToStaticMode()
         }
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func addLogButtonPressed(sender: UIButton) {
@@ -218,13 +226,15 @@ class LogDetailViewController: UIViewController {
         notesTextField.layer.cornerRadius = 5
     }
     
-    @IBAction func textFieldDoneEditing(sender: AnyObject) {
-        sender.resignFirstResponder()
+    func textViewDidBeginEditing(textView: UITextView) {
+        scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        sessionNameTextField.resignFirstResponder()
-        notesTextField.resignFirstResponder()
-        dateTextField.resignFirstResponder()
+    func textViewDidEndEditing(textView: UITextView) {
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    }
+    
+    @IBAction func textFieldDoneEditing(sender: AnyObject) {
+        sender.resignFirstResponder()
     }
 }
