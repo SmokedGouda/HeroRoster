@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var newUserNameTextField: UITextField!
     @IBOutlet weak var newUserPasswordTextField: UITextField!
+    @IBOutlet weak var newUserEmailTextField: UITextField!
     @IBOutlet weak var createAccountButton: UIButton!
     
     override func viewDidLoad() {
@@ -26,12 +27,13 @@ class SignUpViewController: UIViewController {
             let user = PFUser()
             user.username = newUserNameTextField.text
             user.password = newUserPasswordTextField.text
+            user.email = newUserEmailTextField.text
             
             user.signUpInBackgroundWithBlock {
                 (succeeded: Bool, error: NSError?) -> Void in
                 if error != nil {
                     self.duplicateUserNameAlert(error!)
-                    print("Error, account creation failed")
+                    self.networkConnectionFailureAlert(error!)
                 } else {
                     print("account creation successfull")
                     self.logInNewUser()
@@ -72,6 +74,15 @@ class SignUpViewController: UIViewController {
     func duplicateUserNameAlert(errorToCheck: NSError) {
         if errorToCheck.code == 202 {
             let alert = UIAlertController(title: "Can't create user account.", message: "That username has already been used.  Please choose another.", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func networkConnectionFailureAlert(errorToCheck: NSError) {
+        if errorToCheck.code == 100 {
+            let alert = UIAlertController(title: "Network Connection Error", message: "Unable to log in at this time", preferredStyle: .Alert)
             let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
             alert.addAction(action)
             presentViewController(alert, animated: true, completion: nil)

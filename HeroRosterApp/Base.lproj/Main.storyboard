@@ -139,8 +139,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0Fg-rh-KIg">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your password here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qn-dZ-0aF">
-                                <rect key="frame" x="20" y="311" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qn-dZ-0aF">
+                                <rect key="frame" x="20" y="231" width="280" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ncY-mW-VGm"/>
@@ -151,20 +151,8 @@
                                     <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="dUy-Aj-5kp"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W55-To-YTa">
-                                <rect key="frame" x="85" y="378" width="150" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="lV4-rM-T4V"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="Create Account"/>
-                                <connections>
-                                    <action selector="createAccountButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="OnM-dV-cep"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your username here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pae-ys-fjH">
-                                <rect key="frame" x="20" y="231" width="280" height="30"/>
+                                <rect key="frame" x="20" y="193" width="280" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="O96-R5-j5C"/>
@@ -175,26 +163,54 @@
                                     <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="ncl-oM-lxq"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your e-mail address here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QjY-QX-cr3">
+                                <rect key="frame" x="20" y="269" width="280" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GPf-GH-tSG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="sk5-6v-Vtg"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W55-To-YTa">
+                                <rect key="frame" x="85" y="307" width="150" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="lV4-rM-T4V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="createAccountButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="OnM-dV-cep"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="5Yy-El-LKJ"/>
-                            <constraint firstItem="5qn-dZ-0aF" firstAttribute="top" secondItem="pae-ys-fjH" secondAttribute="bottom" constant="50" id="5Z1-k2-aHH"/>
                             <constraint firstItem="0Fg-rh-KIg" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leadingMargin" constant="-20" id="KQh-3t-ISd"/>
+                            <constraint firstItem="W55-To-YTa" firstAttribute="top" secondItem="QjY-QX-cr3" secondAttribute="bottom" constant="8" id="NqW-l9-LS3"/>
                             <constraint firstItem="gpc-YF-iaV" firstAttribute="top" secondItem="0Fg-rh-KIg" secondAttribute="bottom" id="TgT-OY-bU2"/>
+                            <constraint firstItem="pae-ys-fjH" firstAttribute="top" secondItem="EtV-8V-FVa" secondAttribute="bottom" constant="129" id="UXu-NG-IBE"/>
+                            <constraint firstAttribute="trailing" secondItem="QjY-QX-cr3" secondAttribute="trailing" constant="20" id="W0a-OC-xUB"/>
+                            <constraint firstItem="QjY-QX-cr3" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="Ztt-Uf-eAr"/>
+                            <constraint firstItem="QjY-QX-cr3" firstAttribute="top" secondItem="5qn-dZ-0aF" secondAttribute="bottom" constant="8" id="aB6-sw-V8P"/>
                             <constraint firstItem="W55-To-YTa" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="cit-eE-JT9"/>
                             <constraint firstItem="pae-ys-fjH" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="cni-QJ-SbE"/>
                             <constraint firstAttribute="trailing" secondItem="5qn-dZ-0aF" secondAttribute="trailing" constant="20" id="lNP-x2-GEE"/>
                             <constraint firstItem="0Fg-rh-KIg" firstAttribute="top" secondItem="wni-Gu-I4x" secondAttribute="topMargin" id="m8I-XK-epC"/>
-                            <constraint firstItem="pae-ys-fjH" firstAttribute="top" secondItem="EtV-8V-FVa" secondAttribute="bottom" constant="167" id="ooz-Hc-KgF"/>
-                            <constraint firstItem="W55-To-YTa" firstAttribute="top" secondItem="5qn-dZ-0aF" secondAttribute="bottom" constant="37" id="opw-uL-SQQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Fg-rh-KIg" secondAttribute="trailing" constant="-20" id="qYX-wA-Pq6"/>
                             <constraint firstAttribute="trailing" secondItem="pae-ys-fjH" secondAttribute="trailing" constant="20" id="xCi-hq-Jxe"/>
+                            <constraint firstItem="5qn-dZ-0aF" firstAttribute="top" secondItem="pae-ys-fjH" secondAttribute="bottom" constant="8" id="zT4-uQ-ow4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Sm2-pC-BBX"/>
                     <connections>
                         <outlet property="createAccountButton" destination="W55-To-YTa" id="k0Y-gf-6so"/>
+                        <outlet property="newUserEmailTextField" destination="QjY-QX-cr3" id="9A6-Qf-FTa"/>
                         <outlet property="newUserNameTextField" destination="pae-ys-fjH" id="SpB-Uu-juC"/>
                         <outlet property="newUserPasswordTextField" destination="5qn-dZ-0aF" id="M9d-wO-1lx"/>
                         <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="gjv-yk-hoc"/>
