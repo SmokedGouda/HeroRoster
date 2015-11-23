@@ -30,6 +30,7 @@ class SignUpViewController: UIViewController {
             user.signUpInBackgroundWithBlock {
                 (succeeded: Bool, error: NSError?) -> Void in
                 if error != nil {
+                    self.duplicateUserNameAlert(error!)
                     print("Error, account creation failed")
                 } else {
                     print("account creation successfull")
@@ -65,6 +66,15 @@ class SignUpViewController: UIViewController {
             } else {
                 print("Roster object failed to save to user's account.")
             }
+        }
+    }
+    
+    func duplicateUserNameAlert(errorToCheck: NSError) {
+        if errorToCheck.code == 202 {
+            let alert = UIAlertController(title: "Can't create user account.", message: "That username has already been used.  Please choose another.", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
     
