@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController {
 
     // Create a new user account, and if successfull, automatically log the user in.
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
-        if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" {
+        if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" && newUserEmailTextField.text != "" {
             let user = PFUser()
             user.username = newUserNameTextField.text
             user.password = newUserPasswordTextField.text
@@ -64,7 +64,8 @@ class SignUpViewController: UIViewController {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 print("Roster object successfully saved to user's account.")
-                self.performSegueWithIdentifier("heroRosterSegueTwo", sender: self)
+                PFUser.logOut()
+                self.accountCreationAlert()
             } else {
                 print("Roster object failed to save to user's account.")
             }
@@ -87,6 +88,14 @@ class SignUpViewController: UIViewController {
             alert.addAction(action)
             presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    
+    func accountCreationAlert() {
+        let alert = UIAlertController(title: "Account creation successful!", message: "You will receive a e-mail to verify your account shortly.  Click the link you receive in your e-mail to activate your account and allow you access to login.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler:  { (actionSheetController) -> Void in self.performSegueWithIdentifier("signupSegue", sender: self)
+        })
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {

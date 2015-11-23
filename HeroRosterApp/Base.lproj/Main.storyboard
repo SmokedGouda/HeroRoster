@@ -213,8 +213,7 @@
                         <outlet property="newUserEmailTextField" destination="QjY-QX-cr3" id="9A6-Qf-FTa"/>
                         <outlet property="newUserNameTextField" destination="pae-ys-fjH" id="SpB-Uu-juC"/>
                         <outlet property="newUserPasswordTextField" destination="5qn-dZ-0aF" id="M9d-wO-1lx"/>
-                        <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="gjv-yk-hoc"/>
-                        <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegueTwo" id="chN-vc-Ri0"/>
+                        <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="8py-MS-JiX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -942,8 +941,7 @@
         <image name="knight.jpg" width="328" height="568"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="chN-vc-Ri0"/>
-        <segue reference="o4b-B9-U7R"/>
+        <segue reference="V7N-qI-02U"/>
         <segue reference="gNp-wK-UXN"/>
     </inferredMetricsTieBreakers>
 </document>
