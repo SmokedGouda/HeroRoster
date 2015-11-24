@@ -87,6 +87,9 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogo640x140.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
                                 <rect key="frame" x="0.0" y="117" width="320" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Jj3-3B-fba"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ab-UG-M95">
                                 <rect key="frame" x="90" y="419" width="140" height="30"/>
@@ -103,13 +106,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="4yz-S2-bph" secondAttribute="bottom" constant="44" id="1go-p1-6cX"/>
                             <constraint firstItem="NSR-ZB-kdh" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="2ry-BJ-b8k"/>
                             <constraint firstItem="4ab-UG-M95" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="9dL-ZJ-UTu"/>
-                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="4yz-S2-bph" secondAttribute="bottom" constant="44" id="Ctr-qA-5M6"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="centerY" secondItem="nIb-n7-L5w" secondAttribute="centerY" id="HXb-Zi-dUF"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="top" secondItem="c2O-fg-BPs" secondAttribute="bottom" constant="20" id="NH5-Sl-gdT"/>
                             <constraint firstItem="4yz-S2-bph" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" id="Pbp-zA-YHC"/>
                             <constraint firstItem="HO4-20-cqY" firstAttribute="top" secondItem="nIb-n7-L5w" secondAttribute="topMargin" id="RIt-Yb-4BS"/>
+                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="4yz-S2-bph" secondAttribute="bottom" constant="44" id="V2j-DX-KDJ"/>
                             <constraint firstItem="4ab-UG-M95" firstAttribute="top" secondItem="NSR-ZB-kdh" secondAttribute="bottom" constant="20" id="VPZ-SU-zkG"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="8" id="WtJ-cR-IR8"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
@@ -120,7 +124,6 @@
                             <constraint firstItem="2Oe-Kc-DNB" firstAttribute="top" secondItem="HO4-20-cqY" secondAttribute="bottom" id="dlF-Uw-Bw7"/>
                             <constraint firstItem="NSR-ZB-kdh" firstAttribute="top" secondItem="9fr-N3-ydt" secondAttribute="bottom" constant="20" id="eGX-Je-w2b"/>
                             <constraint firstAttribute="trailing" secondItem="c2O-fg-BPs" secondAttribute="trailing" constant="20" id="mg1-fs-BFP"/>
-                            <constraint firstItem="4yz-S2-bph" firstAttribute="top" secondItem="AW5-Ut-svD" secondAttribute="bottom" constant="53" id="rcn-eP-iYv"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="szL-gI-tKl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HO4-20-cqY" secondAttribute="trailing" constant="-20" id="wzZ-j0-fmt"/>
                         </constraints>
