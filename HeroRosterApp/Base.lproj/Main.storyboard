@@ -44,7 +44,7 @@
                                     <constraint firstAttribute="height" constant="30" id="7ON-B8-fAV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="Qsr-Y4-z0h" eventType="editingDidEndOnExit" id="wcJ-KZ-7sV"/>
                                 </connections>
@@ -164,7 +164,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ncY-mW-VGm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="dUy-Aj-5kp"/>
                                 </connections>
@@ -176,7 +176,7 @@
                                     <constraint firstAttribute="height" constant="30" id="O96-R5-j5C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="ncl-oM-lxq"/>
                                 </connections>
@@ -188,7 +188,7 @@
                                     <constraint firstAttribute="height" constant="30" id="GPf-GH-tSG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="Lqv-yd-VT7" eventType="editingDidEndOnExit" id="sk5-6v-Vtg"/>
                                 </connections>
@@ -237,7 +237,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NBY-9p-VC0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="217" y="798"/>
+            <point key="canvasLocation" x="284" y="798"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="pd6-7m-aDP">
@@ -261,7 +261,7 @@
                                     <constraint firstAttribute="height" constant="30" id="Siz-Tl-Doo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="qyc-WJ-Uzc" eventType="editingDidEndOnExit" id="XbU-PP-d37"/>
                                 </connections>
@@ -316,7 +316,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gvp-SO-NMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CjD-CZ-JqE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="633" y="798"/>
+            <point key="canvasLocation" x="648" y="798"/>
         </scene>
         <!--Hero Roster-->
         <scene sceneID="KXq-Re-Hwa">
@@ -1039,7 +1039,7 @@
         <image name="theArchivist.jpg" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="PXK-YF-pJP"/>
         <segue reference="V7N-qI-02U"/>
-        <segue reference="gNp-wK-UXN"/>
     </inferredMetricsTieBreakers>
 </document>

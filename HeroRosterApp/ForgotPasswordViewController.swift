@@ -36,8 +36,13 @@ class ForgotPasswordViewController: UIViewController {
         if emailTextField.text == "" {
             emptyEmailTextFieldAlert()
         } else {
-            PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!)
-            resetPasswordAlert()
+            PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!) {(success: Bool, error: NSError?) -> Void in
+                if error != nil {
+                    self.displayErrorAlert(error!)
+                } else {
+                    self.resetPasswordAlert()
+                }
+            }
         }
     }
     
@@ -46,6 +51,25 @@ class ForgotPasswordViewController: UIViewController {
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func displayErrorAlert(errorToCheck: NSError) {
+        switch errorToCheck.code {
+            case 100:
+                let alert = UIAlertController(title: "Network connection error", message: "Unable to send password reset request at this time.", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alert.addAction(action)
+                presentViewController(alert, animated: true, completion: nil)
+            
+            case 205:
+                let alert = UIAlertController(title: "Invalid e-mail", message: "No user found with email \(emailTextField.text!)", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alert.addAction(action)
+                presentViewController(alert, animated: true, completion: nil)
+            
+            default:
+                "Nothing Happened"
+        }
     }
     
     func resetPasswordAlert() {

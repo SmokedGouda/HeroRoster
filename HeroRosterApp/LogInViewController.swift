@@ -93,11 +93,21 @@ class LogInViewController: UIViewController {
     }
     
     func invalidLoginAlert(errorToCheck: NSError) {
-        if errorToCheck.code == 101 {
-            let alert = UIAlertController(title: "Invalid Login", message: "The user name or password you provided is invalid.", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-            alert.addAction(action)
-            presentViewController(alert, animated: true, completion: nil)
+        switch errorToCheck.code {
+            case 100:
+                let alert = UIAlertController(title: "Network connection error", message: "Unable to login at this time.", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alert.addAction(action)
+                presentViewController(alert, animated: true, completion: nil)
+
+            case 101:
+                let alert = UIAlertController(title: "Invalid Login", message: "The password you provided is invalid.", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alert.addAction(action)
+                presentViewController(alert, animated: true, completion: nil)
+            
+            default:
+                "Nothing Happened"
         }
     }
     
