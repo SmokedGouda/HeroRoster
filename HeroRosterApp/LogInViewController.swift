@@ -19,7 +19,13 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
         roundTheButtons()
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -28,19 +34,23 @@ class LogInViewController: UIViewController {
     }
     
    @IBAction func loginButtonPressed(sender: AnyObject) {
-        let query = PFUser.query()
-        query?.whereKey("username", equalTo: userNameField.text!)
-        query?.findObjectsInBackgroundWithBlock { (emailVerified: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                for object:PFObject in emailVerified! {
-                    if object["emailVerified"] as! Bool == false {
-                        self.unverifiedEmailAlert()
-                    } else {
-                        self.loginUser()
+        if userNameField.text == "" || userPasswordField.text == "" {
+            emptyUserFieldsAlert()
+        } else {
+            let query = PFUser.query()
+            query?.whereKey("username", equalTo: userNameField.text!)
+            query?.findObjectsInBackgroundWithBlock { (emailVerified: [PFObject]?, error: NSError?) -> Void in
+                if error == nil {
+                    for object:PFObject in emailVerified! {
+                        if object["emailVerified"] as! Bool == false {
+                            self.unverifiedEmailAlert()
+                        } else {
+                            self.loginUser()
+                        }
                     }
+                } else {
+                    print(error)
                 }
-            } else {
-                print(error)
             }
         }
     }
@@ -61,7 +71,14 @@ class LogInViewController: UIViewController {
     }
     
     func unverifiedEmailAlert() {
-        let alert = UIAlertController(title: "Can't login to account.", message: "You must first verify your e-mail before you can log in.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't login to user account.", message: "You must first verify your e-mail before you can log in.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func emptyUserFieldsAlert() {
+        let alert = UIAlertController(title: "Can't login to user account.", message: "You must provide a user name and password to proceed.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)

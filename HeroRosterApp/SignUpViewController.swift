@@ -18,7 +18,13 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
         createAccountButton.layer.cornerRadius = 5
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     // Create a new user account, and if successfull, automatically log the user in.
@@ -35,12 +41,11 @@ class SignUpViewController: UIViewController {
                     self.duplicateUserNameAlert(error!)
                     self.networkConnectionFailureAlert(error!)
                 } else {
-                    print("account creation successfull")
                     self.logInNewUser()
                 }
             }
         } else {
-            print("You need to enter a new username and password")
+            emptyUserFieldsAlert()
         }
     }
 
@@ -98,6 +103,13 @@ class SignUpViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func emptyUserFieldsAlert() {
+        let alert = UIAlertController(title: "Can't create user account.", message: "You must provide a user name, password, and e-mail to proceed.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
     @IBAction func textFieldDoneEditing(sender: UITextField) {
         sender.resignFirstResponder()
     }
