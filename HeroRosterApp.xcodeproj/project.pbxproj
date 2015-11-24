@@ -57,6 +57,7 @@
 		3F624AB31BEFE3CC009415CF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA91BEFE3CC009415CF /* StoreKit.framework */; };
 		3F624AB41BEFE3CC009415CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */; };
 		3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AB51BEFE3ED009415CF /* CoreLocation.framework */; };
+		3F6ACF8F1C04D7DB00753000 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */; };
 		3F7001491BF381F400BC8684 /* illo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001481BF381F400BC8684 /* illo3.jpg */; };
 		3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014A1BF3865C00BC8684 /* Illo2.jpg */; };
 		3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014C1BF387AC00BC8684 /* Illo1.jpg */; };
@@ -140,6 +141,7 @@
 		3F624AA91BEFE3CC009415CF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F624AB51BEFE3ED009415CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3F7001481BF381F400BC8684 /* illo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo3.jpg; path = ../HeroRosterApp/illo3.jpg; sourceTree = "<group>"; };
 		3F70014A1BF3865C00BC8684 /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo2.jpg; path = ../HeroRosterApp/Illo2.jpg; sourceTree = "<group>"; };
 		3F70014C1BF387AC00BC8684 /* Illo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo1.jpg; path = ../HeroRosterApp/Illo1.jpg; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			children = (
 				3F2B89B81BE9413F00CE037C /* LogInViewController.swift */,
 				3F624A9A1BEFD4B3009415CF /* SignUpViewController.swift */,
+				3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */,
 				3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */,
 				3F2B89EB1BE94C3F00CE037C /* AddHeroViewController.swift */,
 				3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */,
@@ -495,6 +498,7 @@
 				3F624A9B1BEFD4B3009415CF /* SignUpViewController.swift in Sources */,
 				3F2B89E81BE945A300CE037C /* HeroModel.swift in Sources */,
 				3F4B057B1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift in Sources */,
+				3F6ACF8F1C04D7DB00753000 /* ForgotPasswordViewController.swift in Sources */,
 				3F2B89EC1BE94C3F00CE037C /* AddHeroViewController.swift in Sources */,
 				3F3A97DF1BED22E20011131F /* LogDetailViewController.swift in Sources */,
 				3F2B89EE1BE9535D00CE037C /* HeroStatOptionsViewController.swift in Sources */,

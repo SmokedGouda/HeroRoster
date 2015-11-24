@@ -14,7 +14,8 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var userPasswordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var newUserSignUpButton: UIButton!
-
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    
     var activeUser = PFUser.currentUser()
     
     override func viewDidLoad() {
@@ -66,6 +67,7 @@ class LogInViewController: UIViewController {
                 }
             } else {
                 print(error)
+                self.invalidLoginAlert(error!)
             }
         }
     }
@@ -83,10 +85,21 @@ class LogInViewController: UIViewController {
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
+    
+    func invalidLoginAlert(errorToCheck: NSError) {
+        if errorToCheck.code == 101 {
+            let alert = UIAlertController(title: "Invalid Login", message: "The user name or password you provided is invalid.", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+
 
     func roundTheButtons () {
         loginButton.layer.cornerRadius = 5
         newUserSignUpButton.layer.cornerRadius = 5
+        forgotPasswordButton.layer.cornerRadius = 5
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {
