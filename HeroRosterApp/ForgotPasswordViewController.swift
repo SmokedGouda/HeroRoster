@@ -42,14 +42,14 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     func emptyEmailTextFieldAlert() {
-        let alert = UIAlertController(title: "Can't reset password.", message: "You must provide a valid e-mail.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't reset password", message: "You must provide a valid e-mail.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
     func resetPasswordAlert() {
-        let alert = UIAlertController(title: "Reset password request sent.", message: "Check your e-mail for a message which will assist you in reseting your password.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Reset password request sent", message: "Check your e-mail for a message which will assist you in reseting your password.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: { (actionSheetController) -> Void in self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
         })
         alert.addAction(action)

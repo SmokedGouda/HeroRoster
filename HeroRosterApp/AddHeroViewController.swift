@@ -106,7 +106,7 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func displayDuplicateNameAlert() {
         let alert = UIAlertController(
-            title: "Can't add hero!", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+            title: "Can't add hero", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
         let action = UIAlertAction(
             title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)

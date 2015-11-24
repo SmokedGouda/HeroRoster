@@ -35,22 +35,28 @@ class LogInViewController: UIViewController {
     }
     
    @IBAction func loginButtonPressed(sender: AnyObject) {
+        startLoginProcess()
+    }
+    
+    func startLoginProcess() {
         if userNameField.text == "" || userPasswordField.text == "" {
             emptyUserFieldsAlert()
         } else {
             let query = PFUser.query()
             query?.whereKey("username", equalTo: userNameField.text!)
-            query?.findObjectsInBackgroundWithBlock { (emailVerified: [PFObject]?, error: NSError?) -> Void in
-                if error == nil {
-                    for object:PFObject in emailVerified! {
+            query?.findObjectsInBackgroundWithBlock { (userInfo: [PFObject]?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if userInfo!.count == 0 {
+                    self.invalidUserNameAlert()
+                } else {
+                    for object:PFObject in userInfo! {
                         if object["emailVerified"] as! Bool == false {
                             self.unverifiedEmailAlert()
                         } else {
                             self.loginUser()
                         }
                     }
-                } else {
-                    print(error)
                 }
             }
         }
@@ -73,14 +79,14 @@ class LogInViewController: UIViewController {
     }
     
     func unverifiedEmailAlert() {
-        let alert = UIAlertController(title: "Can't login to user account.", message: "You must first verify your e-mail before you can log in.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't login to user account", message: "You must first verify your e-mail before you can log in.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
     func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't login to user account.", message: "You must provide a user name and password to proceed.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't login to user account", message: "You must provide a user name and password to proceed.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
@@ -94,7 +100,13 @@ class LogInViewController: UIViewController {
             presentViewController(alert, animated: true, completion: nil)
         }
     }
-
+    
+    func invalidUserNameAlert() {
+        let alert = UIAlertController(title: "Invalid user name", message: "The user name you provided does not exist.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
 
     func roundTheButtons () {
         loginButton.layer.cornerRadius = 5
@@ -104,6 +116,9 @@ class LogInViewController: UIViewController {
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {
         sender.resignFirstResponder()
+        if sender == userPasswordField {
+            startLoginProcess()
+        }
     }
 }
 

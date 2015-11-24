@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F007D961C04FC8600D2272D /* theArchivist.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F007D951C04FC8600D2272D /* theArchivist.jpg */; };
 		3F010D931BF4D7B300B303E4 /* HeroRosterLogo640x140.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D921BF4D7B300B303E4 /* HeroRosterLogo640x140.png */; };
 		3F010D991BF4DD4B00B303E4 /* heroRosterIcon58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D941BF4DD4B00B303E4 /* heroRosterIcon58x58.png */; };
 		3F010D9A1BF4DD4B00B303E4 /* heroRosterIcon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D951BF4DD4B00B303E4 /* heroRosterIcon80x80.png */; };
@@ -84,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F007D951C04FC8600D2272D /* theArchivist.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theArchivist.jpg; sourceTree = "<group>"; };
 		3F010D921BF4D7B300B303E4 /* HeroRosterLogo640x140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeroRosterLogo640x140.png; sourceTree = "<group>"; };
 		3F010D941BF4DD4B00B303E4 /* heroRosterIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon58x58.png; sourceTree = "<group>"; };
 		3F010D951BF4DD4B00B303E4 /* heroRosterIcon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon80x80.png; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		3F7001501BF387D000BC8684 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3F007D951C04FC8600D2272D /* theArchivist.jpg */,
 				3F010D941BF4DD4B00B303E4 /* heroRosterIcon58x58.png */,
 				3F010D951BF4DD4B00B303E4 /* heroRosterIcon80x80.png */,
 				3F010D961BF4DD4B00B303E4 /* heroRosterIcon87x87.png */,
@@ -448,6 +451,7 @@
 				3F010D9A1BF4DD4B00B303E4 /* heroRosterIcon80x80.png in Resources */,
 				3F43B40A1BF421ED00F58C7B /* knight.jpg in Resources */,
 				3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */,
+				3F007D961C04FC8600D2272D /* theArchivist.jpg in Resources */,
 				3F7001561BF3A3D800BC8684 /* book.jpg in Resources */,
 				3F1C82631BF2E25C0063FDD8 /* Monk.png in Resources */,
 				3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */,

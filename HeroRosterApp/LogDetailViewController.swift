@@ -87,7 +87,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     
     func displayDuplicateSessionLogNameAlert() {
         let alert = UIAlertController(
-            title: "Can't save session!", message: "That session name has already been used.  Please choose another one.", preferredStyle: .Alert)
+            title: "Can't save session", message: "That session name has already been used.  Please choose another one.", preferredStyle: .Alert)
         let action = UIAlertAction(
             title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)

@@ -79,7 +79,7 @@ class SignUpViewController: UIViewController {
     
     func duplicateUserNameAlert(errorToCheck: NSError) {
         if errorToCheck.code == 202 {
-            let alert = UIAlertController(title: "Can't create user account.", message: "That username has already been used.  Please choose another.", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Can't create user account", message: "That username has already been used.  Please choose another.", preferredStyle: .Alert)
             let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
             alert.addAction(action)
             presentViewController(alert, animated: true, completion: nil)
@@ -96,7 +96,7 @@ class SignUpViewController: UIViewController {
     }
     
     func accountCreationAlert() {
-        let alert = UIAlertController(title: "Account creation successful!", message: "You will receive a e-mail to verify your account shortly.  Click the link you receive in your e-mail to activate your account and allow you access to login.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Account creation successful", message: "You will receive a e-mail to verify your account shortly.  Click the link you receive in your e-mail to activate your account and allow you access to login.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler:  { (actionSheetController) -> Void in self.performSegueWithIdentifier("signupSegue", sender: self)
         })
         alert.addAction(action)
@@ -104,7 +104,7 @@ class SignUpViewController: UIViewController {
     }
     
     func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't create user account.", message: "You must provide a user name, password, and e-mail to proceed.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a user name, password, and e-mail to proceed.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)

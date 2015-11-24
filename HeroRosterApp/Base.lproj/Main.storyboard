@@ -251,8 +251,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ls-jI-OaC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theArchivist.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wqT-hA-ah5">
+                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ls-jI-OaC">
                                 <rect key="frame" x="20" y="269" width="280" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Siz-Tl-Doo"/>
                                 </constraints>
@@ -292,9 +296,13 @@
                             <constraint firstItem="wNU-8P-ua6" firstAttribute="top" secondItem="kqk-Lc-bKh" secondAttribute="bottom" constant="20" id="67q-wS-pmK"/>
                             <constraint firstItem="5ls-jI-OaC" firstAttribute="centerY" secondItem="uQw-TS-wl1" secondAttribute="centerY" id="7Sy-dn-QYU"/>
                             <constraint firstItem="kqk-Lc-bKh" firstAttribute="top" secondItem="5ls-jI-OaC" secondAttribute="bottom" constant="20" id="8bN-6q-QO6"/>
+                            <constraint firstItem="wqT-hA-ah5" firstAttribute="top" secondItem="ukX-fd-XRP" secondAttribute="bottom" constant="8" id="DaK-NE-NS2"/>
+                            <constraint firstItem="4oV-nm-wdP" firstAttribute="top" secondItem="wqT-hA-ah5" secondAttribute="bottom" id="LOP-83-z5f"/>
                             <constraint firstItem="wNU-8P-ua6" firstAttribute="centerX" secondItem="uQw-TS-wl1" secondAttribute="centerX" id="WON-zz-pr5"/>
+                            <constraint firstAttribute="trailing" secondItem="wqT-hA-ah5" secondAttribute="trailing" id="WX6-6w-exN"/>
                             <constraint firstAttribute="trailing" secondItem="5ls-jI-OaC" secondAttribute="trailing" constant="20" id="eeF-eC-cFy"/>
                             <constraint firstItem="5ls-jI-OaC" firstAttribute="leading" secondItem="uQw-TS-wl1" secondAttribute="leading" constant="20" id="nga-gB-47n"/>
+                            <constraint firstItem="wqT-hA-ah5" firstAttribute="leading" secondItem="uQw-TS-wl1" secondAttribute="leading" id="qDe-A4-MnC"/>
                             <constraint firstItem="kqk-Lc-bKh" firstAttribute="centerX" secondItem="uQw-TS-wl1" secondAttribute="centerX" id="qJt-lR-ulu"/>
                         </constraints>
                     </view>
@@ -1028,6 +1036,7 @@
         <image name="illo3.jpg" width="573" height="800"/>
         <image name="illo4.jpg" width="587" height="800"/>
         <image name="knight.jpg" width="328" height="568"/>
+        <image name="theArchivist.jpg" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="V7N-qI-02U"/>
