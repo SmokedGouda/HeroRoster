@@ -174,9 +174,11 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destVC: ScenarioListViewController = segue.destinationViewController as! ScenarioListViewController
-        destVC.lastSelectedSection = sectionIndex
-        destVC.lastSelectedRow = rowIndex
+        if segue.identifier == "scenarioListSegue" {
+            let destVC: ScenarioListViewController = segue.destinationViewController as! ScenarioListViewController
+            destVC.lastSelectedSection = sectionIndex
+            destVC.lastSelectedRow = rowIndex
+        }
     }
     
     @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
