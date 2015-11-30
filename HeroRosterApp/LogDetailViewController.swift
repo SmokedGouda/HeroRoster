@@ -29,6 +29,8 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     var sessionLogNameBeforeEdit = String()
     var activateEditMode = false
     var newLogObjectId = String()
+    var sectionIndex: Int?
+    var rowIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,11 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
             loadTheViewWithSelectedSession()
             setViewToStaticMode()
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        findIndexValuesForPreviouslySelectedScenarioName()
     }
     
     func dismissKeyboard() {
@@ -166,7 +173,33 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-   @IBAction func dateTextFieldEditing(sender: UITextField) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destVC: ScenarioListViewController = segue.destinationViewController as! ScenarioListViewController
+        destVC.lastSelectedSection = sectionIndex
+        destVC.lastSelectedRow = rowIndex
+    }
+    
+    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
+            let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
+            scenarioNameTextView.text = scenarioName.nameToReturn
+        }
+    }
+    
+    func findIndexValuesForPreviouslySelectedScenarioName() {
+        for name in Scenarios().scenarioNames {
+            if name.contains(scenarioNameTextView.text!) {
+                rowIndex = name.indexOf(scenarioNameTextView.text)!
+                for (index, value) in Scenarios().scenarioNames.enumerate() {
+                    if name == value {
+                        sectionIndex = index
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func dateTextFieldEditing(sender: UITextField) {
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         sender.inputView = datePickerView
@@ -229,6 +262,8 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 180), animated: true)
+        } else if textView == scenarioNameTextView {
+            self.performSegueWithIdentifier("scenarioListSegue", sender: self)
         }
     }
     

@@ -37,7 +37,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         return heroStatsArrayToDisplay.count
     }
     
-    @IBAction func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let paths: [NSIndexPath]
         if let previous = selectedRow {
             paths = [indexPath, previous]

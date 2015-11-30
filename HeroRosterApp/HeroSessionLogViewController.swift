@@ -134,6 +134,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             heroDisplayed?.addSessionLog(SessionLog(name: parseSessionLogName[index], date: parseSessionLogDate[index], notes: parseSessionLogNotes[index], parseObjectId: parseSessionLogObjectId[index]))
         }
     }
+    
     func updateHeroLogIdsParse() {
         let query = PFQuery(className:"Hero")
         query.getObjectInBackgroundWithId(heroDisplayed!.parseObjectId) {

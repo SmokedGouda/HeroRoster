@@ -113,7 +113,6 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    
     func createHeroOnParse(heroToCreate: Hero) {
         let parseHero = PFObject(className: "Hero")
         parseHero["owner"] = activeRoster!.userName
@@ -188,5 +187,4 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func textFieldDoneEditing(sender: UITextField) {
         sender.resignFirstResponder()
     }
-
 }

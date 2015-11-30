@@ -42,7 +42,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         heroNameTextField.text = heroDisplayed?.name
         heroNumberTextField.text = heroDisplayed?.number
         heroNameBeforeEdit = heroNameTextField.text!
-       
     }
     
     override func viewDidAppear(animated: Bool) {
