@@ -12,21 +12,20 @@ import Parse
 class LogDetailViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var sessionNameTextField: UITextField!
+    @IBOutlet weak var scenarioNameTextView: UITextView!
     @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var notesTextField: UITextView!
+    @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var addLogButton: UIButton!
-    @IBOutlet weak var sessionNameLabel: UILabel!
+    @IBOutlet weak var scenarioNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
       
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
     var heroLogDisplayed = SessionLog?()
-    var sessionName = String()
     var date = String()
     var notes = String()
-    var newSessionName = String()
+    var newSenarioName = String()
     var sessionLogNameBeforeEdit = String()
     var activateEditMode = false
     var newLogObjectId = String()
@@ -56,20 +55,20 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
             setViewToEditMode()
             
             case "Save":
-                if sessionNameTextField.text != sessionLogNameBeforeEdit {
+                if scenarioNameTextView.text != sessionLogNameBeforeEdit {
                     checkEditedLogNameAgainstUsedLogNames()
                 } else {
                     saveEditedLog()
                 }
             
             default:
-                newSessionName = sessionNameTextField.text!
-                if heroDisplayed!.usedLogNames.contains(newSessionName) == true  {
+                newSenarioName = scenarioNameTextView.text!
+                if heroDisplayed!.usedLogNames.contains(newSenarioName) == true  {
                     displayDuplicateSessionLogNameAlert()
                 } else {
                     date = dateTextField.text!
-                    notes = notesTextField.text!
-                    let newSessionLog = SessionLog(name: newSessionName, date: date, notes: notes, parseObjectId: "")
+                    notes = notesTextView.text!
+                    let newSessionLog = SessionLog(name: newSenarioName, date: date, notes: notes, parseObjectId: "")
                     createSessionLogOnParse(newSessionLog)
                     self.performSegueWithIdentifier("addSessionLogSegue", sender: self)
                 }
@@ -77,7 +76,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func checkEditedLogNameAgainstUsedLogNames() {
-        if heroDisplayed!.usedLogNames.contains(sessionNameTextField.text!) == true {
+        if heroDisplayed!.usedLogNames.contains(scenarioNameTextView.text!) == true {
             displayDuplicateSessionLogNameAlert()
         } else {
             updateTheUsedLogNamesArray()
@@ -100,16 +99,16 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                 heroDisplayed!.usedLogNames.removeAtIndex(index)
             }
         }
-        heroDisplayed!.usedLogNames.append(sessionNameTextField.text!)
-        sessionLogNameBeforeEdit = sessionNameTextField.text!
+        heroDisplayed!.usedLogNames.append(scenarioNameTextView.text!)
+        sessionLogNameBeforeEdit = scenarioNameTextView.text!
     }
     
     func saveEditedLog() {
         setViewToStaticMode()
-        let updatedSessionName = sessionNameTextField.text
+        let updatedScenarioName = scenarioNameTextView.text
         let updatedDate = dateTextField.text
-        let updatedNotes = notesTextField.text
-        heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedSessionName!, newDate: updatedDate!, newNotes: updatedNotes)
+        let updatedNotes = notesTextView.text
+        heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedScenarioName!, newDate: updatedDate!, newNotes: updatedNotes)
         updateSessionLogOnParse()
     }
     
@@ -144,9 +143,9 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
             if error != nil {
                 print(error)
             } else if let log = Log {
-                log["sessionName"] = self.sessionNameTextField.text
+                log["sessionName"] = self.scenarioNameTextView.text
                 log["date"] = self.dateTextField.text
-                log["notes"] = self.notesTextField.text
+                log["notes"] = self.notesTextView.text
                 log.saveInBackground()
                 print("log updated on parse")
             }
@@ -195,43 +194,48 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func loadTheViewWithSelectedSession() {
-        sessionNameTextField.text = heroLogDisplayed!.name
+        scenarioNameTextView.text = heroLogDisplayed!.name
         dateTextField.text = heroLogDisplayed!.date
-        notesTextField.text = heroLogDisplayed!.notes
-        sessionLogNameBeforeEdit = sessionNameTextField.text!
+        notesTextView.text = heroLogDisplayed!.notes
+        sessionLogNameBeforeEdit = scenarioNameTextView.text!
     }
     
     func setViewToStaticMode() {
         addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
-        sessionNameTextField.enabled = false
+        scenarioNameTextView.editable = false
         dateTextField.enabled = false
-        notesTextField.editable = false
+        notesTextView.editable = false
     }
     
     func setViewToEditMode() {
         addLogButton.setTitle("Save", forState: UIControlState.Normal)
-        sessionNameTextField.enabled = true
+        scenarioNameTextView.editable = true
         dateTextField.enabled = true
-        notesTextField.editable = true
+        notesTextView.editable = true
     }
     
     func roundTheLabelsAndButtons() {
         addLogButton.layer.cornerRadius = 5
-        sessionNameLabel.layer.cornerRadius = 5
-        sessionNameLabel.clipsToBounds = true
+        scenarioNameLabel.layer.cornerRadius = 5
+        scenarioNameLabel.clipsToBounds = true
+        scenarioNameTextView.layer.cornerRadius = 8
         dateLabel.layer.cornerRadius = 5
         dateLabel.clipsToBounds = true
         notesLabel.layer.cornerRadius = 5
         notesLabel.clipsToBounds = true
-        notesTextField.layer.cornerRadius = 5
+        notesTextView.layer.cornerRadius = 8
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        scrollView.setContentOffset(CGPointMake(0, 150), animated: true)
+        if textView == notesTextView {
+            scrollView.setContentOffset(CGPointMake(0, 180), animated: true)
+        }
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        if textView == notesTextView {
+            scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        }
     }
     
     @IBAction func textFieldDoneEditing(sender: AnyObject) {
