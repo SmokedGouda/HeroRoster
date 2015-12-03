@@ -766,12 +766,23 @@
                                     <action selector="textFieldDoneEditing:" destination="HrD-Kb-B4S" eventType="editingDidEndOnExit" id="Cxr-cR-UX9"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5Q-w3-G0n">
+                                <rect key="frame" x="115" y="456" width="90" height="33"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="j4Q-mJ-Irc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Edit Hero"/>
+                                <connections>
+                                    <action selector="editHeroButtonPressed:" destination="HrD-Kb-B4S" eventType="touchUpInside" id="EJB-Jf-UBZ"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rnZ-zz-9FG">
-                                <rect key="frame" x="20" y="223" width="280" height="180"/>
+                                <rect key="frame" x="20" y="168" width="280" height="270"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="U3y-KQ-cCn"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="Zcm-Gc-MBP"/>
+                                    <constraint firstAttribute="height" constant="270" id="U3y-KQ-cCn"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="heroCell" textLabel="zj6-DJ-c6F" detailTextLabel="qZY-yD-xHs" rowHeight="45" style="IBUITableViewCellStyleValue2" id="R5Q-7v-DPC">
@@ -807,18 +818,6 @@
                                     <outlet property="delegate" destination="HrD-Kb-B4S" id="4gR-4c-gd3"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5Q-w3-G0n">
-                                <rect key="frame" x="115" y="448" width="90" height="33"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="j4Q-mJ-Irc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Edit Hero"/>
-                                <connections>
-                                    <action selector="editHeroButtonPressed:" destination="HrD-Kb-B4S" eventType="touchUpInside" id="EJB-Jf-UBZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -829,17 +828,17 @@
                             <constraint firstItem="Lr3-AJ-8Ok" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" constant="8" id="8NF-Rp-49i"/>
                             <constraint firstItem="Lr3-AJ-8Ok" firstAttribute="leading" secondItem="EUz-0N-vzm" secondAttribute="trailing" constant="8" id="EOz-vd-NXK"/>
                             <constraint firstAttribute="trailing" secondItem="Lr3-AJ-8Ok" secondAttribute="trailing" constant="20" id="FuW-IG-u0R"/>
+                            <constraint firstItem="rnZ-zz-9FG" firstAttribute="top" secondItem="pD3-eT-3ma" secondAttribute="bottom" constant="18" id="MZX-KS-t5Y"/>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="Pdb-aN-b5c"/>
+                            <constraint firstItem="j5Q-w3-G0n" firstAttribute="top" secondItem="rnZ-zz-9FG" secondAttribute="bottom" constant="18" id="RBl-Su-U96"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="top" secondItem="Lr3-AJ-8Ok" secondAttribute="bottom" constant="18" id="TY2-La-tR4"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="leading" secondItem="SdU-UD-Oy7" secondAttribute="trailing" constant="8" id="aAg-Yq-gy5"/>
                             <constraint firstItem="E7K-jJ-JLo" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leadingMargin" constant="-20" id="fNW-KZ-u1R"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="h0U-Ny-2ev"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="top" secondItem="EUz-0N-vzm" secondAttribute="bottom" constant="18" id="h7n-id-0xs"/>
-                            <constraint firstItem="rnZ-zz-9FG" firstAttribute="top" secondItem="pD3-eT-3ma" secondAttribute="bottom" constant="73" id="hMN-qL-A72"/>
                             <constraint firstItem="j5Q-w3-G0n" firstAttribute="centerX" secondItem="314-EC-unr" secondAttribute="centerX" id="jlU-vK-j8k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="E7K-jJ-JLo" secondAttribute="trailing" constant="-20" id="nLQ-gd-fg7"/>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" constant="8" id="oYa-Jo-bjD"/>
-                            <constraint firstItem="j5Q-w3-G0n" firstAttribute="top" secondItem="rnZ-zz-9FG" secondAttribute="bottom" constant="45" id="ra9-OR-mHZ"/>
                             <constraint firstItem="E7K-jJ-JLo" firstAttribute="top" secondItem="314-EC-unr" secondAttribute="top" id="sve-SB-xlt"/>
                             <constraint firstItem="E7K-jJ-JLo" firstAttribute="bottom" secondItem="314-EC-unr" secondAttribute="bottomMargin" id="xPt-Am-2nX"/>
                         </constraints>
@@ -996,23 +995,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc4-PO-j3U">
-                                <rect key="frame" x="116" y="448" width="90" height="33"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="2GK-vp-hP2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Add Hero"/>
-                                <connections>
-                                    <action selector="addHeroButtonPressed:" destination="U2Z-HO-3fb" eventType="touchUpInside" id="VIq-Kv-aun"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="83y-dw-w1v">
-                                <rect key="frame" x="20" y="223" width="280" height="180"/>
+                                <rect key="frame" x="20" y="168" width="280" height="270"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="Y6e-bN-jXx"/>
+                                    <constraint firstAttribute="height" constant="270" id="Y6e-bN-jXx"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="heroCell" textLabel="QTS-yh-bjz" detailTextLabel="aol-Va-UR2" rowHeight="45" style="IBUITableViewCellStyleValue2" id="isG-yj-JJu">
@@ -1048,6 +1035,18 @@
                                     <outlet property="delegate" destination="U2Z-HO-3fb" id="pUZ-wC-fyh"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc4-PO-j3U">
+                                <rect key="frame" x="116" y="456" width="90" height="33"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="2GK-vp-hP2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Add Hero"/>
+                                <connections>
+                                    <action selector="addHeroButtonPressed:" destination="U2Z-HO-3fb" eventType="touchUpInside" id="VIq-Kv-aun"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1060,11 +1059,11 @@
                             <constraint firstItem="Cc4-PO-j3U" firstAttribute="centerX" secondItem="VOQ-le-gb5" secondAttribute="centerX" constant="1" id="BnK-Yo-Fgb"/>
                             <constraint firstItem="u08-sK-qQJ" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="8" id="FyQ-Sa-oK3"/>
                             <constraint firstItem="83y-dw-w1v" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="Ltp-LA-asL"/>
+                            <constraint firstItem="Cc4-PO-j3U" firstAttribute="top" secondItem="83y-dw-w1v" secondAttribute="bottom" constant="18" id="M4N-Yt-VA3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r5J-QH-viu" secondAttribute="trailing" constant="-20" id="Qcx-xb-hHd"/>
                             <constraint firstItem="r5J-QH-viu" firstAttribute="bottom" secondItem="VOQ-le-gb5" secondAttribute="bottomMargin" id="Uwz-WF-oRq"/>
                             <constraint firstItem="r5J-QH-viu" firstAttribute="top" secondItem="VOQ-le-gb5" secondAttribute="topMargin" id="Wgy-6F-JYz"/>
-                            <constraint firstItem="83y-dw-w1v" firstAttribute="top" secondItem="0od-EK-Cpx" secondAttribute="bottom" constant="73" id="eZ6-Wa-uSv"/>
-                            <constraint firstItem="Cc4-PO-j3U" firstAttribute="top" secondItem="83y-dw-w1v" secondAttribute="bottom" constant="45" id="oX5-zn-baq"/>
+                            <constraint firstItem="83y-dw-w1v" firstAttribute="top" secondItem="0od-EK-Cpx" secondAttribute="bottom" constant="18" id="ia2-Hu-MPg"/>
                             <constraint firstItem="PPi-5Z-1rK" firstAttribute="top" secondItem="hTh-AW-l2A" secondAttribute="bottom" constant="18" id="qGy-ES-LGL"/>
                             <constraint firstItem="PPi-5Z-1rK" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="qPB-sT-9eq"/>
                             <constraint firstItem="hTh-AW-l2A" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="8" id="uaq-xe-aO6"/>

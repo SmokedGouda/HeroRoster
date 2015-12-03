@@ -14,10 +14,21 @@ struct HeroStats {
     let race = ["Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"]
     let gender = ["Male", "Female"]
     let level = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+    let faction = ["Dark Archive", "The Exchange", "Grand Lodge", "Liberty's Edge", "Scarab Sages", "Silver Crusade", "Sovereign Court", "Andoran (Retired)", "Cheliax (Retired)", "Lantern Lodge (Retired)", "Osirion (Retired)", "Qadira (Retired)", "Sczarni (Retired)", "Shadow Lodge (Retired)", "Taldor (Retired)"]
+    let prestigePoints = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                        "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
+                        "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
+                        "30", "31", "32", "33", "34", "35", "36", "37", "38", "39",
+                        "40", "41", "42", "43", "44", "45", "46", "47", "48", "49",
+                        "50", "51", "52", "53", "54", "55", "56", "57", "58", "59",
+                        "60", "61", "62", "63", "64", "65", "66", "67", "68", "69",
+                        "70", "71", "72", "73", "74", "75", "76", "77", "78", "79",
+                        "80", "81", "82", "83", "84", "85", "86", "87", "88", "89",
+                        "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"]
 }
 
 struct HeroStatTableViewTitles {
-    let statTitles = ["Class", "Race", "Gender", "Level"]
+    let statTitles = ["Class", "Race", "Gender", "Level", "Faction", "Prestige"]
 }
 
 class Hero {
@@ -27,18 +38,22 @@ class Hero {
     var race: String
     var gender: String
     var level: String
+    var faction: String
+    var prestigePoints: String
     var log: [SessionLog]
     var usedLogNames: [String]
     var parseObjectId: String
     var logIds: [String]
     
-    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, log: [SessionLog], usedLogNames: [String], parseObjectId: String, logIds: [String]) {
+    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, faction: String, prestigePoints: String, log: [SessionLog], usedLogNames: [String], parseObjectId: String, logIds: [String]) {
         self.name = name
         self.number = number
         self.heroClass = heroClass
         self.race = race
         self.gender = gender
         self.level = level
+        self.faction = faction
+        self.prestigePoints = prestigePoints
         self.log = log
         self.usedLogNames = usedLogNames
         self.parseObjectId = parseObjectId
@@ -130,13 +145,15 @@ class Roster {
         }
     }
     
-    func updateHero(heroToUpdate: Hero, newName: String, newNumber: String, newHeroClass: String, newRace: String, newGender: String, newLevel: String ) -> Hero {
+    func updateHero(heroToUpdate: Hero, newName: String, newNumber: String, newHeroClass: String, newRace: String, newGender: String, newLevel: String, newFaction: String, newPrestigePoints: String ) -> Hero {
         heroToUpdate.name = newName
         heroToUpdate.number = newNumber
         heroToUpdate.heroClass = newHeroClass
         heroToUpdate.race = newRace
         heroToUpdate.gender = newGender
         heroToUpdate.level = newLevel
+        heroToUpdate.faction = newFaction
+        heroToUpdate.prestigePoints = newPrestigePoints
         
         return heroToUpdate
     }

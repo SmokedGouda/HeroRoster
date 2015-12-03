@@ -23,11 +23,15 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
     var raceSelected = String()
     var genderSelected = String()
     var levelSelected = String()
+    var factionSelected = String()
+    var prestigePointsSelected = String()
     // Index variables below are used to determine where the checkmark will be placed when the HeroStatOpionsViewController is segued to.  The values will be set in the tableView cellForRowAtIndexPath function
     var classIndex: Int?
     var raceIndex: Int?
     var genderIndex: Int?
     var levelIndex: Int?
+    var factionIndex: Int?
+    var prestigePointsIndex: Int?
     
     var createdHero: Hero?
     var cellLabel = String()
@@ -45,7 +49,7 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -86,6 +90,20 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
                 levelSelected = cell.detailTextLabel!.text!
                 levelIndex = statToDisplay
             }
+        case "Faction":
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = HeroStats().faction[statToDisplay]
+                cell.detailTextLabel?.hidden = false
+                factionSelected = cell.detailTextLabel!.text!
+                factionIndex = statToDisplay
+            }
+        case "Prestige":
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = HeroStats().prestigePoints[statToDisplay]
+                cell.detailTextLabel?.hidden = false
+                prestigePointsSelected = cell.detailTextLabel!.text!
+                prestigePointsIndex = statToDisplay
+            }
         default:
             print("not a valid return")
         }
@@ -98,7 +116,7 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
         if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
             displayDuplicateNameAlert()
         } else {
-            createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, log: [], usedLogNames: [], parseObjectId: "", logIds: [])
+            createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, faction: factionSelected, prestigePoints: prestigePointsSelected, log: [], usedLogNames: [], parseObjectId: "", logIds: [])
             createHeroOnParse(createdHero!)
             self.performSegueWithIdentifier("addHeroSegue", sender: self)
         }
@@ -123,6 +141,8 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
         parseHero["gender"] = heroToCreate.gender
         parseHero["level"] = heroToCreate.level
         parseHero["logIds"] = heroToCreate.logIds
+        parseHero["faction"] = heroToCreate.faction
+        parseHero["prestigePoints"] = heroToCreate.prestigePoints
         
         parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
@@ -161,9 +181,17 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
             case "Level":
                 destVC.heroStatsArrayToDisplay = HeroStats().level
                 destVC.lastSelectedRow = levelIndex
+                
+            case "Faction":
+                destVC.heroStatsArrayToDisplay = HeroStats().faction
+                destVC.lastSelectedRow = factionIndex
+                
+            case "Prestige":
+                destVC.heroStatsArrayToDisplay = HeroStats().prestigePoints
+                destVC.lastSelectedRow = prestigePointsIndex
             
             default:
-                print("no action")
+                "no action"
             }
         }
     }

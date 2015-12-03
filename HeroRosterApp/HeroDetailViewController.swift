@@ -24,11 +24,15 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var raceDisplayed = String()
     var genderDisplayed = String()
     var levelDisplayed = String()
+    var factionDisplayed = String()
+    var prestigePointsDisplayed = String()
     // Index variables below are used to determine where the checkmark will be placed when the HeroStatOpionsViewController is segued to.  The values will be set in the tableView cellForRowAtIndexPath function
     var classIndex: Int?
     var raceIndex: Int?
     var genderIndex: Int?
     var levelIndex: Int?
+    var factionIndex: Int?
+    var prestigePointsIndex: Int?
     
     var heroDisplayed = Hero?()
     var cellLabel = String()
@@ -55,7 +59,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -132,7 +136,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 if cellLabel == statLabel {
                     cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
                     levelIndex = statToDisplay
-                } else if buttonLabel == "Save"{
+                } else if buttonLabel == "Save" {
                     cell.detailTextLabel!.text = levelDisplayed
                 } else {
                     cell.detailTextLabel!.text = heroDisplayed?.level
@@ -145,8 +149,42 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 cell.detailTextLabel?.hidden = false
                 levelDisplayed = cell.detailTextLabel!.text!
             
+            case "Faction":
+                if cellLabel == statLabel {
+                    cell.detailTextLabel!.text = HeroStats().faction[statToDisplay]
+                    factionIndex = statToDisplay
+                } else if buttonLabel == "Save" {
+                    cell.detailTextLabel!.text = factionDisplayed
+                } else {
+                    cell.detailTextLabel!.text = heroDisplayed?.faction
+                    for (index, value) in HeroStats().faction.enumerate() {
+                        if cell.detailTextLabel!.text == value {
+                            factionIndex = index
+                        }
+                    }
+                }
+                cell.detailTextLabel?.hidden = false
+                factionDisplayed = cell.detailTextLabel!.text!
+            
+            case "Prestige":
+                if cellLabel == statLabel {
+                    cell.detailTextLabel!.text = HeroStats().prestigePoints[statToDisplay]
+                    prestigePointsIndex = statToDisplay
+                } else if buttonLabel == "Save" {
+                    cell.detailTextLabel!.text = prestigePointsDisplayed
+                } else {
+                    cell.detailTextLabel!.text = heroDisplayed?.prestigePoints
+                    for (index, value) in HeroStats().prestigePoints.enumerate() {
+                        if cell.detailTextLabel!.text == value {
+                            prestigePointsIndex = index
+                        }
+                    }
+                }
+                cell.detailTextLabel?.hidden = false
+                prestigePointsDisplayed = cell.detailTextLabel!.text!
+            
             default:
-                print("not a valid return")
+                "not a valid return"
         }
         return cell
     }
@@ -199,7 +237,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         setViewToStaticMode()
         let updatedHeroName = heroNameTextField.text
         let updatedHeroNumber = heroNumberTextField.text
-        activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed)
+        activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed, newFaction: factionDisplayed, newPrestigePoints: prestigePointsDisplayed)
         updateHeroOnParse()
     }
     
@@ -216,6 +254,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 hero["race"] = self.raceDisplayed
                 hero["gender"] = self.genderDisplayed
                 hero["level"] = self.levelDisplayed
+                hero["faction"] = self.factionDisplayed
+                hero["prestigePoints"] = self.prestigePointsDisplayed
                 hero.saveInBackground()
                 print("hero updated on parse")
             }
@@ -269,8 +309,16 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                     destVC.heroStatsArrayToDisplay = HeroStats().level
                     destVC.lastSelectedRow = levelIndex
                 
+                case "Faction":
+                    destVC.heroStatsArrayToDisplay = HeroStats().faction
+                    destVC.lastSelectedRow = factionIndex
+                
+                case "Prestige":
+                    destVC.heroStatsArrayToDisplay = HeroStats().prestigePoints
+                    destVC.lastSelectedRow = prestigePointsIndex
+                
                 default:
-                    print("no action")
+                    "no action"
             }
         }
     }

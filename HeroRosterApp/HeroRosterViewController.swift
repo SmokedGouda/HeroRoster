@@ -14,13 +14,15 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
    
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
     var activeUser = PFUser.currentUser()
-    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", log: [], usedLogNames: [], parseObjectId: "", logIds: [])
+    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", faction: "", prestigePoints: "", log: [], usedLogNames: [], parseObjectId: "", logIds: [])
     var parseHeroName = [String]()
     var parseHeroNumber = [String]()
     var parseHeroClass = [String]()
     var parseHeroRace = [String]()
     var parseHeroGender = [String]()
     var parseHeroLevel = [String]()
+    var parseHeroFaction = [String]()
+    var parseHeroPrestigePoints = [String]()
     var parseHeroUsedLogNames: [String] = []
     var parseHeroObjectId = [String]()
     var parseHeroLogIds = [[String]]()
@@ -148,6 +150,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.downloadedHero.race = object["race"] as! String
                         self.downloadedHero.gender = object["gender"] as! String
                         self.downloadedHero.level = object["level"] as! String
+                        self.downloadedHero.faction = object["faction"] as! String
+                        self.downloadedHero.prestigePoints = object["prestigePoints"] as! String
                         self.downloadedHero.logIds = object["logIds"] as! [String]
 
                         self.parseHeroName.append(self.downloadedHero.name)
@@ -156,6 +160,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         self.parseHeroRace.append(self.downloadedHero.race)
                         self.parseHeroGender.append(self.downloadedHero.gender)
                         self.parseHeroLevel.append(self.downloadedHero.level)
+                        self.parseHeroFaction.append(self.downloadedHero.faction)
+                        self.parseHeroPrestigePoints.append(self.downloadedHero.prestigePoints)
                         self.parseHeroObjectId.append(object.objectId! as String)
                         self.parseHeroLogIds.append(self.downloadedHero.logIds)
                     }
@@ -168,7 +174,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     func populateUserRoster() {
         for (index,_) in parseHeroName.enumerate() {
-            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
+            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
             }
         print("The roster now contains \(userRoster.heros.count) heros.")
         print(userRoster.usedHeroNames)
