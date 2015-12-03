@@ -57,7 +57,6 @@
 		3F624AB01BEFE3CC009415CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA61BEFE3CC009415CF /* libz.tbd */; };
 		3F624AB11BEFE3CC009415CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA71BEFE3CC009415CF /* QuartzCore.framework */; };
 		3F624AB21BEFE3CC009415CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA81BEFE3CC009415CF /* Security.framework */; };
-		3F624AB31BEFE3CC009415CF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA91BEFE3CC009415CF /* StoreKit.framework */; };
 		3F624AB41BEFE3CC009415CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */; };
 		3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AB51BEFE3ED009415CF /* CoreLocation.framework */; };
 		3F6ACF8F1C04D7DB00753000 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */; };
@@ -145,7 +144,6 @@
 		3F624AA61BEFE3CC009415CF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3F624AA71BEFE3CC009415CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3F624AA81BEFE3CC009415CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		3F624AA91BEFE3CC009415CF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F624AB51BEFE3ED009415CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 				3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */,
 				3F624AB11BEFE3CC009415CF /* QuartzCore.framework in Frameworks */,
 				3F624AB21BEFE3CC009415CF /* Security.framework in Frameworks */,
-				3F624AB31BEFE3CC009415CF /* StoreKit.framework in Frameworks */,
 				3F624AB41BEFE3CC009415CF /* SystemConfiguration.framework in Frameworks */,
 				3F624A9F1BEFE21F009415CF /* Parse.framework in Frameworks */,
 				3F624A9E1BEFE21F009415CF /* Bolts.framework in Frameworks */,
@@ -311,7 +308,6 @@
 				3F624AA61BEFE3CC009415CF /* libz.tbd */,
 				3F624AA71BEFE3CC009415CF /* QuartzCore.framework */,
 				3F624AA81BEFE3CC009415CF /* Security.framework */,
-				3F624AA91BEFE3CC009415CF /* StoreKit.framework */,
 				3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */,
 				3F624A9D1BEFE21F009415CF /* Parse.framework */,
 				3F624A9C1BEFE21F009415CF /* Bolts.framework */,
@@ -411,6 +407,11 @@
 					3F2B89B21BE9413F00CE037C = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = A88N4Y76WA;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					3F2B89C61BE9413F00CE037C = {
 						CreatedOnToolsVersion = 7.1;
@@ -670,6 +671,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = smokedgouda.HeroRosterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -688,6 +690,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = smokedgouda.HeroRosterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

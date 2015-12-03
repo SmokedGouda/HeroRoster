@@ -310,7 +310,7 @@
                         <outlet property="cancelButton" destination="wNU-8P-ua6" id="LO9-my-eRg"/>
                         <outlet property="emailTextField" destination="5ls-jI-OaC" id="Eke-Oj-ogm"/>
                         <outlet property="resetPasswordButton" destination="kqk-Lc-bKh" id="1ho-dv-yjS"/>
-                        <segue destination="CjD-CZ-JqE" kind="unwind" unwindAction="unwindForSegue:towardsViewController:" id="FRU-1T-Eqx"/>
+                        <segue destination="CjD-CZ-JqE" kind="unwind" identifier="forgotPasswordSegue" unwindAction="unwindForSegue:towardsViewController:" id="FRU-1T-Eqx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gvp-SO-NMi" userLabel="First Responder" sceneMemberID="firstResponder"/>

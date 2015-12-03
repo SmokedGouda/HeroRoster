@@ -118,7 +118,7 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, faction: factionSelected, prestigePoints: prestigePointsSelected, log: [], usedLogNames: [], parseObjectId: "", logIds: [])
             createHeroOnParse(createdHero!)
-            self.performSegueWithIdentifier("addHeroSegue", sender: self)
+            
         }
     }
     
@@ -151,8 +151,10 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.newHeroObjectId = parseHero.objectId!
                     heroToCreate.parseObjectId = self.newHeroObjectId
                     self.activeRoster?.addHeroToRoster(heroToCreate)
+                    self.performSegueWithIdentifier("addHeroSegue", sender: self)
                 }
             } else {
+                (error)
                 print("hero did not save to parse")
             }
         }
