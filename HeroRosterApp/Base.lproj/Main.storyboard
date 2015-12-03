@@ -656,7 +656,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2tr-HM-28S">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Balerion3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Pm-2sL">
+                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2tr-HM-28S">
                                 <rect key="frame" x="0.0" y="72" width="320" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -674,7 +677,7 @@
                                     <outlet property="delegate" destination="srQ-qT-QyS" id="OqG-CP-G0g"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TR9-4m-wec">
+                            <navigationBar alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TR9-4m-wec">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Scenarios" id="Wko-bm-9as">
@@ -689,12 +692,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1UU-Pm-2sL" firstAttribute="leading" secondItem="b6k-jg-keO" secondAttribute="leading" id="1Mo-WA-QBG"/>
                             <constraint firstAttribute="trailing" secondItem="2tr-HM-28S" secondAttribute="trailing" id="3xJ-fk-VSl"/>
                             <constraint firstItem="2tr-HM-28S" firstAttribute="leading" secondItem="b6k-jg-keO" secondAttribute="leading" id="6gl-iJ-eIm"/>
+                            <constraint firstItem="gnu-uh-DIu" firstAttribute="top" secondItem="1UU-Pm-2sL" secondAttribute="bottom" id="JWj-5u-REf"/>
                             <constraint firstItem="TR9-4m-wec" firstAttribute="top" secondItem="RBD-w5-yed" secondAttribute="bottom" constant="8" id="Uav-Oh-Lpa"/>
+                            <constraint firstItem="1UU-Pm-2sL" firstAttribute="top" secondItem="RBD-w5-yed" secondAttribute="bottom" constant="8" id="V3V-iS-2i5"/>
                             <constraint firstItem="gnu-uh-DIu" firstAttribute="top" secondItem="2tr-HM-28S" secondAttribute="bottom" id="W9d-HZ-IiB"/>
                             <constraint firstItem="TR9-4m-wec" firstAttribute="leading" secondItem="b6k-jg-keO" secondAttribute="leading" id="Ygm-Yn-5Ku"/>
                             <constraint firstItem="2tr-HM-28S" firstAttribute="top" secondItem="TR9-4m-wec" secondAttribute="bottom" id="gwC-pB-cpB"/>
+                            <constraint firstAttribute="trailing" secondItem="1UU-Pm-2sL" secondAttribute="trailing" id="xT4-R0-ODK"/>
                             <constraint firstAttribute="trailing" secondItem="TR9-4m-wec" secondAttribute="trailing" id="yVS-zT-Zd2"/>
                         </constraints>
                     </view>
@@ -1090,6 +1097,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Balerion3.jpg" width="1600" height="1003"/>
         <image name="HeroRosterLogo640x140.png" width="640" height="140"/>
         <image name="Illo1.jpg" width="618" height="800"/>
         <image name="Illo2.jpg" width="582" height="800"/>
