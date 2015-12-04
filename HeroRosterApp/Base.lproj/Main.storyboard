@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -390,11 +391,18 @@
                                 <action selector="logoutButtonPressed:" destination="Nak-u7-1JD" id="GIT-rK-n4c"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Hero" id="5kK-9J-TTs">
-                            <connections>
-                                <segue destination="U2Z-HO-3fb" kind="push" identifier="addHeroSegue" id="LAe-sW-ph4"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="5kK-9J-TTs">
+                                <connections>
+                                    <segue destination="U2Z-HO-3fb" kind="push" identifier="addHeroSegue" id="LAe-sW-ph4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="9n1-9W-b92">
+                                <connections>
+                                    <segue destination="hap-pX-chL" kind="modal" identifier="scenarioSearchSegue" id="Ulx-HP-20S"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -667,7 +675,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WF1-mj-VEw" id="9x0-hx-FmY">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -871,6 +879,62 @@
             </objects>
             <point key="canvasLocation" x="1331" y="19"/>
         </scene>
+        <!--Scenario Search View Controller-->
+        <scene sceneID="ZFD-j1-P9C">
+            <objects>
+                <viewController id="hap-pX-chL" customClass="ScenarioSearchViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9gx-zv-Dkt"/>
+                        <viewControllerLayoutGuide type="bottom" id="2v0-Nw-hab"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KxM-SW-VAM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-ft-GCZ">
+                                <rect key="frame" x="20" y="164" width="280" height="60"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hap-pX-chL" id="aLw-FV-4nt"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jk-CM-rUj">
+                                <rect key="frame" x="136" y="365" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="hap-pX-chL" eventType="touchUpInside" id="gc7-l8-3E4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a65-28-1Yg">
+                                <rect key="frame" x="142" y="419" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <segue destination="X1j-BG-jyc" kind="unwind" identifier="scenarioSearchSegue" unwindAction="unwindForSegue:towardsViewController:" id="euj-mr-Zit"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the field below to select a scenario name to search." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi6-8V-TpH">
+                                <rect key="frame" x="20" y="97" width="280" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="doneButton" destination="a65-28-1Yg" id="7sc-n9-e28"/>
+                        <outlet property="scenarioNameTextField" destination="1JK-ft-GCZ" id="Kl3-NN-Gya"/>
+                        <outlet property="searchButton" destination="7Jk-CM-rUj" id="cr9-qF-isE"/>
+                        <segue destination="srQ-qT-QyS" kind="modal" identifier="scenarioListSegueTwo" id="ehf-UB-6lp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O6c-lH-d32" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="X1j-BG-jyc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="798"/>
+        </scene>
         <!--Hero Stat Options View Controller-->
         <scene sceneID="ool-oz-D7p">
             <objects>
@@ -894,7 +958,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fLU-3M-I8s" id="VAd-wS-8Mz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1111,5 +1175,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="o4b-B9-U7R"/>
         <segue reference="PXK-YF-pJP"/>
+        <segue reference="ehf-UB-6lp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -54,7 +54,6 @@ class Hero {
         self.faction = faction
         self.prestigePoints = prestigePoints
         self.log = log
-
         self.parseObjectId = parseObjectId
         self.logIds = logIds
     }

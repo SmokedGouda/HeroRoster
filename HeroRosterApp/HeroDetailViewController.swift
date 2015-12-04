@@ -333,7 +333,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             

@@ -198,7 +198,7 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             statToDisplay = heroStat.chosenStat

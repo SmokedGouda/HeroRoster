@@ -59,6 +59,7 @@
 		3F624AB21BEFE3CC009415CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AA81BEFE3CC009415CF /* Security.framework */; };
 		3F624AB41BEFE3CC009415CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */; };
 		3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AB51BEFE3ED009415CF /* CoreLocation.framework */; };
+		3F62EDC01C12116400E516A9 /* ScenarioSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62EDBF1C12116400E516A9 /* ScenarioSearchViewController.swift */; };
 		3F6ACF8F1C04D7DB00753000 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */; };
 		3F7001491BF381F400BC8684 /* illo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001481BF381F400BC8684 /* illo3.jpg */; };
 		3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014A1BF3865C00BC8684 /* Illo2.jpg */; };
@@ -146,6 +147,7 @@
 		3F624AA81BEFE3CC009415CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F624AAA1BEFE3CC009415CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F624AB51BEFE3ED009415CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3F62EDBF1C12116400E516A9 /* ScenarioSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSearchViewController.swift; sourceTree = "<group>"; };
 		3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		3F7001481BF381F400BC8684 /* illo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo3.jpg; path = ../HeroRosterApp/illo3.jpg; sourceTree = "<group>"; };
 		3F70014A1BF3865C00BC8684 /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo2.jpg; path = ../HeroRosterApp/Illo2.jpg; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */,
 				3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */,
 				3F483CD21C0CF8DD00039CAA /* ScenarioListViewController.swift */,
+				3F62EDBF1C12116400E516A9 /* ScenarioSearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				3F3A97DF1BED22E20011131F /* LogDetailViewController.swift in Sources */,
 				3F2B89EE1BE9535D00CE037C /* HeroStatOptionsViewController.swift in Sources */,
 				3F483CD11C0CF7C100039CAA /* Scenarios.swift in Sources */,
+				3F62EDC01C12116400E516A9 /* ScenarioSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
