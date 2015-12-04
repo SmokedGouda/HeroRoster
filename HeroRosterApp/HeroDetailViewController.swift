@@ -208,8 +208,10 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
             displayDuplicateNameAlert()
         } else {
+            updateNameAssociatedWithHerosScenarioRecords()
             updateUsedHeroNamesWithTheEditedHeroName()
             updateNameAssociatedWithHerosLogs()
+            activeRoster?.updateScenarioRecordsOnParse(activeRoster!)
             saveEditedHero()
         }
     }
@@ -231,6 +233,14 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
         activeRoster!.usedHeroNames.append(heroNameTextField.text!)
         heroNameBeforeEdit = heroNameTextField.text!
+    }
+    
+    func updateNameAssociatedWithHerosScenarioRecords() {
+        for (key, value) in activeRoster!.scenarioRecords {
+            if value[0] == heroNameBeforeEdit {
+                activeRoster!.scenarioRecords[key]![0] = heroNameTextField.text!
+            }
+        }
     }
     
     func saveEditedHero() {

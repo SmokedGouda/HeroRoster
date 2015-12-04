@@ -12,9 +12,9 @@ import Parse
 class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var heroRosterTable: UITableView!
    
-    var userRoster = Roster(userName: "", heros: [], usedHeroNames: [])
+    var userRoster = Roster(userName: "", heros: [], usedHeroNames: [], parseObjectId: "")
     var activeUser = PFUser.currentUser()
-    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", faction: "", prestigePoints: "", log: [], usedLogNames: [], parseObjectId: "", logIds: [])
+    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", faction: "", prestigePoints: "", log: [], parseObjectId: "", logIds: [])
     var parseHeroName = [String]()
     var parseHeroNumber = [String]()
     var parseHeroClass = [String]()
@@ -72,8 +72,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                         print("hero deleted from parse")
                     }
                 }
-
+                deleteScenariosFromScenarioRecords(heroToDelete)
                 userRoster.deleteHeroFromRoster(heroToDelete)
+                userRoster.updateScenarioRecordsOnParse(userRoster)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
 
@@ -86,6 +87,15 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             deleteAlert.addAction(deleteAction)
             presentViewController(deleteAlert, animated: true, completion: nil)
         }
+    }
+    
+    func deleteScenariosFromScenarioRecords(recordsForHero: Hero) {
+        for (key, value) in userRoster.scenarioRecords {
+            if value[0] == recordsForHero.name {
+                userRoster.scenarioRecords[key] = nil
+            }
+        }
+        print(userRoster.scenarioRecords)
     }
     
     func removeHeroToDeletesLogsOnParse(logObjectIdToDelete: String) {
@@ -127,6 +137,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     
                     for object:PFObject in Roster! {
                         self.userRoster.userName = object["name"] as! String
+                        self.userRoster.parseObjectId = object.objectId! as String
+                        self.userRoster.scenarioRecords = object["scenarioRecords"] as! [String : [String]]
+                        print(self.userRoster.scenarioRecords)
                     }
                 }
             } else {
@@ -174,7 +187,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     func populateUserRoster() {
         for (index,_) in parseHeroName.enumerate() {
-            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], usedLogNames: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
+            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
             }
         print("The roster now contains \(userRoster.heros.count) heros.")
         print(userRoster.usedHeroNames)

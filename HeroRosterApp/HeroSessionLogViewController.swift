@@ -63,9 +63,11 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                         print("session log deleted from parse")
                     }
                 }
+                activeRoster?.scenarioRecords[sessionToDelete!.name] = nil
                 heroDisplayed?.deleteSessionLog(sessionToDelete!)
                 print(heroDisplayed?.logIds)
                 updateHeroLogIdsParse()
+                activeRoster!.updateScenarioRecordsOnParse(activeRoster!)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
             

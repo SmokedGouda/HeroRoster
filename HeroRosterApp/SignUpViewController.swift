@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController {
     
     func createUserRoster () {
         let userRoster = PFObject(className: "Roster")
-        let heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [])
+        let heroRoster = Roster(userName: "\(newUserNameTextField.text!)'s hero roster", heros: [], usedHeroNames: [], parseObjectId: "")
         userRoster["name"] = heroRoster.userName
         userRoster.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in

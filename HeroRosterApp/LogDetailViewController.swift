@@ -65,17 +65,21 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                 if scenarioNameTextView.text != sessionLogNameBeforeEdit {
                     checkEditedLogNameAgainstUsedLogNames()
                 } else {
+                    activeRoster?.scenarioRecords[scenarioNameTextView.text] = [heroDisplayed!.name, dateTextField.text!]
                     saveEditedLog()
                 }
             
             default:
                 newSenarioName = scenarioNameTextView.text!
-                if heroDisplayed!.usedLogNames.contains(newSenarioName) == true  {
-                    displayDuplicateSessionLogNameAlert()
+                if newSenarioName == "" {
+                    displayEmptyScenarioNameAlert()
+                } else if activeRoster?.scenarioRecords.keys.contains(newSenarioName) == true {
+                    displayDuplicateSessionLogNameAlert(newSenarioName)
                 } else {
                     date = dateTextField.text!
                     notes = notesTextView.text!
                     let newSessionLog = SessionLog(name: newSenarioName, date: date, notes: notes, parseObjectId: "")
+                    activeRoster?.scenarioRecords[newSenarioName] = [heroDisplayed!.name, date]
                     createSessionLogOnParse(newSessionLog)
                     self.performSegueWithIdentifier("addSessionLogSegue", sender: self)
                 }
@@ -83,31 +87,37 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func checkEditedLogNameAgainstUsedLogNames() {
-        if heroDisplayed!.usedLogNames.contains(scenarioNameTextView.text!) == true {
-            displayDuplicateSessionLogNameAlert()
+        if activeRoster?.scenarioRecords.keys.contains(scenarioNameTextView.text!) == true {
+            displayDuplicateSessionLogNameAlert(scenarioNameTextView.text!)
         } else {
-            updateTheUsedLogNamesArray()
+            updateScenarioRecords()
             saveEditedLog()
         }
     }
     
-    func displayDuplicateSessionLogNameAlert() {
+    func displayDuplicateSessionLogNameAlert(scenarioPlayedByHero: String) {
+        let heroName = activeRoster?.scenarioRecords[scenarioPlayedByHero]![0]
         let alert = UIAlertController(
-            title: "Can't save session", message: "That session name has already been used.  Please choose another one.", preferredStyle: .Alert)
+            title: "Can't save session", message: "That scenario has already been played by \(heroName!).  Please choose another one.", preferredStyle: .Alert)
         let action = UIAlertAction(
             title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func updateTheUsedLogNamesArray() {
-        for (index, value) in heroDisplayed!.usedLogNames.enumerate(){
-            if sessionLogNameBeforeEdit == value {
-                heroDisplayed!.usedLogNames.removeAtIndex(index)
-            }
-        }
-        heroDisplayed!.usedLogNames.append(scenarioNameTextView.text!)
-        sessionLogNameBeforeEdit = scenarioNameTextView.text!
+    func displayEmptyScenarioNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't save session", message: "You must select a scenario name in order to save the session.", preferredStyle: .Alert)
+        let action = UIAlertAction(
+            title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func updateScenarioRecords() {
+        activeRoster?.scenarioRecords[sessionLogNameBeforeEdit] = nil
+        activeRoster?.scenarioRecords[scenarioNameTextView.text!] = [heroDisplayed!.name, dateTextField.text!]
+          sessionLogNameBeforeEdit = scenarioNameTextView.text!
     }
     
     func saveEditedLog() {
@@ -117,6 +127,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         let updatedNotes = notesTextView.text
         heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedScenarioName!, newDate: updatedDate!, newNotes: updatedNotes)
         updateSessionLogOnParse()
+        activeRoster!.updateScenarioRecordsOnParse(activeRoster!)
     }
     
     func createSessionLogOnParse(logToCreate: SessionLog) {
@@ -136,6 +147,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                     self.heroDisplayed?.addSessionLog(logToCreate)
                     print("The updated hero's log ids are \(self.heroDisplayed?.logIds)")
                     self.updateHeroLogIdsParse()
+                    self.activeRoster!.updateScenarioRecordsOnParse(self.activeRoster!)
                 }
             } else {
                 print("hero did not save to parse")

@@ -41,11 +41,10 @@ class Hero {
     var faction: String
     var prestigePoints: String
     var log: [SessionLog]
-    var usedLogNames: [String]
     var parseObjectId: String
     var logIds: [String]
     
-    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, faction: String, prestigePoints: String, log: [SessionLog], usedLogNames: [String], parseObjectId: String, logIds: [String]) {
+    init(name: String, number: String, heroClass: String, race: String, gender: String, level: String, faction: String, prestigePoints: String, log: [SessionLog], parseObjectId: String, logIds: [String]) {
         self.name = name
         self.number = number
         self.heroClass = heroClass
@@ -55,14 +54,13 @@ class Hero {
         self.faction = faction
         self.prestigePoints = prestigePoints
         self.log = log
-        self.usedLogNames = usedLogNames
+
         self.parseObjectId = parseObjectId
         self.logIds = logIds
     }
     
     func addSessionLog(logToAdd: SessionLog) {
         log.append(logToAdd)
-        usedLogNames.append(logToAdd.name)
         if logIds.contains(logToAdd.parseObjectId) == false {
             logIds.append(logToAdd.parseObjectId)
         }
@@ -73,12 +71,6 @@ class Hero {
         for (index, value) in log.enumerate(){
             if logToDelete.name == value.name {
                 log.removeAtIndex(index)
-            }
-        }
-        
-        for (index, value) in usedLogNames.enumerate() {
-            if logToDelete.name == value {
-                usedLogNames.removeAtIndex(index)
             }
         }
         
@@ -116,11 +108,14 @@ class Roster {
     var userName: String
     var heros: [Hero]
     var usedHeroNames: [String]
+    var scenarioRecords = [String:[String]]()
+    var parseObjectId: String
     
-    init(userName: String, heros: [Hero], usedHeroNames: [String]) {
+    init(userName: String, heros: [Hero], usedHeroNames: [String], parseObjectId: String) {
         self.userName = userName
         self.heros = heros
         self.usedHeroNames = usedHeroNames
+        self.parseObjectId = parseObjectId
     }
     
     func addHeroToRoster(heroToAdd: Hero) {
@@ -156,6 +151,19 @@ class Roster {
         heroToUpdate.prestigePoints = newPrestigePoints
         
         return heroToUpdate
+    }
+    
+    func updateScenarioRecordsOnParse(currentRoster: Roster) {
+        let query = PFQuery(className: "Roster")
+        query.getObjectInBackgroundWithId(currentRoster.parseObjectId) {
+            (Roster: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let roster = Roster {
+                roster["scenarioRecords"] = currentRoster.scenarioRecords
+                roster.saveInBackground()
+            }
+        }
     }
 }
 
