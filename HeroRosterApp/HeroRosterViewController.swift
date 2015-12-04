@@ -106,7 +106,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                 print(error)
             } else if let log = Log {
                 log.deleteInBackground()
-                
                 print("session log deleted from parse")
             }
         }
@@ -191,7 +190,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     func populateUserRoster() {
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
-            }
+        }
         print("The roster now contains \(userRoster.heros.count) heros.")
         print(userRoster.usedHeroNames)
     }

@@ -118,7 +118,6 @@ class AddHeroViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classSelected, race: raceSelected, gender: genderSelected, level: levelSelected, faction: factionSelected, prestigePoints: prestigePointsSelected, log: [], parseObjectId: "", logIds: [])
             createHeroOnParse(createdHero!)
-            
         }
     }
     

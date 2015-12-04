@@ -27,7 +27,6 @@ class SignUpViewController: UIViewController {
         view.endEditing(true)
     }
 
-    // Create a new user account, and if successfull, automatically log the user in.
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
         if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" && newUserEmailTextField.text != "" {
             let user = PFUser()

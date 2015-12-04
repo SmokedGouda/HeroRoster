@@ -13,6 +13,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var scenarioNameTextField: UITextView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var instructionLabel: UILabel!
     
     var activeRoster = Roster?()
     var foundName = String()
@@ -21,9 +22,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scenarioNameTextField.layer.cornerRadius = 8
-        searchButton.layer.cornerRadius = 8
-        doneButton.layer.cornerRadius = 8
+        roundTheLabelsAndButtons()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,10 +70,10 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
         switch result {
             case "match":
                 title = "You've played this scenario"
-                message = "#\(scenarioNameTextField.text) was played by \(foundName) on \(foundDate)."
+                message = "\(scenarioNameTextField.text) was played by \(foundName) on \(foundDate)."
             case "noMatch":
                 title = "No record found"
-                message = "You have not played #\(scenarioNameTextField.text)."
+                message = "You have not played \(scenarioNameTextField.text)."
             case "empty":
                 title = "Can't search the records"
                 message = "You must provide a scenario name in order to do a search."
@@ -94,5 +93,13 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
         if textView == scenarioNameTextField {
             self.performSegueWithIdentifier("scenarioListSegueTwo", sender: self)
         }
+    }
+    
+    func roundTheLabelsAndButtons() {
+        instructionLabel.layer.cornerRadius = 5
+        instructionLabel.clipsToBounds = true
+        scenarioNameTextField.layer.cornerRadius = 8
+        searchButton.layer.cornerRadius = 5
+        doneButton.layer.cornerRadius = 5
     }
 }

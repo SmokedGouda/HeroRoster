@@ -891,40 +891,78 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-ft-GCZ">
-                                <rect key="frame" x="20" y="164" width="280" height="60"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chaos_librarian.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="J6s-o8-E5o">
+                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-ft-GCZ">
+                                <rect key="frame" x="20" y="254" width="280" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="GFF-kP-NEy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="hap-pX-chL" id="aLw-FV-4nt"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jk-CM-rUj">
-                                <rect key="frame" x="136" y="365" width="48" height="30"/>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jk-CM-rUj">
+                                <rect key="frame" x="90" y="334" width="140" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KKJ-Wu-hiQ"/>
+                                    <constraint firstAttribute="width" constant="140" id="nU6-tl-yFm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchButtonPressed:" destination="hap-pX-chL" eventType="touchUpInside" id="gc7-l8-3E4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a65-28-1Yg">
-                                <rect key="frame" x="142" y="419" width="37" height="30"/>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a65-28-1Yg">
+                                <rect key="frame" x="90" y="384" width="140" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="JGn-gx-S6b"/>
+                                    <constraint firstAttribute="height" constant="30" id="OiX-qm-3TM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <segue destination="X1j-BG-jyc" kind="unwind" identifier="scenarioSearchSegue" unwindAction="unwindForSegue:towardsViewController:" id="euj-mr-Zit"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the field below to select a scenario name to search." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi6-8V-TpH">
-                                <rect key="frame" x="20" y="97" width="280" height="59"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the field below to select a scenario name to search." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi6-8V-TpH">
+                                <rect key="frame" x="20" y="205" width="280" height="41"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1JK-ft-GCZ" firstAttribute="top" secondItem="gi6-8V-TpH" secondAttribute="bottom" constant="8" id="1i2-EP-jr7"/>
+                            <constraint firstItem="J6s-o8-E5o" firstAttribute="top" secondItem="9gx-zv-Dkt" secondAttribute="bottom" constant="8" id="24E-07-pfO"/>
+                            <constraint firstItem="2v0-Nw-hab" firstAttribute="top" secondItem="J6s-o8-E5o" secondAttribute="bottom" id="2cp-Yj-EsZ"/>
+                            <constraint firstAttribute="trailing" secondItem="1JK-ft-GCZ" secondAttribute="trailing" constant="20" id="48m-ml-uJ0"/>
+                            <constraint firstItem="gi6-8V-TpH" firstAttribute="leading" secondItem="KxM-SW-VAM" secondAttribute="leading" constant="20" id="4Pr-gA-Yzr"/>
+                            <constraint firstItem="a65-28-1Yg" firstAttribute="centerX" secondItem="KxM-SW-VAM" secondAttribute="centerX" id="A5q-b3-ED9"/>
+                            <constraint firstItem="1JK-ft-GCZ" firstAttribute="centerX" secondItem="KxM-SW-VAM" secondAttribute="centerX" id="BvK-kZ-HOW"/>
+                            <constraint firstItem="7Jk-CM-rUj" firstAttribute="top" secondItem="1JK-ft-GCZ" secondAttribute="bottom" constant="20" id="MMx-Zw-PaZ"/>
+                            <constraint firstItem="gi6-8V-TpH" firstAttribute="centerX" secondItem="KxM-SW-VAM" secondAttribute="centerX" id="Rev-YZ-zpu"/>
+                            <constraint firstItem="1JK-ft-GCZ" firstAttribute="centerY" secondItem="KxM-SW-VAM" secondAttribute="centerY" id="VdW-SM-7UJ"/>
+                            <constraint firstItem="1JK-ft-GCZ" firstAttribute="leading" secondItem="KxM-SW-VAM" secondAttribute="leading" constant="20" id="dSL-ls-SSG"/>
+                            <constraint firstItem="7Jk-CM-rUj" firstAttribute="centerX" secondItem="KxM-SW-VAM" secondAttribute="centerX" id="gwB-ZW-CVp"/>
+                            <constraint firstAttribute="trailing" secondItem="gi6-8V-TpH" secondAttribute="trailing" constant="20" id="hKh-hC-GwI"/>
+                            <constraint firstItem="a65-28-1Yg" firstAttribute="top" secondItem="7Jk-CM-rUj" secondAttribute="bottom" constant="20" id="iC0-aQ-Ov1"/>
+                            <constraint firstAttribute="trailing" secondItem="J6s-o8-E5o" secondAttribute="trailing" id="jVy-RC-Zh6"/>
+                            <constraint firstItem="J6s-o8-E5o" firstAttribute="leading" secondItem="KxM-SW-VAM" secondAttribute="leading" id="jkG-S9-zxt"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="doneButton" destination="a65-28-1Yg" id="7sc-n9-e28"/>
+                        <outlet property="instructionLabel" destination="gi6-8V-TpH" id="bhT-Tg-hR8"/>
                         <outlet property="scenarioNameTextField" destination="1JK-ft-GCZ" id="Kl3-NN-Gya"/>
                         <outlet property="searchButton" destination="7Jk-CM-rUj" id="cr9-qF-isE"/>
                         <segue destination="srQ-qT-QyS" kind="modal" identifier="scenarioListSegueTwo" id="ehf-UB-6lp"/>
@@ -1166,6 +1204,7 @@
         <image name="Illo1.jpg" width="618" height="800"/>
         <image name="Illo2.jpg" width="582" height="800"/>
         <image name="book.jpg" width="364" height="500"/>
+        <image name="chaos_librarian.jpg" width="518" height="745"/>
         <image name="femaleKnight.jpg" width="468" height="768"/>
         <image name="illo3.jpg" width="573" height="800"/>
         <image name="illo4.jpg" width="587" height="800"/>

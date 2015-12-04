@@ -19,7 +19,6 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(dismiss)
-
         resetPasswordButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
     }
