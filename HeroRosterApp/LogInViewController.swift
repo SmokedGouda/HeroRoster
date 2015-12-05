@@ -34,6 +34,9 @@ class LogInViewController: UIViewController {
             userPasswordField.text = ""
     }
     
+    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    }
+    
    @IBAction func loginButtonPressed(sender: AnyObject) {
         startLoginProcess()
     }
@@ -101,7 +104,7 @@ class LogInViewController: UIViewController {
                 presentViewController(alert, animated: true, completion: nil)
 
             case 101:
-                let alert = UIAlertController(title: "Invalid Login", message: "The password you provided is invalid.", preferredStyle: .Alert)
+                let alert = UIAlertController(title: "Invalid login", message: "The password you provided is invalid.", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
                 alert.addAction(action)
                 presentViewController(alert, animated: true, completion: nil)

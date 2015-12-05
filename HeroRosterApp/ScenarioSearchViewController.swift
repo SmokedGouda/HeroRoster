@@ -28,7 +28,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     @IBAction func searchButtonPressed(sender: UIButton) {
         if scenarioNameTextField.text == "" {
             displaySearchResultsAlert("empty")

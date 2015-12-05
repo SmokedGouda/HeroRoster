@@ -15,12 +15,18 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var newUserPasswordTextField: UITextField!
     @IBOutlet weak var newUserEmailTextField: UITextField!
     @IBOutlet weak var createAccountButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(dismiss)
         createAccountButton.layer.cornerRadius = 5
+        cancelButton.layer.cornerRadius = 5
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func dismissKeyboard() {
