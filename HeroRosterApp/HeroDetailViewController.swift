@@ -26,6 +26,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var levelDisplayed = String()
     var factionDisplayed = String()
     var prestigePointsDisplayed = String()
+    var temporaryStatDisplayed = String()
     // Index variables below are used to determine where the checkmark will be placed when the HeroStatOpionsViewController is segued to.  The values will be set in the tableView cellForRowAtIndexPath function
     var classIndex: Int?
     var raceIndex: Int?
@@ -33,6 +34,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var levelIndex: Int?
     var factionIndex: Int?
     var prestigePointsIndex: Int?
+    var temporaryIndex: Int?
     
     var heroDisplayed = Hero?()
     var cellLabel = String()
@@ -78,115 +80,66 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         cell.textLabel!.text = HeroStatTableViewTitles().statTitles[indexPath.row]
-        let buttonLabel = editHeroButton.titleLabel!.text!
         let statLabel = cell.textLabel!.text
         switch statLabel! {
             case "Class":
-                if cellLabel == statLabel {
-                    cell.detailTextLabel!.text = HeroStats().heroClass[statToDisplay]
-                    classIndex = statToDisplay
-                } else if buttonLabel == "Save" {
-                    cell.detailTextLabel!.text = classDisplayed
-                } else {
-                    cell.detailTextLabel!.text = heroDisplayed?.heroClass
-                    for (index, value) in HeroStats().heroClass.enumerate() {
-                        if cell.detailTextLabel!.text == value {
-                            classIndex = index
-                        }
-                    }
-                }
-                cell.detailTextLabel?.hidden = false
-                classDisplayed = cell.detailTextLabel!.text!
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().heroClass, statDisplayed: classDisplayed, heroDisplayedStat: heroDisplayed?.heroClass, statIndex: classIndex)
+                classDisplayed = temporaryStatDisplayed
+                classIndex = temporaryIndex
             
             case "Race":
-                if cellLabel == statLabel {
-                    cell.detailTextLabel!.text = HeroStats().race[statToDisplay]
-                    raceIndex = statToDisplay
-                } else if buttonLabel == "Save" {
-                    cell.detailTextLabel!.text = raceDisplayed
-                } else {
-                    cell.detailTextLabel!.text = heroDisplayed?.race
-                    for (index, value) in HeroStats().race.enumerate() {
-                        if cell.detailTextLabel!.text == value {
-                            raceIndex = index
-                        }
-                    }
-                }
-                cell.detailTextLabel?.hidden = false
-                raceDisplayed = cell.detailTextLabel!.text!
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().race, statDisplayed: raceDisplayed, heroDisplayedStat: heroDisplayed?.race, statIndex: raceIndex)
+                raceDisplayed = temporaryStatDisplayed
+                raceIndex = temporaryIndex
           
             case "Gender":
-                if cellLabel == statLabel {
-                    cell.detailTextLabel!.text = HeroStats().gender[statToDisplay]
-                    genderIndex = statToDisplay
-                } else if buttonLabel == "Save" {
-                    cell.detailTextLabel!.text = genderDisplayed
-                } else {
-                    cell.detailTextLabel!.text = heroDisplayed?.gender
-                    for (index, value) in HeroStats().gender.enumerate() {
-                        if cell.detailTextLabel!.text == value {
-                            genderIndex = index
-                        }
-                    }
-                }
-                cell.detailTextLabel?.hidden = false
-                genderDisplayed = cell.detailTextLabel!.text!
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().gender, statDisplayed: genderDisplayed, heroDisplayedStat: heroDisplayed?.gender, statIndex: genderIndex)
+                genderDisplayed = temporaryStatDisplayed
+                genderIndex = temporaryIndex
             
             case "Level":
-                if cellLabel == statLabel {
-                    cell.detailTextLabel!.text = HeroStats().level[statToDisplay]
-                    levelIndex = statToDisplay
-                } else if buttonLabel == "Save" {
-                    cell.detailTextLabel!.text = levelDisplayed
-                } else {
-                    cell.detailTextLabel!.text = heroDisplayed?.level
-                    for (index, value) in HeroStats().level.enumerate() {
-                        if cell.detailTextLabel!.text == value {
-                            levelIndex = index
-                        }
-                    }
-                }
-                cell.detailTextLabel?.hidden = false
-                levelDisplayed = cell.detailTextLabel!.text!
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().level, statDisplayed: levelDisplayed, heroDisplayedStat: heroDisplayed?.level, statIndex: levelIndex)
+                levelDisplayed = temporaryStatDisplayed
+                levelIndex = temporaryIndex
             
             case "Faction":
-                if cellLabel == statLabel {
-                    cell.detailTextLabel!.text = HeroStats().faction[statToDisplay]
-                    factionIndex = statToDisplay
-                } else if buttonLabel == "Save" {
-                    cell.detailTextLabel!.text = factionDisplayed
-                } else {
-                    cell.detailTextLabel!.text = heroDisplayed?.faction
-                    for (index, value) in HeroStats().faction.enumerate() {
-                        if cell.detailTextLabel!.text == value {
-                            factionIndex = index
-                        }
-                    }
-                }
-                cell.detailTextLabel?.hidden = false
-                factionDisplayed = cell.detailTextLabel!.text!
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().faction, statDisplayed: factionDisplayed, heroDisplayedStat: heroDisplayed?.faction, statIndex: factionIndex)
+                factionDisplayed = temporaryStatDisplayed
+                factionIndex = temporaryIndex
             
             case "Prestige":
-                if cellLabel == statLabel {
-                    cell.detailTextLabel!.text = HeroStats().prestigePoints[statToDisplay]
-                    prestigePointsIndex = statToDisplay
-                } else if buttonLabel == "Save" {
-                    cell.detailTextLabel!.text = prestigePointsDisplayed
-                } else {
-                    cell.detailTextLabel!.text = heroDisplayed?.prestigePoints
-                    for (index, value) in HeroStats().prestigePoints.enumerate() {
-                        if cell.detailTextLabel!.text == value {
-                            prestigePointsIndex = index
-                        }
-                    }
-                }
-                cell.detailTextLabel?.hidden = false
-                prestigePointsDisplayed = cell.detailTextLabel!.text!
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().prestigePoints, statDisplayed: prestigePointsDisplayed, heroDisplayedStat: heroDisplayed!.prestigePoints, statIndex: prestigePointsIndex)
+                prestigePointsDisplayed = temporaryStatDisplayed
+                prestigePointsIndex = temporaryIndex
             
             default:
                 "not a valid return"
         }
         return cell
+    }
+    
+    func displayContentsOfCell(cell: UITableViewCell, statLabel: String, heroStats: [String], var statDisplayed: String, heroDisplayedStat: String?, var statIndex: Int?) -> (String, Int?) {
+        let cell = cell
+        let statLabel = statLabel
+        let buttonLabel = editHeroButton.titleLabel!.text!
+        if cellLabel == statLabel {
+            cell.detailTextLabel!.text = heroStats[statToDisplay]
+            statIndex = statToDisplay
+        } else if buttonLabel == "Save" {
+            cell.detailTextLabel!.text = statDisplayed
+        } else {
+            cell.detailTextLabel!.text = heroDisplayedStat
+            for (index, value) in heroStats.enumerate() {
+                if cell.detailTextLabel!.text == value {
+                    statIndex = index
+                }
+            }
+        }
+        cell.detailTextLabel!.hidden = false
+        statDisplayed = cell.detailTextLabel!.text!
+        temporaryStatDisplayed = statDisplayed
+        temporaryIndex = statIndex
+        return (temporaryStatDisplayed, temporaryIndex)
     }
   
     @IBAction func editHeroButtonPressed(sender: UIButton) {
