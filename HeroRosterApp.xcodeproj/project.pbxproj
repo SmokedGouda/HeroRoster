@@ -17,20 +17,8 @@
 		3F010D9F1BF4F21300B303E4 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D9E1BF4F21300B303E4 /* ApiKeys.plist */; };
 		3F010DA11BF4F38C00B303E4 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */; };
 		3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */; };
-		3F1C825C1BF2E25C0063FDD8 /* Barbarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */; };
-		3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C824F1BF2E25C0063FDD8 /* Bard.png */; };
-		3F1C825E1BF2E25C0063FDD8 /* Cleric.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82501BF2E25C0063FDD8 /* Cleric.png */; };
-		3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82511BF2E25C0063FDD8 /* Druid.png */; };
-		3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82521BF2E25C0063FDD8 /* Fighter.png */; };
 		3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */; };
 		3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82541BF2E25C0063FDD8 /* Magus.png */; };
-		3F1C82631BF2E25C0063FDD8 /* Monk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82551BF2E25C0063FDD8 /* Monk.png */; };
-		3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82561BF2E25C0063FDD8 /* Paladin.png */; };
-		3F1C82651BF2E25C0063FDD8 /* Ranger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82571BF2E25C0063FDD8 /* Ranger.png */; };
-		3F1C82661BF2E25C0063FDD8 /* Rogue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82581BF2E25C0063FDD8 /* Rogue.png */; };
-		3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82591BF2E25C0063FDD8 /* Sorcerer.png */; };
-		3F1C82681BF2E25C0063FDD8 /* Warlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C825A1BF2E25C0063FDD8 /* Warlock.png */; };
-		3F1C82691BF2E25C0063FDD8 /* Wizard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C825B1BF2E25C0063FDD8 /* Wizard.png */; };
 		3F27CDE61BE9B6C300D4B759 /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */; };
 		3F2B89B71BE9413F00CE037C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89B61BE9413F00CE037C /* AppDelegate.swift */; };
 		3F2B89B91BE9413F00CE037C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89B81BE9413F00CE037C /* LogInViewController.swift */; };
@@ -67,6 +55,44 @@
 		3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001531BF39D7900BC8684 /* femaleKnight.jpg */; };
 		3F7001561BF3A3D800BC8684 /* book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001551BF3A3D800BC8684 /* book.jpg */; };
 		3F73FFA31C122DDB00CFE5D6 /* chaos_librarian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */; };
+		3FAFC6371C14E437002ABAD7 /* Alchemist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6111C14E437002ABAD7 /* Alchemist.png */; };
+		3FAFC6381C14E437002ABAD7 /* Antipaladin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6121C14E437002ABAD7 /* Antipaladin.png */; };
+		3FAFC6391C14E437002ABAD7 /* Arcanist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6131C14E437002ABAD7 /* Arcanist.png */; };
+		3FAFC63A1C14E437002ABAD7 /* Barbarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6141C14E437002ABAD7 /* Barbarian.png */; };
+		3FAFC63B1C14E437002ABAD7 /* Bard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6151C14E437002ABAD7 /* Bard.png */; };
+		3FAFC63C1C14E437002ABAD7 /* Bloodrager.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6161C14E437002ABAD7 /* Bloodrager.png */; };
+		3FAFC63D1C14E437002ABAD7 /* Brawler.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6171C14E437002ABAD7 /* Brawler.png */; };
+		3FAFC63E1C14E437002ABAD7 /* Cavalier.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6181C14E437002ABAD7 /* Cavalier.png */; };
+		3FAFC63F1C14E437002ABAD7 /* Cleric.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6191C14E437002ABAD7 /* Cleric.png */; };
+		3FAFC6401C14E437002ABAD7 /* Druid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC61A1C14E437002ABAD7 /* Druid.png */; };
+		3FAFC6411C14E437002ABAD7 /* Female.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC61B1C14E437002ABAD7 /* Female.png */; };
+		3FAFC6421C14E437002ABAD7 /* Fighter.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC61C1C14E437002ABAD7 /* Fighter.png */; };
+		3FAFC6431C14E437002ABAD7 /* Hunter.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC61D1C14E437002ABAD7 /* Hunter.png */; };
+		3FAFC6441C14E437002ABAD7 /* Inquisitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC61E1C14E437002ABAD7 /* Inquisitor.png */; };
+		3FAFC6451C14E437002ABAD7 /* Investigator.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC61F1C14E437002ABAD7 /* Investigator.png */; };
+		3FAFC6461C14E437002ABAD7 /* Kineticist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6201C14E437002ABAD7 /* Kineticist.png */; };
+		3FAFC6471C14E437002ABAD7 /* Male.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6211C14E437002ABAD7 /* Male.png */; };
+		3FAFC6481C14E437002ABAD7 /* Medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6221C14E437002ABAD7 /* Medium.png */; };
+		3FAFC6491C14E437002ABAD7 /* Mesmerist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6231C14E437002ABAD7 /* Mesmerist.png */; };
+		3FAFC64A1C14E437002ABAD7 /* Monk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6241C14E437002ABAD7 /* Monk.png */; };
+		3FAFC64B1C14E437002ABAD7 /* Ninja.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6251C14E437002ABAD7 /* Ninja.png */; };
+		3FAFC64C1C14E437002ABAD7 /* Occultist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6261C14E437002ABAD7 /* Occultist.png */; };
+		3FAFC64D1C14E437002ABAD7 /* Oracle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6271C14E437002ABAD7 /* Oracle.png */; };
+		3FAFC64E1C14E437002ABAD7 /* Paladin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6281C14E437002ABAD7 /* Paladin.png */; };
+		3FAFC64F1C14E437002ABAD7 /* Psychic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6291C14E437002ABAD7 /* Psychic.png */; };
+		3FAFC6501C14E437002ABAD7 /* Ranger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC62A1C14E437002ABAD7 /* Ranger.png */; };
+		3FAFC6511C14E437002ABAD7 /* Rogue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC62B1C14E437002ABAD7 /* Rogue.png */; };
+		3FAFC6521C14E437002ABAD7 /* Samurai.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC62C1C14E437002ABAD7 /* Samurai.png */; };
+		3FAFC6531C14E437002ABAD7 /* Shaman.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC62D1C14E437002ABAD7 /* Shaman.png */; };
+		3FAFC6541C14E437002ABAD7 /* Skald.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC62E1C14E437002ABAD7 /* Skald.png */; };
+		3FAFC6551C14E437002ABAD7 /* Slayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC62F1C14E437002ABAD7 /* Slayer.png */; };
+		3FAFC6561C14E437002ABAD7 /* Sorcerer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6301C14E437002ABAD7 /* Sorcerer.png */; };
+		3FAFC6571C14E437002ABAD7 /* Spiritualist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6311C14E437002ABAD7 /* Spiritualist.png */; };
+		3FAFC6581C14E437002ABAD7 /* Summoner.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6321C14E437002ABAD7 /* Summoner.png */; };
+		3FAFC6591C14E437002ABAD7 /* Swashbuckler.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6331C14E437002ABAD7 /* Swashbuckler.png */; };
+		3FAFC65A1C14E437002ABAD7 /* Warpriest.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6341C14E437002ABAD7 /* Warpriest.png */; };
+		3FAFC65B1C14E437002ABAD7 /* Witch.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6351C14E437002ABAD7 /* Witch.png */; };
+		3FAFC65C1C14E437002ABAD7 /* Wizard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6361C14E437002ABAD7 /* Wizard.png */; };
 		3FBFF9571C0FDBF80078E7FB /* Balerion3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FBFF9561C0FDBF80078E7FB /* Balerion3.jpg */; };
 /* End PBXBuildFile section */
 
@@ -98,20 +124,8 @@
 		3F010D9E1BF4F21300B303E4 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barbarian.png; sourceTree = "<group>"; };
-		3F1C824F1BF2E25C0063FDD8 /* Bard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bard.png; sourceTree = "<group>"; };
-		3F1C82501BF2E25C0063FDD8 /* Cleric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cleric.png; sourceTree = "<group>"; };
-		3F1C82511BF2E25C0063FDD8 /* Druid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Druid.png; sourceTree = "<group>"; };
-		3F1C82521BF2E25C0063FDD8 /* Fighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fighter.png; sourceTree = "<group>"; };
 		3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gunslinger.png; sourceTree = "<group>"; };
 		3F1C82541BF2E25C0063FDD8 /* Magus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magus.png; sourceTree = "<group>"; };
-		3F1C82551BF2E25C0063FDD8 /* Monk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Monk.png; sourceTree = "<group>"; };
-		3F1C82561BF2E25C0063FDD8 /* Paladin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paladin.png; sourceTree = "<group>"; };
-		3F1C82571BF2E25C0063FDD8 /* Ranger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ranger.png; sourceTree = "<group>"; };
-		3F1C82581BF2E25C0063FDD8 /* Rogue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rogue.png; sourceTree = "<group>"; };
-		3F1C82591BF2E25C0063FDD8 /* Sorcerer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sorcerer.png; sourceTree = "<group>"; };
-		3F1C825A1BF2E25C0063FDD8 /* Warlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warlock.png; sourceTree = "<group>"; };
-		3F1C825B1BF2E25C0063FDD8 /* Wizard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizard.png; sourceTree = "<group>"; };
 		3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
 		3F2B89B31BE9413F00CE037C /* HeroRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2B89B61BE9413F00CE037C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +169,44 @@
 		3F7001531BF39D7900BC8684 /* femaleKnight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = femaleKnight.jpg; sourceTree = "<group>"; };
 		3F7001551BF3A3D800BC8684 /* book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book.jpg; sourceTree = "<group>"; };
 		3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chaos_librarian.jpg; sourceTree = "<group>"; };
+		3FAFC6111C14E437002ABAD7 /* Alchemist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alchemist.png; sourceTree = "<group>"; };
+		3FAFC6121C14E437002ABAD7 /* Antipaladin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Antipaladin.png; sourceTree = "<group>"; };
+		3FAFC6131C14E437002ABAD7 /* Arcanist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arcanist.png; sourceTree = "<group>"; };
+		3FAFC6141C14E437002ABAD7 /* Barbarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barbarian.png; sourceTree = "<group>"; };
+		3FAFC6151C14E437002ABAD7 /* Bard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bard.png; sourceTree = "<group>"; };
+		3FAFC6161C14E437002ABAD7 /* Bloodrager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bloodrager.png; sourceTree = "<group>"; };
+		3FAFC6171C14E437002ABAD7 /* Brawler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brawler.png; sourceTree = "<group>"; };
+		3FAFC6181C14E437002ABAD7 /* Cavalier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cavalier.png; sourceTree = "<group>"; };
+		3FAFC6191C14E437002ABAD7 /* Cleric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cleric.png; sourceTree = "<group>"; };
+		3FAFC61A1C14E437002ABAD7 /* Druid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Druid.png; sourceTree = "<group>"; };
+		3FAFC61B1C14E437002ABAD7 /* Female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Female.png; sourceTree = "<group>"; };
+		3FAFC61C1C14E437002ABAD7 /* Fighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fighter.png; sourceTree = "<group>"; };
+		3FAFC61D1C14E437002ABAD7 /* Hunter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hunter.png; sourceTree = "<group>"; };
+		3FAFC61E1C14E437002ABAD7 /* Inquisitor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Inquisitor.png; sourceTree = "<group>"; };
+		3FAFC61F1C14E437002ABAD7 /* Investigator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Investigator.png; sourceTree = "<group>"; };
+		3FAFC6201C14E437002ABAD7 /* Kineticist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kineticist.png; sourceTree = "<group>"; };
+		3FAFC6211C14E437002ABAD7 /* Male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Male.png; sourceTree = "<group>"; };
+		3FAFC6221C14E437002ABAD7 /* Medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medium.png; sourceTree = "<group>"; };
+		3FAFC6231C14E437002ABAD7 /* Mesmerist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mesmerist.png; sourceTree = "<group>"; };
+		3FAFC6241C14E437002ABAD7 /* Monk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Monk.png; sourceTree = "<group>"; };
+		3FAFC6251C14E437002ABAD7 /* Ninja.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ninja.png; sourceTree = "<group>"; };
+		3FAFC6261C14E437002ABAD7 /* Occultist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Occultist.png; sourceTree = "<group>"; };
+		3FAFC6271C14E437002ABAD7 /* Oracle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Oracle.png; sourceTree = "<group>"; };
+		3FAFC6281C14E437002ABAD7 /* Paladin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paladin.png; sourceTree = "<group>"; };
+		3FAFC6291C14E437002ABAD7 /* Psychic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Psychic.png; sourceTree = "<group>"; };
+		3FAFC62A1C14E437002ABAD7 /* Ranger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ranger.png; sourceTree = "<group>"; };
+		3FAFC62B1C14E437002ABAD7 /* Rogue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rogue.png; sourceTree = "<group>"; };
+		3FAFC62C1C14E437002ABAD7 /* Samurai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Samurai.png; sourceTree = "<group>"; };
+		3FAFC62D1C14E437002ABAD7 /* Shaman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shaman.png; sourceTree = "<group>"; };
+		3FAFC62E1C14E437002ABAD7 /* Skald.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Skald.png; sourceTree = "<group>"; };
+		3FAFC62F1C14E437002ABAD7 /* Slayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slayer.png; sourceTree = "<group>"; };
+		3FAFC6301C14E437002ABAD7 /* Sorcerer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sorcerer.png; sourceTree = "<group>"; };
+		3FAFC6311C14E437002ABAD7 /* Spiritualist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spiritualist.png; sourceTree = "<group>"; };
+		3FAFC6321C14E437002ABAD7 /* Summoner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Summoner.png; sourceTree = "<group>"; };
+		3FAFC6331C14E437002ABAD7 /* Swashbuckler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Swashbuckler.png; sourceTree = "<group>"; };
+		3FAFC6341C14E437002ABAD7 /* Warpriest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warpriest.png; sourceTree = "<group>"; };
+		3FAFC6351C14E437002ABAD7 /* Witch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Witch.png; sourceTree = "<group>"; };
+		3FAFC6361C14E437002ABAD7 /* Wizard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wizard.png; sourceTree = "<group>"; };
 		3FBFF9561C0FDBF80078E7FB /* Balerion3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Balerion3.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,24 +246,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F1C824D1BF2E25C0063FDD8 /* D&DIcons */ = {
+		3F1C824D1BF2E25C0063FDD8 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				3F1C824E1BF2E25C0063FDD8 /* Barbarian.png */,
-				3F1C824F1BF2E25C0063FDD8 /* Bard.png */,
-				3F1C82501BF2E25C0063FDD8 /* Cleric.png */,
-				3F1C82511BF2E25C0063FDD8 /* Druid.png */,
-				3F1C82521BF2E25C0063FDD8 /* Fighter.png */,
+				3FAFC6111C14E437002ABAD7 /* Alchemist.png */,
+				3FAFC6121C14E437002ABAD7 /* Antipaladin.png */,
+				3FAFC6131C14E437002ABAD7 /* Arcanist.png */,
+				3FAFC6141C14E437002ABAD7 /* Barbarian.png */,
+				3FAFC6151C14E437002ABAD7 /* Bard.png */,
+				3FAFC6161C14E437002ABAD7 /* Bloodrager.png */,
+				3FAFC6171C14E437002ABAD7 /* Brawler.png */,
+				3FAFC6181C14E437002ABAD7 /* Cavalier.png */,
+				3FAFC6191C14E437002ABAD7 /* Cleric.png */,
+				3FAFC61A1C14E437002ABAD7 /* Druid.png */,
+				3FAFC61B1C14E437002ABAD7 /* Female.png */,
+				3FAFC61C1C14E437002ABAD7 /* Fighter.png */,
 				3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */,
+				3FAFC61D1C14E437002ABAD7 /* Hunter.png */,
+				3FAFC61E1C14E437002ABAD7 /* Inquisitor.png */,
+				3FAFC61F1C14E437002ABAD7 /* Investigator.png */,
+				3FAFC6201C14E437002ABAD7 /* Kineticist.png */,
 				3F1C82541BF2E25C0063FDD8 /* Magus.png */,
-				3F1C82551BF2E25C0063FDD8 /* Monk.png */,
-				3F1C82561BF2E25C0063FDD8 /* Paladin.png */,
-				3F1C82571BF2E25C0063FDD8 /* Ranger.png */,
-				3F1C82581BF2E25C0063FDD8 /* Rogue.png */,
-				3F1C82591BF2E25C0063FDD8 /* Sorcerer.png */,
-				3F1C825A1BF2E25C0063FDD8 /* Warlock.png */,
-				3F1C825B1BF2E25C0063FDD8 /* Wizard.png */,
+				3FAFC6211C14E437002ABAD7 /* Male.png */,
+				3FAFC6221C14E437002ABAD7 /* Medium.png */,
+				3FAFC6231C14E437002ABAD7 /* Mesmerist.png */,
+				3FAFC6241C14E437002ABAD7 /* Monk.png */,
+				3FAFC6251C14E437002ABAD7 /* Ninja.png */,
+				3FAFC6261C14E437002ABAD7 /* Occultist.png */,
+				3FAFC6271C14E437002ABAD7 /* Oracle.png */,
+				3FAFC6281C14E437002ABAD7 /* Paladin.png */,
+				3FAFC6291C14E437002ABAD7 /* Psychic.png */,
+				3FAFC62A1C14E437002ABAD7 /* Ranger.png */,
+				3FAFC62B1C14E437002ABAD7 /* Rogue.png */,
+				3FAFC62C1C14E437002ABAD7 /* Samurai.png */,
+				3FAFC62D1C14E437002ABAD7 /* Shaman.png */,
+				3FAFC62E1C14E437002ABAD7 /* Skald.png */,
+				3FAFC62F1C14E437002ABAD7 /* Slayer.png */,
+				3FAFC6301C14E437002ABAD7 /* Sorcerer.png */,
+				3FAFC6311C14E437002ABAD7 /* Spiritualist.png */,
+				3FAFC6321C14E437002ABAD7 /* Summoner.png */,
+				3FAFC6331C14E437002ABAD7 /* Swashbuckler.png */,
+				3FAFC6341C14E437002ABAD7 /* Warpriest.png */,
+				3FAFC6351C14E437002ABAD7 /* Witch.png */,
+				3FAFC6361C14E437002ABAD7 /* Wizard.png */,
 			);
+			name = Icons;
 			path = "D&DIcons";
 			sourceTree = "<group>";
 		};
@@ -219,7 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				3F7001501BF387D000BC8684 /* Images */,
-				3F1C824D1BF2E25C0063FDD8 /* D&DIcons */,
+				3F1C824D1BF2E25C0063FDD8 /* Icons */,
 				3F2B89B51BE9413F00CE037C /* HeroRosterApp */,
 				3F2B89CA1BE9413F00CE037C /* HeroRosterAppTests */,
 				3F2B89D51BE9413F00CE037C /* HeroRosterAppUITests */,
@@ -451,40 +530,66 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F1C82661BF2E25C0063FDD8 /* Rogue.png in Resources */,
-				3F1C82681BF2E25C0063FDD8 /* Warlock.png in Resources */,
+				3FAFC6561C14E437002ABAD7 /* Sorcerer.png in Resources */,
+				3FAFC6411C14E437002ABAD7 /* Female.png in Resources */,
+				3FAFC63B1C14E437002ABAD7 /* Bard.png in Resources */,
+				3FAFC63A1C14E437002ABAD7 /* Barbarian.png in Resources */,
+				3FAFC6431C14E437002ABAD7 /* Hunter.png in Resources */,
+				3FAFC6581C14E437002ABAD7 /* Summoner.png in Resources */,
+				3FAFC6441C14E437002ABAD7 /* Inquisitor.png in Resources */,
 				3F010D9D1BF4DD4B00B303E4 /* heroRosterIcon180x180.png in Resources */,
 				3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */,
-				3F1C82651BF2E25C0063FDD8 /* Ranger.png in Resources */,
+				3FAFC6511C14E437002ABAD7 /* Rogue.png in Resources */,
+				3FAFC65C1C14E437002ABAD7 /* Wizard.png in Resources */,
 				3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */,
+				3FAFC6391C14E437002ABAD7 /* Arcanist.png in Resources */,
 				3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */,
 				3F010D9B1BF4DD4B00B303E4 /* heroRosterIcon87x87.png in Resources */,
 				3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */,
+				3FAFC6501C14E437002ABAD7 /* Ranger.png in Resources */,
+				3FAFC6461C14E437002ABAD7 /* Kineticist.png in Resources */,
 				3F2B89C11BE9413F00CE037C /* LaunchScreen.storyboard in Resources */,
+				3FAFC6571C14E437002ABAD7 /* Spiritualist.png in Resources */,
 				3FBFF9571C0FDBF80078E7FB /* Balerion3.jpg in Resources */,
+				3FAFC6451C14E437002ABAD7 /* Investigator.png in Resources */,
+				3FAFC64D1C14E437002ABAD7 /* Oracle.png in Resources */,
+				3FAFC64F1C14E437002ABAD7 /* Psychic.png in Resources */,
+				3FAFC6371C14E437002ABAD7 /* Alchemist.png in Resources */,
+				3FAFC63F1C14E437002ABAD7 /* Cleric.png in Resources */,
+				3FAFC64E1C14E437002ABAD7 /* Paladin.png in Resources */,
 				3F010D9A1BF4DD4B00B303E4 /* heroRosterIcon80x80.png in Resources */,
+				3FAFC6421C14E437002ABAD7 /* Fighter.png in Resources */,
 				3F43B40A1BF421ED00F58C7B /* knight.jpg in Resources */,
-				3F1C825F1BF2E25C0063FDD8 /* Druid.png in Resources */,
 				3F007D961C04FC8600D2272D /* theArchivist.jpg in Resources */,
+				3FAFC64C1C14E437002ABAD7 /* Occultist.png in Resources */,
+				3FAFC65A1C14E437002ABAD7 /* Warpriest.png in Resources */,
 				3F7001561BF3A3D800BC8684 /* book.jpg in Resources */,
-				3F1C82631BF2E25C0063FDD8 /* Monk.png in Resources */,
 				3F73FFA31C122DDB00CFE5D6 /* chaos_librarian.jpg in Resources */,
-				3F1C825D1BF2E25C0063FDD8 /* Bard.png in Resources */,
-				3F1C825E1BF2E25C0063FDD8 /* Cleric.png in Resources */,
 				3F010D991BF4DD4B00B303E4 /* heroRosterIcon58x58.png in Resources */,
-				3F1C825C1BF2E25C0063FDD8 /* Barbarian.png in Resources */,
+				3FAFC63C1C14E437002ABAD7 /* Bloodrager.png in Resources */,
+				3FAFC6401C14E437002ABAD7 /* Druid.png in Resources */,
+				3FAFC6471C14E437002ABAD7 /* Male.png in Resources */,
 				3F010D931BF4D7B300B303E4 /* HeroRosterLogo640x140.png in Resources */,
+				3FAFC63E1C14E437002ABAD7 /* Cavalier.png in Resources */,
+				3FAFC64A1C14E437002ABAD7 /* Monk.png in Resources */,
+				3FAFC6481C14E437002ABAD7 /* Medium.png in Resources */,
+				3FAFC63D1C14E437002ABAD7 /* Brawler.png in Resources */,
+				3FAFC65B1C14E437002ABAD7 /* Witch.png in Resources */,
+				3FAFC6491C14E437002ABAD7 /* Mesmerist.png in Resources */,
+				3FAFC6531C14E437002ABAD7 /* Shaman.png in Resources */,
 				3F010D9C1BF4DD4B00B303E4 /* heroRosterIcon120x120.png in Resources */,
-				3F1C82691BF2E25C0063FDD8 /* Wizard.png in Resources */,
+				3FAFC64B1C14E437002ABAD7 /* Ninja.png in Resources */,
+				3FAFC6541C14E437002ABAD7 /* Skald.png in Resources */,
 				3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */,
+				3FAFC6591C14E437002ABAD7 /* Swashbuckler.png in Resources */,
 				3F2B89BC1BE9413F00CE037C /* Main.storyboard in Resources */,
 				3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */,
 				3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */,
-				3F1C82671BF2E25C0063FDD8 /* Sorcerer.png in Resources */,
+				3FAFC6521C14E437002ABAD7 /* Samurai.png in Resources */,
 				3F010D9F1BF4F21300B303E4 /* ApiKeys.plist in Resources */,
-				3F1C82601BF2E25C0063FDD8 /* Fighter.png in Resources */,
-				3F1C82641BF2E25C0063FDD8 /* Paladin.png in Resources */,
+				3FAFC6551C14E437002ABAD7 /* Slayer.png in Resources */,
 				3F7001491BF381F400BC8684 /* illo3.jpg in Resources */,
+				3FAFC6381C14E437002ABAD7 /* Antipaladin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

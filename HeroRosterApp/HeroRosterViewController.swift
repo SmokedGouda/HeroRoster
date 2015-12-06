@@ -64,12 +64,10 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     if error != nil {
                         print(error)
                     } else if let hero = Hero {
-                        print("The logIds to delete are \(heroToDelete.logIds)")
                         for objectId in heroToDelete.logIds {
                             self.removeHeroToDeletesLogsOnParse(objectId)
                         }
                         hero.deleteInBackground()
-                        print("hero deleted from parse")
                     }
                 }
                 deleteScenariosFromScenarioRecords(heroToDelete)
@@ -95,7 +93,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                 userRoster.scenarioRecords[key] = nil
             }
         }
-        print(userRoster.scenarioRecords)
     }
     
     func removeHeroToDeletesLogsOnParse(logObjectIdToDelete: String) {
@@ -106,7 +103,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                 print(error)
             } else if let log = Log {
                 log.deleteInBackground()
-                print("session log deleted from parse")
             }
         }
     }
@@ -131,18 +127,14 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         let rosterName = "\(activeUser!.username!)'s hero roster"
         let query = PFQuery(className: "Roster")
         query.whereKey("name", equalTo: rosterName)
-        
         query.findObjectsInBackgroundWithBlock {
             (Roster: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 dispatch_async(dispatch_get_main_queue()) {
-                    print("Retreived \(Roster!.count) roster")
-                    
                     for object:PFObject in Roster! {
                         self.userRoster.userName = object["name"] as! String
                         self.userRoster.parseObjectId = object.objectId! as String
                         self.userRoster.scenarioRecords = object["scenarioRecords"] as! [String : [String]]
-                        print(self.userRoster.scenarioRecords)
                     }
                 }
             } else {
@@ -157,7 +149,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         query.whereKey("owner", equalTo: rosterName)
         query.findObjectsInBackgroundWithBlock{ (Hero: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                print("Retreived \(Hero!.count) heros")
                 dispatch_async(dispatch_get_main_queue()) {
                     for object in Hero! {
                         self.downloadedHero.name = object["name"] as! String
@@ -192,8 +183,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
         }
-        print("The roster now contains \(userRoster.heros.count) heros.")
-        print(userRoster.usedHeroNames)
     }
         
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {

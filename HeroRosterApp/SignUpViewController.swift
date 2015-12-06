@@ -57,10 +57,9 @@ class SignUpViewController: UIViewController {
         PFUser.logInWithUsernameInBackground(self.newUserNameTextField.text!, password: self.newUserPasswordTextField.text!) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
-                print("Login successful")
                 self.createUserRoster()
             } else {
-                print("Login failed")
+                print(error)
             }
         }
     }
@@ -73,11 +72,10 @@ class SignUpViewController: UIViewController {
         userRoster.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
-                print("Roster object successfully saved to user's account.")
                 PFUser.logOut()
                 self.accountCreationAlert()
             } else {
-                print("Roster object failed to save to user's account.")
+                print(error)
             }
         }
     }

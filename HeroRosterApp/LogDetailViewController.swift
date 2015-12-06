@@ -141,7 +141,6 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         parseLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){
-                    print("session log saved to parse")
                     self.newLogObjectId = parseLog.objectId!
                     logToCreate.parseObjectId = self.newLogObjectId
                     self.heroDisplayed?.addSessionLog(logToCreate)
@@ -150,7 +149,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                     self.activeRoster!.updateScenarioRecordsOnParse(self.activeRoster!)
                 }
             } else {
-                print("hero did not save to parse")
+                print(error)
             }
         }
     }
@@ -166,7 +165,6 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                 log["date"] = self.dateTextField.text
                 log["notes"] = self.notesTextView.text
                 log.saveInBackground()
-                print("log updated on parse")
             }
         }
     }
@@ -180,7 +178,6 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
             } else if let hero = Hero {
                 hero["logIds"] = self.heroDisplayed?.logIds
                 hero.saveInBackground()
-                print("hero updated on parse")
             }
         }
     }

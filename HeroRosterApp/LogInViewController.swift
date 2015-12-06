@@ -70,7 +70,6 @@ class LogInViewController: UIViewController {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 dispatch_async(dispatch_get_main_queue()){
-                    print("Login successful")
                     self.activeUser = PFUser.currentUser()
                     self.performSegueWithIdentifier("heroRosterSegue", sender: self)
                 }

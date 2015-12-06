@@ -59,13 +59,10 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                         print(error)
                     } else if let log = Log {
                         log.deleteInBackground()
-                        
-                        print("session log deleted from parse")
                     }
                 }
                 activeRoster?.scenarioRecords[sessionToDelete!.name] = nil
                 heroDisplayed?.deleteSessionLog(sessionToDelete!)
-                print(heroDisplayed?.logIds)
                 updateHeroLogIdsParse()
                 activeRoster!.updateScenarioRecordsOnParse(activeRoster!)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
@@ -101,10 +98,8 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         let rosterName = "\(activeUser!.username!)'s hero roster"
         let logQuery = PFQuery(className: "Log")
         logQuery.whereKey("owner", equalTo: rosterName)
-        
         logQuery.findObjectsInBackgroundWithBlock{ (Log: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                print("Retreived \(Log!.count) logs")
                 dispatch_async(dispatch_get_main_queue()) {
                     // If the query succeeds, all logs for the active user will be pulled down.  We need to filter them in order to populate the table with logs for the currently displayed hero.
                     for object in Log! {
@@ -146,7 +141,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             } else if let hero = Hero {
                 hero["logIds"] = self.heroDisplayed?.logIds
                 hero.saveInBackground()
-                print("hero updated on parse")
             }
         }
     }

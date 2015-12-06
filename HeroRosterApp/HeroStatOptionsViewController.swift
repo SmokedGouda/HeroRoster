@@ -53,6 +53,11 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         let cell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath)
         cell.textLabel!.text = heroStatsArrayToDisplay[indexPath.row]
         cell.textLabel!.font = UIFont.boldSystemFontOfSize(17)
+        if navigationBarTitle.title == "Class" {
+            cell.imageView?.image = UIImage(named: HeroStats().heroClass[indexPath.row])
+        } else if navigationBarTitle.title == "Gender" {
+            cell.imageView?.image = UIImage(named: HeroStats().gender[indexPath.row])
+        }
         if indexPath == selectedRow {
             cell.accessoryType = .Checkmark
         } else {

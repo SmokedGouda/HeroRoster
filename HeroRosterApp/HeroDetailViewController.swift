@@ -98,7 +98,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                     classDisplayed = temporaryStatDisplayed
                     classIndex = temporaryIndex
                }
-            
             case "Race":
                 displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().race, statDisplayed: raceDisplayed, heroDisplayedStat: heroDisplayed?.race, statIndex: raceIndex)
                 if activateEditMode == true || cellTitleLabel == statTitleLabel {
@@ -253,7 +252,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){
-                    print("hero saved to parse")
                     self.newHeroObjectId = parseHero.objectId!
                     heroToCreate.parseObjectId = self.newHeroObjectId
                     self.activeRoster?.addHeroToRoster(heroToCreate)
@@ -261,7 +259,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 }
             } else {
                 (error)
-                print("hero did not save to parse")
             }
         }
     }
@@ -308,7 +305,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 hero["faction"] = self.factionDisplayed
                 hero["prestigePoints"] = self.prestigePointsDisplayed
                 hero.saveInBackground()
-                print("hero updated on parse")
             }
         }
     }
@@ -323,7 +319,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 } else if let log = Log {
                     log["logForHero"] = self.heroNameTextField.text
                     log.saveInBackground()
-                    print("logId \(objectId) updated with hero's new name on parse")
                 }
             }
         }

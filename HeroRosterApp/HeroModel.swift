@@ -10,7 +10,7 @@ import Foundation
 import Parse
 
 struct HeroStats {
-    let heroClass = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Gunslinger", "Magus", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
+    let heroClass = ["Alchemist", "Antipaladin", "Arcanist", "Barbarian", "Bard", "Bloodrager", "Brawler", "Cavalier", "Cleric", "Druid", "Fighter", "Gunslinger", "Hunter", "Inquisitor", "Investigator", "Kineticist", "Magus", "Medium", "Mesmerist", "Monk", "Ninja", "Occultist", "Oracle", "Paladin", "Psychic", "Ranger", "Rogue", "Samurai", "Shaman", "Skald", "Slayer", "Sorcerer", "Spiritualist", "Summoner", "Swashbuckler", "Warpriest", "Witch", "Wizard"]
     let race = ["Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"]
     let gender = ["Male", "Female"]
     let level = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
