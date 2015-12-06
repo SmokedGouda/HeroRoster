@@ -11,10 +11,11 @@ import Parse
 
 class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var openBookButton: UIBarButtonItem!
     @IBOutlet weak var heroDetailTable: UITableView!
     @IBOutlet weak var heroNameTextField: UITextField!
     @IBOutlet weak var heroNumberTextField: UITextField!
-    @IBOutlet weak var editHeroButton: UIButton!
+    @IBOutlet weak var addHeroButton: UIButton!
     @IBOutlet weak var heroNameLabel: UILabel!
     @IBOutlet weak var heroNumberLabel: UILabel!
     
@@ -38,22 +39,31 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     var heroDisplayed = Hero?()
     var cellLabel = String()
-    var tableEditState = Bool?()
+    var createdHero: Hero?
+    var newHeroObjectId = String()
+    var activateEditMode = false
+    var tableEditState = true
     var heroNameBeforeEdit = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         roundTheLabelsAndButtons()
-        setViewToStaticMode()
-        heroNameTextField.text = heroDisplayed?.name
-        heroNumberTextField.text = heroDisplayed?.number
-        heroNameBeforeEdit = heroNameTextField.text!
+        openBookButton.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0)
+        openBookButton.enabled = false
+        if activateEditMode == true {
+            navigationItem.title = "Hero"
+            openBookButton.tintColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
+            openBookButton.enabled = true
+            setViewToStaticMode()
+            heroNameTextField.text = heroDisplayed?.name
+            heroNumberTextField.text = heroDisplayed?.number
+            heroNameBeforeEdit = heroNameTextField.text!
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         heroDetailTable.reloadData()
-        print(heroDisplayed!.logIds)
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,33 +94,45 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         switch statLabel! {
             case "Class":
                 displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().heroClass, statDisplayed: classDisplayed, heroDisplayedStat: heroDisplayed?.heroClass, statIndex: classIndex)
-                classDisplayed = temporaryStatDisplayed
-                classIndex = temporaryIndex
+                if activateEditMode == true || cellLabel == statLabel {
+                    classDisplayed = temporaryStatDisplayed
+                    classIndex = temporaryIndex
+               }
             
             case "Race":
                 displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().race, statDisplayed: raceDisplayed, heroDisplayedStat: heroDisplayed?.race, statIndex: raceIndex)
-                raceDisplayed = temporaryStatDisplayed
-                raceIndex = temporaryIndex
+                if activateEditMode == true || cellLabel == statLabel {
+                    raceDisplayed = temporaryStatDisplayed
+                    raceIndex = temporaryIndex
+               }
           
             case "Gender":
                 displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().gender, statDisplayed: genderDisplayed, heroDisplayedStat: heroDisplayed?.gender, statIndex: genderIndex)
-                genderDisplayed = temporaryStatDisplayed
-                genderIndex = temporaryIndex
+                if activateEditMode == true || cellLabel == statLabel {
+                    genderDisplayed = temporaryStatDisplayed
+                    genderIndex = temporaryIndex
+                }
             
             case "Level":
                 displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().level, statDisplayed: levelDisplayed, heroDisplayedStat: heroDisplayed?.level, statIndex: levelIndex)
-                levelDisplayed = temporaryStatDisplayed
-                levelIndex = temporaryIndex
+                if activateEditMode == true || cellLabel == statLabel {
+                    levelDisplayed = temporaryStatDisplayed
+                    levelIndex = temporaryIndex
+                }
             
             case "Faction":
                 displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().faction, statDisplayed: factionDisplayed, heroDisplayedStat: heroDisplayed?.faction, statIndex: factionIndex)
-                factionDisplayed = temporaryStatDisplayed
-                factionIndex = temporaryIndex
+                if activateEditMode == true || cellLabel == statLabel {
+                    factionDisplayed = temporaryStatDisplayed
+                    factionIndex = temporaryIndex
+               }
             
             case "Prestige":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().prestigePoints, statDisplayed: prestigePointsDisplayed, heroDisplayedStat: heroDisplayed!.prestigePoints, statIndex: prestigePointsIndex)
-                prestigePointsDisplayed = temporaryStatDisplayed
-                prestigePointsIndex = temporaryIndex
+                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().prestigePoints, statDisplayed: prestigePointsDisplayed, heroDisplayedStat: heroDisplayed?.prestigePoints, statIndex: prestigePointsIndex)
+                if activateEditMode == true || cellLabel == statLabel {
+                    prestigePointsDisplayed = temporaryStatDisplayed
+                    prestigePointsIndex = temporaryIndex
+               }
             
             default:
                 "not a valid return"
@@ -121,38 +143,61 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     func displayContentsOfCell(cell: UITableViewCell, statLabel: String, heroStats: [String], var statDisplayed: String, heroDisplayedStat: String?, var statIndex: Int?) -> (String, Int?) {
         let cell = cell
         let statLabel = statLabel
-        let buttonLabel = editHeroButton.titleLabel!.text!
-        if cellLabel == statLabel {
-            cell.detailTextLabel!.text = heroStats[statToDisplay]
-            statIndex = statToDisplay
-        } else if buttonLabel == "Save" {
-            cell.detailTextLabel!.text = statDisplayed
-        } else {
-            cell.detailTextLabel!.text = heroDisplayedStat
-            for (index, value) in heroStats.enumerate() {
-                if cell.detailTextLabel!.text == value {
-                    statIndex = index
+        let buttonLabel = addHeroButton.titleLabel!.text!
+        if activateEditMode == true {
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = heroStats[statToDisplay]
+                statIndex = statToDisplay
+            } else if buttonLabel == "Save" {
+                cell.detailTextLabel!.text = statDisplayed
+            } else {
+                cell.detailTextLabel!.text = heroDisplayedStat
+                for (index, value) in heroStats.enumerate() {
+                    if cell.detailTextLabel!.text == value {
+                        statIndex = index
+                    }
                 }
             }
+            cell.detailTextLabel!.hidden = false
+            statDisplayed = cell.detailTextLabel!.text!
+            temporaryStatDisplayed = statDisplayed
+            temporaryIndex = statIndex
+        } else {
+            if cellLabel == statLabel {
+                cell.detailTextLabel!.text = heroStats[statToDisplay]
+                cell.detailTextLabel!.hidden = false
+                statDisplayed = cell.detailTextLabel!.text!
+                statIndex = statToDisplay
+                temporaryStatDisplayed = statDisplayed
+                temporaryIndex = statIndex
+            }
         }
-        cell.detailTextLabel!.hidden = false
-        statDisplayed = cell.detailTextLabel!.text!
-        temporaryStatDisplayed = statDisplayed
-        temporaryIndex = statIndex
         return (temporaryStatDisplayed, temporaryIndex)
     }
   
-    @IBAction func editHeroButtonPressed(sender: UIButton) {
-        let buttonLabel = editHeroButton.titleLabel!.text!
+    @IBAction func addHeroButtonPressed(sender: UIButton) {
+        let buttonLabel = addHeroButton.titleLabel!.text!
         switch buttonLabel {
             case "Edit Hero":
                 setViewToEditMode()
             
-            default:
+            case "Save":
                 if heroNameTextField.text != heroNameBeforeEdit {
                     checkEditedHeroNameAgainstUsedHeroNames()
                 } else {
                     saveEditedHero()
+                }
+            
+            default:
+                let newHeroName = heroNameTextField.text
+                let newHeroNumber = heroNumberTextField.text
+                if newHeroName == "" {
+                    displayEmptyNameAlert()
+                } else if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
+                    displayDuplicateNameAlert()
+                } else {
+                    createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classDisplayed, race: raceDisplayed, gender: genderDisplayed, level: levelDisplayed, faction: factionDisplayed, prestigePoints: prestigePointsDisplayed, log: [], parseObjectId: "", logIds: [])
+                    createHeroOnParse(createdHero!)
                 }
         }
     }
@@ -169,15 +214,52 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func displayEmptyNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't save hero", message: "You must provide a name for your hero in order to save it.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func displayDuplicateNameAlert() {
         let alert = UIAlertController(
-            title: "Can't save edited hero", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
+            title: "Can't save hero", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
         let action = UIAlertAction(
             title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func createHeroOnParse(heroToCreate: Hero) {
+        let parseHero = PFObject(className: "Hero")
+        parseHero["owner"] = activeRoster!.userName
+        parseHero["name"] = heroToCreate.name
+        parseHero["number"] = heroToCreate.number
+        parseHero["heroClass"] = heroToCreate.heroClass
+        parseHero["race"] = heroToCreate.race
+        parseHero["gender"] = heroToCreate.gender
+        parseHero["level"] = heroToCreate.level
+        parseHero["logIds"] = heroToCreate.logIds
+        parseHero["faction"] = heroToCreate.faction
+        parseHero["prestigePoints"] = heroToCreate.prestigePoints
+        
+        parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                dispatch_async(dispatch_get_main_queue()){
+                    print("hero saved to parse")
+                    self.newHeroObjectId = parseHero.objectId!
+                    heroToCreate.parseObjectId = self.newHeroObjectId
+                    self.activeRoster?.addHeroToRoster(heroToCreate)
+                    self.performSegueWithIdentifier("addHeroSegue", sender: self)
+                }
+            } else {
+                (error)
+                print("hero did not save to parse")
+            }
+        }
+    }
+
     func updateUsedHeroNamesWithTheEditedHeroName() {
         for (index, value) in activeRoster!.usedHeroNames.enumerate(){
             if heroNameBeforeEdit == value {
@@ -242,15 +324,12 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // This segue will display a tableview with all of the hero's session logs.
         if segue.identifier == "sessionTableSegue" {
             setViewToStaticMode()
             let destVC: HeroSessionLogViewController = segue.destinationViewController as! HeroSessionLogViewController
             destVC.heroDisplayed = heroDisplayed
             destVC.activeRoster = activeRoster
-        }
-        // This segue will display the appropriate tableview based on which cell was touched.
-        if segue.identifier == "heroStatOptionsSegueTwo" {
+        } else if segue.identifier == "heroStatOptionsSegue" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
             let selectedIndex = heroDetailTable.indexPathForCell(sender as! UITableViewCell)
             cellLabel = HeroStatTableViewTitles().statTitles[(selectedIndex?.row)!]
@@ -289,7 +368,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
-            
             statToDisplay = heroStat.chosenStat
         }
     }
@@ -300,11 +378,11 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         heroNumberLabel.layer.cornerRadius = 5
         heroNumberLabel.clipsToBounds = true
         heroDetailTable.layer.cornerRadius = 5
-        editHeroButton.layer.cornerRadius = 5
+        addHeroButton.layer.cornerRadius = 5
     }
     
     func setViewToStaticMode() {
-        editHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
+        addHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
         tableEditState = false
         heroNameTextField.enabled = false
         heroNumberTextField.enabled = false
@@ -312,7 +390,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func setViewToEditMode() {
-        editHeroButton.setTitle("Save", forState: UIControlState.Normal)
+        addHeroButton.setTitle("Save", forState: UIControlState.Normal)
         tableEditState = true
         heroNameTextField.enabled = true
         heroNumberTextField.enabled = true

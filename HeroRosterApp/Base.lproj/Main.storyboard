@@ -409,7 +409,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="5kK-9J-TTs">
                                 <connections>
-                                    <segue destination="U2Z-HO-3fb" kind="push" identifier="addHeroSegue" id="LAe-sW-ph4"/>
+                                    <segue destination="HrD-Kb-B4S" kind="push" identifier="addHeroSegue" id="4Jt-AF-VuM"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="search" id="9n1-9W-b92">
@@ -545,7 +545,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Sh7-gc-SwJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <connections>
                                             <outlet property="delegate" destination="rmt-BO-U60" id="NP9-AP-3cb"/>
@@ -568,7 +568,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="CfM-Cm-l7V"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="dateTextFieldEditing:" destination="rmt-BO-U60" eventType="editingDidBegin" id="eEs-hX-NH0"/>
@@ -734,7 +734,7 @@
             </objects>
             <point key="canvasLocation" x="2208" y="798"/>
         </scene>
-        <!--Hero Details-->
+        <!--Add Hero-->
         <scene sceneID="6FZ-p4-piN">
             <objects>
                 <viewController id="HrD-Kb-B4S" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -774,6 +774,7 @@
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lr3-AJ-8Ok">
                                 <rect key="frame" x="151" y="72" width="149" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3uG-Gv-XU0"/>
                                 </constraints>
@@ -803,9 +804,9 @@
                                     <constraint firstAttribute="width" constant="90" id="j4Q-mJ-Irc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Edit Hero"/>
+                                <state key="normal" title="Add Hero"/>
                                 <connections>
-                                    <action selector="editHeroButtonPressed:" destination="HrD-Kb-B4S" eventType="touchUpInside" id="EJB-Jf-UBZ"/>
+                                    <action selector="addHeroButtonPressed:" destination="HrD-Kb-B4S" eventType="touchUpInside" id="a6u-oh-Sve"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rnZ-zz-9FG">
@@ -839,7 +840,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="3dl-4X-qzd" kind="modal" identifier="heroStatOptionsSegueTwo" id="o4b-B9-U7R"/>
+                                            <segue destination="3dl-4X-qzd" kind="modal" identifier="heroStatOptionsSegue" id="o4b-B9-U7R"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -874,23 +875,26 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Hero Details" id="jfD-uT-z88"/>
-                    <navigationItem key="navigationItem" title="Hero Details" id="YCq-GE-mRw">
-                        <barButtonItem key="rightBarButtonItem" title="Sessions" id="Loj-Ac-65u">
+                    <navigationItem key="navigationItem" title="Add Hero" id="YCq-GE-mRw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="Loj-Ac-65u">
                             <connections>
                                 <segue destination="Wxh-R7-Jia" kind="push" identifier="sessionTableSegue" id="1Yw-vi-fgd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editHeroButton" destination="j5Q-w3-G0n" id="JOg-0X-93O"/>
+                        <outlet property="addHeroButton" destination="j5Q-w3-G0n" id="x8D-4i-fRk"/>
                         <outlet property="heroDetailTable" destination="rnZ-zz-9FG" id="lUp-hU-L3o"/>
                         <outlet property="heroNameLabel" destination="EUz-0N-vzm" id="ZKA-Sp-grh"/>
                         <outlet property="heroNameTextField" destination="Lr3-AJ-8Ok" id="FZK-rI-Gre"/>
                         <outlet property="heroNumberLabel" destination="SdU-UD-Oy7" id="XFW-9Z-DIB"/>
                         <outlet property="heroNumberTextField" destination="pD3-eT-3ma" id="muX-Wz-FDh"/>
+                        <outlet property="openBookButton" destination="Loj-Ac-65u" id="m7v-43-bKe"/>
+                        <segue destination="5VC-ir-mN6" kind="unwind" identifier="addHeroSegue" unwindAction="unwindForSegue:towardsViewController:" id="OeV-to-aDZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksu-Mu-PIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5VC-ir-mN6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1331" y="19"/>
         </scene>
@@ -915,7 +919,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GFF-kP-NEy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="hap-pX-chL" id="aLw-FV-4nt"/>
@@ -1058,160 +1062,6 @@
             </objects>
             <point key="canvasLocation" x="1768" y="-652"/>
         </scene>
-        <!--Add Hero-->
-        <scene sceneID="yNc-zQ-7OV">
-            <objects>
-                <viewController id="U2Z-HO-3fb" customClass="AddHeroViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aQQ-9H-We6"/>
-                        <viewControllerLayoutGuide type="bottom" id="5Y9-jS-syd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VOQ-le-gb5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-QH-viu">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Number:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPi-5Z-1rK">
-                                <rect key="frame" x="20" y="120" width="123" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Bvf-Nj-eLr"/>
-                                    <constraint firstAttribute="width" constant="123" id="Rhh-vu-4cq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u08-sK-qQJ">
-                                <rect key="frame" x="151" y="72" width="149" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="4TJ-Ue-S1M"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="textFieldDoneEditing:" destination="U2Z-HO-3fb" eventType="editingDidEndOnExit" id="J6E-FG-7jp"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0od-EK-Cpx">
-                                <rect key="frame" x="151" y="120" width="149" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="CMR-Ac-aCs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="textFieldDoneEditing:" destination="U2Z-HO-3fb" eventType="editingDidEndOnExit" id="jPW-UZ-Wvv"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-AW-l2A">
-                                <rect key="frame" x="20" y="72" width="123" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Lsr-Kd-yx6"/>
-                                    <constraint firstAttribute="width" constant="123" id="pGZ-s7-kHq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="83y-dw-w1v">
-                                <rect key="frame" x="20" y="168" width="280" height="270"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="270" id="Y6e-bN-jXx"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="heroCell" textLabel="QTS-yh-bjz" detailTextLabel="aol-Va-UR2" rowHeight="45" style="IBUITableViewCellStyleValue2" id="isG-yj-JJu">
-                                        <rect key="frame" x="0.0" y="28" width="280" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="isG-yj-JJu" id="Qzu-tf-pum">
-                                            <rect key="frame" x="0.0" y="0.0" width="247" height="44.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QTS-yh-bjz">
-                                                    <rect key="frame" x="15" y="15" width="91" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aol-Va-UR2">
-                                                    <rect key="frame" x="112" y="15" width="33" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="3dl-4X-qzd" kind="modal" identifier="heroStatOptionsSegue" id="V7N-qI-02U"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="U2Z-HO-3fb" id="Qax-v5-eac"/>
-                                    <outlet property="delegate" destination="U2Z-HO-3fb" id="pUZ-wC-fyh"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc4-PO-j3U">
-                                <rect key="frame" x="116" y="456" width="90" height="33"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="2GK-vp-hP2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Add Hero"/>
-                                <connections>
-                                    <action selector="addHeroButtonPressed:" destination="U2Z-HO-3fb" eventType="touchUpInside" id="VIq-Kv-aun"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="0od-EK-Cpx" firstAttribute="top" secondItem="u08-sK-qQJ" secondAttribute="bottom" constant="18" id="07P-y6-3He"/>
-                            <constraint firstAttribute="trailing" secondItem="83y-dw-w1v" secondAttribute="trailing" constant="20" id="0ca-VP-WEp"/>
-                            <constraint firstItem="0od-EK-Cpx" firstAttribute="leading" secondItem="PPi-5Z-1rK" secondAttribute="trailing" constant="8" id="2pM-qV-Hpx"/>
-                            <constraint firstItem="hTh-AW-l2A" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="3j4-2I-hXZ"/>
-                            <constraint firstItem="u08-sK-qQJ" firstAttribute="leading" secondItem="hTh-AW-l2A" secondAttribute="trailing" constant="8" id="601-PO-qWc"/>
-                            <constraint firstItem="r5J-QH-viu" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leadingMargin" constant="-20" id="ANS-na-HGF"/>
-                            <constraint firstItem="Cc4-PO-j3U" firstAttribute="centerX" secondItem="VOQ-le-gb5" secondAttribute="centerX" constant="1" id="BnK-Yo-Fgb"/>
-                            <constraint firstItem="u08-sK-qQJ" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="8" id="FyQ-Sa-oK3"/>
-                            <constraint firstItem="83y-dw-w1v" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="Ltp-LA-asL"/>
-                            <constraint firstItem="Cc4-PO-j3U" firstAttribute="top" secondItem="83y-dw-w1v" secondAttribute="bottom" constant="18" id="M4N-Yt-VA3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="r5J-QH-viu" secondAttribute="trailing" constant="-20" id="Qcx-xb-hHd"/>
-                            <constraint firstItem="r5J-QH-viu" firstAttribute="bottom" secondItem="VOQ-le-gb5" secondAttribute="bottomMargin" id="Uwz-WF-oRq"/>
-                            <constraint firstItem="r5J-QH-viu" firstAttribute="top" secondItem="VOQ-le-gb5" secondAttribute="topMargin" id="Wgy-6F-JYz"/>
-                            <constraint firstItem="83y-dw-w1v" firstAttribute="top" secondItem="0od-EK-Cpx" secondAttribute="bottom" constant="18" id="ia2-Hu-MPg"/>
-                            <constraint firstItem="PPi-5Z-1rK" firstAttribute="top" secondItem="hTh-AW-l2A" secondAttribute="bottom" constant="18" id="qGy-ES-LGL"/>
-                            <constraint firstItem="PPi-5Z-1rK" firstAttribute="leading" secondItem="VOQ-le-gb5" secondAttribute="leading" constant="20" id="qPB-sT-9eq"/>
-                            <constraint firstItem="hTh-AW-l2A" firstAttribute="top" secondItem="aQQ-9H-We6" secondAttribute="bottom" constant="8" id="uaq-xe-aO6"/>
-                            <constraint firstAttribute="trailing" secondItem="u08-sK-qQJ" secondAttribute="trailing" constant="20" id="wZF-cT-p9C"/>
-                            <constraint firstAttribute="trailing" secondItem="0od-EK-Cpx" secondAttribute="trailing" constant="20" id="zSI-J9-tTv"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add Hero" id="3ca-4T-j0D"/>
-                    <connections>
-                        <outlet property="addHeroButton" destination="Cc4-PO-j3U" id="p9J-Rf-rab"/>
-                        <outlet property="heroNameField" destination="u08-sK-qQJ" id="vmz-UW-TkN"/>
-                        <outlet property="heroNameLabel" destination="hTh-AW-l2A" id="D3s-gH-ZmK"/>
-                        <outlet property="heroNumberField" destination="0od-EK-Cpx" id="2R8-59-PKj"/>
-                        <outlet property="heroNumberLabel" destination="PPi-5Z-1rK" id="udd-Ti-Lpy"/>
-                        <outlet property="heroStatsTable" destination="83y-dw-w1v" id="2ER-Zm-Ukn"/>
-                        <segue destination="gey-4F-HPg" kind="unwind" identifier="addHeroSegue" unwindAction="unwindForSegue:towardsViewController:" id="tEo-2g-t9Q"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLv-FR-NDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="gey-4F-HPg" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1331" y="-652"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Balerion3.jpg" width="1600" height="1003"/>
@@ -1227,8 +1077,8 @@
         <image name="theArchivist.jpg" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ehf-UB-6lp"/>
-        <segue reference="o4b-B9-U7R"/>
         <segue reference="PXK-YF-pJP"/>
+        <segue reference="4Jt-AF-VuM"/>
+        <segue reference="ehf-UB-6lp"/>
     </inferredMetricsTieBreakers>
 </document>

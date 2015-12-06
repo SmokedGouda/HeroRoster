@@ -112,14 +112,15 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "heroDetailSegue" {
+        if segue.identifier == "addHeroSegue" {
             let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
+            destVC.activeRoster = userRoster
+        } else if segue.identifier == "heroDetailSegue" {
+            let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
+            destVC.activeRoster = userRoster
             let selectedIndex = heroRosterTable.indexPathForCell(sender as! UITableViewCell)
             destVC.heroDisplayed = userRoster.heros[(selectedIndex?.row)!]
-            destVC.activeRoster = userRoster
-        } else if segue.identifier == "addHeroSegue" {
-            let destVC: AddHeroViewController = segue.destinationViewController as! AddHeroViewController
-            destVC.activeRoster = userRoster
+            destVC.activateEditMode = true
         } else {
             let destVC: ScenarioSearchViewController = segue.destinationViewController as! ScenarioSearchViewController
             destVC.activeRoster = userRoster

@@ -89,7 +89,7 @@ class LogInViewController: UIViewController {
     }
     
     func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't login to user account", message: "You must provide a user name and password to proceed.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't login to user account", message: "You must provide a username and password to proceed.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
@@ -115,7 +115,7 @@ class LogInViewController: UIViewController {
     }
     
     func invalidUserNameAlert() {
-        let alert = UIAlertController(title: "Invalid user name", message: "The user name you provided does not exist.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Invalid user name", message: "The username you provided does not exist.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)

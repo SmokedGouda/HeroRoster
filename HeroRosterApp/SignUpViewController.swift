@@ -116,7 +116,7 @@ class SignUpViewController: UIViewController {
     }
     
     func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a user name, password, and e-mail to proceed.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a username, password, and e-mail to proceed.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
