@@ -14,7 +14,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     @IBOutlet weak var navigationBarTitle: UINavigationItem!
     
     var navBarTitle = String()
-    var chosenStat = Int()
+    var chosenStat: Int?
     var lastSelectedRow: Int?
     var selectedRow: NSIndexPath?
     var heroStatsArrayToDisplay = [String]()

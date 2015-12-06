@@ -20,7 +20,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var heroNumberLabel: UILabel!
     
     var activeRoster = Roster?()
-    var statToDisplay = Int()
+    var statToDisplay: Int?
     var classDisplayed = String()
     var raceDisplayed = String()
     var genderDisplayed = String()
@@ -38,7 +38,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var temporaryIndex: Int?
     
     var heroDisplayed = Hero?()
-    var cellLabel = String()
+    var cellTitleLabel = String()
     var createdHero: Hero?
     var newHeroObjectId = String()
     var activateEditMode = false
@@ -90,46 +90,46 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         cell.textLabel!.text = HeroStatTableViewTitles().statTitles[indexPath.row]
-        let statLabel = cell.textLabel!.text
-        switch statLabel! {
+        let statTitleLabel = cell.textLabel!.text
+        switch statTitleLabel! {
             case "Class":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().heroClass, statDisplayed: classDisplayed, heroDisplayedStat: heroDisplayed?.heroClass, statIndex: classIndex)
-                if activateEditMode == true || cellLabel == statLabel {
+                displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().heroClass, statDisplayed: classDisplayed, heroDisplayedStat: heroDisplayed?.heroClass, statIndex: classIndex)
+                if activateEditMode == true || cellTitleLabel == statTitleLabel {
                     classDisplayed = temporaryStatDisplayed
                     classIndex = temporaryIndex
                }
             
             case "Race":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().race, statDisplayed: raceDisplayed, heroDisplayedStat: heroDisplayed?.race, statIndex: raceIndex)
-                if activateEditMode == true || cellLabel == statLabel {
+                displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().race, statDisplayed: raceDisplayed, heroDisplayedStat: heroDisplayed?.race, statIndex: raceIndex)
+                if activateEditMode == true || cellTitleLabel == statTitleLabel {
                     raceDisplayed = temporaryStatDisplayed
                     raceIndex = temporaryIndex
                }
           
             case "Gender":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().gender, statDisplayed: genderDisplayed, heroDisplayedStat: heroDisplayed?.gender, statIndex: genderIndex)
-                if activateEditMode == true || cellLabel == statLabel {
+                displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().gender, statDisplayed: genderDisplayed, heroDisplayedStat: heroDisplayed?.gender, statIndex: genderIndex)
+                if activateEditMode == true || cellTitleLabel == statTitleLabel {
                     genderDisplayed = temporaryStatDisplayed
                     genderIndex = temporaryIndex
                 }
             
             case "Level":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().level, statDisplayed: levelDisplayed, heroDisplayedStat: heroDisplayed?.level, statIndex: levelIndex)
-                if activateEditMode == true || cellLabel == statLabel {
+                displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().level, statDisplayed: levelDisplayed, heroDisplayedStat: heroDisplayed?.level, statIndex: levelIndex)
+                if activateEditMode == true || cellTitleLabel == statTitleLabel {
                     levelDisplayed = temporaryStatDisplayed
                     levelIndex = temporaryIndex
                 }
             
             case "Faction":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().faction, statDisplayed: factionDisplayed, heroDisplayedStat: heroDisplayed?.faction, statIndex: factionIndex)
-                if activateEditMode == true || cellLabel == statLabel {
+                displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().faction, statDisplayed: factionDisplayed, heroDisplayedStat: heroDisplayed?.faction, statIndex: factionIndex)
+                if activateEditMode == true || cellTitleLabel == statTitleLabel {
                     factionDisplayed = temporaryStatDisplayed
                     factionIndex = temporaryIndex
                }
             
             case "Prestige":
-                displayContentsOfCell(cell, statLabel: statLabel!, heroStats: HeroStats().prestigePoints, statDisplayed: prestigePointsDisplayed, heroDisplayedStat: heroDisplayed?.prestigePoints, statIndex: prestigePointsIndex)
-                if activateEditMode == true || cellLabel == statLabel {
+                displayContentsOfCell(cell, cellTextLabel: statTitleLabel!, heroStats: HeroStats().prestigePoints, statDisplayed: prestigePointsDisplayed, heroDisplayedStat: heroDisplayed?.prestigePoints, statIndex: prestigePointsIndex)
+                if activateEditMode == true || cellTitleLabel == statTitleLabel {
                     prestigePointsDisplayed = temporaryStatDisplayed
                     prestigePointsIndex = temporaryIndex
                }
@@ -140,13 +140,15 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    func displayContentsOfCell(cell: UITableViewCell, statLabel: String, heroStats: [String], var statDisplayed: String, heroDisplayedStat: String?, var statIndex: Int?) -> (String, Int?) {
+    func displayContentsOfCell(cell: UITableViewCell, cellTextLabel: String, heroStats: [String], var statDisplayed: String, heroDisplayedStat: String?, var statIndex: Int?) -> (String, Int?) {
         let cell = cell
-        let statLabel = statLabel
+        let statTitleLabel = cellTextLabel
         let buttonLabel = addHeroButton.titleLabel!.text!
         if activateEditMode == true {
-            if cellLabel == statLabel {
-                cell.detailTextLabel!.text = heroStats[statToDisplay]
+            if cellTitleLabel == statTitleLabel {
+                if statToDisplay != nil {
+                    cell.detailTextLabel!.text = heroStats[statToDisplay!]
+                }
                 statIndex = statToDisplay
             } else if buttonLabel == "Save" {
                 cell.detailTextLabel!.text = statDisplayed
@@ -163,8 +165,12 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             temporaryStatDisplayed = statDisplayed
             temporaryIndex = statIndex
         } else {
-            if cellLabel == statLabel {
-                cell.detailTextLabel!.text = heroStats[statToDisplay]
+            if cellTitleLabel == statTitleLabel {
+                if statToDisplay != nil {
+                    cell.detailTextLabel!.text = heroStats[statToDisplay!]
+                } else {
+                    cell.detailTextLabel!.text = ""
+                }
                 cell.detailTextLabel!.hidden = false
                 statDisplayed = cell.detailTextLabel!.text!
                 statIndex = statToDisplay
@@ -332,9 +338,9 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         } else if segue.identifier == "heroStatOptionsSegue" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
             let selectedIndex = heroDetailTable.indexPathForCell(sender as! UITableViewCell)
-            cellLabel = HeroStatTableViewTitles().statTitles[(selectedIndex?.row)!]
-            destVC.navBarTitle = cellLabel
-            switch cellLabel {
+            cellTitleLabel = HeroStatTableViewTitles().statTitles[(selectedIndex?.row)!]
+            destVC.navBarTitle = cellTitleLabel
+            switch cellTitleLabel {
                 case "Class":
                     destVC.heroStatsArrayToDisplay = HeroStats().heroClass
                     destVC.lastSelectedRow = classIndex
