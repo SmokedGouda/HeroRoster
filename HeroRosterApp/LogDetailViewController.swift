@@ -144,7 +144,6 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                     self.newLogObjectId = parseLog.objectId!
                     logToCreate.parseObjectId = self.newLogObjectId
                     self.heroDisplayed?.addSessionLog(logToCreate)
-                    print("The updated hero's log ids are \(self.heroDisplayed?.logIds)")
                     self.updateHeroLogIdsParse()
                     self.activeRoster!.updateScenarioRecordsOnParse(self.activeRoster!)
                 }

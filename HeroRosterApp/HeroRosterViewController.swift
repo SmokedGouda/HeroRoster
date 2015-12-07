@@ -184,7 +184,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
         }
-       
     }
         
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
