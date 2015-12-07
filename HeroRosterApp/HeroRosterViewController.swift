@@ -13,6 +13,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     @IBOutlet weak var heroRosterTable: UITableView!
    
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [], parseObjectId: "")
+    var sortedHeros = [Hero]()
     var activeUser = PFUser.currentUser()
     var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", faction: "", prestigePoints: "", log: [], parseObjectId: "", logIds: [])
     var parseHeroName = [String]()
@@ -44,11 +45,12 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
  
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
-        cell!.textLabel!.text = userRoster.heros[indexPath.row].name
+        sortedHeros = userRoster.heros.sort { $0.name.compare($1.name) == .OrderedAscending }
+        cell!.textLabel!.text = sortedHeros[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell!.detailTextLabel!.text = userRoster.heros[indexPath.row].heroClass
+        cell!.detailTextLabel!.text = sortedHeros[indexPath.row].heroClass
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
-        cell!.imageView?.image = UIImage(named: userRoster.heros[indexPath.row].heroClass)
+        cell!.imageView?.image = UIImage(named: sortedHeros[indexPath.row].heroClass)
    
         return cell!
     }
@@ -57,9 +59,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             func deleteHero() {
-                let heroToDelete = userRoster.heros[indexPath.row]
+                let heroToDelete = sortedHeros[indexPath.row]
                 let query = PFQuery(className:"Hero")
-                query.getObjectInBackgroundWithId(userRoster.heros[indexPath.row].parseObjectId) {
+                query.getObjectInBackgroundWithId(sortedHeros[indexPath.row].parseObjectId) {
                     (Hero: PFObject?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
@@ -115,7 +117,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
             destVC.activeRoster = userRoster
             let selectedIndex = heroRosterTable.indexPathForCell(sender as! UITableViewCell)
-            destVC.heroDisplayed = userRoster.heros[(selectedIndex?.row)!]
+            destVC.heroDisplayed = sortedHeros[(selectedIndex?.row)!]
             destVC.activateEditMode = true
         } else {
             let destVC: ScenarioSearchViewController = segue.destinationViewController as! ScenarioSearchViewController
