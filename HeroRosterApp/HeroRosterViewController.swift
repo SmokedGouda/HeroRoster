@@ -40,17 +40,16 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userRoster.heros.count
+        return userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }.count
     }
  
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
-        sortedHeros = userRoster.heros.sort { $0.name.compare($1.name) == .OrderedAscending }
-        cell!.textLabel!.text = sortedHeros[indexPath.row].name
+        cell!.textLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell!.detailTextLabel!.text = sortedHeros[indexPath.row].heroClass
+        cell!.detailTextLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
-        cell!.imageView?.image = UIImage(named: sortedHeros[indexPath.row].heroClass)
+        cell!.imageView?.image = UIImage(named: userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass)
    
         return cell!
     }
@@ -59,9 +58,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             func deleteHero() {
-                let heroToDelete = sortedHeros[indexPath.row]
+                let heroToDelete = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[indexPath.row]
                 let query = PFQuery(className:"Hero")
-                query.getObjectInBackgroundWithId(sortedHeros[indexPath.row].parseObjectId) {
+                query.getObjectInBackgroundWithId(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[indexPath.row].parseObjectId) {
                     (Hero: PFObject?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
@@ -117,7 +116,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
             destVC.activeRoster = userRoster
             let selectedIndex = heroRosterTable.indexPathForCell(sender as! UITableViewCell)
-            destVC.heroDisplayed = sortedHeros[(selectedIndex?.row)!]
+            destVC.heroDisplayed = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[(selectedIndex?.row)!]
             destVC.activateEditMode = true
         } else {
             let destVC: ScenarioSearchViewController = segue.destinationViewController as! ScenarioSearchViewController
@@ -185,6 +184,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
         }
+       
     }
         
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
