@@ -80,7 +80,7 @@ class Hero {
         }
     }
     
-    func updateSessionLog(logToUpdate: SessionLog, newName: String, newDate: String, newNotes: String) -> SessionLog {
+    func updateSessionLog(logToUpdate: SessionLog, newName: String, newDate: NSDate, newNotes: String) -> SessionLog {
         logToUpdate.name = newName
         logToUpdate.date = newDate
         logToUpdate.notes = newNotes
@@ -91,15 +91,33 @@ class Hero {
 
 class SessionLog {
     var name: String
-    var date: String
+    var date: NSDate
     var notes: String
     var parseObjectId: String
     
-    init(name: String, date: String, notes: String, parseObjectId: String) {
+    init(name: String, date: NSDate, notes: String, parseObjectId: String) {
         self.name = name
         self.date = date
         self.notes = notes
         self.parseObjectId = parseObjectId
+    }
+    
+    func dateFromString(date: String) -> NSDate {
+        let dateFormatter = NSDateFormatter()
+        var convertedDate: NSDate
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        convertedDate = dateFormatter.dateFromString(date)!
+        return convertedDate
+    }
+    
+    func stringFromDate(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        var convertedDate: String
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        convertedDate = dateFormatter.stringFromDate(date)
+        return convertedDate
     }
 }
 

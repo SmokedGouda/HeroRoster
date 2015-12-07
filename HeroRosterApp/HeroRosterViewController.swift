@@ -13,7 +13,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     @IBOutlet weak var heroRosterTable: UITableView!
    
     var userRoster = Roster(userName: "", heros: [], usedHeroNames: [], parseObjectId: "")
-    var sortedHeros = [Hero]()
     var activeUser = PFUser.currentUser()
     var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", faction: "", prestigePoints: "", log: [], parseObjectId: "", logIds: [])
     var parseHeroName = [String]()

@@ -22,11 +22,11 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
       
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
-    var heroLogDisplayed = SessionLog?()
-    var date = String()
+    var heroLogDisplayed = SessionLog(name: "", date: NSDate(), notes: "", parseObjectId: "")
+    var date = NSDate()
     var notes = String()
-    var newSenarioName = String()
-    var sessionLogNameBeforeEdit = String()
+    var newScenarioName = String()
+    var scenarioNameBeforeEdit = String()
     var activateEditMode = false
     var newLogObjectId = String()
     var sectionIndex: Int?
@@ -62,7 +62,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
             setViewToEditMode()
             
             case "Save":
-                if scenarioNameTextView.text != sessionLogNameBeforeEdit {
+                if scenarioNameTextView.text != scenarioNameBeforeEdit {
                     checkEditedLogNameAgainstUsedLogNames()
                 } else {
                     activeRoster?.scenarioRecords[scenarioNameTextView.text] = [heroDisplayed!.name, dateTextField.text!]
@@ -70,16 +70,16 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
                 }
             
             default:
-                newSenarioName = scenarioNameTextView.text!
-                if newSenarioName == "" {
+                newScenarioName = scenarioNameTextView.text!
+                if newScenarioName == "" {
                     displayEmptyScenarioNameAlert()
-                } else if activeRoster?.scenarioRecords.keys.contains(newSenarioName) == true {
-                    displayDuplicateSessionLogNameAlert(newSenarioName)
+                } else if activeRoster?.scenarioRecords.keys.contains(newScenarioName) == true {
+                    displayDuplicateSessionLogNameAlert(newScenarioName)
                 } else {
-                    date = dateTextField.text!
+                    date = heroLogDisplayed.dateFromString(dateTextField.text!)
                     notes = notesTextView.text!
-                    let newSessionLog = SessionLog(name: newSenarioName, date: date, notes: notes, parseObjectId: "")
-                    activeRoster?.scenarioRecords[newSenarioName] = [heroDisplayed!.name, date]
+                    let newSessionLog = SessionLog(name: newScenarioName, date: date, notes: notes, parseObjectId: "")
+                    activeRoster?.scenarioRecords[newScenarioName] = [heroDisplayed!.name, dateTextField.text!]
                     createSessionLogOnParse(newSessionLog)
                     self.performSegueWithIdentifier("addSessionLogSegue", sender: self)
                 }
@@ -115,17 +115,17 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func updateScenarioRecords() {
-        activeRoster?.scenarioRecords[sessionLogNameBeforeEdit] = nil
+        activeRoster?.scenarioRecords[scenarioNameBeforeEdit] = nil
         activeRoster?.scenarioRecords[scenarioNameTextView.text!] = [heroDisplayed!.name, dateTextField.text!]
-          sessionLogNameBeforeEdit = scenarioNameTextView.text!
+          scenarioNameBeforeEdit = scenarioNameTextView.text!
     }
     
     func saveEditedLog() {
         setViewToStaticMode()
-        let updatedScenarioName = scenarioNameTextView.text
-        let updatedDate = dateTextField.text
+        let updatedScenarioName = scenarioNameTextView.text!
+        let updatedDate = heroLogDisplayed.dateFromString(dateTextField.text!)
         let updatedNotes = notesTextView.text
-        heroDisplayed?.updateSessionLog(heroLogDisplayed!, newName: updatedScenarioName!, newDate: updatedDate!, newNotes: updatedNotes)
+        heroDisplayed?.updateSessionLog(heroLogDisplayed, newName: updatedScenarioName, newDate: updatedDate, newNotes: updatedNotes)
         updateSessionLogOnParse()
         activeRoster!.updateScenarioRecordsOnParse(activeRoster!)
     }
@@ -155,13 +155,13 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     
     func updateSessionLogOnParse() {
         let query = PFQuery(className:"Log")
-        query.getObjectInBackgroundWithId(heroLogDisplayed!.parseObjectId) {
+        query.getObjectInBackgroundWithId(heroLogDisplayed.parseObjectId) {
             (Log: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 print(error)
             } else if let log = Log {
                 log["sessionName"] = self.scenarioNameTextView.text
-                log["date"] = self.dateTextField.text
+                log["date"] = self.heroLogDisplayed.dateFromString(self.dateTextField.text!)
                 log["notes"] = self.notesTextView.text
                 log.saveInBackground()
             }
@@ -214,12 +214,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         datePickerView.datePickerMode = UIDatePickerMode.Date
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        if let dateString = heroLogDisplayed?.date {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-            dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-            datePickerView.date = dateFormatter.dateFromString(dateString)!
-        }
+        datePickerView.date = heroLogDisplayed.dateFromString(dateTextField.text!)
     }
     
     func datePickerValueChanged(sender:UIDatePicker) {
@@ -237,10 +232,10 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func loadTheViewWithSelectedSession() {
-        scenarioNameTextView.text = heroLogDisplayed!.name
-        dateTextField.text = heroLogDisplayed!.date
-        notesTextView.text = heroLogDisplayed!.notes
-        sessionLogNameBeforeEdit = scenarioNameTextView.text!
+        scenarioNameTextView.text = heroLogDisplayed.name
+        dateTextField.text = heroLogDisplayed.stringFromDate(heroLogDisplayed.date)
+        notesTextView.text = heroLogDisplayed.notes
+        scenarioNameBeforeEdit = scenarioNameTextView.text!
     }
     
     func setViewToStaticMode() {

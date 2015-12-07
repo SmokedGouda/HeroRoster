@@ -16,9 +16,9 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     var activeUser = PFUser.currentUser()
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
-    var downloadedSessionLog = SessionLog(name: "", date: "", notes: "", parseObjectId: "")
+    var downloadedSessionLog = SessionLog(name: "", date: NSDate(), notes: "", parseObjectId: "")
     var parseSessionLogName = [String]()
-    var parseSessionLogDate = [String]()
+    var parseSessionLogDate = [NSDate]()
     var parseSessionLogNotes = [String]()
     var parseSessionLogObjectId = [String]()
     
@@ -35,14 +35,14 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (heroDisplayed?.log.count)!
+        return heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sessionLogCell")
-        cell?.textLabel!.text = heroDisplayed!.log[indexPath.row].name
+        cell?.textLabel!.text = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell?.detailTextLabel!.text = heroDisplayed!.log[indexPath.row].date
+        cell?.detailTextLabel!.text = downloadedSessionLog.stringFromDate(heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].date)
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
         return cell!
     }
@@ -51,9 +51,9 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             func deleteSession() {
-                let sessionToDelete = heroDisplayed?.log[indexPath.row]
+                let sessionToDelete = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row]
                 let query = PFQuery(className:"Log")
-                query.getObjectInBackgroundWithId(heroDisplayed!.log[indexPath.row].parseObjectId) {
+                query.getObjectInBackgroundWithId(heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].parseObjectId) {
                     (Log: PFObject?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
@@ -61,8 +61,8 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                         log.deleteInBackground()
                     }
                 }
-                activeRoster?.scenarioRecords[sessionToDelete!.name] = nil
-                heroDisplayed?.deleteSessionLog(sessionToDelete!)
+                activeRoster?.scenarioRecords[sessionToDelete.name] = nil
+                heroDisplayed?.deleteSessionLog(sessionToDelete)
                 updateHeroLogIdsParse()
                 activeRoster!.updateScenarioRecordsOnParse(activeRoster!)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
@@ -86,7 +86,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         if segue.identifier == "viewSessionLogSegue" {
             let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
             destVC.activateEditMode = true
-            destVC.heroLogDisplayed = heroDisplayed!.log[(selectedIndex?.row)!]
+            destVC.heroLogDisplayed = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
         }
     }
     
@@ -109,7 +109,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                             if self.parseSessionLogName.contains(object["sessionName"] as! String) == false {
     
                                 self.downloadedSessionLog.name = object["sessionName"] as! String
-                                self.downloadedSessionLog.date = object["date"] as! String
+                                self.downloadedSessionLog.date = object["date"] as! NSDate
                                 self.downloadedSessionLog.notes = object["notes"] as! String
           
                                 self.parseSessionLogName.append(self.downloadedSessionLog.name)
