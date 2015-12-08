@@ -123,6 +123,9 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             let selectedIndex = heroRosterTable.indexPathForCell(sender as! UITableViewCell)
             destVC.heroDisplayed = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[(selectedIndex?.row)!]
             destVC.activateEditMode = true
+        } else if segue.identifier == "gmSessionTableSegue" {
+            let destVC: GmSessionLogViewController = segue.destinationViewController as! GmSessionLogViewController
+            destVC.activeRoster = userRoster
         } else {
             let destVC: ScenarioSearchViewController = segue.destinationViewController as! ScenarioSearchViewController
             destVC.activeRoster = userRoster

@@ -48,12 +48,14 @@
 		3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F624AB51BEFE3ED009415CF /* CoreLocation.framework */; };
 		3F62EDC01C12116400E516A9 /* ScenarioSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62EDBF1C12116400E516A9 /* ScenarioSearchViewController.swift */; };
 		3F6ACF8F1C04D7DB00753000 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */; };
+		3F6EFC8F1C17731800A61C60 /* GmSessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6EFC8E1C17731800A61C60 /* GmSessionLogViewController.swift */; };
 		3F7001491BF381F400BC8684 /* illo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001481BF381F400BC8684 /* illo3.jpg */; };
 		3F70014B1BF3865C00BC8684 /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014A1BF3865C00BC8684 /* Illo2.jpg */; };
 		3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014C1BF387AC00BC8684 /* Illo1.jpg */; };
 		3F70014F1BF387BC00BC8684 /* illo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F70014E1BF387BC00BC8684 /* illo4.jpg */; };
 		3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001531BF39D7900BC8684 /* femaleKnight.jpg */; };
 		3F7001561BF3A3D800BC8684 /* book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001551BF3A3D800BC8684 /* book.jpg */; };
+		3F73851D1C17812A005A436B /* GmLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73851C1C17812A005A436B /* GmLogDetailViewController.swift */; };
 		3F73FFA31C122DDB00CFE5D6 /* chaos_librarian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */; };
 		3FAFC6371C14E437002ABAD7 /* Alchemist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6111C14E437002ABAD7 /* Alchemist.png */; };
 		3FAFC6381C14E437002ABAD7 /* Antipaladin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6121C14E437002ABAD7 /* Antipaladin.png */; };
@@ -162,12 +164,14 @@
 		3F624AB51BEFE3ED009415CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F62EDBF1C12116400E516A9 /* ScenarioSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioSearchViewController.swift; sourceTree = "<group>"; };
 		3F6ACF8E1C04D7DB00753000 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		3F6EFC8E1C17731800A61C60 /* GmSessionLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GmSessionLogViewController.swift; sourceTree = "<group>"; };
 		3F7001481BF381F400BC8684 /* illo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo3.jpg; path = ../HeroRosterApp/illo3.jpg; sourceTree = "<group>"; };
 		3F70014A1BF3865C00BC8684 /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo2.jpg; path = ../HeroRosterApp/Illo2.jpg; sourceTree = "<group>"; };
 		3F70014C1BF387AC00BC8684 /* Illo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Illo1.jpg; path = ../HeroRosterApp/Illo1.jpg; sourceTree = "<group>"; };
 		3F70014E1BF387BC00BC8684 /* illo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = illo4.jpg; path = ../HeroRosterApp/illo4.jpg; sourceTree = "<group>"; };
 		3F7001531BF39D7900BC8684 /* femaleKnight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = femaleKnight.jpg; sourceTree = "<group>"; };
 		3F7001551BF3A3D800BC8684 /* book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book.jpg; sourceTree = "<group>"; };
+		3F73851C1C17812A005A436B /* GmLogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GmLogDetailViewController.swift; sourceTree = "<group>"; };
 		3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chaos_librarian.jpg; sourceTree = "<group>"; };
 		3FAFC6111C14E437002ABAD7 /* Alchemist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alchemist.png; sourceTree = "<group>"; };
 		3FAFC6121C14E437002ABAD7 /* Antipaladin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Antipaladin.png; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 				3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */,
 				3F483CD21C0CF8DD00039CAA /* ScenarioListViewController.swift */,
 				3F62EDBF1C12116400E516A9 /* ScenarioSearchViewController.swift */,
+				3F6EFC8E1C17731800A61C60 /* GmSessionLogViewController.swift */,
+				3F73851C1C17812A005A436B /* GmLogDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -616,6 +622,8 @@
 			files = (
 				3F2B89B91BE9413F00CE037C /* LogInViewController.swift in Sources */,
 				3F010DA11BF4F38C00B303E4 /* ApiKeys.swift in Sources */,
+				3F73851D1C17812A005A436B /* GmLogDetailViewController.swift in Sources */,
+				3F6EFC8F1C17731800A61C60 /* GmSessionLogViewController.swift in Sources */,
 				3F483CD31C0CF8DD00039CAA /* ScenarioListViewController.swift in Sources */,
 				3F2B89EA1BE94A5A00CE037C /* HeroRosterViewController.swift in Sources */,
 				3F27CDE61BE9B6C300D4B759 /* HeroDetailViewController.swift in Sources */,
