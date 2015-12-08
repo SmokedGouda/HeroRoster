@@ -58,6 +58,10 @@ class Hero {
         self.logIds = logIds
     }
     
+    convenience init() {
+        self.init(name: "Unnamed", number: "No number", heroClass: "No class", race: "No race", gender: "No gender", level: "No level", faction: "No faction", prestigePoints: "No points", log: [], parseObjectId: "No ID", logIds: [])
+    }
+    
     func addSessionLog(logToAdd: SessionLog) {
         log.append(logToAdd)
         if logIds.contains(logToAdd.parseObjectId) == false {
@@ -102,6 +106,10 @@ class SessionLog {
         self.parseObjectId = parseObjectId
     }
     
+    convenience init() {
+        self.init(name: "Unnamed", date: NSDate(), notes: "No notes", parseObjectId: "No ID")
+    }
+    
     func dateFromString(date: String) -> NSDate {
         let dateFormatter = NSDateFormatter()
         var convertedDate: NSDate
@@ -125,14 +133,19 @@ class Roster {
     var userName: String
     var heros: [Hero]
     var usedHeroNames: [String]
-    var scenarioRecords = [String:[String]]()
+    var scenarioRecords: [String:[String]]
     var parseObjectId: String
     
-    init(userName: String, heros: [Hero], usedHeroNames: [String], parseObjectId: String) {
+    init(userName: String, heros: [Hero], usedHeroNames: [String], scenarioRecords: [String:[String]], parseObjectId: String) {
         self.userName = userName
         self.heros = heros
         self.usedHeroNames = usedHeroNames
+        self.scenarioRecords = scenarioRecords
         self.parseObjectId = parseObjectId
+    }
+    
+    convenience init() {
+        self.init(userName: "Unnamed", heros: [], usedHeroNames: [], scenarioRecords: [String:[String]](), parseObjectId: "No ID")
     }
     
     func addHeroToRoster(heroToAdd: Hero) {

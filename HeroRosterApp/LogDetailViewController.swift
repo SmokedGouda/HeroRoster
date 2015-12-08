@@ -22,7 +22,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
       
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
-    var heroLogDisplayed = SessionLog(name: "", date: NSDate(), notes: "", parseObjectId: "")
+    var heroLogDisplayed = SessionLog()
     var date = NSDate()
     var notes = String()
     var newScenarioName = String()

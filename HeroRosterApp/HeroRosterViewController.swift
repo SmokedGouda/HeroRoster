@@ -12,9 +12,9 @@ import Parse
 class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var heroRosterTable: UITableView!
    
-    var userRoster = Roster(userName: "", heros: [], usedHeroNames: [], parseObjectId: "")
+    var userRoster = Roster()
     var activeUser = PFUser.currentUser()
-    var downloadedHero = Hero(name: "", number: "", heroClass: "", race: "", gender: "", level: "", faction: "", prestigePoints: "", log: [], parseObjectId: "", logIds: [])
+    var downloadedHero = Hero()
     var parseHeroName = [String]()
     var parseHeroNumber = [String]()
     var parseHeroClass = [String]()
@@ -124,7 +124,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     }
 
     func getRosterFromParse() {
-        let rosterName = "\(activeUser!.username!)'s hero roster"
+        let rosterName = activeUser!.username!
         let query = PFQuery(className: "Roster")
         query.whereKey("name", equalTo: rosterName)
         query.findObjectsInBackgroundWithBlock {
@@ -144,7 +144,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     }
     
     func getHerosFromParse() {
-        let rosterName = "\(activeUser!.username!)'s hero roster"
+        let rosterName = activeUser!.username!
         let query = PFQuery(className: "Hero")
         query.whereKey("owner", equalTo: rosterName)
         query.findObjectsInBackgroundWithBlock{ (Hero: [PFObject]?, error: NSError?) -> Void in

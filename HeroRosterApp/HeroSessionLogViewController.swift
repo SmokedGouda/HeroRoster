@@ -16,7 +16,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     var activeUser = PFUser.currentUser()
     var activeRoster = Roster?()
     var heroDisplayed = Hero?()
-    var downloadedSessionLog = SessionLog(name: "", date: NSDate(), notes: "", parseObjectId: "")
+    var downloadedSessionLog = SessionLog()
     var parseSessionLogName = [String]()
     var parseSessionLogDate = [NSDate]()
     var parseSessionLogNotes = [String]()
@@ -95,7 +95,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func getSessionLogsFromParse() {
-        let rosterName = "\(activeUser!.username!)'s hero roster"
+        let rosterName = activeUser!.username!
         let logQuery = PFQuery(className: "Log")
         logQuery.whereKey("owner", equalTo: rosterName)
         logQuery.findObjectsInBackgroundWithBlock{ (Log: [PFObject]?, error: NSError?) -> Void in
