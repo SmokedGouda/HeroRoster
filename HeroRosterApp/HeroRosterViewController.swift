@@ -15,6 +15,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     var userRoster = Roster()
     var activeUser = PFUser.currentUser()
     var downloadedHero = Hero()
+    var downloadedGmSessionLog = GmSessionLog()
     var parseHeroName = [String]()
     var parseHeroNumber = [String]()
     var parseHeroClass = [String]()
@@ -26,6 +27,11 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     var parseHeroUsedLogNames: [String] = []
     var parseHeroObjectId = [String]()
     var parseHeroLogIds = [[String]]()
+    var parseGmSessionLogName = [String]()
+    var parseGmSessionLogDate = [NSDate]()
+    var parseGmSessionLogNotes = [String]()
+    var parseGmSessionLogObjectId = [String]()
+    var parseGmSessionLogCreditForHero = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,6 +188,39 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     func populateUserRoster() {
         for (index,_) in parseHeroName.enumerate() {
             userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
+        }
+    }
+    
+    func getGmSessionLogsFromParse() {
+        let rosterName = activeUser!.username!
+        let query = PFQuery(className: "GmLogs")
+        query.whereKey("owner", equalTo: rosterName)
+        query.findObjectsInBackgroundWithBlock{ (GmLog: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    for object in GmLog! {
+                        self.downloadedGmSessionLog.name = object["name"] as! String
+                        self.downloadedGmSessionLog.date = object["date"] as! NSDate
+                        self.downloadedGmSessionLog.notes = object["notes"] as! String
+                        self.downloadedGmSessionLog.creditForHero = object["creditForHero"] as! String
+                        
+                        self.parseGmSessionLogName.append(self.downloadedGmSessionLog.name)
+                        self.parseGmSessionLogDate.append(self.downloadedGmSessionLog.date)
+                        self.parseGmSessionLogNotes.append(self.downloadedGmSessionLog.notes)
+                        self.parseGmSessionLogObjectId.append(object.objectId! as String)
+                        self.parseGmSessionLogCreditForHero.append(self.downloadedGmSessionLog.creditForHero)
+                    }
+                    self.populateGmSessionLogs()
+                }
+            } else {
+               print("Error: \(error!) \(error!.userInfo)") 
+            }
+        }
+    }
+    
+    func populateGmSessionLogs() {
+        for (index,_) in parseGmSessionLogName.enumerate() {
+            userRoster.addGmSessionLog(GmSessionLog(name: parseGmSessionLogName[index], date: parseGmSessionLogDate[index], notes: parseGmSessionLogNotes[index], parseObjectId: parseGmSessionLogObjectId[index], creditForHero: parseGmSessionLogCreditForHero[index]))
         }
     }
         

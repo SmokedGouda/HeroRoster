@@ -129,23 +129,37 @@ class SessionLog {
     }
 }
 
+class GmSessionLog: SessionLog {
+    var creditForHero: String
+    init(name: String, date: NSDate, notes: String, parseObjectId: String, creditForHero: String) {
+        self.creditForHero = creditForHero
+        super.init(name: name, date: date, notes: notes, parseObjectId: parseObjectId)
+    }
+    
+    convenience init() {
+        self.init(name: "Unnamed", date: NSDate(), notes: "No notes", parseObjectId: "No ID", creditForHero: "Unnamed")
+    }
+}
+
 class Roster {
     var userName: String
     var heros: [Hero]
     var usedHeroNames: [String]
     var scenarioRecords: [String:[String]]
+    var gmSessionLogs: [GmSessionLog]
     var parseObjectId: String
     
-    init(userName: String, heros: [Hero], usedHeroNames: [String], scenarioRecords: [String:[String]], parseObjectId: String) {
+    init(userName: String, heros: [Hero], usedHeroNames: [String], scenarioRecords: [String:[String]], gmSessionLogs: [GmSessionLog], parseObjectId: String) {
         self.userName = userName
         self.heros = heros
         self.usedHeroNames = usedHeroNames
+        self.gmSessionLogs = gmSessionLogs
         self.scenarioRecords = scenarioRecords
         self.parseObjectId = parseObjectId
     }
     
     convenience init() {
-        self.init(userName: "Unnamed", heros: [], usedHeroNames: [], scenarioRecords: [String:[String]](), parseObjectId: "No ID")
+        self.init(userName: "Unnamed", heros: [], usedHeroNames: [], scenarioRecords: [String:[String]](), gmSessionLogs: [], parseObjectId: "No ID")
     }
     
     func addHeroToRoster(heroToAdd: Hero) {
@@ -194,6 +208,27 @@ class Roster {
                 roster.saveInBackground()
             }
         }
+    }
+    
+    func addGmSessionLog(logToAdd: GmSessionLog) {
+        gmSessionLogs.append(logToAdd)
+    }
+    
+    func deleteGmSessionLog(logToDelete: GmSessionLog) {
+        for (index, value) in gmSessionLogs.enumerate() {
+            if logToDelete.name == value.name {
+                gmSessionLogs.removeAtIndex(index)
+            }
+        }
+    }
+    
+    func updateGmSessionLog(logToUpdate: GmSessionLog, newName: String, newDate: NSDate, newNotes: String, newCreditForHero: String) -> GmSessionLog {
+        logToUpdate.name = newName
+        logToUpdate.date = newDate
+        logToUpdate.notes = newNotes
+        logToUpdate.creditForHero = newCreditForHero
+        
+        return logToUpdate
     }
 }
 
