@@ -10,6 +10,8 @@ import UIKit
 import Parse
 
 class LogInViewController: UIViewController {
+    
+    @IBOutlet weak var heroRosterLogo: UIImageView!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -20,9 +22,20 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBarHidden = true
+        navigationController?.navigationBar.alpha = 0.0
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(dismiss)
         roundTheButtons()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBarHidden = true
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func dismissKeyboard() {
@@ -30,11 +43,18 @@ class LogInViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            userNameField.text = ""
-            userPasswordField.text = ""
+        userNameField.text = ""
+        userPasswordField.text = ""
+        if segue.identifier == "heroRosterSegue" {
+            navigationController?.navigationBarHidden = false
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 1.0}, completion: nil)
+        } else {
+             adjustAlphaForUIElements(0.0)
+        }
     }
     
     @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUIElements(0.8)}, completion: nil)
     }
     
    @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -124,6 +144,14 @@ class LogInViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         newUserSignUpButton.layer.cornerRadius = 5
         forgotPasswordButton.layer.cornerRadius = 5
+    }
+    
+    func adjustAlphaForUIElements(alpha: CGFloat) {
+        userNameField.alpha = alpha
+        userPasswordField.alpha = alpha
+        loginButton.alpha = alpha
+        newUserSignUpButton.alpha = alpha
+        forgotPasswordButton.alpha = alpha
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {

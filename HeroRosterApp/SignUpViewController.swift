@@ -21,8 +21,14 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(dismiss)
+        view.backgroundColor = UIColor.clearColor()
+        view.opaque = false
         createAccountButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

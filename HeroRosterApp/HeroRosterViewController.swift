@@ -187,6 +187,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
         PFUser.logOut()
+        UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 0.0}, completion: nil)
         navigationController?.popToRootViewControllerAnimated(true)
     }
 }

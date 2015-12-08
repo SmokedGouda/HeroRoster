@@ -19,8 +19,14 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(dismiss)
+        view.backgroundColor = UIColor.clearColor()
+        view.opaque = false
         resetPasswordButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func dismissKeyboard() {

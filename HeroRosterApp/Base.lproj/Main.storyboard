@@ -132,6 +132,7 @@
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>
                     <connections>
                         <outlet property="forgotPasswordButton" destination="4ab-UG-M95" id="PK8-UN-hw8"/>
+                        <outlet property="heroRosterLogo" destination="4yz-S2-bph" id="qDE-co-rKG"/>
                         <outlet property="loginButton" destination="9fr-N3-ydt" id="6xq-MU-GJD"/>
                         <outlet property="newUserSignUpButton" destination="NSR-ZB-kdh" id="nUL-X8-iui"/>
                         <outlet property="userNameField" destination="Jwe-Py-7tX" id="52Y-uf-W3W"/>
@@ -146,7 +147,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="nCZ-T3-ilW">
             <objects>
-                <viewController id="Lqv-yd-VT7" customClass="SignUpViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="Lqv-yd-VT7" customClass="SignUpViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EtV-8V-FVa"/>
                         <viewControllerLayoutGuide type="bottom" id="gpc-YF-iaV"/>
@@ -155,9 +156,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0Fg-rh-KIg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qn-dZ-0aF">
                                 <rect key="frame" x="20" y="231" width="280" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -222,22 +220,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gpc-YF-iaV" firstAttribute="top" secondItem="0Fg-rh-KIg" secondAttribute="bottom" id="0ma-TP-vCw"/>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="top" secondItem="pae-ys-fjH" secondAttribute="bottom" constant="8" id="2Dm-hy-nHy"/>
                             <constraint firstItem="W55-To-YTa" firstAttribute="top" secondItem="QjY-QX-cr3" secondAttribute="bottom" constant="20" id="2n6-L5-H67"/>
                             <constraint firstItem="5qn-dZ-0aF" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="5Yy-El-LKJ"/>
                             <constraint firstItem="QjY-QX-cr3" firstAttribute="centerY" secondItem="wni-Gu-I4x" secondAttribute="centerY" id="7DU-mU-SyE"/>
                             <constraint firstItem="QjY-QX-cr3" firstAttribute="top" secondItem="5qn-dZ-0aF" secondAttribute="bottom" constant="8" id="8iL-05-DXi"/>
                             <constraint firstItem="TrM-PV-fGR" firstAttribute="top" secondItem="W55-To-YTa" secondAttribute="bottom" constant="20" id="D6N-Jo-RdG"/>
-                            <constraint firstAttribute="trailing" secondItem="0Fg-rh-KIg" secondAttribute="trailing" id="Ljy-f0-Uml"/>
                             <constraint firstItem="TrM-PV-fGR" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="QXh-a6-a0E"/>
                             <constraint firstItem="QjY-QX-cr3" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="V9Y-iR-oZA"/>
                             <constraint firstAttribute="trailing" secondItem="QjY-QX-cr3" secondAttribute="trailing" constant="20" id="W0a-OC-xUB"/>
                             <constraint firstItem="QjY-QX-cr3" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="Ztt-Uf-eAr"/>
-                            <constraint firstItem="0Fg-rh-KIg" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" id="cUr-2x-sB0"/>
                             <constraint firstItem="W55-To-YTa" firstAttribute="centerX" secondItem="wni-Gu-I4x" secondAttribute="centerX" id="cit-eE-JT9"/>
                             <constraint firstItem="pae-ys-fjH" firstAttribute="leading" secondItem="wni-Gu-I4x" secondAttribute="leading" constant="20" id="cni-QJ-SbE"/>
-                            <constraint firstItem="0Fg-rh-KIg" firstAttribute="top" secondItem="wni-Gu-I4x" secondAttribute="top" id="gta-f3-Wwp"/>
                             <constraint firstAttribute="trailing" secondItem="5qn-dZ-0aF" secondAttribute="trailing" constant="20" id="lNP-x2-GEE"/>
                             <constraint firstAttribute="trailing" secondItem="pae-ys-fjH" secondAttribute="trailing" constant="20" id="xCi-hq-Jxe"/>
                         </constraints>
@@ -259,7 +253,7 @@
         <!--Forgot Password View Controller-->
         <scene sceneID="pd6-7m-aDP">
             <objects>
-                <viewController id="qyc-WJ-Uzc" customClass="ForgotPasswordViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="qyc-WJ-Uzc" customClass="ForgotPasswordViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ukX-fd-XRP"/>
                         <viewControllerLayoutGuide type="bottom" id="4oV-nm-wdP"/>
@@ -268,9 +262,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theArchivist.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wqT-hA-ah5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your e-mail here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ls-jI-OaC">
                                 <rect key="frame" x="20" y="269" width="280" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -313,13 +304,9 @@
                             <constraint firstItem="wNU-8P-ua6" firstAttribute="top" secondItem="kqk-Lc-bKh" secondAttribute="bottom" constant="20" id="67q-wS-pmK"/>
                             <constraint firstItem="5ls-jI-OaC" firstAttribute="centerY" secondItem="uQw-TS-wl1" secondAttribute="centerY" id="7Sy-dn-QYU"/>
                             <constraint firstItem="kqk-Lc-bKh" firstAttribute="top" secondItem="5ls-jI-OaC" secondAttribute="bottom" constant="20" id="8bN-6q-QO6"/>
-                            <constraint firstItem="4oV-nm-wdP" firstAttribute="top" secondItem="wqT-hA-ah5" secondAttribute="bottom" id="LOP-83-z5f"/>
                             <constraint firstItem="wNU-8P-ua6" firstAttribute="centerX" secondItem="uQw-TS-wl1" secondAttribute="centerX" id="WON-zz-pr5"/>
-                            <constraint firstAttribute="trailing" secondItem="wqT-hA-ah5" secondAttribute="trailing" id="WX6-6w-exN"/>
                             <constraint firstAttribute="trailing" secondItem="5ls-jI-OaC" secondAttribute="trailing" constant="20" id="eeF-eC-cFy"/>
                             <constraint firstItem="5ls-jI-OaC" firstAttribute="leading" secondItem="uQw-TS-wl1" secondAttribute="leading" constant="20" id="nga-gB-47n"/>
-                            <constraint firstItem="wqT-hA-ah5" firstAttribute="top" secondItem="uQw-TS-wl1" secondAttribute="topMargin" id="pTw-gb-cQu"/>
-                            <constraint firstItem="wqT-hA-ah5" firstAttribute="leading" secondItem="uQw-TS-wl1" secondAttribute="leading" id="qDe-A4-MnC"/>
                             <constraint firstItem="kqk-Lc-bKh" firstAttribute="centerX" secondItem="uQw-TS-wl1" secondAttribute="centerX" id="qJt-lR-ulu"/>
                         </constraints>
                     </view>
@@ -834,7 +821,7 @@
                                                     <rect key="frame" x="112" y="15" width="33" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1067,14 +1054,12 @@
         <image name="Balerion3.jpg" width="1600" height="1003"/>
         <image name="HeroRosterLogo640x140.png" width="640" height="140"/>
         <image name="Illo1.jpg" width="618" height="800"/>
-        <image name="Illo2.jpg" width="582" height="800"/>
         <image name="book.jpg" width="364" height="500"/>
         <image name="chaos_librarian.jpg" width="518" height="745"/>
         <image name="femaleKnight.jpg" width="468" height="768"/>
         <image name="illo3.jpg" width="573" height="800"/>
         <image name="illo4.jpg" width="587" height="800"/>
         <image name="knight.jpg" width="328" height="568"/>
-        <image name="theArchivist.jpg" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="PXK-YF-pJP"/>
