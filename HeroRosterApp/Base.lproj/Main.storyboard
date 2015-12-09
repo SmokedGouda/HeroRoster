@@ -1015,7 +1015,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="E7K-jJ-JLo">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Number:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-UD-Oy7">
                                 <rect key="frame" x="20" y="120" width="123" height="30"/>
@@ -1118,28 +1118,28 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="0XC-Vb-47J"/>
                             <constraint firstAttribute="trailing" secondItem="pD3-eT-3ma" secondAttribute="trailing" constant="20" id="0ey-cQ-NAb"/>
                             <constraint firstAttribute="trailing" secondItem="rnZ-zz-9FG" secondAttribute="trailing" constant="20" id="1U9-FF-snz"/>
+                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" id="2BQ-Yv-AQB"/>
                             <constraint firstItem="rnZ-zz-9FG" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="3kI-Vz-Azc"/>
                             <constraint firstItem="Lr3-AJ-8Ok" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" constant="8" id="8NF-Rp-49i"/>
                             <constraint firstItem="Lr3-AJ-8Ok" firstAttribute="leading" secondItem="EUz-0N-vzm" secondAttribute="trailing" constant="8" id="EOz-vd-NXK"/>
                             <constraint firstAttribute="trailing" secondItem="Lr3-AJ-8Ok" secondAttribute="trailing" constant="20" id="FuW-IG-u0R"/>
+                            <constraint firstItem="XJj-KF-tvE" firstAttribute="top" secondItem="E7K-jJ-JLo" secondAttribute="bottom" id="GPz-hW-wLD"/>
                             <constraint firstItem="rnZ-zz-9FG" firstAttribute="top" secondItem="pD3-eT-3ma" secondAttribute="bottom" constant="18" id="MZX-KS-t5Y"/>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="Pdb-aN-b5c"/>
+                            <constraint firstAttribute="trailing" secondItem="E7K-jJ-JLo" secondAttribute="trailing" id="PvX-X0-2kB"/>
                             <constraint firstItem="j5Q-w3-G0n" firstAttribute="top" secondItem="rnZ-zz-9FG" secondAttribute="bottom" constant="18" id="RBl-Su-U96"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="top" secondItem="Lr3-AJ-8Ok" secondAttribute="bottom" constant="18" id="TY2-La-tR4"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="leading" secondItem="SdU-UD-Oy7" secondAttribute="trailing" constant="8" id="aAg-Yq-gy5"/>
-                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leadingMargin" constant="-20" id="fNW-KZ-u1R"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="h0U-Ny-2ev"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="top" secondItem="EUz-0N-vzm" secondAttribute="bottom" constant="18" id="h7n-id-0xs"/>
                             <constraint firstItem="j5Q-w3-G0n" firstAttribute="centerX" secondItem="314-EC-unr" secondAttribute="centerX" id="jlU-vK-j8k"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="E7K-jJ-JLo" secondAttribute="trailing" constant="-20" id="nLQ-gd-fg7"/>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" constant="8" id="oYa-Jo-bjD"/>
-                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="top" secondItem="314-EC-unr" secondAttribute="top" id="sve-SB-xlt"/>
-                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="bottom" secondItem="314-EC-unr" secondAttribute="bottomMargin" id="xPt-Am-2nX"/>
+                            <constraint firstItem="E7K-jJ-JLo" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" id="qdN-ZW-NYs"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Hero Details" id="jfD-uT-z88"/>
@@ -1152,6 +1152,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addHeroButton" destination="j5Q-w3-G0n" id="x8D-4i-fRk"/>
+                        <outlet property="backgroundImage" destination="E7K-jJ-JLo" id="ViY-Ao-zVj"/>
                         <outlet property="heroDetailTable" destination="rnZ-zz-9FG" id="lUp-hU-L3o"/>
                         <outlet property="heroNameLabel" destination="EUz-0N-vzm" id="ZKA-Sp-grh"/>
                         <outlet property="heroNameTextField" destination="Lr3-AJ-8Ok" id="FZK-rI-Gre"/>
@@ -1360,10 +1361,10 @@
         <image name="theArchivist.jpg" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PXK-YF-pJP"/>
         <segue reference="4Jt-AF-VuM"/>
-        <segue reference="0fJ-k0-42G"/>
-        <segue reference="iH1-Ak-xNP"/>
+        <segue reference="o4b-B9-U7R"/>
+        <segue reference="PXK-YF-pJP"/>
         <segue reference="gbq-3y-Lun"/>
+        <segue reference="0fJ-k0-42G"/>
     </inferredMetricsTieBreakers>
 </document>

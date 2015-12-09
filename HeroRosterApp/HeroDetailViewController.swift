@@ -11,6 +11,10 @@ import Parse
 
 class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
+    
     @IBOutlet weak var openBookButton: UIBarButtonItem!
     @IBOutlet weak var heroDetailTable: UITableView!
     @IBOutlet weak var heroNameTextField: UITextField!
@@ -54,6 +58,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             navigationItem.title = "Hero"
             openBookButton.tintColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
             openBookButton.enabled = true
+            backgroundImage.image = UIImage(named: heroDisplayed!.heroClass+"Small")
             setViewToStaticMode()
             heroNameTextField.text = heroDisplayed?.name
             heroNumberTextField.text = heroDisplayed?.number
@@ -287,6 +292,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         let updatedHeroNumber = heroNumberTextField.text
         activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed, newFaction: factionDisplayed, newPrestigePoints: prestigePointsDisplayed)
         updateHeroOnParse()
+        
     }
     
     func updateHeroOnParse() {
@@ -374,11 +380,27 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func roundTheLabelsAndButtons() {
+        heroNameLabel.layer.borderColor = UIColor.blackColor().CGColor
+        heroNameLabel.layer.borderWidth = 1.0
         heroNameLabel.layer.cornerRadius = 5
         heroNameLabel.clipsToBounds = true
+        heroNumberLabel.layer.borderColor = UIColor.blackColor().CGColor
+        heroNumberLabel.layer.borderWidth = 1.0
         heroNumberLabel.layer.cornerRadius = 5
         heroNumberLabel.clipsToBounds = true
+        heroNameTextField.layer.borderColor = UIColor.blackColor().CGColor
+        heroNameTextField.layer.borderWidth = 1.0
+        heroNameTextField.layer.masksToBounds = true
+        heroNameTextField.layer.cornerRadius = 5
+        heroNumberTextField.layer.borderColor = UIColor.blackColor().CGColor
+        heroNumberTextField.layer.borderWidth = 1.0
+        heroNumberTextField.layer.masksToBounds = true
+        heroNumberTextField.layer.cornerRadius = 5
+        heroDetailTable.layer.borderColor = UIColor.blackColor().CGColor
+        heroDetailTable.layer.borderWidth = 1.0
         heroDetailTable.layer.cornerRadius = 5
+        addHeroButton.layer.borderColor = UIColor.blackColor().CGColor
+        addHeroButton.layer.borderWidth = 1.0
         addHeroButton.layer.cornerRadius = 5
     }
     
