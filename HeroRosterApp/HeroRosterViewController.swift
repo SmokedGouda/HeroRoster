@@ -37,6 +37,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         super.viewDidLoad()
         getRosterFromParse()
         getHerosFromParse()
+        getGmSessionLogsFromParse()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -196,13 +197,13 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     func getGmSessionLogsFromParse() {
         let rosterName = activeUser!.username!
-        let query = PFQuery(className: "GmLogs")
+        let query = PFQuery(className: "GmLog")
         query.whereKey("owner", equalTo: rosterName)
         query.findObjectsInBackgroundWithBlock{ (GmLog: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 dispatch_async(dispatch_get_main_queue()) {
                     for object in GmLog! {
-                        self.downloadedGmSessionLog.name = object["name"] as! String
+                        self.downloadedGmSessionLog.name = object["sessionName"] as! String
                         self.downloadedGmSessionLog.date = object["date"] as! NSDate
                         self.downloadedGmSessionLog.notes = object["notes"] as! String
                         self.downloadedGmSessionLog.creditForHero = object["creditForHero"] as! String

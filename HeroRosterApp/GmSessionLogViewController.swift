@@ -11,11 +11,17 @@ import Parse
 
 class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var gmSessionLogTable: UITableView!
     
     var activeRoster = Roster?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        gmSessionLogTable.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,7 +43,7 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
             
             func deleteSession() {
                 let sessionToDelete = activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row]
-                let query = PFQuery(className:"GmLogs")
+                let query = PFQuery(className:"GmLog")
                 query.getObjectInBackgroundWithId(activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].parseObjectId) {
                     (GmLog: PFObject?, error: NSError?) -> Void in
                     if error != nil {
@@ -61,5 +67,17 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destVC: GmLogDetailViewController = segue.destinationViewController as! GmLogDetailViewController
+        destVC.activeRoster = activeRoster
+        if segue.identifier == "viewGmSessionLogSegue" {
+            let selectedIndex = gmSessionLogTable.indexPathForCell(sender as! UITableViewCell)
+            destVC.activateEditMode = true
+            destVC.gmLogDisplayed = activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
+            }
+    }
     
+    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        gmSessionLogTable.reloadData()
+    }
 }

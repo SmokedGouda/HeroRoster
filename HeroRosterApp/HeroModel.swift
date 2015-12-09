@@ -147,26 +147,26 @@ class Roster {
     var usedHeroNames: [String]
     var scenarioRecords: [String:[String]]
     var gmSessionLogs: [GmSessionLog]
+    var usedGmScenarioNames: [String]
     var parseObjectId: String
     
-    init(userName: String, heros: [Hero], usedHeroNames: [String], scenarioRecords: [String:[String]], gmSessionLogs: [GmSessionLog], parseObjectId: String) {
+    init(userName: String, heros: [Hero], usedHeroNames: [String], scenarioRecords: [String:[String]], gmSessionLogs: [GmSessionLog], usedGmScenarioNames: [String], parseObjectId: String) {
         self.userName = userName
         self.heros = heros
         self.usedHeroNames = usedHeroNames
         self.gmSessionLogs = gmSessionLogs
         self.scenarioRecords = scenarioRecords
+        self.usedGmScenarioNames = usedGmScenarioNames
         self.parseObjectId = parseObjectId
     }
     
     convenience init() {
-        self.init(userName: "Unnamed", heros: [], usedHeroNames: [], scenarioRecords: [String:[String]](), gmSessionLogs: [], parseObjectId: "No ID")
+        self.init(userName: "Unnamed", heros: [], usedHeroNames: [], scenarioRecords: [String:[String]](), gmSessionLogs: [], usedGmScenarioNames: [], parseObjectId: "No ID")
     }
     
     func addHeroToRoster(heroToAdd: Hero) {
-        if usedHeroNames.contains(heroToAdd.name) == false {
-            heros.append(heroToAdd)
-            usedHeroNames.append(heroToAdd.name)
-        }
+        heros.append(heroToAdd)
+        usedHeroNames.append(heroToAdd.name)
     }
     
     func deleteHeroFromRoster(heroToDelete: Hero) {
@@ -212,12 +212,19 @@ class Roster {
     
     func addGmSessionLog(logToAdd: GmSessionLog) {
         gmSessionLogs.append(logToAdd)
+        usedGmScenarioNames.append(logToAdd.name)
     }
     
     func deleteGmSessionLog(logToDelete: GmSessionLog) {
         for (index, value) in gmSessionLogs.enumerate() {
             if logToDelete.name == value.name {
                 gmSessionLogs.removeAtIndex(index)
+            }
+        }
+        
+        for (index, value) in usedGmScenarioNames.enumerate() {
+            if logToDelete.name == value {
+                usedGmScenarioNames.removeAtIndex(index)
             }
         }
     }
