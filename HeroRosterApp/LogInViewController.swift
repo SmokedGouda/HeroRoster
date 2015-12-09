@@ -19,6 +19,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var activeUser = PFUser.currentUser()
+    var timer = NSTimer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,31 @@ class LogInViewController: UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    @IBAction func newUserSignUpButtonPressed(sender: UIButton) {
+        executeNewUserSignupSegueSequence()
+    }
+    
+    @IBAction func forgotPasswordButtonPressed(sender: UIButton) {
+        executForgotPasswordSegueSequence()
+    }
+    
+    func executeNewUserSignupSegueSequence() {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToNewUserSignup", userInfo: nil, repeats: false)
+    }
+    
+    func executForgotPasswordSegueSequence() {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToForgotPassword", userInfo: nil, repeats: false)
+    }
+    
+    func segueToNewUserSignup() {
+        self.performSegueWithIdentifier("signupSegue", sender: self)
+    }
+    
+    func segueToForgotPassword() {
+        self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         userNameField.text = ""
@@ -48,13 +74,11 @@ class LogInViewController: UIViewController {
         if segue.identifier == "heroRosterSegue" {
             navigationController?.navigationBarHidden = false
             UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 1.0}, completion: nil)
-        } else {
-             adjustAlphaForUIElements(0.0)
         }
     }
     
     @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUIElements(0.8)}, completion: nil)
+        UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8)}, completion: nil)
     }
     
    @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -146,7 +170,7 @@ class LogInViewController: UIViewController {
         forgotPasswordButton.layer.cornerRadius = 5
     }
     
-    func adjustAlphaForUIElements(alpha: CGFloat) {
+    func adjustAlphaForUiElements(alpha: CGFloat) {
         userNameField.alpha = alpha
         userPasswordField.alpha = alpha
         loginButton.alpha = alpha

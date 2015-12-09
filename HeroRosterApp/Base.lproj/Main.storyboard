@@ -90,7 +90,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Forgot Password?"/>
                                 <connections>
-                                    <segue destination="qyc-WJ-Uzc" kind="modal" identifier="forgotPasswordSegue" id="q7z-Va-zV5"/>
+                                    <action selector="forgotPasswordButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="acG-eb-ZZ3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSR-ZB-kdh">
@@ -102,7 +102,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="New User Signup"/>
                                 <connections>
-                                    <segue destination="Lqv-yd-VT7" kind="modal" identifier="signupSegue" id="6x6-1f-hnz"/>
+                                    <action selector="newUserSignUpButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="gcn-iM-1gO"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -140,6 +140,8 @@
                         <outlet property="userNameField" destination="Jwe-Py-7tX" id="52Y-uf-W3W"/>
                         <outlet property="userPasswordField" destination="c2O-fg-BPs" id="T4r-QK-wpC"/>
                         <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegue" id="s8S-Wt-Nvp"/>
+                        <segue destination="Lqv-yd-VT7" kind="modal" identifier="signupSegue" id="2sK-E0-ZZK"/>
+                        <segue destination="qyc-WJ-Uzc" kind="modal" identifier="forgotPasswordSegue" id="JPI-7J-oyL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2O-xn-XPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,7 +218,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="bjl-UG-tOp"/>
+                                    <action selector="cancelButtonPressed:" destination="Lqv-yd-VT7" eventType="touchUpInside" id="L6T-uE-FpV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -245,12 +247,13 @@
                         <outlet property="newUserEmailTextField" destination="QjY-QX-cr3" id="9A6-Qf-FTa"/>
                         <outlet property="newUserNameTextField" destination="pae-ys-fjH" id="SpB-Uu-juC"/>
                         <outlet property="newUserPasswordTextField" destination="5qn-dZ-0aF" id="M9d-wO-1lx"/>
+                        <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="ysM-cd-806"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NBY-9p-VC0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="114" y="798"/>
+            <point key="canvasLocation" x="147" y="798"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="pd6-7m-aDP">
@@ -297,7 +300,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <segue destination="CjD-CZ-JqE" kind="unwind" identifier="forgotPasswordSegue" unwindAction="unwindForSegue:towardsViewController:" id="QRK-27-Fma"/>
+                                    <action selector="cancelButtonPressed:" destination="qyc-WJ-Uzc" eventType="touchUpInside" id="6Dz-U4-Esm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -316,12 +319,13 @@
                         <outlet property="cancelButton" destination="wNU-8P-ua6" id="LO9-my-eRg"/>
                         <outlet property="emailTextField" destination="5ls-jI-OaC" id="Eke-Oj-ogm"/>
                         <outlet property="resetPasswordButton" destination="kqk-Lc-bKh" id="1ho-dv-yjS"/>
+                        <segue destination="CjD-CZ-JqE" kind="unwind" identifier="forgotPasswordSegue" unwindAction="unwindForSegue:towardsViewController:" id="YWq-LG-a5b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gvp-SO-NMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CjD-CZ-JqE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="490" y="798"/>
+            <point key="canvasLocation" x="521" y="798"/>
         </scene>
         <!--GM Sessions-->
         <scene sceneID="w1n-NC-zLd">

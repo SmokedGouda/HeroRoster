@@ -17,6 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var timer = NSTimer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -25,10 +27,12 @@ class SignUpViewController: UIViewController {
         view.opaque = false
         createAccountButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
+        adjustAlphaForUiElements(0.0)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8)}, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -37,6 +41,19 @@ class SignUpViewController: UIViewController {
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        executeUnwindForSegueSequence()
+    }
+    
+    func executeUnwindForSegueSequence() {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "unwindSegueToLogInView", userInfo: nil, repeats: false)
+    }
+    
+    func unwindSegueToLogInView() {
+        self.performSegueWithIdentifier("signupSegue", sender: self)
     }
 
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
@@ -113,7 +130,7 @@ class SignUpViewController: UIViewController {
     
     func accountCreationAlert() {
         let alert = UIAlertController(title: "Account creation successful", message: "You will receive a e-mail to verify your account shortly.  Click the link you receive in your e-mail to activate your account and allow you access to login.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler:  { (actionSheetController) -> Void in self.performSegueWithIdentifier("signupSegue", sender: self)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler:  { (actionSheetController) -> Void in self.executeUnwindForSegueSequence()
         })
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
@@ -124,6 +141,14 @@ class SignUpViewController: UIViewController {
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func adjustAlphaForUiElements(alpha: CGFloat) {
+        newUserNameTextField.alpha = alpha
+        newUserPasswordTextField.alpha = alpha
+        newUserEmailTextField.alpha = alpha
+        createAccountButton.alpha = alpha
+        cancelButton.alpha = alpha
     }
 
     @IBAction func textFieldDoneEditing(sender: UITextField) {

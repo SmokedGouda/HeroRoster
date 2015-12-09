@@ -15,6 +15,8 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var resetPasswordButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var timer = NSTimer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -23,6 +25,12 @@ class ForgotPasswordViewController: UIViewController {
         view.opaque = false
         resetPasswordButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
+        adjustAlphaForUiElements(0.0)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8)}, completion: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -33,6 +41,19 @@ class ForgotPasswordViewController: UIViewController {
         view.endEditing(true)
     }
 
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        executeUnwindForSegueSequence()
+    }
+    
+    func executeUnwindForSegueSequence() {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "unwindSegueToLogInView", userInfo: nil, repeats: false)
+    }
+    
+    func unwindSegueToLogInView() {
+        self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
+    }
+    
     @IBAction func textFieldDoneEditing(sender: UITextField) {
         sender.resignFirstResponder()
     }
@@ -79,9 +100,15 @@ class ForgotPasswordViewController: UIViewController {
     
     func resetPasswordAlert() {
         let alert = UIAlertController(title: "Reset password request sent", message: "Check your e-mail for a message which will assist you in reseting your password.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: { (actionSheetController) -> Void in self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: { (actionSheetController) -> Void in self.executeUnwindForSegueSequence()
         })
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func adjustAlphaForUiElements(alpha: CGFloat) {
+        emailTextField.alpha = alpha
+        resetPasswordButton.alpha = alpha
+        cancelButton.alpha = alpha
     }
 }
