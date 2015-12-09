@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class GmLogDetailViewController: UIViewController {
+class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scenarioNameLabel: UILabel!
@@ -33,6 +33,7 @@ class GmLogDetailViewController: UIViewController {
     var newGmLogObjectId = String()
     var sectionIndex: Int?
     var rowIndex: Int?
+    var heroNameIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,9 @@ class GmLogDetailViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         findIndexValuesForPreviouslySelectedScenarioName()
+        if activateEditMode == true {
+            findIndexValueForPreviouslySelectedHeroNameToCredit()
+        }
     }
     
     func dismissKeyboard() {
@@ -163,6 +167,12 @@ class GmLogDetailViewController: UIViewController {
             let destVC: ScenarioListViewController = segue.destinationViewController as! ScenarioListViewController
             destVC.lastSelectedSection = sectionIndex
             destVC.lastSelectedRow = rowIndex
+        } else if segue.identifier == "heroStatOptionsSegueTwo" {
+            let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
+            destVC.activeRoster = activeRoster
+            destVC.navBarTitle = "Heros"
+            destVC.activateHeroNameTable = true
+            destVC.lastSelectedRow = heroNameIndex
         }
     }
     
@@ -170,6 +180,10 @@ class GmLogDetailViewController: UIViewController {
         if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
             let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
             scenarioNameTextView.text = scenarioName.nameToReturn
+        } else if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
+            let chosenHero: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
+            creditForHeroTextField.text = chosenHero.nameToReturn
+            heroNameIndex = chosenHero.chosenStat
         }
     }
     
@@ -181,6 +195,16 @@ class GmLogDetailViewController: UIViewController {
                     if name == value {
                         sectionIndex = index
                     }
+                }
+            }
+        }
+    }
+    
+    func findIndexValueForPreviouslySelectedHeroNameToCredit() {
+        if activeRoster!.usedHeroNames.contains(gmLogDisplayed.creditForHero) == true {
+            for (index, value) in activeRoster!.usedHeroNames.sort({ $0.lowercaseString < $1.lowercaseString}).enumerate() {
+                if value == creditForHeroTextField.text {
+                    heroNameIndex = index
                 }
             }
         }
@@ -212,6 +236,7 @@ class GmLogDetailViewController: UIViewController {
         scenarioNameTextView.text = gmLogDisplayed.name
         dateTextField.text = gmLogDisplayed.stringFromDate(gmLogDisplayed.date)
         notesTextView.text = gmLogDisplayed.notes
+        creditForHeroTextField.text = gmLogDisplayed.creditForHero
         scenarioNameBeforeEdit = scenarioNameTextView.text!
     }
     
@@ -220,6 +245,7 @@ class GmLogDetailViewController: UIViewController {
         scenarioNameTextView.editable = false
         dateTextField.enabled = false
         notesTextView.editable = false
+        creditForHeroTextField.enabled = false
     }
     
     func setViewToEditMode() {
@@ -227,6 +253,7 @@ class GmLogDetailViewController: UIViewController {
         scenarioNameTextView.editable = true
         dateTextField.enabled = true
         notesTextView.editable = true
+        creditForHeroTextField.enabled = true
     }
 
     func roundTheLabelsButtonsAndTextViews() {
@@ -243,9 +270,16 @@ class GmLogDetailViewController: UIViewController {
         addLogButton.layer.cornerRadius = 5
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == creditForHeroTextField {
+            view.endEditing(true)
+            self.performSegueWithIdentifier("heroStatOptionsSegueTwo", sender: self)
+        }
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == notesTextView {
-            scrollView.setContentOffset(CGPointMake(0, 180), animated: true)
+            scrollView.setContentOffset(CGPointMake(0, 255), animated: true)
         } else if textView == scenarioNameTextView {
             self.performSegueWithIdentifier("scenarioListSegueTwo", sender: self)
         }
