@@ -11,7 +11,8 @@ import UIKit
 class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var scenarioNameTextField: UITextView!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var searchHeroRecordsButton: UIButton!
+    @IBOutlet weak var searchGmRecordsButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var instructionLabel: UILabel!
     
@@ -29,12 +30,22 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func searchButtonPressed(sender: UIButton) {
+    
+    @IBAction func searchHeroRecordsButtonPressed(sender: UIButton) {
         if scenarioNameTextField.text == "" {
             displaySearchResultsAlert("empty")
         } else {
             searchScenarioRecordsForMatch()
-            displayResult()
+            displayScenarioSearchResult()
+        }
+    }
+    
+    @IBAction func searchGmRecordsButtonPressed(sender: UIButton) {
+        if scenarioNameTextField.text == "" {
+            displaySearchResultsAlert("empty")
+        } else {
+            searchGmScenarioRecordsForMatch()
+            displayGmScenarioSearchResult()
         }
     }
     
@@ -55,12 +66,30 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func displayResult() {
+    func searchGmScenarioRecordsForMatch() {
+        for scenario in activeRoster!.gmSessionLogs{
+            if scenario.name == scenarioNameTextField.text {
+                foundDate = GmSessionLog().stringFromDate(scenario.date)
+                matchCount++
+            }
+        }
+    }
+    
+    func displayScenarioSearchResult() {
         if matchCount == 1 {
             displaySearchResultsAlert("match")
             matchCount = 0
         } else {
             displaySearchResultsAlert("noMatch")
+        }
+    }
+    
+    func displayGmScenarioSearchResult() {
+        if matchCount == 1 {
+            displaySearchResultsAlert("gmMatch")
+            matchCount = 0
+        } else {
+            displaySearchResultsAlert("noGmMatch")
         }
     }
     
@@ -71,9 +100,15 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
             case "match":
                 title = "You've played this scenario"
                 message = "\(scenarioNameTextField.text) was played by \(foundName) on \(foundDate)."
+            case "gmMatch":
+                title = "You've run this scenario as a GM"
+                message = "\(scenarioNameTextField.text) was run on \(foundDate)."
             case "noMatch":
                 title = "No record found"
                 message = "You have not played \(scenarioNameTextField.text)."
+            case "noGmMatch":
+                title = "No record found"
+                message = "You have not run \(scenarioNameTextField.text) as a GM."
             case "empty":
                 title = "Can't search the records"
                 message = "You must provide a scenario name in order to do a search."
@@ -99,7 +134,8 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
         instructionLabel.layer.cornerRadius = 5
         instructionLabel.clipsToBounds = true
         scenarioNameTextField.layer.cornerRadius = 8
-        searchButton.layer.cornerRadius = 5
+        searchHeroRecordsButton.layer.cornerRadius = 5
+        searchGmRecordsButton.layer.cornerRadius = 5
         doneButton.layer.cornerRadius = 5
     }
 }
