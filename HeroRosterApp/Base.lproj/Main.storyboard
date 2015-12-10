@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -75,10 +76,10 @@
                                     <action selector="loginButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="mLM-Bk-b7c"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogo640x140.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogoLogin640x140.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
                                 <rect key="frame" x="0.0" y="117" width="320" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="Jj3-3B-fba"/>
+                                    <constraint firstAttribute="width" secondItem="4yz-S2-bph" secondAttribute="height" multiplier="32:7" id="uRD-4L-gEn"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ab-UG-M95">
@@ -129,7 +130,6 @@
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="top" secondItem="c2O-fg-BPs" secondAttribute="bottom" constant="20" id="NH5-Sl-gdT"/>
                             <constraint firstItem="4yz-S2-bph" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" id="Pbp-zA-YHC"/>
                             <constraint firstItem="HO4-20-cqY" firstAttribute="top" secondItem="nIb-n7-L5w" secondAttribute="topMargin" id="RIt-Yb-4BS"/>
-                            <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="4yz-S2-bph" secondAttribute="bottom" constant="44" id="V2j-DX-KDJ"/>
                             <constraint firstItem="4ab-UG-M95" firstAttribute="top" secondItem="NSR-ZB-kdh" secondAttribute="bottom" constant="20" id="VPZ-SU-zkG"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="8" id="WtJ-cR-IR8"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
@@ -140,6 +140,7 @@
                             <constraint firstAttribute="trailing" secondItem="4yz-S2-bph" secondAttribute="trailing" id="cce-ck-yQ1"/>
                             <constraint firstItem="2Oe-Kc-DNB" firstAttribute="top" secondItem="HO4-20-cqY" secondAttribute="bottom" id="dlF-Uw-Bw7"/>
                             <constraint firstItem="NSR-ZB-kdh" firstAttribute="top" secondItem="9fr-N3-ydt" secondAttribute="bottom" constant="20" id="eGX-Je-w2b"/>
+                            <constraint firstItem="4yz-S2-bph" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="gKG-xs-Sfh"/>
                             <constraint firstAttribute="trailing" secondItem="c2O-fg-BPs" secondAttribute="trailing" constant="20" id="mg1-fs-BFP"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="szL-gI-tKl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HO4-20-cqY" secondAttribute="trailing" constant="-20" id="wzZ-j0-fmt"/>
@@ -1433,7 +1434,7 @@
     </scenes>
     <resources>
         <image name="Balerion3.jpg" width="1600" height="1003"/>
-        <image name="HeroRosterLogo640x140.png" width="640" height="140"/>
+        <image name="HeroRosterLogoLogin640x140.png" width="640" height="140"/>
         <image name="Illo1.jpg" width="618" height="800"/>
         <image name="Illo2.jpg" width="582" height="800"/>
         <image name="book.jpg" width="364" height="500"/>
