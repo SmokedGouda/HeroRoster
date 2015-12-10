@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8150" systemVersion="15A204g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,15 +15,59 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PathfinderRoleplayingGame1080.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sxl-wv-Ri0">
+                                <rect key="frame" x="58" y="353" width="205" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Sxl-wv-Ri0" secondAttribute="height" multiplier="205:52" id="HJQ-Xc-FyA"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogoLaunch640x140.png" translatesAutoresizingMaskIntoConstraints="NO" id="0mD-Pm-yyQ">
+                                <rect key="frame" x="0.0" y="117" width="320" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0mD-Pm-yyQ" secondAttribute="height" multiplier="32:7" id="4DV-Qx-B1e"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Companion App for " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ar-z4-ZK6">
+                                <rect key="frame" x="73" y="274" width="174.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Roster Copyright © 2015 Craig Carlson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRs-kZ-c95">
+                                <rect key="frame" x="29" y="508" width="261" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sxl-wv-Ri0" firstAttribute="top" secondItem="4Ar-z4-ZK6" secondAttribute="bottom" constant="58.5" id="5l2-81-7bA"/>
+                            <constraint firstItem="4Ar-z4-ZK6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Sy-7o-pnD"/>
+                            <constraint firstItem="0mD-Pm-yyQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="8p9-n7-8Ek"/>
+                            <constraint firstItem="Sxl-wv-Ri0" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="58" id="DTD-G2-3AC"/>
+                            <constraint firstItem="4Ar-z4-ZK6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="HGL-OH-Km7"/>
+                            <constraint firstItem="Sxl-wv-Ri0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="IoE-3h-UY5"/>
+                            <constraint firstAttribute="trailing" secondItem="0mD-Pm-yyQ" secondAttribute="trailing" id="Wul-RD-feB"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="WRs-kZ-c95" secondAttribute="bottom" constant="45" id="aBZ-Id-NVC"/>
+                            <constraint firstItem="0mD-Pm-yyQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bvh-Bv-Sha"/>
+                            <constraint firstItem="4Ar-z4-ZK6" firstAttribute="top" secondItem="0mD-Pm-yyQ" secondAttribute="bottom" constant="87" id="iy7-AD-lCc"/>
+                            <constraint firstAttribute="trailing" secondItem="Sxl-wv-Ri0" secondAttribute="trailing" constant="57" id="uWV-cs-RMI"/>
+                            <constraint firstItem="WRs-kZ-c95" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zn9-h4-9ll"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="28" y="355"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HeroRosterLogoLaunch640x140.png" width="640" height="140"/>
+        <image name="PathfinderRoleplayingGame1080.png" width="1080" height="278"/>
+    </resources>
 </document>

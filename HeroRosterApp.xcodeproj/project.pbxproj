@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3F007D961C04FC8600D2272D /* theArchivist.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F007D951C04FC8600D2272D /* theArchivist.jpg */; };
-		3F010D931BF4D7B300B303E4 /* HeroRosterLogo640x140.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D921BF4D7B300B303E4 /* HeroRosterLogo640x140.png */; };
-		3F010D991BF4DD4B00B303E4 /* heroRosterIcon58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D941BF4DD4B00B303E4 /* heroRosterIcon58x58.png */; };
-		3F010D9A1BF4DD4B00B303E4 /* heroRosterIcon80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D951BF4DD4B00B303E4 /* heroRosterIcon80x80.png */; };
-		3F010D9B1BF4DD4B00B303E4 /* heroRosterIcon87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D961BF4DD4B00B303E4 /* heroRosterIcon87x87.png */; };
-		3F010D9C1BF4DD4B00B303E4 /* heroRosterIcon120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D971BF4DD4B00B303E4 /* heroRosterIcon120x120.png */; };
-		3F010D9D1BF4DD4B00B303E4 /* heroRosterIcon180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F010D981BF4DD4B00B303E4 /* heroRosterIcon180x180.png */; };
 		3F010DA11BF4F38C00B303E4 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */; };
 		3F1C82331BF2D7AF0063FDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */; };
 		3F1C82611BF2E25C0063FDD8 /* Gunslinger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */; };
@@ -29,6 +23,9 @@
 		3F2B89E81BE945A300CE037C /* HeroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89E71BE945A300CE037C /* HeroModel.swift */; };
 		3F2B89EA1BE94A5A00CE037C /* HeroRosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */; };
 		3F2B89EE1BE9535D00CE037C /* HeroStatOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */; };
+		3F37AFFC1C1A044300E252DD /* PathfinderRoleplayingGame1080.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F37AFFB1C1A044300E252DD /* PathfinderRoleplayingGame1080.png */; };
+		3F37B0001C1A117000E252DD /* HeroRosterLogoLaunch640x140.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F37AFFF1C1A117000E252DD /* HeroRosterLogoLaunch640x140.png */; };
+		3F37B0021C1A127600E252DD /* HeroRosterLogoLogin640x140.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F37B0011C1A127600E252DD /* HeroRosterLogoLogin640x140.png */; };
 		3F3A97DF1BED22E20011131F /* LogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */; };
 		3F3DF0101C18F9AC00A3895D /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F3DF00F1C18F9AC00A3895D /* Illo2.jpg */; };
 		3F3DF0121C18FBA800A3895D /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DF0111C18FBA800A3895D /* CreditsViewController.swift */; };
@@ -155,12 +152,6 @@
 
 /* Begin PBXFileReference section */
 		3F007D951C04FC8600D2272D /* theArchivist.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theArchivist.jpg; sourceTree = "<group>"; };
-		3F010D921BF4D7B300B303E4 /* HeroRosterLogo640x140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeroRosterLogo640x140.png; sourceTree = "<group>"; };
-		3F010D941BF4DD4B00B303E4 /* heroRosterIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon58x58.png; sourceTree = "<group>"; };
-		3F010D951BF4DD4B00B303E4 /* heroRosterIcon80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon80x80.png; sourceTree = "<group>"; };
-		3F010D961BF4DD4B00B303E4 /* heroRosterIcon87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon87x87.png; sourceTree = "<group>"; };
-		3F010D971BF4DD4B00B303E4 /* heroRosterIcon120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon120x120.png; sourceTree = "<group>"; };
-		3F010D981BF4DD4B00B303E4 /* heroRosterIcon180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heroRosterIcon180x180.png; sourceTree = "<group>"; };
 		3F010DA01BF4F38C00B303E4 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		3F1C82321BF2D7AF0063FDD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F1C82531BF2E25C0063FDD8 /* Gunslinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gunslinger.png; sourceTree = "<group>"; };
@@ -182,6 +173,9 @@
 		3F2B89E71BE945A300CE037C /* HeroModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroModel.swift; sourceTree = "<group>"; };
 		3F2B89E91BE94A5A00CE037C /* HeroRosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroRosterViewController.swift; sourceTree = "<group>"; };
 		3F2B89ED1BE9535D00CE037C /* HeroStatOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroStatOptionsViewController.swift; sourceTree = "<group>"; };
+		3F37AFFB1C1A044300E252DD /* PathfinderRoleplayingGame1080.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PathfinderRoleplayingGame1080.png; sourceTree = "<group>"; };
+		3F37AFFF1C1A117000E252DD /* HeroRosterLogoLaunch640x140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HeroRosterLogoLaunch640x140.png; path = ../HeroRosterApp/HeroRosterLogoLaunch640x140.png; sourceTree = "<group>"; };
+		3F37B0011C1A127600E252DD /* HeroRosterLogoLogin640x140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeroRosterLogoLogin640x140.png; sourceTree = "<group>"; };
 		3F3A97DE1BED22E20011131F /* LogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDetailViewController.swift; sourceTree = "<group>"; };
 		3F3DF00F1C18F9AC00A3895D /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Illo2.jpg; sourceTree = "<group>"; };
 		3F3DF0111C18FBA800A3895D /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
@@ -522,12 +516,9 @@
 				3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */,
 				3FBFF9561C0FDBF80078E7FB /* Balerion3.jpg */,
 				3F007D951C04FC8600D2272D /* theArchivist.jpg */,
-				3F010D941BF4DD4B00B303E4 /* heroRosterIcon58x58.png */,
-				3F010D951BF4DD4B00B303E4 /* heroRosterIcon80x80.png */,
-				3F010D961BF4DD4B00B303E4 /* heroRosterIcon87x87.png */,
-				3F010D971BF4DD4B00B303E4 /* heroRosterIcon120x120.png */,
-				3F010D981BF4DD4B00B303E4 /* heroRosterIcon180x180.png */,
-				3F010D921BF4D7B300B303E4 /* HeroRosterLogo640x140.png */,
+				3F37B0011C1A127600E252DD /* HeroRosterLogoLogin640x140.png */,
+				3F37AFFF1C1A117000E252DD /* HeroRosterLogoLaunch640x140.png */,
+				3F37AFFB1C1A044300E252DD /* PathfinderRoleplayingGame1080.png */,
 				3F7001551BF3A3D800BC8684 /* book.jpg */,
 				3F7001531BF39D7900BC8684 /* femaleKnight.jpg */,
 				3F43B4091BF421ED00F58C7B /* knight.jpg */,
@@ -658,7 +649,7 @@
 				3FAFC6431C14E437002ABAD7 /* Hunter.png in Resources */,
 				3FAFC6581C14E437002ABAD7 /* Summoner.png in Resources */,
 				3FAFC6441C14E437002ABAD7 /* Inquisitor.png in Resources */,
-				3F010D9D1BF4DD4B00B303E4 /* heroRosterIcon180x180.png in Resources */,
+				3F37AFFC1C1A044300E252DD /* PathfinderRoleplayingGame1080.png in Resources */,
 				3FAFC6511C14E437002ABAD7 /* Rogue.png in Resources */,
 				3FAFC65C1C14E437002ABAD7 /* Wizard.png in Resources */,
 				3FC8695A1C18DF0B0024D1CA /* CavalierSmall.png in Resources */,
@@ -671,12 +662,12 @@
 				3F70014D1BF387AC00BC8684 /* Illo1.jpg in Resources */,
 				3FC869611C18DF0B0024D1CA /* InvestigatorSmall.png in Resources */,
 				3FC869761C18DF0B0024D1CA /* WarpriestSmall.png in Resources */,
-				3F010D9B1BF4DD4B00B303E4 /* heroRosterIcon87x87.png in Resources */,
 				3FC8696C1C18DF0B0024D1CA /* RangerSmall.png in Resources */,
 				3FC8695D1C18DF0B0024D1CA /* FighterSmall.png in Resources */,
 				3F1C82621BF2E25C0063FDD8 /* Magus.png in Resources */,
 				3FC869781C18DF0B0024D1CA /* WizardSmall.png in Resources */,
 				3FAFC6501C14E437002ABAD7 /* Ranger.png in Resources */,
+				3F37B0001C1A117000E252DD /* HeroRosterLogoLaunch640x140.png in Resources */,
 				3FC8696B1C18DF0B0024D1CA /* PsychicSmall.png in Resources */,
 				3FAFC6461C14E437002ABAD7 /* Kineticist.png in Resources */,
 				3F2B89C11BE9413F00CE037C /* LaunchScreen.storyboard in Resources */,
@@ -694,11 +685,11 @@
 				3FAFC63F1C14E437002ABAD7 /* Cleric.png in Resources */,
 				3FAFC64E1C14E437002ABAD7 /* Paladin.png in Resources */,
 				3F2857C31C16530300E624E3 /* ApiKeys.plist in Resources */,
-				3F010D9A1BF4DD4B00B303E4 /* heroRosterIcon80x80.png in Resources */,
 				3FC869541C18DF0B0024D1CA /* AlchemistSmall.png in Resources */,
 				3FC8695B1C18DF0B0024D1CA /* ClericSmall.png in Resources */,
 				3FC869741C18DF0B0024D1CA /* SummonerSmall.png in Resources */,
 				3FAFC6421C14E437002ABAD7 /* Fighter.png in Resources */,
+				3F37B0021C1A127600E252DD /* HeroRosterLogoLogin640x140.png in Resources */,
 				3F43B40A1BF421ED00F58C7B /* knight.jpg in Resources */,
 				3F007D961C04FC8600D2272D /* theArchivist.jpg in Resources */,
 				3FC869641C18DF0B0024D1CA /* MediumSmall.png in Resources */,
@@ -712,11 +703,9 @@
 				3FC869691C18DF0B0024D1CA /* OracleSmall.png in Resources */,
 				3FC869681C18DF0B0024D1CA /* OccultistSmall.png in Resources */,
 				3F73FFA31C122DDB00CFE5D6 /* chaos_librarian.jpg in Resources */,
-				3F010D991BF4DD4B00B303E4 /* heroRosterIcon58x58.png in Resources */,
 				3FAFC63C1C14E437002ABAD7 /* Bloodrager.png in Resources */,
 				3FAFC6401C14E437002ABAD7 /* Druid.png in Resources */,
 				3FAFC6471C14E437002ABAD7 /* Male.png in Resources */,
-				3F010D931BF4D7B300B303E4 /* HeroRosterLogo640x140.png in Resources */,
 				3FAFC63E1C14E437002ABAD7 /* Cavalier.png in Resources */,
 				3FC869571C18DF0B0024D1CA /* BardSmall.png in Resources */,
 				3FAFC64A1C14E437002ABAD7 /* Monk.png in Resources */,
@@ -730,7 +719,6 @@
 				3FAFC6491C14E437002ABAD7 /* Mesmerist.png in Resources */,
 				3FAFC6531C14E437002ABAD7 /* Shaman.png in Resources */,
 				3FC869601C18DF0B0024D1CA /* InquisitorSmall.png in Resources */,
-				3F010D9C1BF4DD4B00B303E4 /* heroRosterIcon120x120.png in Resources */,
 				3FAFC64B1C14E437002ABAD7 /* Ninja.png in Resources */,
 				3FC8696E1C18DF0B0024D1CA /* SamuraiSmall.png in Resources */,
 				3FC869701C18DF0B0024D1CA /* SkaldSmall.png in Resources */,
