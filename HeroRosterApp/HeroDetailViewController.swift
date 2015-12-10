@@ -13,8 +13,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     
     @IBOutlet weak var backgroundImage: UIImageView!
-    
-    
+    @IBOutlet weak var backdropImage: UIImageView!
     @IBOutlet weak var openBookButton: UIBarButtonItem!
     @IBOutlet weak var heroDetailTable: UITableView!
     @IBOutlet weak var heroNameTextField: UITextField!

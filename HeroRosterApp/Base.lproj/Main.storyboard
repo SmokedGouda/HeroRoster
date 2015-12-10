@@ -708,7 +708,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illo4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kBF-9o-XWx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kBF-9o-XWx">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-xq-g6h">
@@ -1014,6 +1014,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illo4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uoN-40-NBO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="E7K-jJ-JLo">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
@@ -1118,15 +1121,18 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EUz-0N-vzm" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="0XC-Vb-47J"/>
                             <constraint firstAttribute="trailing" secondItem="pD3-eT-3ma" secondAttribute="trailing" constant="20" id="0ey-cQ-NAb"/>
                             <constraint firstAttribute="trailing" secondItem="rnZ-zz-9FG" secondAttribute="trailing" constant="20" id="1U9-FF-snz"/>
                             <constraint firstItem="E7K-jJ-JLo" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" id="2BQ-Yv-AQB"/>
+                            <constraint firstItem="XJj-KF-tvE" firstAttribute="top" secondItem="uoN-40-NBO" secondAttribute="bottom" id="2V4-yq-uwA"/>
                             <constraint firstItem="rnZ-zz-9FG" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="3kI-Vz-Azc"/>
                             <constraint firstItem="Lr3-AJ-8Ok" firstAttribute="top" secondItem="EzO-Pd-DY4" secondAttribute="bottom" constant="8" id="8NF-Rp-49i"/>
+                            <constraint firstAttribute="trailing" secondItem="uoN-40-NBO" secondAttribute="trailing" id="B49-7I-OEN"/>
                             <constraint firstItem="Lr3-AJ-8Ok" firstAttribute="leading" secondItem="EUz-0N-vzm" secondAttribute="trailing" constant="8" id="EOz-vd-NXK"/>
+                            <constraint firstItem="uoN-40-NBO" firstAttribute="top" secondItem="314-EC-unr" secondAttribute="top" id="F6p-f4-VAn"/>
                             <constraint firstAttribute="trailing" secondItem="Lr3-AJ-8Ok" secondAttribute="trailing" constant="20" id="FuW-IG-u0R"/>
                             <constraint firstItem="XJj-KF-tvE" firstAttribute="top" secondItem="E7K-jJ-JLo" secondAttribute="bottom" id="GPz-hW-wLD"/>
                             <constraint firstItem="rnZ-zz-9FG" firstAttribute="top" secondItem="pD3-eT-3ma" secondAttribute="bottom" constant="18" id="MZX-KS-t5Y"/>
@@ -1135,6 +1141,7 @@
                             <constraint firstItem="j5Q-w3-G0n" firstAttribute="top" secondItem="rnZ-zz-9FG" secondAttribute="bottom" constant="18" id="RBl-Su-U96"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="top" secondItem="Lr3-AJ-8Ok" secondAttribute="bottom" constant="18" id="TY2-La-tR4"/>
                             <constraint firstItem="pD3-eT-3ma" firstAttribute="leading" secondItem="SdU-UD-Oy7" secondAttribute="trailing" constant="8" id="aAg-Yq-gy5"/>
+                            <constraint firstItem="uoN-40-NBO" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" id="cr8-GG-D9q"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="leading" secondItem="314-EC-unr" secondAttribute="leading" constant="20" id="h0U-Ny-2ev"/>
                             <constraint firstItem="SdU-UD-Oy7" firstAttribute="top" secondItem="EUz-0N-vzm" secondAttribute="bottom" constant="18" id="h7n-id-0xs"/>
                             <constraint firstItem="j5Q-w3-G0n" firstAttribute="centerX" secondItem="314-EC-unr" secondAttribute="centerX" id="jlU-vK-j8k"/>
@@ -1152,6 +1159,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addHeroButton" destination="j5Q-w3-G0n" id="x8D-4i-fRk"/>
+                        <outlet property="backdropImage" destination="uoN-40-NBO" id="kTT-Rg-0k0"/>
                         <outlet property="backgroundImage" destination="E7K-jJ-JLo" id="ViY-Ao-zVj"/>
                         <outlet property="heroDetailTable" destination="rnZ-zz-9FG" id="lUp-hU-L3o"/>
                         <outlet property="heroNameLabel" destination="EUz-0N-vzm" id="ZKA-Sp-grh"/>
@@ -1352,6 +1360,7 @@
         <image name="Balerion3.jpg" width="1600" height="1003"/>
         <image name="HeroRosterLogo640x140.png" width="640" height="140"/>
         <image name="Illo1.jpg" width="618" height="800"/>
+        <image name="Illo2.jpg" width="582" height="800"/>
         <image name="book.jpg" width="364" height="500"/>
         <image name="chaos_librarian.jpg" width="518" height="745"/>
         <image name="femaleKnight.jpg" width="468" height="768"/>

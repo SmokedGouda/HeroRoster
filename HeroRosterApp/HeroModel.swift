@@ -11,7 +11,7 @@ import Parse
 
 struct HeroStats {
     let heroClass = ["Alchemist", "Arcanist", "Barbarian", "Bard", "Bloodrager", "Brawler", "Cavalier", "Cleric", "Druid", "Fighter", "Gunslinger", "Hunter", "Inquisitor", "Investigator", "Kineticist", "Magus", "Medium", "Mesmerist", "Monk", "Ninja", "Occultist", "Oracle", "Paladin", "Psychic", "Ranger", "Rogue", "Samurai", "Shaman", "Skald", "Slayer", "Sorcerer", "Spiritualist", "Summoner", "Swashbuckler", "Warpriest", "Witch", "Wizard"]
-    let race = ["Dwarf", "Elf", "Gnome", "Half-Elf", "Half-Orc", "Halfling", "Human"]
+    let race = ["Aasimar", "Catfolk", "Changeling", "Dhampir", "Drom", "Duergar", "Dwarf", "Elf", "Fetchling", "Gathlain", "Ghoran", "Gillmen", "Goblin", "Gnoll", "Gnome", "Grippli", "Half-Elf", "Half-Orc", "Halfling", "Human", "Hobgoblin", "Ifrit", "Kasatha", "Kitsune", "Kobold", "Lashunta", "Lizardfolk", "Merfolk", "Monkey Goblin", "Nagaji", "Orc", "Oread", "Ratfolk", "Samsaran", "Shabti", "Skinwalker", "Strix", "Suli", "Svirfneblin", "Sylph", "Tegnu", "Tiefling", "Triaxian", "Undine", "Vanara", "Vishkanya", "Wayang", "Wyrwood", "Wyvaran"]
     let gender = ["Male", "Female"]
     let level = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
     let faction = ["Dark Archive", "The Exchange", "Grand Lodge", "Liberty's Edge", "Scarab Sages", "Silver Crusade", "Sovereign Court", "Andoran (Retired)", "Cheliax (Retired)", "Lantern Lodge (Retired)", "Osirion (Retired)", "Qadira (Retired)", "Sczarni (Retired)", "Shadow Lodge (Retired)", "Taldor (Retired)"]
