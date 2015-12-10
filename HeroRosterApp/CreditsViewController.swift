@@ -21,7 +21,9 @@ class CreditsViewController: UIViewController {
         backButton.layer.cornerRadius = 5
         view.backgroundColor = UIColor.clearColor()
         view.opaque = false
+        creditsTextView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6)
         adjustAlphaForUiElements(0.0)
+        creditsTextView.text = credits
     }
     
     override func viewDidAppear(animated: Bool) {
