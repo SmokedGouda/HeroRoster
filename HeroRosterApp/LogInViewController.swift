@@ -17,6 +17,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var newUserSignUpButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var creditsButton: UIButton!
     
     var activeUser = PFUser.currentUser()
     var timer = NSTimer()
@@ -47,7 +48,11 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func forgotPasswordButtonPressed(sender: UIButton) {
-        executForgotPasswordSegueSequence()
+        executeForgotPasswordSegueSequence()
+    }
+    
+    @IBAction func creditsButtonPressed(sender: UIButton) {
+        executeCreditsSegueSequence()
     }
     
     func executeNewUserSignupSegueSequence() {
@@ -55,9 +60,14 @@ class LogInViewController: UIViewController {
         timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToNewUserSignup", userInfo: nil, repeats: false)
     }
     
-    func executForgotPasswordSegueSequence() {
+    func executeForgotPasswordSegueSequence() {
         UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
         timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToForgotPassword", userInfo: nil, repeats: false)
+    }
+    
+    func executeCreditsSegueSequence() {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0); self.adjustAlphaForLogo(0.0)}, completion: nil)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToCredits", userInfo: nil, repeats: false)
     }
     
     func segueToNewUserSignup() {
@@ -66,6 +76,10 @@ class LogInViewController: UIViewController {
     
     func segueToForgotPassword() {
         self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
+    }
+    
+    func segueToCredits() {
+        self.performSegueWithIdentifier("creditsSegue", sender: self)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -78,7 +92,7 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8)}, completion: nil)
+            UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8); self.adjustAlphaForLogo(1.0)}, completion: nil)
     }
     
    @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -168,6 +182,7 @@ class LogInViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         newUserSignUpButton.layer.cornerRadius = 5
         forgotPasswordButton.layer.cornerRadius = 5
+        creditsButton.layer.cornerRadius = 5
     }
     
     func adjustAlphaForUiElements(alpha: CGFloat) {
@@ -176,6 +191,11 @@ class LogInViewController: UIViewController {
         loginButton.alpha = alpha
         newUserSignUpButton.alpha = alpha
         forgotPasswordButton.alpha = alpha
+        creditsButton.alpha = alpha
+    }
+    
+    func adjustAlphaForLogo(alpha: CGFloat) {
+        heroRosterLogo.alpha = alpha
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {

@@ -105,9 +105,23 @@
                                     <action selector="newUserSignUpButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="gcn-iM-1gO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qr7-Bl-p4K">
+                                <rect key="frame" x="90" y="469" width="140" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="Sy9-vM-mhZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="qDx-4e-Acw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Credits"/>
+                                <connections>
+                                    <action selector="creditsButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="BmB-g0-Kwj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Qr7-Bl-p4K" firstAttribute="top" secondItem="4ab-UG-M95" secondAttribute="bottom" constant="20" id="0rL-ri-Rea"/>
                             <constraint firstItem="Jwe-Py-7tX" firstAttribute="top" secondItem="4yz-S2-bph" secondAttribute="bottom" constant="44" id="1go-p1-6cX"/>
                             <constraint firstItem="NSR-ZB-kdh" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="2ry-BJ-b8k"/>
                             <constraint firstItem="4ab-UG-M95" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="9dL-ZJ-UTu"/>
@@ -119,6 +133,7 @@
                             <constraint firstItem="4ab-UG-M95" firstAttribute="top" secondItem="NSR-ZB-kdh" secondAttribute="bottom" constant="20" id="VPZ-SU-zkG"/>
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="top" secondItem="Jwe-Py-7tX" secondAttribute="bottom" constant="8" id="WtJ-cR-IR8"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
+                            <constraint firstItem="Qr7-Bl-p4K" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="Xby-gK-61Q"/>
                             <constraint firstItem="Jwe-Py-7tX" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" constant="20" id="bdT-l7-RoP"/>
                             <constraint firstItem="HO4-20-cqY" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leadingMargin" constant="-20" id="cD0-yh-1kN"/>
                             <constraint firstAttribute="trailing" secondItem="Jwe-Py-7tX" secondAttribute="trailing" constant="20" id="cU5-WH-OlD"/>
@@ -133,6 +148,7 @@
                     <navigationItem key="navigationItem" id="0kU-Xv-Awm"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="creditsButton" destination="Qr7-Bl-p4K" id="r1a-VT-4O5"/>
                         <outlet property="forgotPasswordButton" destination="4ab-UG-M95" id="PK8-UN-hw8"/>
                         <outlet property="heroRosterLogo" destination="4yz-S2-bph" id="qDE-co-rKG"/>
                         <outlet property="loginButton" destination="9fr-N3-ydt" id="6xq-MU-GJD"/>
@@ -142,6 +158,7 @@
                         <segue destination="Nak-u7-1JD" kind="push" identifier="heroRosterSegue" id="s8S-Wt-Nvp"/>
                         <segue destination="Lqv-yd-VT7" kind="modal" identifier="signupSegue" id="2sK-E0-ZZK"/>
                         <segue destination="qyc-WJ-Uzc" kind="modal" identifier="forgotPasswordSegue" id="JPI-7J-oyL"/>
+                        <segue destination="70N-Zp-76n" kind="modal" identifier="creditsSegue" id="QHT-Rd-BZX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2O-xn-XPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,7 +270,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NBY-9p-VC0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="147" y="798"/>
+            <point key="canvasLocation" x="-279" y="798"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="pd6-7m-aDP">
@@ -325,7 +342,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gvp-SO-NMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CjD-CZ-JqE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="521" y="798"/>
+            <point key="canvasLocation" x="127" y="798"/>
         </scene>
         <!--GM Sessions-->
         <scene sceneID="w1n-NC-zLd">
@@ -1174,6 +1191,63 @@
                 <exit id="5VC-ir-mN6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1385" y="19"/>
+        </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="bbn-WG-bIT">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="70N-Zp-76n" customClass="CreditsViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jCf-iP-FLG"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZQu-5s-tgo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cv3-cD-sqt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="2eG-GM-10H">
+                                <rect key="frame" x="20" y="28" width="280" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" id="4o0-t0-v0z"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqO-7Y-Any">
+                                <rect key="frame" x="90" y="498" width="140" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dad-Qv-fdf"/>
+                                    <constraint firstAttribute="width" constant="140" id="w0T-Gi-tlR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="70N-Zp-76n" eventType="touchUpInside" id="0Ss-RJ-Mpm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mqO-7Y-Any" firstAttribute="centerX" secondItem="Cv3-cD-sqt" secondAttribute="centerX" id="6ox-DL-h1Z"/>
+                            <constraint firstItem="mqO-7Y-Any" firstAttribute="top" secondItem="2eG-GM-10H" secondAttribute="bottom" constant="20" id="9RJ-mG-72g"/>
+                            <constraint firstItem="2eG-GM-10H" firstAttribute="centerX" secondItem="Cv3-cD-sqt" secondAttribute="centerX" id="Ihu-Yh-Ed8"/>
+                            <constraint firstItem="2eG-GM-10H" firstAttribute="top" secondItem="jCf-iP-FLG" secondAttribute="bottom" constant="8" id="dkN-4Q-lcK"/>
+                            <constraint firstItem="2eG-GM-10H" firstAttribute="leading" secondItem="Cv3-cD-sqt" secondAttribute="leading" constant="20" id="pGz-3n-MgZ"/>
+                            <constraint firstAttribute="trailing" secondItem="2eG-GM-10H" secondAttribute="trailing" constant="20" id="sO5-RG-NBK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="mqO-7Y-Any" id="7gA-vP-ItT"/>
+                        <outlet property="creditsTextView" destination="2eG-GM-10H" id="bsq-LG-S11"/>
+                        <segue destination="tUv-DA-iRN" kind="unwind" identifier="creditsSegue" unwindAction="unwindForSegue:towardsViewController:" id="Vy6-mH-G4i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBY-Fs-QUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tUv-DA-iRN" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="521" y="798"/>
         </scene>
         <!--Scenario Search View Controller-->
         <scene sceneID="ZFD-j1-P9C">
