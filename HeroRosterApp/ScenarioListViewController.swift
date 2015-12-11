@@ -10,6 +10,8 @@ import UIKit
 
 class ScenarioListViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
 
+    @IBOutlet weak var scenarioTable: UITableView!
+    
     var nameToReturn = String()
     var selectedRow: NSIndexPath?
     var lastSelectedSection: Int?
@@ -25,6 +27,11 @@ class ScenarioListViewController: UIViewController, UITableViewDataSource,UITabl
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return Scenarios().seasons.count
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        header.alpha = 1.0
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

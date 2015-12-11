@@ -35,6 +35,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        heroRosterTable.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
         getRosterFromParse()
         getHerosFromParse()
         getGmSessionLogsFromParse()
@@ -51,6 +52,13 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
  
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
+        let cellColor = UIColor.clearColor()
+        let disclosureImage = UIImage(named: "arrow16x16")
+        cell?.backgroundColor = cellColor
+        cell?.textLabel?.backgroundColor = cellColor
+        cell?.detailTextLabel?.backgroundColor = cellColor
+        cell?.imageView?.backgroundColor = cellColor
+        cell?.accessoryView = UIImageView(image: disclosureImage)
         cell!.textLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         cell!.detailTextLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass

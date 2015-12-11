@@ -24,6 +24,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sessionLogTable.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
         if heroDisplayed!.log.count == 0 {
             getSessionLogsFromParse()
         }
@@ -40,6 +41,13 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sessionLogCell")
+        let cellColor = UIColor.clearColor()
+        let disclosureImage = UIImage(named: "arrow16x16")
+        cell?.backgroundColor = cellColor
+        cell?.textLabel?.backgroundColor = cellColor
+        cell?.detailTextLabel?.backgroundColor = cellColor
+        cell?.imageView?.backgroundColor = cellColor
+        cell?.accessoryView = UIImageView(image: disclosureImage)
         cell?.textLabel!.text = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         cell?.detailTextLabel!.text = downloadedSessionLog.stringFromDate(heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].date)

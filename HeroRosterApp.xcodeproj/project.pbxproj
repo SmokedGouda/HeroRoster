@@ -30,6 +30,7 @@
 		3F3DF0101C18F9AC00A3895D /* Illo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F3DF00F1C18F9AC00A3895D /* Illo2.jpg */; };
 		3F3DF0121C18FBA800A3895D /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DF0111C18FBA800A3895D /* CreditsViewController.swift */; };
 		3F43B40A1BF421ED00F58C7B /* knight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F43B4091BF421ED00F58C7B /* knight.jpg */; };
+		3F47C51A1C1A6B22008332C6 /* arrow16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F47C5191C1A6B22008332C6 /* arrow16x16.png */; };
 		3F483CD11C0CF7C100039CAA /* Scenarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F483CD01C0CF7C100039CAA /* Scenarios.swift */; };
 		3F483CD31C0CF8DD00039CAA /* ScenarioListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F483CD21C0CF8DD00039CAA /* ScenarioListViewController.swift */; };
 		3F4B057B1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B057A1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift */; };
@@ -180,6 +181,7 @@
 		3F3DF00F1C18F9AC00A3895D /* Illo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Illo2.jpg; sourceTree = "<group>"; };
 		3F3DF0111C18FBA800A3895D /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		3F43B4091BF421ED00F58C7B /* knight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = knight.jpg; sourceTree = "<group>"; };
+		3F47C5191C1A6B22008332C6 /* arrow16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow16x16.png; sourceTree = "<group>"; };
 		3F483CD01C0CF7C100039CAA /* Scenarios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenarios.swift; sourceTree = "<group>"; };
 		3F483CD21C0CF8DD00039CAA /* ScenarioListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListViewController.swift; sourceTree = "<group>"; };
 		3F4B057A1BEBD6EE00C0DCF7 /* HeroSessionLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroSessionLogViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		3F1C824D1BF2E25C0063FDD8 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3F47C5191C1A6B22008332C6 /* arrow16x16.png */,
 				3FAFC6111C14E437002ABAD7 /* Alchemist.png */,
 				3FAFC6131C14E437002ABAD7 /* Arcanist.png */,
 				3FAFC6141C14E437002ABAD7 /* Barbarian.png */,
@@ -649,6 +652,7 @@
 				3FAFC6431C14E437002ABAD7 /* Hunter.png in Resources */,
 				3FAFC6581C14E437002ABAD7 /* Summoner.png in Resources */,
 				3FAFC6441C14E437002ABAD7 /* Inquisitor.png in Resources */,
+				3F47C51A1C1A6B22008332C6 /* arrow16x16.png in Resources */,
 				3F37AFFC1C1A044300E252DD /* PathfinderRoleplayingGame1080.png in Resources */,
 				3FAFC6511C14E437002ABAD7 /* Rogue.png in Resources */,
 				3FAFC65C1C14E437002ABAD7 /* Wizard.png in Resources */,

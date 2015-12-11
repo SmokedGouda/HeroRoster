@@ -11,6 +11,7 @@ import Parse
 
 class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var heroStatTable: UITableView!
     @IBOutlet weak var navigationBarTitle: UINavigationItem!
     
     var activeRoster = Roster?()
@@ -24,6 +25,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        heroStatTable.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
         navigationBarTitle.title = navBarTitle
         preselectRowWithAnyDataFromPreviousView()
         }
@@ -59,6 +61,11 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("optionCell", forIndexPath: indexPath)
+        let cellColor = UIColor.clearColor()
+        cell.backgroundColor = cellColor
+        cell.textLabel?.backgroundColor = cellColor
+        cell.detailTextLabel?.backgroundColor = cellColor
+        cell.imageView?.backgroundColor = cellColor
         cell.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         if activateHeroNameTable == true {
             cell.textLabel!.text = activeRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
