@@ -159,7 +159,7 @@
 		3F1C82541BF2E25C0063FDD8 /* Magus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Magus.png; sourceTree = "<group>"; };
 		3F27CDE51BE9B6C300D4B759 /* HeroDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
 		3F2857C21C16530300E624E3 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
-		3F2B89B31BE9413F00CE037C /* HeroRosterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroRosterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F2B89B31BE9413F00CE037C /* Hero Roster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hero Roster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2B89B61BE9413F00CE037C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F2B89B81BE9413F00CE037C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		3F2B89BB1BE9413F00CE037C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 		3F2B89B41BE9413F00CE037C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F2B89B31BE9413F00CE037C /* HeroRosterApp.app */,
+				3F2B89B31BE9413F00CE037C /* Hero Roster.app */,
 				3F2B89C71BE9413F00CE037C /* HeroRosterAppTests.xctest */,
 				3F2B89D21BE9413F00CE037C /* HeroRosterAppUITests.xctest */,
 			);
@@ -537,9 +537,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F2B89B21BE9413F00CE037C /* HeroRosterApp */ = {
+		3F2B89B21BE9413F00CE037C /* Hero Roster */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F2B89DB1BE9413F00CE037C /* Build configuration list for PBXNativeTarget "HeroRosterApp" */;
+			buildConfigurationList = 3F2B89DB1BE9413F00CE037C /* Build configuration list for PBXNativeTarget "Hero Roster" */;
 			buildPhases = (
 				3F2B89AF1BE9413F00CE037C /* Sources */,
 				3F2B89B01BE9413F00CE037C /* Frameworks */,
@@ -549,9 +549,9 @@
 			);
 			dependencies = (
 			);
-			name = HeroRosterApp;
+			name = "Hero Roster";
 			productName = HeroRosterApp;
-			productReference = 3F2B89B31BE9413F00CE037C /* HeroRosterApp.app */;
+			productReference = 3F2B89B31BE9413F00CE037C /* Hero Roster.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3F2B89C61BE9413F00CE037C /* HeroRosterAppTests */ = {
@@ -632,7 +632,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F2B89B21BE9413F00CE037C /* HeroRosterApp */,
+				3F2B89B21BE9413F00CE037C /* Hero Roster */,
 				3F2B89C61BE9413F00CE037C /* HeroRosterAppTests */,
 				3F2B89D11BE9413F00CE037C /* HeroRosterAppUITests */,
 			);
@@ -804,12 +804,12 @@
 /* Begin PBXTargetDependency section */
 		3F2B89C91BE9413F00CE037C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F2B89B21BE9413F00CE037C /* HeroRosterApp */;
+			target = 3F2B89B21BE9413F00CE037C /* Hero Roster */;
 			targetProxy = 3F2B89C81BE9413F00CE037C /* PBXContainerItemProxy */;
 		};
 		3F2B89D41BE9413F00CE037C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F2B89B21BE9413F00CE037C /* HeroRosterApp */;
+			target = 3F2B89B21BE9413F00CE037C /* Hero Roster */;
 			targetProxy = 3F2B89D31BE9413F00CE037C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -929,7 +929,7 @@
 				);
 				INFOPLIST_FILE = HeroRosterApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = smokedgouda.HeroRosterApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.craigcarlson.HeroRoster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -948,7 +948,7 @@
 				);
 				INFOPLIST_FILE = HeroRosterApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = smokedgouda.HeroRosterApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.craigcarlson.HeroRoster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1015,7 +1015,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F2B89DB1BE9413F00CE037C /* Build configuration list for PBXNativeTarget "HeroRosterApp" */ = {
+		3F2B89DB1BE9413F00CE037C /* Build configuration list for PBXNativeTarget "Hero Roster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F2B89DC1BE9413F00CE037C /* Debug */,
