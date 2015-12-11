@@ -407,7 +407,10 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         addHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
         tableEditState = false
         heroNameTextField.enabled = false
+        heroNameTextField.alpha = 0.7
         heroNumberTextField.enabled = false
+        heroNumberTextField.alpha = 0.7
+        heroDetailTable.alpha = 0.7
         heroDetailTable.reloadData()
     }
     
@@ -415,7 +418,10 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         addHeroButton.setTitle("Save", forState: UIControlState.Normal)
         tableEditState = true
         heroNameTextField.enabled = true
+        heroNameTextField.alpha = 0.8
         heroNumberTextField.enabled = true
+        heroNumberTextField.alpha = 0.8
+        heroDetailTable.alpha = 0.8
         heroDetailTable.reloadData()
     }
     

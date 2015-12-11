@@ -241,54 +241,73 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     }
     
     func setViewToStaticMode() {
+        let staticModeBackgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
         addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
         scenarioNameTextView.editable = false
+        scenarioNameTextView.backgroundColor = staticModeBackgroundColor
         dateTextField.enabled = false
+        dateTextField.backgroundColor = staticModeBackgroundColor
         notesTextView.editable = false
+        notesTextView.backgroundColor = staticModeBackgroundColor
         creditForHeroTextField.enabled = false
+        creditForHeroTextField.backgroundColor = staticModeBackgroundColor
     }
     
     func setViewToEditMode() {
+        let editModeBackgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
         addLogButton.setTitle("Save", forState: UIControlState.Normal)
         scenarioNameTextView.editable = true
+        scenarioNameTextView.backgroundColor = editModeBackgroundColor
         dateTextField.enabled = true
+        dateTextField.backgroundColor = editModeBackgroundColor
         notesTextView.editable = true
+        notesTextView.backgroundColor = editModeBackgroundColor
         creditForHeroTextField.enabled = true
+        creditForHeroTextField.backgroundColor = editModeBackgroundColor
     }
 
     func roundTheLabelsButtonsAndTextViews() {
+        let backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
         scenarioNameLabel.layer.borderColor = UIColor.blackColor().CGColor
         scenarioNameLabel.layer.borderWidth = 1.0
         scenarioNameLabel.layer.cornerRadius = 5
         scenarioNameLabel.clipsToBounds = true
+        scenarioNameLabel.backgroundColor = backgroundColor
         scenarioNameTextView.layer.borderColor = UIColor.blackColor().CGColor
         scenarioNameTextView.layer.borderWidth = 1.0
         scenarioNameTextView.layer.masksToBounds = true
         scenarioNameTextView.layer.cornerRadius = 8
+        scenarioNameTextView.backgroundColor = backgroundColor
         dateLabel.layer.borderColor = UIColor.blackColor().CGColor
         dateLabel.layer.borderWidth = 1.0
         dateLabel.layer.cornerRadius = 5
         dateLabel.clipsToBounds = true
+        dateLabel.backgroundColor = backgroundColor
         dateTextField.layer.borderColor = UIColor.blackColor().CGColor
         dateTextField.layer.borderWidth = 1.0
         dateTextField.layer.masksToBounds = true
         dateTextField.layer.cornerRadius = 5
+        dateTextField.backgroundColor = backgroundColor
         creditForHeroLabel.layer.borderColor = UIColor.blackColor().CGColor
         creditForHeroLabel.layer.borderWidth = 1.0
         creditForHeroLabel.layer.cornerRadius = 5
         creditForHeroLabel.clipsToBounds = true
+        creditForHeroLabel.backgroundColor = backgroundColor
         creditForHeroTextField.layer.borderColor = UIColor.blackColor().CGColor
         creditForHeroTextField.layer.borderWidth = 1.0
         creditForHeroTextField.layer.masksToBounds = true
         creditForHeroTextField.layer.cornerRadius = 5
+        creditForHeroTextField.backgroundColor = backgroundColor
         notesLabel.layer.borderColor = UIColor.blackColor().CGColor
         notesLabel.layer.borderWidth = 1.0
         notesLabel.layer.cornerRadius = 5
         notesLabel.clipsToBounds = true
+        notesLabel.backgroundColor = backgroundColor
         notesTextView.layer.borderColor = UIColor.blackColor().CGColor
         notesTextView.layer.borderWidth = 1.0
-        scenarioNameTextView.layer.masksToBounds = true
+        notesTextView.layer.masksToBounds = true
         notesTextView.layer.cornerRadius = 8
+        notesTextView.backgroundColor = backgroundColor
         addLogButton.layer.borderColor = UIColor.blackColor().CGColor
         addLogButton.layer.borderWidth = 1.0
         addLogButton.layer.cornerRadius = 5
