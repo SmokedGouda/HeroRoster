@@ -28,7 +28,7 @@
         <!--Log In View Controller-->
         <scene sceneID="OGf-vI-qvh">
             <objects>
-                <viewController id="Qsr-Y4-z0h" customClass="LogInViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qsr-Y4-z0h" customClass="LogInViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AW5-Ut-svD"/>
                         <viewControllerLayoutGuide type="bottom" id="2Oe-Kc-DNB"/>
@@ -169,7 +169,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="nCZ-T3-ilW">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="Lqv-yd-VT7" customClass="SignUpViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="Lqv-yd-VT7" customClass="SignUpViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EtV-8V-FVa"/>
                         <viewControllerLayoutGuide type="bottom" id="gpc-YF-iaV"/>
@@ -276,7 +276,7 @@
         <!--Forgot Password View Controller-->
         <scene sceneID="pd6-7m-aDP">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="qyc-WJ-Uzc" customClass="ForgotPasswordViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="qyc-WJ-Uzc" customClass="ForgotPasswordViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ukX-fd-XRP"/>
                         <viewControllerLayoutGuide type="bottom" id="4oV-nm-wdP"/>
@@ -348,7 +348,7 @@
         <!--GM Sessions-->
         <scene sceneID="w1n-NC-zLd">
             <objects>
-                <viewController id="pW3-PK-yJa" customClass="GmSessionLogViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pW3-PK-yJa" customClass="GmSessionLogViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fqC-2T-NnF"/>
                         <viewControllerLayoutGuide type="bottom" id="zbx-Di-vqj"/>
@@ -430,7 +430,7 @@
         <!--Gm Log Detail View Controller-->
         <scene sceneID="Bf2-1y-xA5">
             <objects>
-                <viewController id="lgc-LE-hX5" customClass="GmLogDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lgc-LE-hX5" customClass="GmLogDetailViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FpE-jw-RLN"/>
                         <viewControllerLayoutGuide type="bottom" id="5kc-7U-u4O"/>
@@ -619,7 +619,7 @@
         <!--Roster-->
         <scene sceneID="KXq-Re-Hwa">
             <objects>
-                <viewController id="Nak-u7-1JD" customClass="HeroRosterViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nak-u7-1JD" customClass="HeroRosterViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fNx-Ok-8tl"/>
                         <viewControllerLayoutGuide type="bottom" id="MrS-j5-p7A"/>
@@ -719,7 +719,7 @@
         <!--Sessions-->
         <scene sceneID="H7D-VS-0dm">
             <objects>
-                <viewController id="Wxh-R7-Jia" customClass="HeroSessionLogViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wxh-R7-Jia" customClass="HeroSessionLogViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cgJ-am-axw"/>
                         <viewControllerLayoutGuide type="bottom" id="PG0-dx-Sbv"/>
@@ -802,7 +802,7 @@
         <!--Log Detail View Controller-->
         <scene sceneID="GMq-RK-gEf">
             <objects>
-                <viewController id="rmt-BO-U60" customClass="LogDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rmt-BO-U60" customClass="LogDetailViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XoP-QK-1LT"/>
                         <viewControllerLayoutGuide type="bottom" id="MR3-jT-Mti"/>
@@ -959,7 +959,7 @@
         <!--Scenario List View Controller-->
         <scene sceneID="wbZ-Vj-06Q">
             <objects>
-                <viewController id="srQ-qT-QyS" customClass="ScenarioListViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="srQ-qT-QyS" customClass="ScenarioListViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RBD-w5-yed"/>
                         <viewControllerLayoutGuide type="bottom" id="gnu-uh-DIu"/>
@@ -1029,7 +1029,7 @@
         <!--Add Hero-->
         <scene sceneID="6FZ-p4-piN">
             <objects>
-                <viewController id="HrD-Kb-B4S" customClass="HeroDetailViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HrD-Kb-B4S" customClass="HeroDetailViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EzO-Pd-DY4"/>
                         <viewControllerLayoutGuide type="bottom" id="XJj-KF-tvE"/>
@@ -1202,7 +1202,7 @@
         <!--Credits View Controller-->
         <scene sceneID="bbn-WG-bIT">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="70N-Zp-76n" customClass="CreditsViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="70N-Zp-76n" customClass="CreditsViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jCf-iP-FLG"/>
                         <viewControllerLayoutGuide type="bottom" id="ZQu-5s-tgo"/>
@@ -1259,7 +1259,7 @@
         <!--Scenario Search View Controller-->
         <scene sceneID="ZFD-j1-P9C">
             <objects>
-                <viewController id="hap-pX-chL" customClass="ScenarioSearchViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hap-pX-chL" customClass="ScenarioSearchViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gx-zv-Dkt"/>
                         <viewControllerLayoutGuide type="bottom" id="2v0-Nw-hab"/>
@@ -1372,7 +1372,7 @@
         <!--Hero Stat Options View Controller-->
         <scene sceneID="ool-oz-D7p">
             <objects>
-                <viewController id="3dl-4X-qzd" customClass="HeroStatOptionsViewController" customModule="HeroRosterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3dl-4X-qzd" customClass="HeroStatOptionsViewController" customModule="Hero_Roster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bi1-S0-jPg"/>
                         <viewControllerLayoutGuide type="bottom" id="aZv-pp-ule"/>
