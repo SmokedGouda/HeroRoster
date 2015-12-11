@@ -41,6 +41,7 @@ class ForgotPasswordViewController: UIViewController {
     }
 
     @IBAction func cancelButtonPressed(sender: UIButton) {
+        dismissKeyboard()
         executeUnwindForSegueSequence()
     }
     
@@ -65,6 +66,7 @@ class ForgotPasswordViewController: UIViewController {
                 if error != nil {
                     self.displayErrorAlert(error!)
                 } else {
+                    self.dismissKeyboard()
                     self.resetPasswordAlert()
                 }
             }

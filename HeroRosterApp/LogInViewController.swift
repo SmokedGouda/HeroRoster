@@ -44,10 +44,12 @@ class LogInViewController: UIViewController {
         view.endEditing(true)
     }
     @IBAction func newUserSignUpButtonPressed(sender: UIButton) {
+        dismissKeyboard()
         executeNewUserSignupSegueSequence()
     }
     
     @IBAction func forgotPasswordButtonPressed(sender: UIButton) {
+        dismissKeyboard()
         executeForgotPasswordSegueSequence()
     }
     
@@ -129,6 +131,7 @@ class LogInViewController: UIViewController {
             if user != nil {
                 dispatch_async(dispatch_get_main_queue()){
                     self.activeUser = PFUser.currentUser()
+                    self.dismissKeyboard()
                     self.performSegueWithIdentifier("heroRosterSegue", sender: self)
                 }
             } else {

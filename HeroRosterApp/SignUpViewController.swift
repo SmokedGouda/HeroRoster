@@ -43,6 +43,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
+        dismissKeyboard()
         executeUnwindForSegueSequence()
     }
     
@@ -95,6 +96,7 @@ class SignUpViewController: UIViewController {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 PFUser.logOut()
+                self.dismissKeyboard()
                 self.accountCreationAlert()
             } else {
                 print(error)
