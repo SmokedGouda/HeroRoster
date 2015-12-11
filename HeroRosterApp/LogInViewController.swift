@@ -101,7 +101,7 @@ class LogInViewController: UIViewController {
     
     func startLoginProcess() {
         if userNameField.text == "" || userPasswordField.text == "" {
-            emptyUserFieldsAlert()
+            displayLoginAlert("emptyUserFields")
         } else {
             let query = PFUser.query()
             query?.whereKey("username", equalTo: userNameField.text!)
@@ -113,7 +113,7 @@ class LogInViewController: UIViewController {
                 } else {
                     for object:PFObject in userInfo! {
                         if object["emailVerified"] as! Bool == false {
-                            self.unverifiedEmailAlert()
+                            self.displayLoginAlert("unverifiedEmail")
                         } else {
                             self.loginUser()
                         }
@@ -138,37 +138,44 @@ class LogInViewController: UIViewController {
         }
     }
     
-    func unverifiedEmailAlert() {
-        let alert = UIAlertController(title: "Can't login to user account", message: "You must first verify your e-mail before you can log in.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't login to user account", message: "You must provide a username and password to proceed.", preferredStyle: .Alert)
+    func displayLoginAlert(alertToDisplay: String) {
+        let title = "Can't login to user account"
+        var message = String()
+        switch alertToDisplay {
+            case "unverifiedEmail":
+                message = "You must first verify your e-mail before you can log in."
+            case "emptyUserFields":
+                message = "You must provide a username and password to proceed."
+            default:
+                "No Message"
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
     
     func invalidLoginAlert(errorToCheck: NSError) {
+        var title = String()
+        var message = String()
         switch errorToCheck.code {
             case 100:
-                let alert = UIAlertController(title: "Network connection error", message: "Unable to login at this time.", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
-
+                title = "Network connection error"
+                message = "Unable to login at this time."
+            
             case 101:
-                let alert = UIAlertController(title: "Invalid login", message: "The password you provided is invalid.", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
+                title = "Invalid login"
+                message = "The password you provided is invalid."
             
             default:
-                "Nothing Happened"
+                title = "Unknown error"
+                message = "Unable to login at this time."
         }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+
     }
     
     func invalidUserNameAlert() {

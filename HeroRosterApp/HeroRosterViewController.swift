@@ -156,7 +156,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     }
                 }
             } else {
-                print("Error: \(error!) \(error!.userInfo)")
+                print(error)
             }
         }
     }
@@ -193,6 +193,8 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     self.populateUserRoster()
                     self.heroRosterTable.reloadData()
                 }
+            } else {
+                print(error)
             }
         }
     }
@@ -225,7 +227,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
                     self.populateGmSessionLogs()
                 }
             } else {
-               print("Error: \(error!) \(error!.userInfo)") 
+               print(error)
             }
         }
     }

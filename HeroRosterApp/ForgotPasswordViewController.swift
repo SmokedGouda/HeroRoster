@@ -79,22 +79,25 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     func displayErrorAlert(errorToCheck: NSError) {
+        var title = String()
+        var message = String()
         switch errorToCheck.code {
             case 100:
-                let alert = UIAlertController(title: "Network connection error", message: "Unable to send password reset request at this time.", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
+                title = "Network connection error"
+                message = "Unable to send password reset request at this time."
             
             case 205:
-                let alert = UIAlertController(title: "Invalid e-mail", message: "No user found with email \(emailTextField.text!)", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
+                title = "Invalid e-mail"
+                message = "No user found with email \(emailTextField.text!)"
             
             default:
-                "Nothing Happened"
+                title = "Unknown error"
+                message = "An unknown error has occured.  Please try again."
         }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func resetPasswordAlert() {

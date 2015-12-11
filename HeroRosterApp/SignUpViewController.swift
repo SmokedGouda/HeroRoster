@@ -103,28 +103,33 @@ class SignUpViewController: UIViewController {
     }
     
     func displayErrorAlert(errorToCheck: NSError) {
+        var title = String()
+        var message = String()
         switch errorToCheck.code {
             case 100:
-                let alert = UIAlertController(title: "Network connection error", message: "Unable to log in at this time", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
+                title = "Network connection error"
+                message = "Unable to log in at this time"
+            
+            case 125:
+                title = "Can't create user account"
+                message = "The e-mail address you provided is not valid.  Please choose another."
             
             case 202:
-                let alert = UIAlertController(title: "Can't create user account", message: "That username has already been used.  Please choose another.", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
+                title = "Can't create user account"
+                message = "That username has already been used.  Please choose another."
             
             case 203:
-                let alert = UIAlertController(title: "Can't create user account", message: "That e-mail address has already been used.  Please choose another.", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alert.addAction(action)
-                presentViewController(alert, animated: true, completion: nil)
-
+                title = "Can't create user account"
+                message = "That e-mail address has already been used.  Please choose another."
+            
             default:
-                "Nothing Happening"
+                title = "Can't create user account"
+                message = "An unknown error has occured.  Please try again."
         }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func accountCreationAlert() {

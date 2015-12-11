@@ -262,7 +262,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                     self.performSegueWithIdentifier("addHeroSegue", sender: self)
                 }
             } else {
-                (error)
+                print(error)
             }
         }
     }

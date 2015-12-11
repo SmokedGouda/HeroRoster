@@ -130,6 +130,8 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                     self.populateSessionLog()
                     self.sessionLogTable.reloadData()
                 }
+            } else {
+                print(error)
             }
         }
     }
