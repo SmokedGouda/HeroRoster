@@ -57,6 +57,8 @@
 		3F7001541BF39D7900BC8684 /* femaleKnight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F7001531BF39D7900BC8684 /* femaleKnight.jpg */; };
 		3F73851D1C17812A005A436B /* GmLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73851C1C17812A005A436B /* GmLogDetailViewController.swift */; };
 		3F73FFA31C122DDB00CFE5D6 /* chaos_librarian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */; };
+		3FA0DCE81C1B461700A8C810 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA0DCE61C1B461700A8C810 /* Fabric.framework */; };
+		3FA0DCE91C1B461700A8C810 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA0DCE71C1B461700A8C810 /* Crashlytics.framework */; };
 		3FAFC6371C14E437002ABAD7 /* Alchemist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6111C14E437002ABAD7 /* Alchemist.png */; };
 		3FAFC6391C14E437002ABAD7 /* Arcanist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6131C14E437002ABAD7 /* Arcanist.png */; };
 		3FAFC63A1C14E437002ABAD7 /* Barbarian.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFC6141C14E437002ABAD7 /* Barbarian.png */; };
@@ -209,6 +211,8 @@
 		3F7001531BF39D7900BC8684 /* femaleKnight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = femaleKnight.jpg; sourceTree = "<group>"; };
 		3F73851C1C17812A005A436B /* GmLogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GmLogDetailViewController.swift; sourceTree = "<group>"; };
 		3F73FFA21C122DDB00CFE5D6 /* chaos_librarian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chaos_librarian.jpg; sourceTree = "<group>"; };
+		3FA0DCE61C1B461700A8C810 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		3FA0DCE71C1B461700A8C810 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3FAFC6111C14E437002ABAD7 /* Alchemist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alchemist.png; sourceTree = "<group>"; };
 		3FAFC6131C14E437002ABAD7 /* Arcanist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arcanist.png; sourceTree = "<group>"; };
 		3FAFC6141C14E437002ABAD7 /* Barbarian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Barbarian.png; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			files = (
 				3F624AAB1BEFE3CC009415CF /* AudioToolbox.framework in Frameworks */,
 				3F624AAC1BEFE3CC009415CF /* CFNetwork.framework in Frameworks */,
+				3FA0DCE91C1B461700A8C810 /* Crashlytics.framework in Frameworks */,
 				3F624AAD1BEFE3CC009415CF /* CoreGraphics.framework in Frameworks */,
 				3F624AB61BEFE3ED009415CF /* CoreLocation.framework in Frameworks */,
 				3F624AB11BEFE3CC009415CF /* QuartzCore.framework in Frameworks */,
@@ -302,6 +307,7 @@
 				3F624A9E1BEFE21F009415CF /* Bolts.framework in Frameworks */,
 				3F624AB01BEFE3CC009415CF /* libz.tbd in Frameworks */,
 				3F624AAF1BEFE3CC009415CF /* libsqlite3.tbd in Frameworks */,
+				3FA0DCE81C1B461700A8C810 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +466,8 @@
 		3F624AA01BEFE24F009415CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FA0DCE61C1B461700A8C810 /* Fabric.framework */,
+				3FA0DCE71C1B461700A8C810 /* Crashlytics.framework */,
 				3F624AB51BEFE3ED009415CF /* CoreLocation.framework */,
 				3F624AA11BEFE3CC009415CF /* AudioToolbox.framework */,
 				3F624AA21BEFE3CC009415CF /* CFNetwork.framework */,
@@ -544,6 +552,7 @@
 				3F2B89AF1BE9413F00CE037C /* Sources */,
 				3F2B89B01BE9413F00CE037C /* Frameworks */,
 				3F2B89B11BE9413F00CE037C /* Resources */,
+				3FA0DCE51C1B45A400A8C810 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -756,6 +765,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3FA0DCE51C1B45A400A8C810 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run d4bcda0b785149af0d1cb90bf0ae5dd5a5a737a9 8a8f8eab6797c2b5cebd605b990b5006080fbda3b84abeff6099f3b3f0d9e090";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F2B89AF1BE9413F00CE037C /* Sources */ = {
