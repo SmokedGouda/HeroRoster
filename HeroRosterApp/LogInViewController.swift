@@ -179,9 +179,25 @@ class LogInViewController: UIViewController {
     }
 
     func roundTheButtons () {
+        userNameField.layer.borderColor = UIColor.blackColor().CGColor
+        userNameField.layer.borderWidth = 1.0
+        userNameField.layer.masksToBounds = true
+        userNameField.layer.cornerRadius = 5
+        userPasswordField.layer.borderColor = UIColor.blackColor().CGColor
+        userPasswordField.layer.borderWidth = 1.0
+        userPasswordField.layer.masksToBounds = true
+        userPasswordField.layer.cornerRadius = 5
+        loginButton.layer.borderColor = UIColor.blackColor().CGColor
+        loginButton.layer.borderWidth = 1.0
         loginButton.layer.cornerRadius = 5
+        newUserSignUpButton.layer.borderColor = UIColor.blackColor().CGColor
+        newUserSignUpButton.layer.borderWidth = 1.0
         newUserSignUpButton.layer.cornerRadius = 5
+        forgotPasswordButton.layer.borderColor = UIColor.blackColor().CGColor
+        forgotPasswordButton.layer.borderWidth = 1.0
         forgotPasswordButton.layer.cornerRadius = 5
+        creditsButton.layer.borderColor = UIColor.blackColor().CGColor
+        creditsButton.layer.borderWidth = 1.0
         creditsButton.layer.cornerRadius = 5
     }
     

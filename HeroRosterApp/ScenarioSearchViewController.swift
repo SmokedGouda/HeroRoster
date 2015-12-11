@@ -10,7 +10,7 @@ import UIKit
 
 class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var scenarioNameTextField: UITextView!
+    @IBOutlet weak var scenarioNameTextView: UITextView!
     @IBOutlet weak var searchHeroRecordsButton: UIButton!
     @IBOutlet weak var searchGmRecordsButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
@@ -32,7 +32,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
 
     
     @IBAction func searchHeroRecordsButtonPressed(sender: UIButton) {
-        if scenarioNameTextField.text == "" {
+        if scenarioNameTextView.text == "" {
             displaySearchResultsAlert("empty")
         } else {
             searchScenarioRecordsForMatch()
@@ -41,7 +41,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func searchGmRecordsButtonPressed(sender: UIButton) {
-        if scenarioNameTextField.text == "" {
+        if scenarioNameTextView.text == "" {
             displaySearchResultsAlert("empty")
         } else {
             searchGmScenarioRecordsForMatch()
@@ -52,13 +52,13 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
             let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
-            scenarioNameTextField.text = scenarioName.nameToReturn
+            scenarioNameTextView.text = scenarioName.nameToReturn
         }
     }
     
     func searchScenarioRecordsForMatch() {
         for (key, value) in activeRoster!.scenarioRecords {
-            if key == scenarioNameTextField.text! {
+            if key == scenarioNameTextView.text! {
                 foundName = value[0]
                 foundDate = value[1]
                 matchCount++
@@ -68,7 +68,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     
     func searchGmScenarioRecordsForMatch() {
         for scenario in activeRoster!.gmSessionLogs{
-            if scenario.name == scenarioNameTextField.text {
+            if scenario.name == scenarioNameTextView.text {
                 foundDate = GmSessionLog().stringFromDate(scenario.date)
                 matchCount++
             }
@@ -99,16 +99,16 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
         switch result {
             case "match":
                 title = "You've played this scenario"
-                message = "\(scenarioNameTextField.text) was played by \(foundName) on \(foundDate)."
+                message = "\(scenarioNameTextView.text) was played by \(foundName) on \(foundDate)."
             case "gmMatch":
                 title = "You've run this scenario as a GM"
-                message = "\(scenarioNameTextField.text) was run on \(foundDate)."
+                message = "\(scenarioNameTextView.text) was run on \(foundDate)."
             case "noMatch":
                 title = "No record found"
-                message = "You have not played \(scenarioNameTextField.text)."
+                message = "You have not played \(scenarioNameTextView.text)."
             case "noGmMatch":
                 title = "No record found"
-                message = "You have not run \(scenarioNameTextField.text) as a GM."
+                message = "You have not run \(scenarioNameTextView.text) as a GM."
             case "empty":
                 title = "Can't search the records"
                 message = "You must provide a scenario name in order to do a search."
@@ -125,17 +125,28 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     }
 
     func textViewDidBeginEditing(textView: UITextView) {
-        if textView == scenarioNameTextField {
+        if textView == scenarioNameTextView {
             self.performSegueWithIdentifier("scenarioListSegueTwo", sender: self)
         }
     }
     
     func roundTheLabelsAndButtons() {
+        instructionLabel.layer.borderColor = UIColor.blackColor().CGColor
+        instructionLabel.layer.borderWidth = 1.0
         instructionLabel.layer.cornerRadius = 5
         instructionLabel.clipsToBounds = true
-        scenarioNameTextField.layer.cornerRadius = 8
+        scenarioNameTextView.layer.borderColor = UIColor.blackColor().CGColor
+        scenarioNameTextView.layer.borderWidth = 1.0
+        scenarioNameTextView.layer.masksToBounds = true
+        scenarioNameTextView.layer.cornerRadius = 8
+        searchHeroRecordsButton.layer.borderColor = UIColor.blackColor().CGColor
+        searchHeroRecordsButton.layer.borderWidth = 1.0
         searchHeroRecordsButton.layer.cornerRadius = 5
+        searchGmRecordsButton.layer.borderColor = UIColor.blackColor().CGColor
+        searchGmRecordsButton.layer.borderWidth = 1.0
         searchGmRecordsButton.layer.cornerRadius = 5
+        doneButton.layer.borderColor = UIColor.blackColor().CGColor
+        doneButton.layer.borderWidth = 1.0
         doneButton.layer.cornerRadius = 5
     }
 }

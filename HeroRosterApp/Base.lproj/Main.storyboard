@@ -1060,7 +1060,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lr3-AJ-8Ok">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lr3-AJ-8Ok">
                                 <rect key="frame" x="151" y="72" width="149" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1074,7 +1074,7 @@
                                     <action selector="textFieldDoneEditing:" destination="HrD-Kb-B4S" eventType="editingDidEndOnExit" id="dl7-Zo-BaQ"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pD3-eT-3ma">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pD3-eT-3ma">
                                 <rect key="frame" x="151" y="120" width="149" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1211,9 +1211,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="450" id="4o0-t0-v0z"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqO-7Y-Any">
@@ -1305,8 +1304,11 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the field below to select a scenario name then search to see if you have played it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi6-8V-TpH">
-                                <rect key="frame" x="20" y="185" width="280" height="61"/>
+                                <rect key="frame" x="20" y="181" width="280" height="65"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="nnw-lG-9dZ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1327,7 +1329,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1JK-ft-GCZ" firstAttribute="top" secondItem="gi6-8V-TpH" secondAttribute="bottom" constant="8" id="1i2-EP-jr7"/>
                             <constraint firstItem="2v0-Nw-hab" firstAttribute="top" secondItem="J6s-o8-E5o" secondAttribute="bottom" id="2cp-Yj-EsZ"/>
                             <constraint firstAttribute="trailing" secondItem="1JK-ft-GCZ" secondAttribute="trailing" constant="20" id="48m-ml-uJ0"/>
                             <constraint firstItem="gi6-8V-TpH" firstAttribute="leading" secondItem="KxM-SW-VAM" secondAttribute="leading" constant="20" id="4Pr-gA-Yzr"/>
@@ -1335,6 +1336,7 @@
                             <constraint firstItem="1JK-ft-GCZ" firstAttribute="centerX" secondItem="KxM-SW-VAM" secondAttribute="centerX" id="BvK-kZ-HOW"/>
                             <constraint firstItem="J6s-o8-E5o" firstAttribute="top" secondItem="KxM-SW-VAM" secondAttribute="topMargin" constant="20" id="DLk-GI-SbY"/>
                             <constraint firstItem="7Jk-CM-rUj" firstAttribute="top" secondItem="1JK-ft-GCZ" secondAttribute="bottom" constant="20" id="MMx-Zw-PaZ"/>
+                            <constraint firstItem="1JK-ft-GCZ" firstAttribute="top" secondItem="gi6-8V-TpH" secondAttribute="bottom" constant="8" id="Qbf-im-ywx"/>
                             <constraint firstItem="1JK-ft-GCZ" firstAttribute="centerY" secondItem="KxM-SW-VAM" secondAttribute="centerY" id="VdW-SM-7UJ"/>
                             <constraint firstItem="gi6-8V-TpH" firstAttribute="centerX" secondItem="KxM-SW-VAM" secondAttribute="centerX" id="boD-lY-YB4"/>
                             <constraint firstItem="1JK-ft-GCZ" firstAttribute="leading" secondItem="KxM-SW-VAM" secondAttribute="leading" constant="20" id="dSL-ls-SSG"/>
@@ -1350,7 +1352,7 @@
                     <connections>
                         <outlet property="doneButton" destination="a65-28-1Yg" id="7sc-n9-e28"/>
                         <outlet property="instructionLabel" destination="gi6-8V-TpH" id="bhT-Tg-hR8"/>
-                        <outlet property="scenarioNameTextField" destination="1JK-ft-GCZ" id="Kl3-NN-Gya"/>
+                        <outlet property="scenarioNameTextView" destination="1JK-ft-GCZ" id="Ffy-YC-e9C"/>
                         <outlet property="searchGmRecordsButton" destination="3G9-eW-rAl" id="Jbh-xK-HWa"/>
                         <outlet property="searchHeroRecordsButton" destination="7Jk-CM-rUj" id="DUp-9D-5kM"/>
                         <segue destination="srQ-qT-QyS" kind="modal" identifier="scenarioListSegueTwo" id="ehf-UB-6lp"/>
@@ -1446,10 +1448,10 @@
         <image name="theArchivist.jpg" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="0fJ-k0-42G"/>
         <segue reference="4Jt-AF-VuM"/>
         <segue reference="o4b-B9-U7R"/>
         <segue reference="PXK-YF-pJP"/>
-        <segue reference="gbq-3y-Lun"/>
-        <segue reference="0fJ-k0-42G"/>
+        <segue reference="ehf-UB-6lp"/>
     </inferredMetricsTieBreakers>
 </document>

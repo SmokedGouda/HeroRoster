@@ -17,11 +17,9 @@ class CreditsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        creditsTextView.layer.cornerRadius = 8
-        backButton.layer.cornerRadius = 5
         view.backgroundColor = UIColor.clearColor()
         view.opaque = false
-        creditsTextView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6)
+        prepTheButtonAndTextView()
         adjustAlphaForUiElements(0.0)
         creditsTextView.text = credits
     }
@@ -46,6 +44,15 @@ class CreditsViewController: UIViewController {
     
     func unwindSegueToLogInView() {
         self.performSegueWithIdentifier("creditsSegue", sender: self)
+    }
+    
+    func prepTheButtonAndTextView() {
+        creditsTextView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6)
+        creditsTextView.selectable = false
+        creditsTextView.layer.cornerRadius = 8
+        backButton.layer.borderColor = UIColor.blackColor().CGColor
+        backButton.layer.borderWidth = 1.0
+        backButton.layer.cornerRadius = 5
     }
 
     func adjustAlphaForUiElements(alpha: CGFloat) {

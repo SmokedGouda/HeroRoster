@@ -23,8 +23,7 @@ class ForgotPasswordViewController: UIViewController {
         view.addGestureRecognizer(dismiss)
         view.backgroundColor = UIColor.clearColor()
         view.opaque = false
-        resetPasswordButton.layer.cornerRadius = 5
-        cancelButton.layer.cornerRadius = 5
+        roundTheButtons()
         adjustAlphaForUiElements(0.0)
     }
     
@@ -104,6 +103,19 @@ class ForgotPasswordViewController: UIViewController {
         })
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func roundTheButtons() {
+        emailTextField.layer.borderColor = UIColor.blackColor().CGColor
+        emailTextField.layer.borderWidth = 1.0
+        emailTextField.layer.masksToBounds = true
+        emailTextField.layer.cornerRadius = 5
+        resetPasswordButton.layer.borderColor = UIColor.blackColor().CGColor
+        resetPasswordButton.layer.borderWidth = 1.0
+        resetPasswordButton.layer.cornerRadius = 5
+        cancelButton.layer.borderColor = UIColor.blackColor().CGColor
+        cancelButton.layer.borderWidth = 1.0
+        cancelButton.layer.cornerRadius = 5
     }
     
     func adjustAlphaForUiElements(alpha: CGFloat) {

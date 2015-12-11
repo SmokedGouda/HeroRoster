@@ -25,8 +25,7 @@ class SignUpViewController: UIViewController {
         view.addGestureRecognizer(dismiss)
         view.backgroundColor = UIColor.clearColor()
         view.opaque = false
-        createAccountButton.layer.cornerRadius = 5
-        cancelButton.layer.cornerRadius = 5
+        roundTheButtons()
         adjustAlphaForUiElements(0.0)
     }
     
@@ -149,6 +148,27 @@ class SignUpViewController: UIViewController {
         newUserEmailTextField.alpha = alpha
         createAccountButton.alpha = alpha
         cancelButton.alpha = alpha
+    }
+    
+    func roundTheButtons() {
+        newUserNameTextField.layer.borderColor = UIColor.blackColor().CGColor
+        newUserNameTextField.layer.borderWidth = 1.0
+        newUserNameTextField.layer.masksToBounds = true
+        newUserNameTextField.layer.cornerRadius = 5
+        newUserEmailTextField.layer.borderColor = UIColor.blackColor().CGColor
+        newUserEmailTextField.layer.borderWidth = 1.0
+        newUserEmailTextField.layer.masksToBounds = true
+        newUserEmailTextField.layer.cornerRadius = 5
+        newUserPasswordTextField.layer.borderColor = UIColor.blackColor().CGColor
+        newUserPasswordTextField.layer.borderWidth = 1.0
+        newUserPasswordTextField.layer.masksToBounds = true
+        newUserPasswordTextField.layer.cornerRadius = 5
+        createAccountButton.layer.borderColor = UIColor.blackColor().CGColor
+        createAccountButton.layer.borderWidth = 1.0
+        createAccountButton.layer.cornerRadius = 5
+        cancelButton.layer.borderColor = UIColor.blackColor().CGColor
+        cancelButton.layer.borderWidth = 1.0
+        cancelButton.layer.cornerRadius = 5
     }
 
     @IBAction func textFieldDoneEditing(sender: UITextField) {

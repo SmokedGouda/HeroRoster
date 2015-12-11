@@ -253,15 +253,33 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func roundTheLabelsAndButtons() {
-        addLogButton.layer.cornerRadius = 5
+        scenarioNameLabel.layer.borderColor = UIColor.blackColor().CGColor
+        scenarioNameLabel.layer.borderWidth = 1.0
         scenarioNameLabel.layer.cornerRadius = 5
         scenarioNameLabel.clipsToBounds = true
+        scenarioNameTextView.layer.borderColor = UIColor.blackColor().CGColor
+        scenarioNameTextView.layer.borderWidth = 1.0
+        scenarioNameTextView.layer.masksToBounds = true
         scenarioNameTextView.layer.cornerRadius = 8
+        dateLabel.layer.borderColor = UIColor.blackColor().CGColor
+        dateLabel.layer.borderWidth = 1.0
         dateLabel.layer.cornerRadius = 5
         dateLabel.clipsToBounds = true
+        dateTextField.layer.borderColor = UIColor.blackColor().CGColor
+        dateTextField.layer.borderWidth = 1.0
+        dateTextField.layer.masksToBounds = true
+        dateTextField.layer.cornerRadius = 5
+        notesLabel.layer.borderColor = UIColor.blackColor().CGColor
+        notesLabel.layer.borderWidth = 1.0
         notesLabel.layer.cornerRadius = 5
         notesLabel.clipsToBounds = true
+        notesTextView.layer.borderColor = UIColor.blackColor().CGColor
+        notesTextView.layer.borderWidth = 1.0
+        scenarioNameTextView.layer.masksToBounds = true
         notesTextView.layer.cornerRadius = 8
+        addLogButton.layer.borderColor = UIColor.blackColor().CGColor
+        addLogButton.layer.borderWidth = 1.0
+        addLogButton.layer.cornerRadius = 5
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
