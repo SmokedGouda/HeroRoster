@@ -61,7 +61,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         cell?.accessoryView = UIImageView(image: disclosureImage)
         cell!.textLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell!.detailTextLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass
+        cell!.detailTextLabel!.text = "\(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass), Level \(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].level)"
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
         cell!.imageView?.image = UIImage(named: userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass)
    
