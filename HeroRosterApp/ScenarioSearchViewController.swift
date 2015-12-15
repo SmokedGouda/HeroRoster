@@ -133,7 +133,7 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     func roundTheLabelsAndButtons() {
         instructionLabel.layer.borderColor = UIColor.blackColor().CGColor
         instructionLabel.layer.borderWidth = 1.0
-        instructionLabel.layer.cornerRadius = 5
+        instructionLabel.layer.cornerRadius = 8
         instructionLabel.clipsToBounds = true
         scenarioNameTextView.layer.borderColor = UIColor.blackColor().CGColor
         scenarioNameTextView.layer.borderWidth = 1.0
