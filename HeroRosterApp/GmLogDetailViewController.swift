@@ -278,6 +278,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
         scenarioNameTextView.layer.masksToBounds = true
         scenarioNameTextView.layer.cornerRadius = 8
         scenarioNameTextView.backgroundColor = backgroundColor
+        scenarioNameTextView.inputView = UIView(frame: CGRectMake(0,0,0,0))
         dateLabel.layer.borderColor = UIColor.blackColor().CGColor
         dateLabel.layer.borderWidth = 1.0
         dateLabel.layer.cornerRadius = 5
@@ -298,6 +299,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
         creditForHeroTextField.layer.masksToBounds = true
         creditForHeroTextField.layer.cornerRadius = 5
         creditForHeroTextField.backgroundColor = backgroundColor
+        creditForHeroTextField.inputView = UIView(frame: CGRectMake(0,0,0,0))
         notesLabel.layer.borderColor = UIColor.blackColor().CGColor
         notesLabel.layer.borderWidth = 1.0
         notesLabel.layer.cornerRadius = 5

@@ -272,6 +272,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         scenarioNameTextView.layer.masksToBounds = true
         scenarioNameTextView.layer.cornerRadius = 8
         scenarioNameTextView.backgroundColor = backgroundColor
+        scenarioNameTextView.inputView = UIView(frame: CGRectMake(0,0,0,0))
         dateLabel.layer.borderColor = UIColor.blackColor().CGColor
         dateLabel.layer.borderWidth = 1.0
         dateLabel.layer.cornerRadius = 5
