@@ -310,8 +310,4 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
             scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         }
     }
-    
-    @IBAction func textFieldDoneEditing(sender: AnyObject) {
-        sender.resignFirstResponder()
-    }
 }

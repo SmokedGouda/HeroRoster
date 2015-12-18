@@ -315,6 +315,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField == creditForHeroTextField {
+            dateTextField.inputView?.removeFromSuperview()
             view.endEditing(true)
             self.performSegueWithIdentifier("heroStatOptionsSegueTwo", sender: self)
         }
@@ -332,9 +333,5 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         }
-    }
-    
-    @IBAction func textFieldDoneEditing(sender: AnyObject) {
-        sender.resignFirstResponder()
     }
 }
