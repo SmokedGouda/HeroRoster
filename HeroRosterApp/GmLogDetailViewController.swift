@@ -323,6 +323,13 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
         }
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.dateTextField {
+            return false
+        }
+        return true
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 255), animated: true)

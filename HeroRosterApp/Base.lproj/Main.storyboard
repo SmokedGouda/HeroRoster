@@ -524,6 +524,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="dateTextFieldEditing:" destination="lgc-LE-hX5" eventType="editingDidBegin" id="F5e-9v-vRF"/>
+                                            <outlet property="delegate" destination="lgc-LE-hX5" id="n9I-zA-Mni"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7r-gr-BJ0">
@@ -849,6 +850,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="dateTextFieldEditing:" destination="rmt-BO-U60" eventType="editingDidBegin" id="eEs-hX-NH0"/>
+                                            <outlet property="delegate" destination="rmt-BO-U60" id="StR-0g-3sQ"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKZ-GV-M2O">
@@ -1457,9 +1459,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4Jt-AF-VuM"/>
-        <segue reference="o4b-B9-U7R"/>
         <segue reference="PXK-YF-pJP"/>
-        <segue reference="ehf-UB-6lp"/>
+        <segue reference="gbq-3y-Lun"/>
         <segue reference="0fJ-k0-42G"/>
+        <segue reference="iH1-Ak-xNP"/>
     </inferredMetricsTieBreakers>
 </document>

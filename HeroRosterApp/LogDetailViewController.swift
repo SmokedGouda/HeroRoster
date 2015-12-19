@@ -306,6 +306,14 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.dateTextField {
+            return false
+        }
+        return true
+    }
+
+    
     func textViewDidEndEditing(textView: UITextView) {
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
