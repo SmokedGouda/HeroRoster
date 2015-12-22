@@ -117,7 +117,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     func updateScenarioRecords() {
         activeRoster?.scenarioRecords[scenarioNameBeforeEdit] = nil
         activeRoster?.scenarioRecords[scenarioNameTextView.text!] = [heroDisplayed!.name, dateTextField.text!]
-          scenarioNameBeforeEdit = scenarioNameTextView.text!
+        scenarioNameBeforeEdit = scenarioNameTextView.text!
     }
     
     func saveEditedLog() {

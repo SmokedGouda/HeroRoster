@@ -317,8 +317,6 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField == creditForHeroTextField {
-            dateTextField.inputView?.removeFromSuperview()
-            view.endEditing(true)
             self.performSegueWithIdentifier("heroStatOptionsSegueTwo", sender: self)
         }
     }
