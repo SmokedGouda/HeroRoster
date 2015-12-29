@@ -57,22 +57,45 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
+        dismissKeyboard()
         if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" && newUserEmailTextField.text != "" {
-            let user = PFUser()
-            user.username = newUserNameTextField.text
-            user.password = newUserPasswordTextField.text
-            user.email = newUserEmailTextField.text
-            
-            user.signUpInBackgroundWithBlock {
-                (succeeded: Bool, error: NSError?) -> Void in
-                if error != nil {
-                    self.displayErrorAlert(error!)
-                } else {
-                    self.logInNewUser()
-                }
-            }
+            displayPrivacyPolicyAcceptanceAlert()
         } else {
             emptyUserFieldsAlert()
+        }
+    }
+    
+    func displayPrivacyPolicyAcceptanceAlert() {
+        let alert = UIAlertController(title: "About to create account", message: "By tapping Ok, you agree to the terms of the Privacy Policy described in this app.  If you do not, tap Cancel to abort the account creation process.", preferredStyle: .Alert)
+        let acceptAction = UIAlertAction(title: "Ok", style: .Default, handler: { (actionSheetController) -> Void in
+            self.beginAccountCreationProcess()
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alert.addAction(acceptAction)
+        alert.addAction(cancelAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func emptyUserFieldsAlert() {
+        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a username, password, and e-mail to proceed.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
+    func beginAccountCreationProcess() {
+        let user = PFUser()
+        user.username = newUserNameTextField.text
+        user.password = newUserPasswordTextField.text
+        user.email = newUserEmailTextField.text
+        
+        user.signUpInBackgroundWithBlock {
+            (succeeded: Bool, error: NSError?) -> Void in
+            if error != nil {
+                self.displayErrorAlert(error!)
+            } else {
+                self.logInNewUser()
+            }
         }
     }
 
@@ -96,12 +119,19 @@ class SignUpViewController: UIViewController {
             (success: Bool, error: NSError?) -> Void in
             if (success) {
                 PFUser.logOut()
-                self.dismissKeyboard()
                 self.accountCreationAlert()
             } else {
                 print(error)
             }
         }
+    }
+    
+    func accountCreationAlert() {
+        let alert = UIAlertController(title: "Account creation successful", message: "You will receive a e-mail to verify your account shortly.  Click the link you receive in your e-mail to activate your account and allow you access to login.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler:  { (actionSheetController) -> Void in self.executeUnwindForSegueSequence()
+        })
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func displayErrorAlert(errorToCheck: NSError) {
@@ -129,21 +159,6 @@ class SignUpViewController: UIViewController {
                 message = "An unknown error has occured.  Please try again."
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func accountCreationAlert() {
-        let alert = UIAlertController(title: "Account creation successful", message: "You will receive a e-mail to verify your account shortly.  Click the link you receive in your e-mail to activate your account and allow you access to login.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler:  { (actionSheetController) -> Void in self.executeUnwindForSegueSequence()
-        })
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a username, password, and e-mail to proceed.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)

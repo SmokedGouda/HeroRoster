@@ -14,6 +14,7 @@ class CreditsViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     var timer = NSTimer()
+    var legalText = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,6 @@ class CreditsViewController: UIViewController {
         view.opaque = false
         prepTheButtonAndTextView()
         adjustAlphaForUiElements(0.0)
-        creditsTextView.text = credits
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -47,6 +47,7 @@ class CreditsViewController: UIViewController {
     }
     
     func prepTheButtonAndTextView() {
+        creditsTextView.text = legalText
         creditsTextView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.6)
         creditsTextView.selectable = false
         creditsTextView.layer.cornerRadius = 8

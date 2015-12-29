@@ -18,9 +18,12 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var newUserSignUpButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var creditsButton: UIButton!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    
     
     var activeUser = PFUser.currentUser()
     var timer = NSTimer()
+    var showPrivacyPolicy = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +57,12 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func creditsButtonPressed(sender: UIButton) {
+        showPrivacyPolicy = false
+        executeCreditsSegueSequence()
+    }
+    
+    @IBAction func privacyPolicyButtonPressed(sender: UIButton) {
+        showPrivacyPolicy = true
         executeCreditsSegueSequence()
     }
     
@@ -90,6 +99,13 @@ class LogInViewController: UIViewController {
         if segue.identifier == "heroRosterSegue" {
             navigationController?.navigationBarHidden = false
             UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 1.0}, completion: nil)
+        } else if segue.identifier == "creditsSegue" {
+            let destVC: CreditsViewController = segue.destinationViewController as! CreditsViewController
+            if showPrivacyPolicy == true {
+                destVC.legalText = Legal().privacyPolicy
+            } else {
+                destVC.legalText = Legal().credits
+            }
         }
     }
     
@@ -97,7 +113,7 @@ class LogInViewController: UIViewController {
             UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8); self.adjustAlphaForLogo(1.0)}, completion: nil)
     }
     
-   @IBAction func loginButtonPressed(sender: AnyObject) {
+    @IBAction func loginButtonPressed(sender: AnyObject) {
         startLoginProcess()
     }
     
@@ -209,6 +225,9 @@ class LogInViewController: UIViewController {
         creditsButton.layer.borderColor = UIColor.blackColor().CGColor
         creditsButton.layer.borderWidth = 1.0
         creditsButton.layer.cornerRadius = 5
+        privacyPolicyButton.layer.borderColor = UIColor.blackColor().CGColor
+        privacyPolicyButton.layer.borderWidth = 1.0
+        privacyPolicyButton.layer.cornerRadius = 5
     }
     
     func adjustAlphaForUiElements(alpha: CGFloat) {
@@ -218,6 +237,7 @@ class LogInViewController: UIViewController {
         newUserSignUpButton.alpha = alpha
         forgotPasswordButton.alpha = alpha
         creditsButton.alpha = alpha
+        privacyPolicyButton.alpha = alpha
     }
     
     func adjustAlphaForLogo(alpha: CGFloat) {
