@@ -20,18 +20,17 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var creditsButton: UIButton!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     
-    
     var activeUser = PFUser.currentUser()
     var timer = NSTimer()
-    var showPrivacyPolicy = false
+    var logoAlphaValue: CGFloat = 1.0
+    var legalText = Legal()
+    var legalTextToDisplay = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBarHidden = true
-        navigationController?.navigationBar.alpha = 0.0
-        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(dismiss)
-        roundTheButtons()
+        hideTheNavigationBar()
+        createGestureRecognizerForKeyboardDismiss()
+        adjustBordersOfUiElements()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -43,168 +42,21 @@ class LogInViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
+    func hideTheNavigationBar() {
+        navigationController?.navigationBarHidden = true
+        navigationController?.navigationBar.alpha = 0.0
+    }
+    
+    func createGestureRecognizerForKeyboardDismiss() {
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    @IBAction func newUserSignUpButtonPressed(sender: UIButton) {
-        dismissKeyboard()
-        executeNewUserSignupSegueSequence()
-    }
     
-    @IBAction func forgotPasswordButtonPressed(sender: UIButton) {
-        dismissKeyboard()
-        executeForgotPasswordSegueSequence()
-    }
-    
-    @IBAction func creditsButtonPressed(sender: UIButton) {
-        showPrivacyPolicy = false
-        executeCreditsSegueSequence()
-    }
-    
-    @IBAction func privacyPolicyButtonPressed(sender: UIButton) {
-        showPrivacyPolicy = true
-        executeCreditsSegueSequence()
-    }
-    
-    func executeNewUserSignupSegueSequence() {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToNewUserSignup", userInfo: nil, repeats: false)
-    }
-    
-    func executeForgotPasswordSegueSequence() {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0)}, completion: nil)
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToForgotPassword", userInfo: nil, repeats: false)
-    }
-    
-    func executeCreditsSegueSequence() {
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0); self.adjustAlphaForLogo(0.0)}, completion: nil)
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "segueToCredits", userInfo: nil, repeats: false)
-    }
-    
-    func segueToNewUserSignup() {
-        self.performSegueWithIdentifier("signupSegue", sender: self)
-    }
-    
-    func segueToForgotPassword() {
-        self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
-    }
-    
-    func segueToCredits() {
-        self.performSegueWithIdentifier("creditsSegue", sender: self)
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        userNameField.text = ""
-        userPasswordField.text = ""
-        if segue.identifier == "heroRosterSegue" {
-            navigationController?.navigationBarHidden = false
-            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 1.0}, completion: nil)
-        } else if segue.identifier == "creditsSegue" {
-            let destVC: CreditsViewController = segue.destinationViewController as! CreditsViewController
-            if showPrivacyPolicy == true {
-                destVC.legalText = Legal().privacyPolicy
-            } else {
-                destVC.legalText = Legal().credits
-            }
-        }
-    }
-    
-    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-            UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8); self.adjustAlphaForLogo(1.0)}, completion: nil)
-    }
-    
-    @IBAction func loginButtonPressed(sender: AnyObject) {
-        startLoginProcess()
-    }
-    
-    func startLoginProcess() {
-        if userNameField.text == "" || userPasswordField.text == "" {
-            displayLoginAlert("emptyUserFields")
-        } else {
-            let query = PFUser.query()
-            query?.whereKey("username", equalTo: userNameField.text!)
-            query?.findObjectsInBackgroundWithBlock { (userInfo: [PFObject]?, error: NSError?) -> Void in
-                if error != nil {
-                    print(error)
-                } else if userInfo!.count == 0 {
-                    self.invalidUserNameAlert()
-                } else {
-                    for object:PFObject in userInfo! {
-                        if object["emailVerified"] as! Bool == false {
-                            self.displayLoginAlert("unverifiedEmail")
-                        } else {
-                            self.loginUser()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func loginUser() {
-        PFUser.logInWithUsernameInBackground(userNameField.text!, password: userPasswordField.text!) {
-            (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                dispatch_async(dispatch_get_main_queue()){
-                    self.activeUser = PFUser.currentUser()
-                    self.dismissKeyboard()
-                    self.performSegueWithIdentifier("heroRosterSegue", sender: self)
-                }
-            } else {
-                print(error)
-                self.invalidLoginAlert(error!)
-            }
-        }
-    }
-    
-    func displayLoginAlert(alertToDisplay: String) {
-        let title = "Can't login to user account"
-        var message = String()
-        switch alertToDisplay {
-            case "unverifiedEmail":
-                message = "You must first verify your e-mail before you can log in."
-            case "emptyUserFields":
-                message = "You must provide a username and password to proceed."
-            default:
-                "No Message"
-        }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func invalidLoginAlert(errorToCheck: NSError) {
-        var title = String()
-        var message = String()
-        switch errorToCheck.code {
-            case 100:
-                title = "Network connection error"
-                message = "Unable to login at this time."
-            
-            case 101:
-                title = "Invalid login"
-                message = "The password you provided is invalid."
-            
-            default:
-                title = "Unknown error"
-                message = "Unable to login at this time."
-        }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-
-    }
-    
-    func invalidUserNameAlert() {
-        let alert = UIAlertController(title: "Invalid user name", message: "The username you provided does not exist.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func roundTheButtons () {
+    func adjustBordersOfUiElements () {
         userNameField.layer.borderColor = UIColor.blackColor().CGColor
         userNameField.layer.borderWidth = 1.0
         userNameField.layer.masksToBounds = true
@@ -229,8 +81,18 @@ class LogInViewController: UIViewController {
         privacyPolicyButton.layer.borderWidth = 1.0
         privacyPolicyButton.layer.cornerRadius = 5
     }
+
+    @IBAction func newUserSignUpButtonPressed(sender: UIButton) {
+        dismissKeyboard()
+        executeSegueSequence("segueToNewUserSignup")
+    }
     
-    func adjustAlphaForUiElements(alpha: CGFloat) {
+    func executeSegueSequence(segueToPerform: Selector) {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.0, logoAlpha: self.logoAlphaValue )}, completion: nil)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: segueToPerform, userInfo: nil, repeats: false)
+    }
+    
+    func adjustAlphaForUiElements(alpha: CGFloat, logoAlpha: CGFloat) {
         userNameField.alpha = alpha
         userPasswordField.alpha = alpha
         loginButton.alpha = alpha
@@ -238,10 +100,53 @@ class LogInViewController: UIViewController {
         forgotPasswordButton.alpha = alpha
         creditsButton.alpha = alpha
         privacyPolicyButton.alpha = alpha
+        heroRosterLogo.alpha = logoAlpha
     }
     
-    func adjustAlphaForLogo(alpha: CGFloat) {
-        heroRosterLogo.alpha = alpha
+    func segueToNewUserSignup() {
+        self.performSegueWithIdentifier("signupSegue", sender: self)
+    }
+    
+    @IBAction func forgotPasswordButtonPressed(sender: UIButton) {
+        dismissKeyboard()
+        executeSegueSequence("segueToForgotPassword")
+    }
+    
+    func segueToForgotPassword() {
+        self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
+    }
+
+    @IBAction func creditsButtonPressed(sender: UIButton) {
+        logoAlphaValue = 0.0
+        legalTextToDisplay = legalText.credits
+        executeSegueSequence("segueToCredits")
+    }
+    
+    func segueToCredits() {
+        self.performSegueWithIdentifier("creditsSegue", sender: self)
+    }
+
+    @IBAction func privacyPolicyButtonPressed(sender: UIButton) {
+        logoAlphaValue = 0.0
+        legalTextToDisplay = legalText.privacyPolicy
+        executeSegueSequence("segueToCredits")
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        userNameField.text = ""
+        userPasswordField.text = ""
+        if segue.identifier == "heroRosterSegue" {
+            navigationController?.navigationBarHidden = false
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 1.0}, completion: nil)
+        } else if segue.identifier == "creditsSegue" {
+            let destVC: CreditsViewController = segue.destinationViewController as! CreditsViewController
+            destVC.legalText = legalTextToDisplay
+        }
+    }
+    
+    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        logoAlphaValue = 1.0
+        UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8, logoAlpha: self.logoAlphaValue)}, completion: nil)
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {
@@ -249,6 +154,97 @@ class LogInViewController: UIViewController {
         if sender == userPasswordField {
             startLoginProcess()
         }
+    }
+    
+    @IBAction func loginButtonPressed(sender: AnyObject) {
+        startLoginProcess()
+    }
+    
+    func startLoginProcess() {
+        if userNameField.text == "" || userPasswordField.text == "" {
+            displayInvalidLoginAlert("emptyUserFields")
+        } else {
+            queryParseForUser()
+        }
+    }
+    
+    func displayInvalidLoginAlert(alertToDisplay: String) {
+        let title = "Can't login to user account"
+        var message = String()
+        switch alertToDisplay {
+            case "emptyUserFields":
+                message = "You must provide a username and password to proceed."
+            case "invalidUserName":
+                message = "The username you provided does not exist."
+            case "unverifiedEmail":
+                message = "You must first verify your e-mail before you can log in."
+            default:
+                "No Message"
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func queryParseForUser() {
+        let query = PFUser.query()
+        query?.whereKey("username", equalTo: userNameField.text!)
+        query?.findObjectsInBackgroundWithBlock { (userInfo: [PFObject]?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if userInfo!.count == 0 {
+                self.displayInvalidLoginAlert("invalidUserName")
+            } else {
+                self.checkUserEmailVerificationStatus(userInfo!)
+            }
+        }
+    }
+    
+    func checkUserEmailVerificationStatus(userInfo: [PFObject]) {
+        for object:PFObject in userInfo {
+            if object["emailVerified"] as! Bool == false {
+                self.displayInvalidLoginAlert("unverifiedEmail")
+            } else {
+                self.loginUser()
+            }
+        }
+    }
+    
+    func loginUser() {
+        PFUser.logInWithUsernameInBackground(userNameField.text!, password: userPasswordField.text!) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                dispatch_async(dispatch_get_main_queue()){
+                    self.activeUser = PFUser.currentUser()
+                    self.dismissKeyboard()
+                    self.performSegueWithIdentifier("heroRosterSegue", sender: self)
+                }
+            } else {
+                print(error)
+                self.displayErrorAlert(error!)
+            }
+        }
+    }
+    
+    func displayErrorAlert(errorToCheck: NSError) {
+        var title = String()
+        var message = String()
+        switch errorToCheck.code {
+            case 100:
+                title = "Network connection error"
+                message = "Unable to login at this time."
+            case 101:
+                title = "Invalid login"
+                message = "The password you provided is invalid."
+            default:
+                title = "Unknown error"
+                message = "Unable to login at this time."
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 
