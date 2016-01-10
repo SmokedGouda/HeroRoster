@@ -21,11 +21,9 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(dismiss)
-        view.backgroundColor = UIColor.clearColor()
-        view.opaque = false
-        roundTheButtons()
+        createGestureRecognizerForKeyboardDismiss()
+        setTheBackgroundViewToClearColor()
+        adjustBordersOfUiElements()
         adjustAlphaForUiElements(0.0)
     }
     
@@ -38,8 +36,47 @@ class SignUpViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
+    func createGestureRecognizerForKeyboardDismiss() {
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func setTheBackgroundViewToClearColor() {
+        view.backgroundColor = UIColor.clearColor()
+        view.opaque = false
+    }
+    
+    func adjustBordersOfUiElements() {
+        newUserNameTextField.layer.borderColor = UIColor.blackColor().CGColor
+        newUserNameTextField.layer.borderWidth = 1.0
+        newUserNameTextField.layer.masksToBounds = true
+        newUserNameTextField.layer.cornerRadius = 5
+        newUserEmailTextField.layer.borderColor = UIColor.blackColor().CGColor
+        newUserEmailTextField.layer.borderWidth = 1.0
+        newUserEmailTextField.layer.masksToBounds = true
+        newUserEmailTextField.layer.cornerRadius = 5
+        newUserPasswordTextField.layer.borderColor = UIColor.blackColor().CGColor
+        newUserPasswordTextField.layer.borderWidth = 1.0
+        newUserPasswordTextField.layer.masksToBounds = true
+        newUserPasswordTextField.layer.cornerRadius = 5
+        createAccountButton.layer.borderColor = UIColor.blackColor().CGColor
+        createAccountButton.layer.borderWidth = 1.0
+        createAccountButton.layer.cornerRadius = 5
+        cancelButton.layer.borderColor = UIColor.blackColor().CGColor
+        cancelButton.layer.borderWidth = 1.0
+        cancelButton.layer.cornerRadius = 5
+    }
+    
+    func adjustAlphaForUiElements(alpha: CGFloat) {
+        newUserNameTextField.alpha = alpha
+        newUserPasswordTextField.alpha = alpha
+        newUserEmailTextField.alpha = alpha
+        createAccountButton.alpha = alpha
+        cancelButton.alpha = alpha
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -55,20 +92,31 @@ class SignUpViewController: UIViewController {
     func unwindSegueToLogInView() {
         self.performSegueWithIdentifier("signupSegue", sender: self)
     }
+    
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
 
     @IBAction func createAccountButtonPressed(sender: AnyObject) {
         dismissKeyboard()
-        if newUserNameTextField.text != "" && newUserPasswordTextField.text != "" && newUserEmailTextField.text != "" {
-            displayPrivacyPolicyAcceptanceAlert()
+        if newUserNameTextField.text == "" || newUserPasswordTextField.text == "" || newUserEmailTextField.text == "" {
+            displayEmptyUserFieldsAlert()
         } else {
-            emptyUserFieldsAlert()
+            displayPrivacyPolicyAcceptanceAlert()
         }
     }
     
+    func displayEmptyUserFieldsAlert() {
+        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a username, password, and e-mail to proceed.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
     func displayPrivacyPolicyAcceptanceAlert() {
         let alert = UIAlertController(title: "About to create account", message: "By tapping Ok, you agree to the terms of the Privacy Policy described in this app.  If you do not, tap Cancel to abort the account creation process.", preferredStyle: .Alert)
         let acceptAction = UIAlertAction(title: "Ok", style: .Default, handler: { (actionSheetController) -> Void in
-            self.beginAccountCreationProcess()
+            self.startAccountCreationProcess()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alert.addAction(acceptAction)
@@ -76,27 +124,44 @@ class SignUpViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func emptyUserFieldsAlert() {
-        let alert = UIAlertController(title: "Can't create user account", message: "You must provide a username, password, and e-mail to proceed.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func beginAccountCreationProcess() {
+    func startAccountCreationProcess() {
         let user = PFUser()
         user.username = newUserNameTextField.text
         user.password = newUserPasswordTextField.text
         user.email = newUserEmailTextField.text
-        
-        user.signUpInBackgroundWithBlock {
-            (succeeded: Bool, error: NSError?) -> Void in
+        user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError?) -> Void in
             if error != nil {
                 self.displayErrorAlert(error!)
             } else {
                 self.logInNewUser()
             }
         }
+    }
+    
+    func displayErrorAlert(errorToCheck: NSError) {
+        var title = String()
+        var message = String()
+        switch errorToCheck.code {
+            case 100:
+                title = "Network connection error"
+                message = "Unable to log in at this time"
+            case 125:
+                title = "Can't create user account"
+                message = "The e-mail address you provided is not valid.  Please choose another."
+            case 202:
+                title = "Can't create user account"
+                message = "That username has already been used.  Please choose another."
+            case 203:
+                title = "Can't create user account"
+                message = "That e-mail address has already been used.  Please choose another."
+            default:
+                title = "Can't create user account"
+                message = "An unknown error has occured.  Please try again."
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
     }
 
     func logInNewUser() {
@@ -132,68 +197,5 @@ class SignUpViewController: UIViewController {
         })
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func displayErrorAlert(errorToCheck: NSError) {
-        var title = String()
-        var message = String()
-        switch errorToCheck.code {
-            case 100:
-                title = "Network connection error"
-                message = "Unable to log in at this time"
-            
-            case 125:
-                title = "Can't create user account"
-                message = "The e-mail address you provided is not valid.  Please choose another."
-            
-            case 202:
-                title = "Can't create user account"
-                message = "That username has already been used.  Please choose another."
-            
-            case 203:
-                title = "Can't create user account"
-                message = "That e-mail address has already been used.  Please choose another."
-            
-            default:
-                title = "Can't create user account"
-                message = "An unknown error has occured.  Please try again."
-        }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func adjustAlphaForUiElements(alpha: CGFloat) {
-        newUserNameTextField.alpha = alpha
-        newUserPasswordTextField.alpha = alpha
-        newUserEmailTextField.alpha = alpha
-        createAccountButton.alpha = alpha
-        cancelButton.alpha = alpha
-    }
-    
-    func roundTheButtons() {
-        newUserNameTextField.layer.borderColor = UIColor.blackColor().CGColor
-        newUserNameTextField.layer.borderWidth = 1.0
-        newUserNameTextField.layer.masksToBounds = true
-        newUserNameTextField.layer.cornerRadius = 5
-        newUserEmailTextField.layer.borderColor = UIColor.blackColor().CGColor
-        newUserEmailTextField.layer.borderWidth = 1.0
-        newUserEmailTextField.layer.masksToBounds = true
-        newUserEmailTextField.layer.cornerRadius = 5
-        newUserPasswordTextField.layer.borderColor = UIColor.blackColor().CGColor
-        newUserPasswordTextField.layer.borderWidth = 1.0
-        newUserPasswordTextField.layer.masksToBounds = true
-        newUserPasswordTextField.layer.cornerRadius = 5
-        createAccountButton.layer.borderColor = UIColor.blackColor().CGColor
-        createAccountButton.layer.borderWidth = 1.0
-        createAccountButton.layer.cornerRadius = 5
-        cancelButton.layer.borderColor = UIColor.blackColor().CGColor
-        cancelButton.layer.borderWidth = 1.0
-        cancelButton.layer.cornerRadius = 5
-    }
-
-    @IBAction func textFieldDoneEditing(sender: UITextField) {
-        sender.resignFirstResponder()
     }
 }
