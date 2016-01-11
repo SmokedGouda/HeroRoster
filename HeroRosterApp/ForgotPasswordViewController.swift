@@ -19,11 +19,9 @@ class ForgotPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(dismiss)
-        view.backgroundColor = UIColor.clearColor()
-        view.opaque = false
-        roundTheButtons()
+        createGestureRecognizerForKeyboardDismiss()
+        setTheBackgroundViewToClearColor()
+        adjustBordersOfUiElements()
         adjustAlphaForUiElements(0.0)
     }
     
@@ -36,8 +34,37 @@ class ForgotPasswordViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
+    func createGestureRecognizerForKeyboardDismiss() {
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func setTheBackgroundViewToClearColor() {
+        view.backgroundColor = UIColor.clearColor()
+        view.opaque = false
+    }
+    
+    func adjustBordersOfUiElements() {
+        emailTextField.layer.borderColor = UIColor.blackColor().CGColor
+        emailTextField.layer.borderWidth = 1.0
+        emailTextField.layer.masksToBounds = true
+        emailTextField.layer.cornerRadius = 5
+        resetPasswordButton.layer.borderColor = UIColor.blackColor().CGColor
+        resetPasswordButton.layer.borderWidth = 1.0
+        resetPasswordButton.layer.cornerRadius = 5
+        cancelButton.layer.borderColor = UIColor.blackColor().CGColor
+        cancelButton.layer.borderWidth = 1.0
+        cancelButton.layer.cornerRadius = 5
+    }
+    
+    func adjustAlphaForUiElements(alpha: CGFloat) {
+        emailTextField.alpha = alpha
+        resetPasswordButton.alpha = alpha
+        cancelButton.alpha = alpha
     }
 
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -59,17 +86,11 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func resetPasswordButtonPressed(sender: UIButton) {
+        dismissKeyboard()
         if emailTextField.text == "" {
             emptyEmailTextFieldAlert()
         } else {
-            PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!) {(success: Bool, error: NSError?) -> Void in
-                if error != nil {
-                    self.displayErrorAlert(error!)
-                } else {
-                    self.dismissKeyboard()
-                    self.resetPasswordAlert()
-                }
-            }
+            requestPasswordResetOnParse()
         }
     }
     
@@ -80,6 +101,16 @@ class ForgotPasswordViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func requestPasswordResetOnParse() {
+        PFUser.requestPasswordResetForEmailInBackground(emailTextField.text!) {(success: Bool, error: NSError?) -> Void in
+            if error != nil {
+                self.displayErrorAlert(error!)
+            } else {
+                self.resetPasswordAlert()
+            }
+        }
+    }
+    
     func displayErrorAlert(errorToCheck: NSError) {
         var title = String()
         var message = String()
@@ -87,11 +118,12 @@ class ForgotPasswordViewController: UIViewController {
             case 100:
                 title = "Network connection error"
                 message = "Unable to send password reset request at this time."
-            
-            case 205:
+            case 125:
                 title = "Invalid e-mail"
+                message = "The e-mail address you provided is not valid."
+            case 205:
+                title = "E-mail not found"
                 message = "No user found with email \(emailTextField.text!)"
-            
             default:
                 title = "Unknown error"
                 message = "An unknown error has occured.  Please try again."
@@ -108,24 +140,5 @@ class ForgotPasswordViewController: UIViewController {
         })
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func roundTheButtons() {
-        emailTextField.layer.borderColor = UIColor.blackColor().CGColor
-        emailTextField.layer.borderWidth = 1.0
-        emailTextField.layer.masksToBounds = true
-        emailTextField.layer.cornerRadius = 5
-        resetPasswordButton.layer.borderColor = UIColor.blackColor().CGColor
-        resetPasswordButton.layer.borderWidth = 1.0
-        resetPasswordButton.layer.cornerRadius = 5
-        cancelButton.layer.borderColor = UIColor.blackColor().CGColor
-        cancelButton.layer.borderWidth = 1.0
-        cancelButton.layer.cornerRadius = 5
-    }
-    
-    func adjustAlphaForUiElements(alpha: CGFloat) {
-        emailTextField.alpha = alpha
-        resetPasswordButton.alpha = alpha
-        cancelButton.alpha = alpha
     }
 }
