@@ -45,6 +45,115 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         super.viewDidAppear(animated)
         heroRosterTable.reloadData()
     }
+    
+    func getRosterFromParse() {
+        let rosterName = activeUser!.username!
+        let query = PFQuery(className: "Roster")
+        query.whereKey("name", equalTo: rosterName)
+        query.findObjectsInBackgroundWithBlock {
+            (Roster: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                self.loadUserRosterWithDownloadedRosterProperties(Roster!)
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    func loadUserRosterWithDownloadedRosterProperties(rosterFromParse: [PFObject]) {
+        dispatch_async(dispatch_get_main_queue()) {
+            for object:PFObject in rosterFromParse {
+                self.userRoster.userName = object["name"] as! String
+                self.userRoster.parseObjectId = object.objectId! as String
+                self.userRoster.scenarioRecords = object["scenarioRecords"] as! [String : [String]]
+            }
+        }
+    }
+    
+    func getHerosFromParse() {
+        let rosterName = activeUser!.username!
+        let query = PFQuery(className: "Hero")
+        query.whereKey("owner", equalTo: rosterName)
+        query.findObjectsInBackgroundWithBlock{ (Hero: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                self.parseTheDownloadedHeros(Hero!)
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    func parseTheDownloadedHeros(downloadedHeros: [PFObject]) {
+        dispatch_async(dispatch_get_main_queue()) {
+            for object in downloadedHeros {
+                self.downloadedHero.name = object["name"] as! String
+                self.downloadedHero.number = object["number"] as! String
+                self.downloadedHero.heroClass = object["heroClass"] as! String
+                self.downloadedHero.race = object["race"] as! String
+                self.downloadedHero.gender = object["gender"] as! String
+                self.downloadedHero.level = object["level"] as! String
+                self.downloadedHero.faction = object["faction"] as! String
+                self.downloadedHero.prestigePoints = object["prestigePoints"] as! String
+                self.downloadedHero.logIds = object["logIds"] as! [String]
+                
+                self.parseHeroName.append(self.downloadedHero.name)
+                self.parseHeroNumber.append(self.downloadedHero.number)
+                self.parseHeroClass.append(self.downloadedHero.heroClass)
+                self.parseHeroRace.append(self.downloadedHero.race)
+                self.parseHeroGender.append(self.downloadedHero.gender)
+                self.parseHeroLevel.append(self.downloadedHero.level)
+                self.parseHeroFaction.append(self.downloadedHero.faction)
+                self.parseHeroPrestigePoints.append(self.downloadedHero.prestigePoints)
+                self.parseHeroObjectId.append(object.objectId! as String)
+                self.parseHeroLogIds.append(self.downloadedHero.logIds)
+            }
+            self.populateUserRoster()
+            self.heroRosterTable.reloadData()
+        }
+    }
+    
+    func populateUserRoster() {
+        for (index,_) in parseHeroName.enumerate() {
+            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
+        }
+    }
+    
+    func getGmSessionLogsFromParse() {
+        let rosterName = activeUser!.username!
+        let query = PFQuery(className: "GmLog")
+        query.whereKey("owner", equalTo: rosterName)
+        query.findObjectsInBackgroundWithBlock{ (GmLog: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                self.parseTheDownloadedGmSessionLogs(GmLog!)
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    func parseTheDownloadedGmSessionLogs(downloadedGmSessionLogs: [PFObject]) {
+        dispatch_async(dispatch_get_main_queue()) {
+            for object in downloadedGmSessionLogs {
+                self.downloadedGmSessionLog.name = object["sessionName"] as! String
+                self.downloadedGmSessionLog.date = object["date"] as! NSDate
+                self.downloadedGmSessionLog.notes = object["notes"] as! String
+                self.downloadedGmSessionLog.creditForHero = object["creditForHero"] as! String
+                
+                self.parseGmSessionLogName.append(self.downloadedGmSessionLog.name)
+                self.parseGmSessionLogDate.append(self.downloadedGmSessionLog.date)
+                self.parseGmSessionLogNotes.append(self.downloadedGmSessionLog.notes)
+                self.parseGmSessionLogObjectId.append(object.objectId! as String)
+                self.parseGmSessionLogCreditForHero.append(self.downloadedGmSessionLog.creditForHero)
+            }
+            self.populateGmSessionLogs()
+        }
+    }
+    
+    func populateGmSessionLogs() {
+        for (index,_) in parseGmSessionLogName.enumerate() {
+            userRoster.addGmSessionLog(GmSessionLog(name: parseGmSessionLogName[index], date: parseGmSessionLogDate[index], notes: parseGmSessionLogNotes[index], parseObjectId: parseGmSessionLogObjectId[index], creditForHero: parseGmSessionLogCreditForHero[index]))
+        }
+    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }.count
@@ -64,7 +173,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         cell!.detailTextLabel!.text = "\(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass), Level \(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].level)"
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
         cell!.imageView?.image = UIImage(named: userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass)
-   
         return cell!
     }
     
@@ -74,7 +182,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             func deleteHero() {
                 let heroToDelete = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[indexPath.row]
                 let query = PFQuery(className:"Hero")
-                query.getObjectInBackgroundWithId(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[indexPath.row].parseObjectId) {
+                query.getObjectInBackgroundWithId(heroToDelete.parseObjectId) {
                     (Hero: PFObject?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
@@ -102,14 +210,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         }
     }
     
-    func deleteScenariosFromScenarioRecords(recordsForHero: Hero) {
-        for (key, value) in userRoster.scenarioRecords {
-            if value[0] == recordsForHero.name {
-                userRoster.scenarioRecords[key] = nil
-            }
-        }
-    }
-    
     func removeHeroToDeletesLogsOnParse(logObjectIdToDelete: String) {
         let query = PFQuery(className:"Log")
         query.getObjectInBackgroundWithId(logObjectIdToDelete) {
@@ -122,14 +222,22 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         }
     }
 
+    func deleteScenariosFromScenarioRecords(recordsForHero: Hero) {
+        for (key, value) in userRoster.scenarioRecords {
+            if value[0] == recordsForHero.name {
+                userRoster.scenarioRecords[key] = nil
+            }
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addHeroSegue" {
             let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
             destVC.activeRoster = userRoster
         } else if segue.identifier == "heroDetailSegue" {
             let destVC: HeroDetailViewController = segue.destinationViewController as! HeroDetailViewController
-            destVC.activeRoster = userRoster
             let selectedIndex = heroRosterTable.indexPathForCell(sender as! UITableViewCell)
+            destVC.activeRoster = userRoster
             destVC.heroDisplayed = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }[(selectedIndex?.row)!]
             destVC.activateEditMode = true
         } else if segue.identifier == "gmSessionTableSegue" {
@@ -141,103 +249,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         }
     }
 
-    func getRosterFromParse() {
-        let rosterName = activeUser!.username!
-        let query = PFQuery(className: "Roster")
-        query.whereKey("name", equalTo: rosterName)
-        query.findObjectsInBackgroundWithBlock {
-            (Roster: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    for object:PFObject in Roster! {
-                        self.userRoster.userName = object["name"] as! String
-                        self.userRoster.parseObjectId = object.objectId! as String
-                        self.userRoster.scenarioRecords = object["scenarioRecords"] as! [String : [String]]
-                    }
-                }
-            } else {
-                print(error)
-            }
-        }
-    }
-    
-    func getHerosFromParse() {
-        let rosterName = activeUser!.username!
-        let query = PFQuery(className: "Hero")
-        query.whereKey("owner", equalTo: rosterName)
-        query.findObjectsInBackgroundWithBlock{ (Hero: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    for object in Hero! {
-                        self.downloadedHero.name = object["name"] as! String
-                        self.downloadedHero.number = object["number"] as! String
-                        self.downloadedHero.heroClass = object["heroClass"] as! String
-                        self.downloadedHero.race = object["race"] as! String
-                        self.downloadedHero.gender = object["gender"] as! String
-                        self.downloadedHero.level = object["level"] as! String
-                        self.downloadedHero.faction = object["faction"] as! String
-                        self.downloadedHero.prestigePoints = object["prestigePoints"] as! String
-                        self.downloadedHero.logIds = object["logIds"] as! [String]
-
-                        self.parseHeroName.append(self.downloadedHero.name)
-                        self.parseHeroNumber.append(self.downloadedHero.number)
-                        self.parseHeroClass.append(self.downloadedHero.heroClass)
-                        self.parseHeroRace.append(self.downloadedHero.race)
-                        self.parseHeroGender.append(self.downloadedHero.gender)
-                        self.parseHeroLevel.append(self.downloadedHero.level)
-                        self.parseHeroFaction.append(self.downloadedHero.faction)
-                        self.parseHeroPrestigePoints.append(self.downloadedHero.prestigePoints)
-                        self.parseHeroObjectId.append(object.objectId! as String)
-                        self.parseHeroLogIds.append(self.downloadedHero.logIds)
-                    }
-                    self.populateUserRoster()
-                    self.heroRosterTable.reloadData()
-                }
-            } else {
-                print(error)
-            }
-        }
-    }
-    
-    func populateUserRoster() {
-        for (index,_) in parseHeroName.enumerate() {
-            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
-        }
-    }
-    
-    func getGmSessionLogsFromParse() {
-        let rosterName = activeUser!.username!
-        let query = PFQuery(className: "GmLog")
-        query.whereKey("owner", equalTo: rosterName)
-        query.findObjectsInBackgroundWithBlock{ (GmLog: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    for object in GmLog! {
-                        self.downloadedGmSessionLog.name = object["sessionName"] as! String
-                        self.downloadedGmSessionLog.date = object["date"] as! NSDate
-                        self.downloadedGmSessionLog.notes = object["notes"] as! String
-                        self.downloadedGmSessionLog.creditForHero = object["creditForHero"] as! String
-                        
-                        self.parseGmSessionLogName.append(self.downloadedGmSessionLog.name)
-                        self.parseGmSessionLogDate.append(self.downloadedGmSessionLog.date)
-                        self.parseGmSessionLogNotes.append(self.downloadedGmSessionLog.notes)
-                        self.parseGmSessionLogObjectId.append(object.objectId! as String)
-                        self.parseGmSessionLogCreditForHero.append(self.downloadedGmSessionLog.creditForHero)
-                    }
-                    self.populateGmSessionLogs()
-                }
-            } else {
-               print(error)
-            }
-        }
-    }
-    
-    func populateGmSessionLogs() {
-        for (index,_) in parseGmSessionLogName.enumerate() {
-            userRoster.addGmSessionLog(GmSessionLog(name: parseGmSessionLogName[index], date: parseGmSessionLogDate[index], notes: parseGmSessionLogNotes[index], parseObjectId: parseGmSessionLogObjectId[index], creditForHero: parseGmSessionLogCreditForHero[index]))
-        }
-    }
-        
     @IBAction func logoutButtonPressed(sender: UIBarButtonItem) {
         PFUser.logOut()
         UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: {self.navigationController?.navigationBar.alpha = 0.0}, completion: nil)
