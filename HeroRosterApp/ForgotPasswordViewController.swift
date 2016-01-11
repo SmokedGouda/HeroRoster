@@ -88,13 +88,13 @@ class ForgotPasswordViewController: UIViewController {
     @IBAction func resetPasswordButtonPressed(sender: UIButton) {
         dismissKeyboard()
         if emailTextField.text == "" {
-            emptyEmailTextFieldAlert()
+            displayEmptyEmailTextFieldAlert()
         } else {
             requestPasswordResetOnParse()
         }
     }
     
-    func emptyEmailTextFieldAlert() {
+    func displayEmptyEmailTextFieldAlert() {
         let alert = UIAlertController(title: "Can't reset password", message: "You must provide a valid e-mail.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
