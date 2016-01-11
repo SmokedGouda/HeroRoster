@@ -31,7 +31,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var factionDisplayed = String()
     var prestigePointsDisplayed = String()
     var temporaryStatDisplayed = String()
-    // Index variables below are used to determine where the checkmark will be placed when the HeroStatOpionsViewController is segued to.  The values will be set in the tableView cellForRowAtIndexPath function
+    
     var classIndex: Int?
     var raceIndex: Int?
     var genderIndex: Int?
@@ -50,18 +50,12 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        roundTheLabelsAndButtons()
-        openBookButton.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0)
-        openBookButton.enabled = false
+        adjustBordersOfUiElements()
+        hideOpenBookButtonOnNavigationBar()
         if activateEditMode == true {
-            navigationItem.title = "Hero"
-            openBookButton.tintColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
-            openBookButton.enabled = true
-            backgroundImage.image = UIImage(named: heroDisplayed!.heroClass+"Small")
+            switchViewForHeroDetailSettings()
             setViewToStaticMode()
-            heroNameTextField.text = heroDisplayed?.name
-            heroNumberTextField.text = heroDisplayed?.number
-            heroNameBeforeEdit = heroNameTextField.text!
+            preloadTextFieldsWithCurrentHeroDetails()
         }
     }
     
@@ -72,6 +66,60 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func adjustBordersOfUiElements() {
+        heroNameLabel.layer.borderColor = UIColor.blackColor().CGColor
+        heroNameLabel.layer.borderWidth = 1.0
+        heroNameLabel.layer.cornerRadius = 5
+        heroNameLabel.clipsToBounds = true
+        heroNumberLabel.layer.borderColor = UIColor.blackColor().CGColor
+        heroNumberLabel.layer.borderWidth = 1.0
+        heroNumberLabel.layer.cornerRadius = 5
+        heroNumberLabel.clipsToBounds = true
+        heroNameTextField.layer.borderColor = UIColor.blackColor().CGColor
+        heroNameTextField.layer.borderWidth = 1.0
+        heroNameTextField.layer.masksToBounds = true
+        heroNameTextField.layer.cornerRadius = 5
+        heroNumberTextField.layer.borderColor = UIColor.blackColor().CGColor
+        heroNumberTextField.layer.borderWidth = 1.0
+        heroNumberTextField.layer.masksToBounds = true
+        heroNumberTextField.layer.cornerRadius = 5
+        heroDetailTable.layer.borderColor = UIColor.blackColor().CGColor
+        heroDetailTable.layer.borderWidth = 1.0
+        heroDetailTable.layer.cornerRadius = 5
+        addHeroButton.layer.borderColor = UIColor.blackColor().CGColor
+        addHeroButton.layer.borderWidth = 1.0
+        addHeroButton.layer.cornerRadius = 5
+    }
+    
+    func hideOpenBookButtonOnNavigationBar() {
+        openBookButton.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.0)
+        openBookButton.enabled = false
+    }
+    
+    func switchViewForHeroDetailSettings() {
+        navigationItem.title = "Hero"
+        openBookButton.tintColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1.0)
+        openBookButton.enabled = true
+        backgroundImage.image = UIImage(named: heroDisplayed!.heroClass+"Small")
+    }
+    
+    func setViewToStaticMode() {
+        addHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
+        tableEditState = false
+        heroNameTextField.enabled = false
+        heroNameTextField.alpha = 0.7
+        heroNumberTextField.enabled = false
+        heroNumberTextField.alpha = 0.7
+        heroDetailTable.alpha = 0.7
+        heroDetailTable.reloadData()
+    }
+
+    func preloadTextFieldsWithCurrentHeroDetails() {
+        heroNameTextField.text = heroDisplayed?.name
+        heroNumberTextField.text = heroDisplayed?.number
+        heroNameBeforeEdit = heroNameTextField.text!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -183,27 +231,29 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
         return (temporaryStatDisplayed, temporaryIndex)
     }
+    
+    @IBAction func textFieldDoneEditing(sender: UITextField) {
+        sender.resignFirstResponder()
+    }
   
     @IBAction func addHeroButtonPressed(sender: UIButton) {
         let buttonLabel = addHeroButton.titleLabel!.text!
         switch buttonLabel {
             case "Edit Hero":
                 setViewToEditMode()
-            
             case "Save":
                 if heroNameTextField.text != heroNameBeforeEdit {
                     checkEditedHeroNameAgainstUsedHeroNames()
                 } else {
                     saveEditedHero()
                 }
-            
             default:
                 let newHeroName = heroNameTextField.text
                 let newHeroNumber = heroNumberTextField.text
                 if newHeroName == "" {
-                    displayEmptyNameAlert()
+                    displayNameAlert("EmptyName")
                 } else if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
-                    displayDuplicateNameAlert()
+                    displayNameAlert("DuplicateName")
                 } else {
                     createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classDisplayed, race: raceDisplayed, gender: genderDisplayed, level: levelDisplayed, faction: factionDisplayed, prestigePoints: prestigePointsDisplayed, log: [], parseObjectId: "", logIds: [])
                     createHeroOnParse(createdHero!)
@@ -211,9 +261,20 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func setViewToEditMode() {
+        addHeroButton.setTitle("Save", forState: UIControlState.Normal)
+        tableEditState = true
+        heroNameTextField.enabled = true
+        heroNameTextField.alpha = 0.8
+        heroNumberTextField.enabled = true
+        heroNumberTextField.alpha = 0.8
+        heroDetailTable.alpha = 0.8
+        heroDetailTable.reloadData()
+    }
+    
     func checkEditedHeroNameAgainstUsedHeroNames() {
         if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
-            displayDuplicateNameAlert()
+            displayNameAlert("DuplicateName")
         } else {
             updateNameAssociatedWithHerosScenarioRecords()
             updateUsedHeroNamesWithTheEditedHeroName()
@@ -223,58 +284,21 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    func displayEmptyNameAlert() {
-        let alert = UIAlertController(
-            title: "Can't save hero", message: "You must provide a name for your hero in order to save it.", preferredStyle: .Alert)
+    func displayNameAlert(alertType: String) {
+        let title = "Can't save hero"
+        var message = String()
+        switch alertType {
+            case "EmptyName":
+                message = "You must provide a name for your hero in order to save it."
+            case "DuplicateName":
+                message = "That name has already been used.  Please choose another one."
+            default:
+                "No Message"
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func displayDuplicateNameAlert() {
-        let alert = UIAlertController(
-            title: "Can't save hero", message: "That name has already been used.  Please choose another one.", preferredStyle: .Alert)
-        let action = UIAlertAction(
-            title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func createHeroOnParse(heroToCreate: Hero) {
-        let parseHero = PFObject(className: "Hero")
-        parseHero["owner"] = activeRoster!.userName
-        parseHero["name"] = heroToCreate.name
-        parseHero["number"] = heroToCreate.number
-        parseHero["heroClass"] = heroToCreate.heroClass
-        parseHero["race"] = heroToCreate.race
-        parseHero["gender"] = heroToCreate.gender
-        parseHero["level"] = heroToCreate.level
-        parseHero["logIds"] = heroToCreate.logIds
-        parseHero["faction"] = heroToCreate.faction
-        parseHero["prestigePoints"] = heroToCreate.prestigePoints
-        
-        parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                dispatch_async(dispatch_get_main_queue()){
-                    self.newHeroObjectId = parseHero.objectId!
-                    heroToCreate.parseObjectId = self.newHeroObjectId
-                    self.activeRoster?.addHeroToRoster(heroToCreate)
-                    self.performSegueWithIdentifier("addHeroSegue", sender: self)
-                }
-            } else {
-                print(error)
-            }
-        }
-    }
-
-    func updateUsedHeroNamesWithTheEditedHeroName() {
-        for (index, value) in activeRoster!.usedHeroNames.enumerate(){
-            if heroNameBeforeEdit == value {
-                activeRoster!.usedHeroNames.removeAtIndex(index)
-            }
-        }
-        activeRoster!.usedHeroNames.append(heroNameTextField.text!)
-        heroNameBeforeEdit = heroNameTextField.text!
     }
     
     func updateNameAssociatedWithHerosScenarioRecords() {
@@ -285,13 +309,37 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func updateUsedHeroNamesWithTheEditedHeroName() {
+        for (index, value) in activeRoster!.usedHeroNames.enumerate(){
+            if heroNameBeforeEdit == value {
+                activeRoster!.usedHeroNames.removeAtIndex(index)
+            }
+        }
+        activeRoster!.usedHeroNames.append(heroNameTextField.text!)
+        heroNameBeforeEdit = heroNameTextField.text!
+    }
+    
+    func updateNameAssociatedWithHerosLogs() {
+        for objectId in heroDisplayed!.logIds {
+            let query = PFQuery(className:"Log")
+            query.getObjectInBackgroundWithId(objectId) {
+                (Log: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                } else if let log = Log {
+                    log["logForHero"] = self.heroNameTextField.text
+                    log.saveInBackground()
+                }
+            }
+        }
+    }
+    
     func saveEditedHero() {
         setViewToStaticMode()
         let updatedHeroName = heroNameTextField.text
         let updatedHeroNumber = heroNumberTextField.text
         activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed, newFaction: factionDisplayed, newPrestigePoints: prestigePointsDisplayed)
         updateHeroOnParse()
-        
     }
     
     func updateHeroOnParse() {
@@ -313,22 +361,33 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
-    
-    func updateNameAssociatedWithHerosLogs() {
-        for objectId in heroDisplayed!.logIds {
-            let query = PFQuery(className:"Log")
-            query.getObjectInBackgroundWithId(objectId) {
-                (Log: PFObject?, error: NSError?) -> Void in
-                if error != nil {
-                    print(error)
-                } else if let log = Log {
-                    log["logForHero"] = self.heroNameTextField.text
-                    log.saveInBackground()
+
+    func createHeroOnParse(heroToCreate: Hero) {
+        let parseHero = PFObject(className: "Hero")
+        parseHero["owner"] = activeRoster!.userName
+        parseHero["name"] = heroToCreate.name
+        parseHero["number"] = heroToCreate.number
+        parseHero["heroClass"] = heroToCreate.heroClass
+        parseHero["race"] = heroToCreate.race
+        parseHero["gender"] = heroToCreate.gender
+        parseHero["level"] = heroToCreate.level
+        parseHero["logIds"] = heroToCreate.logIds
+        parseHero["faction"] = heroToCreate.faction
+        parseHero["prestigePoints"] = heroToCreate.prestigePoints
+        parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                dispatch_async(dispatch_get_main_queue()){
+                    self.newHeroObjectId = parseHero.objectId!
+                    heroToCreate.parseObjectId = self.newHeroObjectId
+                    self.activeRoster?.addHeroToRoster(heroToCreate)
+                    self.performSegueWithIdentifier("addHeroSegue", sender: self)
                 }
+            } else {
+                print(error)
             }
         }
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "sessionTableSegue" {
             setViewToStaticMode()
@@ -376,56 +435,5 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             statToDisplay = heroStat.chosenStat
         }
-    }
-    
-    func roundTheLabelsAndButtons() {
-        heroNameLabel.layer.borderColor = UIColor.blackColor().CGColor
-        heroNameLabel.layer.borderWidth = 1.0
-        heroNameLabel.layer.cornerRadius = 5
-        heroNameLabel.clipsToBounds = true
-        heroNumberLabel.layer.borderColor = UIColor.blackColor().CGColor
-        heroNumberLabel.layer.borderWidth = 1.0
-        heroNumberLabel.layer.cornerRadius = 5
-        heroNumberLabel.clipsToBounds = true
-        heroNameTextField.layer.borderColor = UIColor.blackColor().CGColor
-        heroNameTextField.layer.borderWidth = 1.0
-        heroNameTextField.layer.masksToBounds = true
-        heroNameTextField.layer.cornerRadius = 5
-        heroNumberTextField.layer.borderColor = UIColor.blackColor().CGColor
-        heroNumberTextField.layer.borderWidth = 1.0
-        heroNumberTextField.layer.masksToBounds = true
-        heroNumberTextField.layer.cornerRadius = 5
-        heroDetailTable.layer.borderColor = UIColor.blackColor().CGColor
-        heroDetailTable.layer.borderWidth = 1.0
-        heroDetailTable.layer.cornerRadius = 5
-        addHeroButton.layer.borderColor = UIColor.blackColor().CGColor
-        addHeroButton.layer.borderWidth = 1.0
-        addHeroButton.layer.cornerRadius = 5
-    }
-    
-    func setViewToStaticMode() {
-        addHeroButton.setTitle("Edit Hero", forState: UIControlState.Normal)
-        tableEditState = false
-        heroNameTextField.enabled = false
-        heroNameTextField.alpha = 0.7
-        heroNumberTextField.enabled = false
-        heroNumberTextField.alpha = 0.7
-        heroDetailTable.alpha = 0.7
-        heroDetailTable.reloadData()
-    }
-    
-    func setViewToEditMode() {
-        addHeroButton.setTitle("Save", forState: UIControlState.Normal)
-        tableEditState = true
-        heroNameTextField.enabled = true
-        heroNameTextField.alpha = 0.8
-        heroNumberTextField.enabled = true
-        heroNumberTextField.alpha = 0.8
-        heroDetailTable.alpha = 0.8
-        heroDetailTable.reloadData()
-    }
-    
-    @IBAction func textFieldDoneEditing(sender: UITextField) {
-        sender.resignFirstResponder()
     }
 }
