@@ -242,7 +242,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             destVC.activateEditMode = true
         } else if segue.identifier == "gmSessionTableSegue" {
             let destVC: GmSessionLogViewController = segue.destinationViewController as! GmSessionLogViewController
-            destVC.activeRoster = userRoster
+            destVC.userRoster = userRoster
         } else {
             let destVC: ScenarioSearchViewController = segue.destinationViewController as! ScenarioSearchViewController
             destVC.userRoster = userRoster

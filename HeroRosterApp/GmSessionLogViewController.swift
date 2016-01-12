@@ -13,7 +13,7 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var gmSessionLogTable: UITableView!
     
-    var activeRoster = Roster?()
+    var userRoster = Roster?()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activeRoster!.gmSessionLogs.count
+        return userRoster!.gmSessionLogs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -38,9 +38,9 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
         cell?.detailTextLabel?.backgroundColor = cellColor
         cell?.imageView?.backgroundColor = cellColor
         cell?.accessoryView = UIImageView(image: disclosureImage)
-        cell?.textLabel!.text = activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].name
+        cell?.textLabel!.text = userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell?.detailTextLabel!.text = GmSessionLog().stringFromDate(activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].date)
+        cell?.detailTextLabel!.text = GmSessionLog().stringFromDate(userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].date)
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
 
         return cell!
@@ -50,9 +50,9 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
             func deleteSession() {
-                let sessionToDelete = activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row]
+                let sessionToDelete = userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row]
                 let query = PFQuery(className:"GmLog")
-                query.getObjectInBackgroundWithId(activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].parseObjectId) {
+                query.getObjectInBackgroundWithId(sessionToDelete.parseObjectId) {
                     (GmLog: PFObject?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
@@ -60,7 +60,7 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
                         log.deleteInBackground()
                     }
                 }
-                activeRoster?.deleteGmSessionLog(sessionToDelete)
+                userRoster?.deleteGmSessionLog(sessionToDelete)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
             
@@ -77,11 +77,11 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destVC: GmLogDetailViewController = segue.destinationViewController as! GmLogDetailViewController
-        destVC.activeRoster = activeRoster
+        destVC.activeRoster = userRoster
         if segue.identifier == "viewGmSessionLogSegue" {
             let selectedIndex = gmSessionLogTable.indexPathForCell(sender as! UITableViewCell)
             destVC.activateEditMode = true
-            destVC.gmLogDisplayed = activeRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
+            destVC.gmLogDisplayed = userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
             }
     }
     
