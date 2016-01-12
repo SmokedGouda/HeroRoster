@@ -311,7 +311,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
             let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
-            scenarioNameTextView.text = scenarioName.nameToReturn
+            scenarioNameTextView.text = scenarioName.scenarioNameToReturn
         }
     }
 }

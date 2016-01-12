@@ -12,7 +12,7 @@ class ScenarioListViewController: UIViewController, UITableViewDataSource,UITabl
 
     @IBOutlet weak var scenarioTable: UITableView!
     
-    var nameToReturn = String()
+    var scenarioNameToReturn = String()
     var selectedRow: NSIndexPath?
     var lastSelectedSection: Int?
     var lastSelectedRow: Int?
@@ -21,7 +21,7 @@ class ScenarioListViewController: UIViewController, UITableViewDataSource,UITabl
         super.viewDidLoad()
         if lastSelectedSection != nil {
             selectedRow = NSIndexPath(forRow: lastSelectedRow!, inSection: lastSelectedSection!)
-            nameToReturn = Scenarios().scenarioNames[lastSelectedSection!][lastSelectedRow!]
+            scenarioNameToReturn = Scenarios().scenarioNames[lastSelectedSection!][lastSelectedRow!]
         }
     }
     
@@ -55,7 +55,7 @@ class ScenarioListViewController: UIViewController, UITableViewDataSource,UITabl
         }
         selectedRow = indexPath
         tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
-        nameToReturn = Scenarios().scenarioNames[indexPath.section][indexPath.row]
+        scenarioNameToReturn = Scenarios().scenarioNames[indexPath.section][indexPath.row]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

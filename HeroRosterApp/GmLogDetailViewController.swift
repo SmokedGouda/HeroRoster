@@ -179,7 +179,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
         if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
             let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
-            scenarioNameTextView.text = scenarioName.nameToReturn
+            scenarioNameTextView.text = scenarioName.scenarioNameToReturn
         } else if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let chosenHero: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             creditForHeroTextField.text = chosenHero.nameToReturn
