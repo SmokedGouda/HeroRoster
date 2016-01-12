@@ -245,7 +245,7 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
             destVC.activeRoster = userRoster
         } else {
             let destVC: ScenarioSearchViewController = segue.destinationViewController as! ScenarioSearchViewController
-            destVC.activeRoster = userRoster
+            destVC.userRoster = userRoster
         }
     }
 
