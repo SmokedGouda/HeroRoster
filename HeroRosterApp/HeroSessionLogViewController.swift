@@ -143,7 +143,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destVC: LogDetailViewController = segue.destinationViewController as! LogDetailViewController
         destVC.heroDisplayed = heroDisplayed
-        destVC.activeRoster = userRoster
+        destVC.userRoster = userRoster
         if segue.identifier == "viewSessionLogSegue" {
             let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
             destVC.activateEditMode = true
