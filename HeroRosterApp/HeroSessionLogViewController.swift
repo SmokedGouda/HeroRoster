@@ -14,7 +14,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var sessionLogTable: UITableView!
     
     var activeUser = PFUser.currentUser()
-    var activeRoster = Roster?()
+    var userRoster = Roster?()
     var heroDisplayed = Hero?()
     var downloadedSessionLog = SessionLog()
     var parseSessionLogName = [String]()
@@ -33,6 +33,46 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         sessionLogTable.reloadData()
+    }
+    
+    func getSessionLogsFromParse() {
+        let rosterName = activeUser!.username!
+        let logQuery = PFQuery(className: "Log")
+        logQuery.whereKey("owner", equalTo: rosterName)
+        logQuery.findObjectsInBackgroundWithBlock{ (Log: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.filterSessionLogsForDisplayedHero(Log!)
+                    self.populateSessionLogs()
+                    self.sessionLogTable.reloadData()
+                }
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    func filterSessionLogsForDisplayedHero(logsToFilter: [PFObject]) {
+        for object in logsToFilter {
+            if (object["logForHero"] as! String) == self.heroDisplayed?.name {
+                if self.parseSessionLogName.contains(object["sessionName"] as! String) == false {
+                    self.downloadedSessionLog.name = object["sessionName"] as! String
+                    self.downloadedSessionLog.date = object["date"] as! NSDate
+                    self.downloadedSessionLog.notes = object["notes"] as! String
+                    
+                    self.parseSessionLogName.append(self.downloadedSessionLog.name)
+                    self.parseSessionLogDate.append(self.downloadedSessionLog.date)
+                    self.parseSessionLogNotes.append(self.downloadedSessionLog.notes)
+                    self.parseSessionLogObjectId.append(object.objectId! as String)
+                }
+            }
+        }
+    }
+    
+    func populateSessionLogs() {
+        for (index,_) in parseSessionLogName.enumerate() {
+            heroDisplayed?.addSessionLog(SessionLog(name: parseSessionLogName[index], date: parseSessionLogDate[index], notes: parseSessionLogNotes[index], parseObjectId: parseSessionLogObjectId[index]))
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +101,7 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             func deleteSession() {
                 let sessionToDelete = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row]
                 let query = PFQuery(className:"Log")
-                query.getObjectInBackgroundWithId(heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].parseObjectId) {
+                query.getObjectInBackgroundWithId(sessionToDelete.parseObjectId) {
                     (Log: PFObject?, error: NSError?) -> Void in
                     if error != nil {
                         print(error)
@@ -69,10 +109,10 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                         log.deleteInBackground()
                     }
                 }
-                activeRoster?.scenarioRecords[sessionToDelete.name] = nil
+                userRoster?.scenarioRecords[sessionToDelete.name] = nil
                 heroDisplayed?.deleteSessionLog(sessionToDelete)
-                updateHeroLogIdsParse()
-                activeRoster!.updateScenarioRecordsOnParse(activeRoster!)
+                updateHeroLogIdsOnParse()
+                userRoster!.updateScenarioRecordsOnParse(userRoster!)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
             }
             
@@ -86,63 +126,8 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             presentViewController(deleteAlert, animated: true, completion: nil)
         }
     }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destVC: LogDetailViewController = segue.destinationViewController as! LogDetailViewController
-        destVC.heroDisplayed = heroDisplayed
-        destVC.activeRoster = activeRoster
-        if segue.identifier == "viewSessionLogSegue" {
-            let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
-            destVC.activateEditMode = true
-            destVC.heroLogDisplayed = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
-        }
-    }
     
-    func unwindForSegueHeroSession(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-          sessionLogTable.reloadData()
-    }
-    
-    func getSessionLogsFromParse() {
-        let rosterName = activeUser!.username!
-        let logQuery = PFQuery(className: "Log")
-        logQuery.whereKey("owner", equalTo: rosterName)
-        logQuery.findObjectsInBackgroundWithBlock{ (Log: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    // If the query succeeds, all logs for the active user will be pulled down.  We need to filter them in order to populate the table with logs for the currently displayed hero.
-                    for object in Log! {
-                        // The if statement below will make sure that only logs which match the name of the current hero will be fetched.
-                        if (object["logForHero"] as! String) == self.heroDisplayed?.name {
-                            // The if/contains statment makes sure that as a log is fetched and added to the parse arrays, the for loop won't fetch the same log again if it has already been stored.
-                            if self.parseSessionLogName.contains(object["sessionName"] as! String) == false {
-    
-                                self.downloadedSessionLog.name = object["sessionName"] as! String
-                                self.downloadedSessionLog.date = object["date"] as! NSDate
-                                self.downloadedSessionLog.notes = object["notes"] as! String
-          
-                                self.parseSessionLogName.append(self.downloadedSessionLog.name)
-                                self.parseSessionLogDate.append(self.downloadedSessionLog.date)
-                                self.parseSessionLogNotes.append(self.downloadedSessionLog.notes)
-                                self.parseSessionLogObjectId.append(object.objectId! as String)
-                            }
-                        }
-                    }
-                    self.populateSessionLog()
-                    self.sessionLogTable.reloadData()
-                }
-            } else {
-                print(error)
-            }
-        }
-    }
-    
-    func populateSessionLog() {
-        for (index,_) in parseSessionLogName.enumerate() {
-            heroDisplayed?.addSessionLog(SessionLog(name: parseSessionLogName[index], date: parseSessionLogDate[index], notes: parseSessionLogNotes[index], parseObjectId: parseSessionLogObjectId[index]))
-        }
-    }
-    
-    func updateHeroLogIdsParse() {
+    func updateHeroLogIdsOnParse() {
         let query = PFQuery(className:"Hero")
         query.getObjectInBackgroundWithId(heroDisplayed!.parseObjectId) {
             (Hero: PFObject?, error: NSError?) -> Void in
@@ -153,5 +138,20 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
                 hero.saveInBackground()
             }
         }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destVC: LogDetailViewController = segue.destinationViewController as! LogDetailViewController
+        destVC.heroDisplayed = heroDisplayed
+        destVC.activeRoster = userRoster
+        if segue.identifier == "viewSessionLogSegue" {
+            let selectedIndex = sessionLogTable.indexPathForCell(sender as! UITableViewCell)
+            destVC.activateEditMode = true
+            destVC.heroLogDisplayed = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
+        }
+    }
+    
+    func unwindForSegueHeroSession(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+          sessionLogTable.reloadData()
     }
 }

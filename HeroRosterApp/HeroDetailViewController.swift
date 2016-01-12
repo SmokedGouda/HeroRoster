@@ -22,7 +22,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var heroNameLabel: UILabel!
     @IBOutlet weak var heroNumberLabel: UILabel!
     
-    var activeRoster = Roster?()
+    var userRoster = Roster?()
     var statToDisplay: Int?
     var classDisplayed = String()
     var raceDisplayed = String()
@@ -252,7 +252,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 let newHeroNumber = heroNumberTextField.text
                 if newHeroName == "" {
                     displayNameAlert("EmptyName")
-                } else if activeRoster!.usedHeroNames.contains(newHeroName!) == true {
+                } else if userRoster!.usedHeroNames.contains(newHeroName!) == true {
                     displayNameAlert("DuplicateName")
                 } else {
                     createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classDisplayed, race: raceDisplayed, gender: genderDisplayed, level: levelDisplayed, faction: factionDisplayed, prestigePoints: prestigePointsDisplayed, log: [], parseObjectId: "", logIds: [])
@@ -273,13 +273,13 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func checkEditedHeroNameAgainstUsedHeroNames() {
-        if activeRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
+        if userRoster!.usedHeroNames.contains(heroNameTextField.text!) == true {
             displayNameAlert("DuplicateName")
         } else {
             updateNameAssociatedWithHerosScenarioRecords()
             updateUsedHeroNamesWithTheEditedHeroName()
             updateNameAssociatedWithHerosLogs()
-            activeRoster?.updateScenarioRecordsOnParse(activeRoster!)
+            userRoster?.updateScenarioRecordsOnParse(userRoster!)
             saveEditedHero()
         }
     }
@@ -302,20 +302,20 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func updateNameAssociatedWithHerosScenarioRecords() {
-        for (key, value) in activeRoster!.scenarioRecords {
+        for (key, value) in userRoster!.scenarioRecords {
             if value[0] == heroNameBeforeEdit {
-                activeRoster!.scenarioRecords[key]![0] = heroNameTextField.text!
+                userRoster!.scenarioRecords[key]![0] = heroNameTextField.text!
             }
         }
     }
     
     func updateUsedHeroNamesWithTheEditedHeroName() {
-        for (index, value) in activeRoster!.usedHeroNames.enumerate(){
+        for (index, value) in userRoster!.usedHeroNames.enumerate(){
             if heroNameBeforeEdit == value {
-                activeRoster!.usedHeroNames.removeAtIndex(index)
+                userRoster!.usedHeroNames.removeAtIndex(index)
             }
         }
-        activeRoster!.usedHeroNames.append(heroNameTextField.text!)
+        userRoster!.usedHeroNames.append(heroNameTextField.text!)
         heroNameBeforeEdit = heroNameTextField.text!
     }
     
@@ -338,7 +338,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         setViewToStaticMode()
         let updatedHeroName = heroNameTextField.text
         let updatedHeroNumber = heroNumberTextField.text
-        activeRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed, newFaction: factionDisplayed, newPrestigePoints: prestigePointsDisplayed)
+        userRoster?.updateHero(heroDisplayed!, newName: updatedHeroName!, newNumber: updatedHeroNumber!, newHeroClass: classDisplayed, newRace: raceDisplayed, newGender: genderDisplayed, newLevel: levelDisplayed, newFaction: factionDisplayed, newPrestigePoints: prestigePointsDisplayed)
         updateHeroOnParse()
     }
     
@@ -364,7 +364,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
 
     func createHeroOnParse(heroToCreate: Hero) {
         let parseHero = PFObject(className: "Hero")
-        parseHero["owner"] = activeRoster!.userName
+        parseHero["owner"] = userRoster!.userName
         parseHero["name"] = heroToCreate.name
         parseHero["number"] = heroToCreate.number
         parseHero["heroClass"] = heroToCreate.heroClass
@@ -379,7 +379,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 dispatch_async(dispatch_get_main_queue()){
                     self.newHeroObjectId = parseHero.objectId!
                     heroToCreate.parseObjectId = self.newHeroObjectId
-                    self.activeRoster?.addHeroToRoster(heroToCreate)
+                    self.userRoster?.addHeroToRoster(heroToCreate)
                     self.performSegueWithIdentifier("addHeroSegue", sender: self)
                 }
             } else {
@@ -393,7 +393,7 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
             setViewToStaticMode()
             let destVC: HeroSessionLogViewController = segue.destinationViewController as! HeroSessionLogViewController
             destVC.heroDisplayed = heroDisplayed
-            destVC.activeRoster = activeRoster
+            destVC.userRoster = userRoster
         } else if segue.identifier == "heroStatOptionsSegue" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
             let selectedIndex = heroDetailTable.indexPathForCell(sender as! UITableViewCell)

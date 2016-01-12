@@ -67,7 +67,6 @@ class Hero {
         if logIds.contains(logToAdd.parseObjectId) == false {
             logIds.append(logToAdd.parseObjectId)
         }
-        
     }
     
     func deleteSessionLog(logToDelete: SessionLog) {
