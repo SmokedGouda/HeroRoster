@@ -169,7 +169,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
             destVC.lastSelectedRow = rowIndex
         } else if segue.identifier == "heroStatOptionsSegueTwo" {
             let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
-            destVC.activeRoster = activeRoster
+            destVC.userRoster = activeRoster
             destVC.navBarTitle = "Heros"
             destVC.activateHeroNameTable = true
             destVC.lastSelectedRow = heroNameIndex

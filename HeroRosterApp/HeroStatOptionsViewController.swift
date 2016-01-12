@@ -14,7 +14,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     @IBOutlet weak var heroStatTable: UITableView!
     @IBOutlet weak var navigationBarTitle: UINavigationItem!
     
-    var activeRoster = Roster?()
+    var userRoster = Roster?()
     var navBarTitle = String()
     var chosenStat: Int?
     var lastSelectedRow: Int?
@@ -25,19 +25,33 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        heroStatTable.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
-        navigationBarTitle.title = navBarTitle
+        setTitleAndBackgroundColorForTableView()
         preselectRowWithAnyDataFromPreviousView()
-        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func setTitleAndBackgroundColorForTableView() {
+        heroStatTable.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.6)
+        navigationBarTitle.title = navBarTitle
+    }
+    
+    func preselectRowWithAnyDataFromPreviousView() {
+        if lastSelectedRow != nil {
+            selectedRow = NSIndexPath(forRow: lastSelectedRow!, inSection: 0)
+            chosenStat = selectedRow!.row
+            if activateHeroNameTable == true {
+                nameToReturn = userRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [chosenStat!].name
+            }
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCount = Int()
         if activateHeroNameTable == true {
-            rowCount = activeRoster!.heros.count
+            rowCount = userRoster!.heros.count
         } else {
             rowCount = heroStatsArrayToDisplay.count
         }
@@ -55,7 +69,7 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         tableView.reloadRowsAtIndexPaths(paths, withRowAnimation: .None)
         chosenStat = indexPath.row
         if activateHeroNameTable == true {
-            nameToReturn = activeRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [chosenStat!].name
+            nameToReturn = userRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [chosenStat!].name
         }
     }
     
@@ -68,8 +82,8 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
         cell.imageView?.backgroundColor = cellColor
         cell.textLabel!.font = UIFont.boldSystemFontOfSize(17)
         if activateHeroNameTable == true {
-            cell.textLabel!.text = activeRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
-            cell.imageView?.image = UIImage(named: activeRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass)
+            cell.textLabel!.text = userRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
+            cell.imageView?.image = UIImage(named: userRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass)
         } else {
             cell.textLabel!.text = heroStatsArrayToDisplay[indexPath.row]
             if navigationBarTitle.title == "Class" {
@@ -84,15 +98,5 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
             cell.accessoryType = .None
         }
         return cell
-    }
-    
-    func preselectRowWithAnyDataFromPreviousView() {
-        if lastSelectedRow != nil {
-            selectedRow = NSIndexPath(forRow: lastSelectedRow!, inSection: 0)
-            chosenStat = selectedRow!.row
-            if activateHeroNameTable == true {
-                nameToReturn = activeRoster!.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [chosenStat!].name
-            }
-        }
     }
 }
