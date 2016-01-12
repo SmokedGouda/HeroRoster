@@ -43,7 +43,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     var heroDisplayed = Hero?()
     var cellTitleLabel = String()
     var createdHero: Hero?
-    var newHeroObjectId = String()
     var activateEditMode = false
     var tableEditState = true
     var heroNameBeforeEdit = String()
@@ -377,8 +376,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
         parseHero.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){
-                    self.newHeroObjectId = parseHero.objectId!
-                    heroToCreate.parseObjectId = self.newHeroObjectId
+                    let newHeroObjectId = parseHero.objectId!
+                    heroToCreate.parseObjectId = newHeroObjectId
                     self.userRoster?.addHeroToRoster(heroToCreate)
                     self.performSegueWithIdentifier("addHeroSegue", sender: self)
                 }

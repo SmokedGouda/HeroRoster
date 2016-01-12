@@ -77,7 +77,7 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destVC: GmLogDetailViewController = segue.destinationViewController as! GmLogDetailViewController
-        destVC.activeRoster = userRoster
+        destVC.userRoster = userRoster
         if segue.identifier == "viewGmSessionLogSegue" {
             let selectedIndex = gmSessionLogTable.indexPathForCell(sender as! UITableViewCell)
             destVC.activateEditMode = true

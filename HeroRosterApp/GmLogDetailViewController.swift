@@ -22,24 +22,18 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var addLogButton: UIButton!
     
-    var activeRoster = Roster?()
+    var userRoster = Roster?()
     var gmLogDisplayed = GmSessionLog()
-    var date = NSDate()
-    var notes = String()
-    var creditForHeroName = String()
-    var newScenarioName = String()
     var scenarioNameBeforeEdit = String()
     var activateEditMode = false
-    var newGmLogObjectId = String()
     var sectionIndex: Int?
     var rowIndex: Int?
     var heroNameIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(dismiss)
-        roundTheLabelsButtonsAndTextViews()
+        createGestureRecognizerForKeyboardDismiss()
+        adjustBordersAndBackgroudOfUiElements()
         loadTheDateFieldWithCurrentDate()
         if activateEditMode == true {
             loadTheViewWithSelectedSession()
@@ -50,223 +44,19 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         findIndexValuesForPreviouslySelectedScenarioName()
-        if activateEditMode == true {
-            findIndexValueForPreviouslySelectedHeroNameToCredit()
-        }
+        findIndexValueForPreviouslySelectedHeroNameToCredit()
+    }
+    
+    func createGestureRecognizerForKeyboardDismiss() {
+        let dismiss: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(dismiss)
     }
     
     func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    @IBAction func addLogButtonPressed(sender: UIButton) {
-        let buttonLabel = addLogButton.titleLabel!.text!
-        switch buttonLabel {
-        case "Edit Log":
-            setViewToEditMode()
-            
-        case "Save":
-            if scenarioNameTextView.text != scenarioNameBeforeEdit {
-                checkEditedLogNameAgainstUsedLogNames()
-            } else {
-                saveEditedLog()
-            }
-            
-        default:
-            newScenarioName = scenarioNameTextView.text!
-            if newScenarioName == "" {
-                displayEmptyScenarioNameAlert()
-            } else if activeRoster!.usedGmScenarioNames.contains(newScenarioName) == true {
-                displayDuplicateGmSessionLogNameAlert(newScenarioName)
-            } else {
-                date = gmLogDisplayed.dateFromString(dateTextField.text!)
-                notes = notesTextView.text!
-                creditForHeroName = creditForHeroTextField.text!
-                let newGmSessionLog = GmSessionLog(name: newScenarioName, date: date, notes: notes, parseObjectId: "", creditForHero: creditForHeroName)
-                createGmSessionLogOnParse(newGmSessionLog)
-                self.performSegueWithIdentifier("addGmSessionLogSegue", sender: self)
-            }
-        }
-    }
-    
-    func checkEditedLogNameAgainstUsedLogNames() {
-        if activeRoster!.usedGmScenarioNames.contains(scenarioNameTextView.text!) == true {
-            displayDuplicateGmSessionLogNameAlert(scenarioNameTextView.text!)
-        } else {
-            saveEditedLog()
-        }
-    }
-    
-    func displayDuplicateGmSessionLogNameAlert(scenarioPlayedByHero: String) {
-        let alert = UIAlertController(
-            title: "Can't save session", message: "You have already GM'd that scenario.  Please choose another one.", preferredStyle: .Alert)
-        let action = UIAlertAction(
-            title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func displayEmptyScenarioNameAlert() {
-        let alert = UIAlertController(
-            title: "Can't save session", message: "You must select a scenario name in order to save the session.", preferredStyle: .Alert)
-        let action = UIAlertAction(
-            title: "Ok", style: .Default, handler: nil)
-        alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func saveEditedLog() {
-        setViewToStaticMode()
-        let updatedScenarioName = scenarioNameTextView.text!
-        let updatedDate = gmLogDisplayed.dateFromString(dateTextField.text!)
-        let updatedNotes = notesTextView.text
-        let updatedCreditForHeroName = creditForHeroTextField.text!
-        activeRoster!.updateGmSessionLog(gmLogDisplayed, newName: updatedScenarioName, newDate: updatedDate, newNotes: updatedNotes, newCreditForHero: updatedCreditForHeroName)
-        updateGmSessionLogOnParse()
-    }
-    
-    func createGmSessionLogOnParse(logToCreate: GmSessionLog) {
-        let parseGmLog = PFObject(className: "GmLog")
-        parseGmLog["owner"] = activeRoster!.userName
-        parseGmLog["sessionName"] = logToCreate.name
-        parseGmLog["date"] = logToCreate.date
-        parseGmLog["notes"] = logToCreate.notes
-        parseGmLog["creditForHero"] = logToCreate.creditForHero
-        
-        parseGmLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                dispatch_async(dispatch_get_main_queue()){
-                    self.newGmLogObjectId = parseGmLog.objectId!
-                    logToCreate.parseObjectId = self.newGmLogObjectId
-                    self.activeRoster?.addGmSessionLog(logToCreate)
-                }
-            } else {
-                print(error)
-            }
-        }
-    }
-    
-    func updateGmSessionLogOnParse() {
-        let query = PFQuery(className:"GmLog")
-        query.getObjectInBackgroundWithId(gmLogDisplayed.parseObjectId) {
-            (GmLog: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                print(error)
-            } else if let log = GmLog {
-                log["sessionName"] = self.scenarioNameTextView.text
-                log["date"] = self.gmLogDisplayed.dateFromString(self.dateTextField.text!)
-                log["notes"] = self.notesTextView.text
-                log["creditForHero"] = self.creditForHeroTextField.text
-                log.saveInBackground()
-            }
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "scenarioListSegueTwo" {
-            let destVC: ScenarioListViewController = segue.destinationViewController as! ScenarioListViewController
-            destVC.lastSelectedSection = sectionIndex
-            destVC.lastSelectedRow = rowIndex
-        } else if segue.identifier == "heroStatOptionsSegueTwo" {
-            let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
-            destVC.userRoster = activeRoster
-            destVC.navBarTitle = "Heros"
-            destVC.activateHeroNameTable = true
-            destVC.lastSelectedRow = heroNameIndex
-        }
-    }
-    
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
-            let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
-            scenarioNameTextView.text = scenarioName.scenarioNameToReturn
-        } else if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
-            let chosenHero: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
-            creditForHeroTextField.text = chosenHero.nameToReturn
-            heroNameIndex = chosenHero.chosenStat
-        }
-    }
-    
-    func findIndexValuesForPreviouslySelectedScenarioName() {
-        for name in Scenarios().scenarioNames {
-            if name.contains(scenarioNameTextView.text!) {
-                rowIndex = name.indexOf(scenarioNameTextView.text)!
-                for (index, value) in Scenarios().scenarioNames.enumerate() {
-                    if name == value {
-                        sectionIndex = index
-                    }
-                }
-            }
-        }
-    }
-    
-    func findIndexValueForPreviouslySelectedHeroNameToCredit() {
-        if activeRoster!.usedHeroNames.contains(gmLogDisplayed.creditForHero) == true {
-            for (index, value) in activeRoster!.usedHeroNames.sort({ $0.lowercaseString < $1.lowercaseString}).enumerate() {
-                if value == creditForHeroTextField.text {
-                    heroNameIndex = index
-                }
-            }
-        }
-    }
-    
-    @IBAction func dateTextFieldEditing(sender: UITextField) {
-        let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.Date
-        sender.inputView = datePickerView
-        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        datePickerView.date = gmLogDisplayed.dateFromString(dateTextField.text!)
-    }
-    
-    func datePickerValueChanged(sender:UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateTextField.text = dateFormatter.stringFromDate(sender.date)
-    }
-    
-    func loadTheDateFieldWithCurrentDate() {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateTextField.text = dateFormatter.stringFromDate(NSDate())
-    }
-    
-    func loadTheViewWithSelectedSession() {
-        scenarioNameTextView.text = gmLogDisplayed.name
-        dateTextField.text = gmLogDisplayed.stringFromDate(gmLogDisplayed.date)
-        notesTextView.text = gmLogDisplayed.notes
-        creditForHeroTextField.text = gmLogDisplayed.creditForHero
-        scenarioNameBeforeEdit = scenarioNameTextView.text!
-    }
-    
-    func setViewToStaticMode() {
-        let staticModeBackgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
-        addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
-        scenarioNameTextView.editable = false
-        scenarioNameTextView.backgroundColor = staticModeBackgroundColor
-        dateTextField.enabled = false
-        dateTextField.backgroundColor = staticModeBackgroundColor
-        notesTextView.editable = false
-        notesTextView.backgroundColor = staticModeBackgroundColor
-        creditForHeroTextField.enabled = false
-        creditForHeroTextField.backgroundColor = staticModeBackgroundColor
-    }
-    
-    func setViewToEditMode() {
-        let editModeBackgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
-        addLogButton.setTitle("Save", forState: UIControlState.Normal)
-        scenarioNameTextView.editable = true
-        scenarioNameTextView.backgroundColor = editModeBackgroundColor
-        dateTextField.enabled = true
-        dateTextField.backgroundColor = editModeBackgroundColor
-        notesTextView.editable = true
-        notesTextView.backgroundColor = editModeBackgroundColor
-        creditForHeroTextField.enabled = true
-        creditForHeroTextField.backgroundColor = editModeBackgroundColor
-    }
-
-    func roundTheLabelsButtonsAndTextViews() {
+    func adjustBordersAndBackgroudOfUiElements() {
         let backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
         scenarioNameLabel.layer.borderColor = UIColor.blackColor().CGColor
         scenarioNameLabel.layer.borderWidth = 1.0
@@ -315,17 +105,183 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
         addLogButton.layer.cornerRadius = 5
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if textField == creditForHeroTextField {
-            self.performSegueWithIdentifier("heroStatOptionsSegueTwo", sender: self)
+    func loadTheDateFieldWithCurrentDate() {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateTextField.text = dateFormatter.stringFromDate(NSDate())
+    }
+    
+    func loadTheViewWithSelectedSession() {
+        scenarioNameTextView.text = gmLogDisplayed.name
+        dateTextField.text = gmLogDisplayed.stringFromDate(gmLogDisplayed.date)
+        notesTextView.text = gmLogDisplayed.notes
+        creditForHeroTextField.text = gmLogDisplayed.creditForHero
+        scenarioNameBeforeEdit = scenarioNameTextView.text!
+    }
+    
+    func setViewToStaticMode() {
+        let staticModeBackgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
+        addLogButton.setTitle("Edit Log", forState: UIControlState.Normal)
+        scenarioNameTextView.editable = false
+        scenarioNameTextView.backgroundColor = staticModeBackgroundColor
+        dateTextField.enabled = false
+        dateTextField.backgroundColor = staticModeBackgroundColor
+        notesTextView.editable = false
+        notesTextView.backgroundColor = staticModeBackgroundColor
+        creditForHeroTextField.enabled = false
+        creditForHeroTextField.backgroundColor = staticModeBackgroundColor
+    }
+    
+    func findIndexValuesForPreviouslySelectedScenarioName() {
+        for name in Scenarios().scenarioNames {
+            if name.contains(scenarioNameTextView.text!) {
+                rowIndex = name.indexOf(scenarioNameTextView.text)!
+                for (index, value) in Scenarios().scenarioNames.enumerate() {
+                    if name == value {
+                        sectionIndex = index
+                    }
+                }
+            }
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if textField == self.dateTextField {
-            return false
+    func findIndexValueForPreviouslySelectedHeroNameToCredit() {
+        if userRoster!.usedHeroNames.contains(gmLogDisplayed.creditForHero) == true {
+            for (index, value) in userRoster!.usedHeroNames.sort({ $0.lowercaseString < $1.lowercaseString}).enumerate() {
+                if value == creditForHeroTextField.text {
+                    heroNameIndex = index
+                }
+            }
         }
-        return true
+    }
+    
+    @IBAction func addLogButtonPressed(sender: UIButton) {
+        let buttonLabel = addLogButton.titleLabel!.text!
+        switch buttonLabel {
+        case "Edit Log":
+            setViewToEditMode()
+        case "Save":
+            if scenarioNameTextView.text != scenarioNameBeforeEdit {
+                checkEditedLogNameAgainstUsedLogNames()
+            } else {
+                saveEditedLog()
+            }
+        default:
+            let newScenarioName = scenarioNameTextView.text!
+            if newScenarioName == "" {
+                displayEmptyScenarioNameAlert()
+            } else if userRoster!.usedGmScenarioNames.contains(newScenarioName) == true {
+                displayDuplicateGmSessionLogNameAlert()
+            } else {
+                let date = gmLogDisplayed.dateFromString(dateTextField.text!)
+                let notes = notesTextView.text!
+                let creditForHeroName = creditForHeroTextField.text!
+                let newGmSessionLog = GmSessionLog(name: newScenarioName, date: date, notes: notes, parseObjectId: "", creditForHero: creditForHeroName)
+                createGmSessionLogOnParse(newGmSessionLog)
+                self.performSegueWithIdentifier("addGmSessionLogSegue", sender: self)
+            }
+        }
+    }
+    
+    func setViewToEditMode() {
+        let editModeBackgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
+        addLogButton.setTitle("Save", forState: UIControlState.Normal)
+        scenarioNameTextView.editable = true
+        scenarioNameTextView.backgroundColor = editModeBackgroundColor
+        dateTextField.enabled = true
+        dateTextField.backgroundColor = editModeBackgroundColor
+        notesTextView.editable = true
+        notesTextView.backgroundColor = editModeBackgroundColor
+        creditForHeroTextField.enabled = true
+        creditForHeroTextField.backgroundColor = editModeBackgroundColor
+    }
+    
+    func checkEditedLogNameAgainstUsedLogNames() {
+        if userRoster!.usedGmScenarioNames.contains(scenarioNameTextView.text!) == true {
+            displayDuplicateGmSessionLogNameAlert()
+        } else {
+            saveEditedLog()
+        }
+    }
+    
+    func displayDuplicateGmSessionLogNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't save session", message: "You have already GM'd that scenario.  Please choose another one.", preferredStyle: .Alert)
+        let action = UIAlertAction(
+            title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func saveEditedLog() {
+        setViewToStaticMode()
+        let updatedScenarioName = scenarioNameTextView.text!
+        let updatedDate = gmLogDisplayed.dateFromString(dateTextField.text!)
+        let updatedNotes = notesTextView.text
+        let updatedCreditForHeroName = creditForHeroTextField.text!
+        userRoster!.updateGmSessionLog(gmLogDisplayed, newName: updatedScenarioName, newDate: updatedDate, newNotes: updatedNotes, newCreditForHero: updatedCreditForHeroName)
+        updateGmSessionLogOnParse()
+    }
+    
+    func updateGmSessionLogOnParse() {
+        let query = PFQuery(className:"GmLog")
+        query.getObjectInBackgroundWithId(gmLogDisplayed.parseObjectId) {
+            (GmLog: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let log = GmLog {
+                log["sessionName"] = self.scenarioNameTextView.text
+                log["date"] = self.gmLogDisplayed.dateFromString(self.dateTextField.text!)
+                log["notes"] = self.notesTextView.text
+                log["creditForHero"] = self.creditForHeroTextField.text
+                log.saveInBackground()
+            }
+        }
+    }
+    
+    func displayEmptyScenarioNameAlert() {
+        let alert = UIAlertController(
+            title: "Can't save session", message: "You must select a scenario name in order to save the session.", preferredStyle: .Alert)
+        let action = UIAlertAction(
+            title: "Ok", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func createGmSessionLogOnParse(logToCreate: GmSessionLog) {
+        let parseGmLog = PFObject(className: "GmLog")
+        parseGmLog["owner"] = userRoster!.userName
+        parseGmLog["sessionName"] = logToCreate.name
+        parseGmLog["date"] = logToCreate.date
+        parseGmLog["notes"] = logToCreate.notes
+        parseGmLog["creditForHero"] = logToCreate.creditForHero
+        parseGmLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                dispatch_async(dispatch_get_main_queue()){
+                    let newGmLogObjectId = parseGmLog.objectId!
+                    logToCreate.parseObjectId = newGmLogObjectId
+                    self.userRoster?.addGmSessionLog(logToCreate)
+                }
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    @IBAction func dateTextFieldEditing(sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        datePickerView.date = gmLogDisplayed.dateFromString(dateTextField.text!)
+    }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateTextField.text = dateFormatter.stringFromDate(sender.date)
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -339,6 +295,44 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     func textViewDidEndEditing(textView: UITextView) {
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+        }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == creditForHeroTextField {
+            self.performSegueWithIdentifier("heroStatOptionsSegueTwo", sender: self)
+        }
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.dateTextField {
+            return false
+        }
+        return true
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "scenarioListSegueTwo" {
+            let destVC: ScenarioListViewController = segue.destinationViewController as! ScenarioListViewController
+            destVC.lastSelectedSection = sectionIndex
+            destVC.lastSelectedRow = rowIndex
+        } else if segue.identifier == "heroStatOptionsSegueTwo" {
+            let destVC: HeroStatOptionsViewController = segue.destinationViewController as! HeroStatOptionsViewController
+            destVC.userRoster = userRoster
+            destVC.navBarTitle = "Heros"
+            destVC.activateHeroNameTable = true
+            destVC.lastSelectedRow = heroNameIndex
+        }
+    }
+    
+    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
+            let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
+            scenarioNameTextView.text = scenarioName.scenarioNameToReturn
+        } else if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
+            let chosenHero: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
+            creditForHeroTextField.text = chosenHero.nameToReturn
+            heroNameIndex = chosenHero.chosenStat
         }
     }
 }

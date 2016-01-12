@@ -25,7 +25,6 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     var heroLogDisplayed = SessionLog()
     var scenarioNameBeforeEdit = String()
     var activateEditMode = false
-    var newLogObjectId = String()
     var sectionIndex: Int?
     var rowIndex: Int?
 
@@ -239,8 +238,8 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
         parseLog.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if (success) {
                 dispatch_async(dispatch_get_main_queue()){
-                    self.newLogObjectId = parseLog.objectId!
-                    logToCreate.parseObjectId = self.newLogObjectId
+                    let newLogObjectId = parseLog.objectId!
+                    logToCreate.parseObjectId = newLogObjectId
                     self.heroDisplayed?.addSessionLog(logToCreate)
                     self.updateHeroLogIdsParse()
                     self.userRoster!.updateScenarioRecordsOnParse(self.userRoster!)
