@@ -37,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illo3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HO4-20-cqY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illo3" translatesAutoresizingMaskIntoConstraints="NO" id="HO4-20-cqY">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your username here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jwe-Py-7tX">
@@ -76,7 +76,7 @@
                                     <action selector="loginButtonPressed:" destination="Qsr-Y4-z0h" eventType="touchUpInside" id="mLM-Bk-b7c"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogoLogin640x140.png" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeroRosterLogoLogin640x140" translatesAutoresizingMaskIntoConstraints="NO" id="4yz-S2-bph">
                                 <rect key="frame" x="0.0" y="117" width="320" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4yz-S2-bph" secondAttribute="height" multiplier="32:7" id="uRD-4L-gEn"/>
@@ -373,7 +373,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theArchivist.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="s3T-QV-8kj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theArchivist" translatesAutoresizingMaskIntoConstraints="NO" id="s3T-QV-8kj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dNe-ZQ-LdC">
@@ -455,7 +455,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="library.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4Mn-5b-hc0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="library" translatesAutoresizingMaskIntoConstraints="NO" id="4Mn-5b-hc0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9C-kc-GVQ">
@@ -645,7 +645,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-c1-NA0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo1" translatesAutoresizingMaskIntoConstraints="NO" id="Zhr-c1-NA0">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zJt-42-fjb">
@@ -745,7 +745,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kBF-9o-XWx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Illo2" translatesAutoresizingMaskIntoConstraints="NO" id="kBF-9o-XWx">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vkx-xq-g6h">
@@ -828,7 +828,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="library.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="bNN-Vp-mL8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="library" translatesAutoresizingMaskIntoConstraints="NO" id="bNN-Vp-mL8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nt1-U5-lEa">
@@ -986,7 +986,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Balerion3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Pm-2sL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Balerion3" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Pm-2sL">
                                 <rect key="frame" x="0.0" y="28" width="320" height="540"/>
                             </imageView>
                             <tableView clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2tr-HM-28S">
@@ -1056,10 +1056,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illo4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uoN-40-NBO">
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="illo4" translatesAutoresizingMaskIntoConstraints="NO" id="uoN-40-NBO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="E7K-jJ-JLo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knight" translatesAutoresizingMaskIntoConstraints="NO" id="E7K-jJ-JLo">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hero Number:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdU-UD-Oy7">
@@ -1286,7 +1286,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chaos_librarian.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="J6s-o8-E5o">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chaos_librarian" translatesAutoresizingMaskIntoConstraints="NO" id="J6s-o8-E5o">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jk-CM-rUj">
@@ -1399,7 +1399,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="femaleKnight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2Sm-u2-tZY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="femaleKnight" translatesAutoresizingMaskIntoConstraints="NO" id="2Sm-u2-tZY">
                                 <rect key="frame" x="-4" y="28" width="328" height="540"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nNP-sA-zPT">
@@ -1461,22 +1461,22 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Balerion3.jpg" width="1600" height="1003"/>
-        <image name="HeroRosterLogoLogin640x140.png" width="640" height="140"/>
-        <image name="Illo1.jpg" width="618" height="800"/>
-        <image name="Illo2.jpg" width="582" height="800"/>
-        <image name="chaos_librarian.jpg" width="518" height="745"/>
-        <image name="femaleKnight.jpg" width="468" height="768"/>
-        <image name="illo3.jpg" width="573" height="800"/>
-        <image name="illo4.jpg" width="587" height="800"/>
-        <image name="knight.jpg" width="328" height="568"/>
-        <image name="library.jpg" width="491" height="736"/>
-        <image name="theArchivist.jpg" width="1200" height="836"/>
+        <image name="Balerion3" width="1600" height="1003"/>
+        <image name="HeroRosterLogoLogin640x140" width="640" height="140"/>
+        <image name="Illo1" width="618" height="800"/>
+        <image name="Illo2" width="582" height="800"/>
+        <image name="chaos_librarian" width="518" height="745"/>
+        <image name="femaleKnight" width="468" height="768"/>
+        <image name="illo3" width="573" height="800"/>
+        <image name="illo4" width="587" height="800"/>
+        <image name="knight" width="328" height="568"/>
+        <image name="library" width="491" height="736"/>
+        <image name="theArchivist" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="o4b-B9-U7R"/>
         <segue reference="4Jt-AF-VuM"/>
         <segue reference="0fJ-k0-42G"/>
-        <segue reference="o4b-B9-U7R"/>
         <segue reference="PXK-YF-pJP"/>
         <segue reference="gbq-3y-Lun"/>
     </inferredMetricsTieBreakers>
