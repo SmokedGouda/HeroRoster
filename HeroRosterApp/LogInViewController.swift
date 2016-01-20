@@ -117,6 +117,7 @@ class LogInViewController: UIViewController {
     }
 
     @IBAction func creditsButtonPressed(sender: UIButton) {
+        dismissKeyboard()
         logoAlphaValue = 0.0
         legalTextToDisplay = legalText.credits
         executeSegueSequence("segueToCredits")
@@ -157,6 +158,7 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
+        dismissKeyboard()
         startLoginProcess()
     }
     
