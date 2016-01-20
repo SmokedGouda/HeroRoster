@@ -117,7 +117,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wty-CM-Yj1">
-                                <rect key="frame" x="90" y="468" width="140" height="30"/>
+                                <rect key="frame" x="90" y="469" width="140" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Laf-MM-qDe"/>
@@ -147,7 +147,7 @@
                             <constraint firstItem="c2O-fg-BPs" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="P7X-kf-XCB"/>
                             <constraint firstItem="4yz-S2-bph" firstAttribute="leading" secondItem="nIb-n7-L5w" secondAttribute="leading" id="Pbp-zA-YHC"/>
                             <constraint firstItem="HO4-20-cqY" firstAttribute="top" secondItem="nIb-n7-L5w" secondAttribute="topMargin" id="RIt-Yb-4BS"/>
-                            <constraint firstItem="wty-CM-Yj1" firstAttribute="top" secondItem="Qr7-Bl-p4K" secondAttribute="bottom" constant="19" id="Tm3-tA-2mO"/>
+                            <constraint firstItem="wty-CM-Yj1" firstAttribute="top" secondItem="Qr7-Bl-p4K" secondAttribute="bottom" constant="20" id="Tm3-tA-2mO"/>
                             <constraint firstItem="4ab-UG-M95" firstAttribute="top" secondItem="NSR-ZB-kdh" secondAttribute="bottom" constant="20" id="VPZ-SU-zkG"/>
                             <constraint firstItem="9fr-N3-ydt" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="X9c-dI-ISc"/>
                             <constraint firstItem="Qr7-Bl-p4K" firstAttribute="centerX" secondItem="nIb-n7-L5w" secondAttribute="centerX" id="Xby-gK-61Q"/>
@@ -1233,18 +1233,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eG-GM-10H">
-                                <rect key="frame" x="20" y="28" width="280" height="450"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="450" id="4o0-t0-v0z"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqO-7Y-Any">
-                                <rect key="frame" x="90" y="498" width="140" height="30"/>
+                                <rect key="frame" x="90" y="518" width="140" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="dad-Qv-fdf"/>
@@ -1256,12 +1246,20 @@
                                     <action selector="backButtonPressed:" destination="70N-Zp-76n" eventType="touchUpInside" id="0Ss-RJ-Mpm"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eG-GM-10H">
+                                <rect key="frame" x="20" y="28" width="280" height="470"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mqO-7Y-Any" firstAttribute="centerX" secondItem="Cv3-cD-sqt" secondAttribute="centerX" id="6ox-DL-h1Z"/>
                             <constraint firstItem="mqO-7Y-Any" firstAttribute="top" secondItem="2eG-GM-10H" secondAttribute="bottom" constant="20" id="9RJ-mG-72g"/>
                             <constraint firstItem="2eG-GM-10H" firstAttribute="centerX" secondItem="Cv3-cD-sqt" secondAttribute="centerX" id="Ihu-Yh-Ed8"/>
+                            <constraint firstItem="ZQu-5s-tgo" firstAttribute="top" secondItem="mqO-7Y-Any" secondAttribute="bottom" constant="20" id="dJn-3f-NtZ"/>
                             <constraint firstItem="2eG-GM-10H" firstAttribute="top" secondItem="jCf-iP-FLG" secondAttribute="bottom" constant="8" id="dkN-4Q-lcK"/>
                             <constraint firstItem="2eG-GM-10H" firstAttribute="leading" secondItem="Cv3-cD-sqt" secondAttribute="leading" constant="20" id="pGz-3n-MgZ"/>
                             <constraint firstAttribute="trailing" secondItem="2eG-GM-10H" secondAttribute="trailing" constant="20" id="sO5-RG-NBK"/>
