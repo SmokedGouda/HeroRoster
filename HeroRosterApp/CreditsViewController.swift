@@ -62,6 +62,6 @@ class CreditsViewController: UIViewController {
     }
     
     func unwindSegueToLogInView() {
-        self.performSegueWithIdentifier("creditsSegue", sender: self)
+        self.performSegueWithIdentifier("unwindCreditsSegue", sender: self)
     }
 }

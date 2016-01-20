@@ -285,7 +285,7 @@
                         <outlet property="newUserEmailTextField" destination="QjY-QX-cr3" id="9A6-Qf-FTa"/>
                         <outlet property="newUserNameTextField" destination="pae-ys-fjH" id="SpB-Uu-juC"/>
                         <outlet property="newUserPasswordTextField" destination="5qn-dZ-0aF" id="M9d-wO-1lx"/>
-                        <segue destination="NBY-9p-VC0" kind="unwind" identifier="signupSegue" unwindAction="unwindForSegue:towardsViewController:" id="ysM-cd-806"/>
+                        <segue destination="NBY-9p-VC0" kind="unwind" identifier="unwindSignupSegue" unwindAction="unwindForSegue:" id="chy-18-Z08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvH-ro-wQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -357,7 +357,7 @@
                         <outlet property="cancelButton" destination="wNU-8P-ua6" id="LO9-my-eRg"/>
                         <outlet property="emailTextField" destination="5ls-jI-OaC" id="Eke-Oj-ogm"/>
                         <outlet property="resetPasswordButton" destination="kqk-Lc-bKh" id="1ho-dv-yjS"/>
-                        <segue destination="CjD-CZ-JqE" kind="unwind" identifier="forgotPasswordSegue" unwindAction="unwindForSegue:towardsViewController:" id="YWq-LG-a5b"/>
+                        <segue destination="CjD-CZ-JqE" kind="unwind" identifier="unwindForgotPasswordSegue" unwindAction="unwindForSegue:" id="fkG-kT-8Is"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gvp-SO-NMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1017,7 +1017,7 @@
                                     <navigationItem title="Scenarios" id="Wko-bm-9as">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="i47-lE-3JH">
                                             <connections>
-                                                <segue destination="AKx-Iw-uUR" kind="unwind" unwindAction="unwindForSegue:towardsViewController:" id="257-pm-JzK"/>
+                                                <action selector="doneButtonPressed:" destination="srQ-qT-QyS" id="ogL-Ff-BaA"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1041,6 +1041,7 @@
                     </view>
                     <connections>
                         <outlet property="scenarioTable" destination="2tr-HM-28S" id="q3q-tG-Whc"/>
+                        <segue destination="AKx-Iw-uUR" kind="unwind" identifier="unwindScenarioSegue" unwindAction="unwindForSegue:" id="diN-q1-h0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNc-Y8-3kP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1109,7 +1110,7 @@
                                     <constraint firstAttribute="height" constant="30" id="lWC-b7-3Oa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="HrD-Kb-B4S" eventType="editingDidEndOnExit" id="Cxr-cR-UX9"/>
                                 </connections>
@@ -1268,7 +1269,7 @@
                     <connections>
                         <outlet property="backButton" destination="mqO-7Y-Any" id="7gA-vP-ItT"/>
                         <outlet property="creditsTextView" destination="2eG-GM-10H" id="bsq-LG-S11"/>
-                        <segue destination="tUv-DA-iRN" kind="unwind" identifier="creditsSegue" unwindAction="unwindForSegue:towardsViewController:" id="Vy6-mH-G4i"/>
+                        <segue destination="tUv-DA-iRN" kind="unwind" identifier="unwindCreditsSegue" unwindAction="unwindForSegue:" id="zJC-bI-oCb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBY-Fs-QUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1381,7 +1382,7 @@
                         <outlet property="scenarioNameTextView" destination="1JK-ft-GCZ" id="Ffy-YC-e9C"/>
                         <outlet property="searchGmRecordsButton" destination="3G9-eW-rAl" id="Jbh-xK-HWa"/>
                         <outlet property="searchHeroRecordsButton" destination="7Jk-CM-rUj" id="DUp-9D-5kM"/>
-                        <segue destination="srQ-qT-QyS" kind="modal" identifier="scenarioListSegueTwo" id="ehf-UB-6lp"/>
+                        <segue destination="srQ-qT-QyS" kind="modal" identifier="scenarioListSegueThree" id="ehf-UB-6lp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6c-lH-d32" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1429,7 +1430,7 @@
                                     <navigationItem title="Title" id="McF-uZ-FuY">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="gcK-AI-yLR">
                                             <connections>
-                                                <segue destination="jeg-yC-ist" kind="unwind" unwindAction="unwindForSegue:towardsViewController:" id="0GC-LO-3Qy"/>
+                                                <action selector="doneButtonPressed:" destination="3dl-4X-qzd" id="G0j-SL-zHC"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1454,6 +1455,7 @@
                     <connections>
                         <outlet property="heroStatTable" destination="nNP-sA-zPT" id="gA0-xj-pn5"/>
                         <outlet property="navigationBarTitle" destination="McF-uZ-FuY" id="dhz-2m-zc1"/>
+                        <segue destination="jeg-yC-ist" kind="unwind" identifier="unwindHeroStatOptionsSegue" unwindAction="unwindForSegue:" id="U3z-hJ-xCg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vW7-Tn-xfN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1476,8 +1478,8 @@
         <image name="theArchivist" width="1200" height="836"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ehf-UB-6lp"/>
         <segue reference="4Jt-AF-VuM"/>
+        <segue reference="ehf-UB-6lp"/>
         <segue reference="o4b-B9-U7R"/>
         <segue reference="PXK-YF-pJP"/>
         <segue reference="0fJ-k0-42G"/>

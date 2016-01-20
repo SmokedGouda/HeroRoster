@@ -402,34 +402,28 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 case "Class":
                     destVC.heroStatsArrayToDisplay = HeroStats().heroClass
                     destVC.lastSelectedRow = classIndex
-                
                 case "Race":
                     destVC.heroStatsArrayToDisplay = HeroStats().race
                     destVC.lastSelectedRow = raceIndex
-                
                 case "Gender":
                     destVC.heroStatsArrayToDisplay = HeroStats().gender
                     destVC.lastSelectedRow = genderIndex
-                
                 case "Level":
                     destVC.heroStatsArrayToDisplay = HeroStats().level
                     destVC.lastSelectedRow = levelIndex
-                
                 case "Faction":
                     destVC.heroStatsArrayToDisplay = HeroStats().faction
                     destVC.lastSelectedRow = factionIndex
-                
                 case "Prestige":
                     destVC.heroStatsArrayToDisplay = HeroStats().prestigePoints
                     destVC.lastSelectedRow = prestigePointsIndex
-                
                 default:
                     "no action"
             }
         }
     }
     
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    @IBAction func unwindForSegue(unwindSegue: UIStoryboardSegue) {
         if(unwindSegue.sourceViewController .isKindOfClass(HeroStatOptionsViewController)) {
             let heroStat: HeroStatOptionsViewController = unwindSegue.sourceViewController as! HeroStatOptionsViewController
             statToDisplay = heroStat.chosenStat

@@ -90,7 +90,7 @@ class SignUpViewController: UIViewController {
     }
     
     func unwindSegueToLogInView() {
-        self.performSegueWithIdentifier("signupSegue", sender: self)
+        self.performSegueWithIdentifier("unwindSignupSegue", sender: self)
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {

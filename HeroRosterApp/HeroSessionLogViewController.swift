@@ -150,8 +150,4 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             destVC.heroLogDisplayed = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
         }
     }
-    
-    func unwindForSegueHeroSession(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-          sessionLogTable.reloadData()
-    }
 }

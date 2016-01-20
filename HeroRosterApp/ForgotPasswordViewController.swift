@@ -78,7 +78,7 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     func unwindSegueToLogInView() {
-        self.performSegueWithIdentifier("forgotPasswordSegue", sender: self)
+        self.performSegueWithIdentifier("unwindForgotPasswordSegue", sender: self)
     }
     
     @IBAction func textFieldDoneEditing(sender: UITextField) {

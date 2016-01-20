@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScenarioListViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
+class ScenarioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var scenarioTable: UITableView!
     
@@ -67,5 +67,9 @@ class ScenarioListViewController: UIViewController, UITableViewDataSource,UITabl
             cell.textLabel?.font = UIFont.systemFontOfSize(17)
         }
         return cell
+    }
+    
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("unwindScenarioSegue", sender: self)
     }
 }

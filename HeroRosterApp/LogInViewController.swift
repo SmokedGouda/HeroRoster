@@ -145,7 +145,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    @IBAction func unwindForSegue(unwindSegue: UIStoryboardSegue) {
         logoAlphaValue = 1.0
         UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveLinear, animations: {self.adjustAlphaForUiElements(0.8, logoAlpha: self.logoAlphaValue)}, completion: nil)
     }

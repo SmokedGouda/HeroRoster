@@ -325,7 +325,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
         }
     }
     
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    @IBAction func unwindForSegue(unwindSegue: UIStoryboardSegue) {
         if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
             let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
             scenarioNameTextView.text = scenarioName.scenarioNameToReturn

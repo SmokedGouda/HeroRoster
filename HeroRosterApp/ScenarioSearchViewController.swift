@@ -137,11 +137,11 @@ class ScenarioSearchViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == scenarioNameTextView {
-            self.performSegueWithIdentifier("scenarioListSegueTwo", sender: self)
+            self.performSegueWithIdentifier("scenarioListSegueThree", sender: self)
         }
     }
     
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    @IBAction func unwindForSegue(unwindSegue: UIStoryboardSegue) {
         if(unwindSegue.sourceViewController .isKindOfClass(ScenarioListViewController)) {
             let scenarioName: ScenarioListViewController = unwindSegue.sourceViewController as! ScenarioListViewController
             scenarioNameTextView.text = scenarioName.scenarioNameToReturn
