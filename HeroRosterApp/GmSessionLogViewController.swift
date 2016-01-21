@@ -84,8 +84,4 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
             destVC.gmLogDisplayed = userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[(selectedIndex?.row)!]
             }
     }
-    
-    override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        gmSessionLogTable.reloadData()
-    }
 }

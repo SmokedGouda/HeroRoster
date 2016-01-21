@@ -103,5 +103,4 @@ class HeroStatOptionsViewController: UIViewController, UINavigationBarDelegate, 
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("unwindHeroStatOptionsSegue", sender: self)
     }
-    
 }

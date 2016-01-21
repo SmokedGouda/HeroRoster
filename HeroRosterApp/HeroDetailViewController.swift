@@ -11,7 +11,6 @@ import Parse
 
 class HeroDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var backdropImage: UIImageView!
     @IBOutlet weak var openBookButton: UIBarButtonItem!
