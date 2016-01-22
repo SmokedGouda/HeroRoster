@@ -281,6 +281,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 180), animated: true)
+            scrollView.scrollEnabled = false
         } else if textView == scenarioNameTextView {
             self.performSegueWithIdentifier("scenarioListSegue", sender: self)
         }
@@ -288,6 +289,7 @@ class LogDetailViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView == notesTextView {
+            scrollView.scrollEnabled = true
             scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         }
     }

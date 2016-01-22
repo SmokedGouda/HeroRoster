@@ -287,6 +287,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     func textViewDidBeginEditing(textView: UITextView) {
         if textView == notesTextView {
             scrollView.setContentOffset(CGPointMake(0, 255), animated: true)
+            scrollView.scrollEnabled = false
         } else if textView == scenarioNameTextView {
             self.performSegueWithIdentifier("scenarioListSegueTwo", sender: self)
         }
@@ -294,6 +295,7 @@ class GmLogDetailViewController: UIViewController, UITextViewDelegate, UITextFie
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView == notesTextView {
+            scrollView.scrollEnabled = true
             scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         }
     }
