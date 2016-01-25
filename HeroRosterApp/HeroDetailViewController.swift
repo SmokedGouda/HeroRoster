@@ -41,7 +41,6 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     var heroDisplayed = Hero?()
     var cellTitleLabel = String()
-    var createdHero: Hero?
     var activateEditMode = false
     var tableEditState = true
     var heroNameBeforeEdit = String()
@@ -253,8 +252,8 @@ class HeroDetailViewController: UIViewController, UITableViewDataSource, UITable
                 } else if userRoster!.usedHeroNames.contains(newHeroName!) == true {
                     displayNameAlert("DuplicateName")
                 } else {
-                    createdHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classDisplayed, race: raceDisplayed, gender: genderDisplayed, level: levelDisplayed, faction: factionDisplayed, prestigePoints: prestigePointsDisplayed, log: [], parseObjectId: "", logIds: [])
-                    createHeroOnParse(createdHero!)
+                    let newHero = Hero(name: newHeroName!, number: newHeroNumber!, heroClass: classDisplayed, race: raceDisplayed, gender: genderDisplayed, level: levelDisplayed, faction: factionDisplayed, prestigePoints: prestigePointsDisplayed, log: [], parseObjectId: "", logIds: [])
+                    createHeroOnParse(newHero)
                 }
         }
     }

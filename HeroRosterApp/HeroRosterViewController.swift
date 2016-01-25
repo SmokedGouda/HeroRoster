@@ -122,16 +122,17 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier("heroNameCell")
         let cellColor = UIColor.clearColor()
         let disclosureImage = UIImage(named: "arrow16x16")
+        let sortedHeroRoster = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString }
         cell?.backgroundColor = cellColor
         cell?.textLabel?.backgroundColor = cellColor
         cell?.detailTextLabel?.backgroundColor = cellColor
         cell?.imageView?.backgroundColor = cellColor
         cell?.accessoryView = UIImageView(image: disclosureImage)
-        cell!.textLabel!.text = userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].name
+        cell!.textLabel!.text = sortedHeroRoster[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell!.detailTextLabel!.text = "\(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass), Level \(userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].level)"
+        cell!.detailTextLabel!.text = "\(sortedHeroRoster[indexPath.row].heroClass), Level \(sortedHeroRoster[indexPath.row].level)"
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
-        cell!.imageView?.image = UIImage(named: userRoster.heros.sort { $0.name.lowercaseString < $1.name.lowercaseString } [indexPath.row].heroClass)
+        cell!.imageView?.image = UIImage(named: sortedHeroRoster[indexPath.row].heroClass)
         return cell!
     }
     

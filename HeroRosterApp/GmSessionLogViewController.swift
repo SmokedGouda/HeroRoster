@@ -33,14 +33,15 @@ class GmSessionLogViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier("gmSessionLogCell")
         let cellColor = UIColor.clearColor()
         let disclosureImage = UIImage(named: "arrow16x16")
+        let sortedGmLogs = userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }
         cell?.backgroundColor = cellColor
         cell?.textLabel?.backgroundColor = cellColor
         cell?.detailTextLabel?.backgroundColor = cellColor
         cell?.imageView?.backgroundColor = cellColor
         cell?.accessoryView = UIImageView(image: disclosureImage)
-        cell?.textLabel!.text = userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].name
+        cell?.textLabel!.text = sortedGmLogs[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell?.detailTextLabel!.text = GmSessionLog().stringFromDate(userRoster!.gmSessionLogs.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].date)
+        cell?.detailTextLabel!.text = GmSessionLog().stringFromDate(sortedGmLogs[indexPath.row].date)
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
 
         return cell!

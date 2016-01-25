@@ -16,11 +16,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     var activeUser = PFUser.currentUser()
     var userRoster = Roster?()
     var heroDisplayed = Hero?()
-    var downloadedSessionLog = SessionLog()
-    var parseSessionLogName = [String]()
-    var parseSessionLogDate = [NSDate]()
-    var parseSessionLogNotes = [String]()
-    var parseSessionLogObjectId = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +38,6 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
             if error == nil {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.filterSessionLogsForDisplayedHero(Log!)
-                    self.populateSessionLogs()
-                    self.sessionLogTable.reloadData()
                 }
             } else {
                 print(error)
@@ -55,24 +48,16 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
     func filterSessionLogsForDisplayedHero(logsToFilter: [PFObject]) {
         for object in logsToFilter {
             if (object["logForHero"] as! String) == self.heroDisplayed?.name {
-                if self.parseSessionLogName.contains(object["sessionName"] as! String) == false {
-                    self.downloadedSessionLog.name = object["sessionName"] as! String
-                    self.downloadedSessionLog.date = object["date"] as! NSDate
-                    self.downloadedSessionLog.notes = object["notes"] as! String
-                    
-                    self.parseSessionLogName.append(self.downloadedSessionLog.name)
-                    self.parseSessionLogDate.append(self.downloadedSessionLog.date)
-                    self.parseSessionLogNotes.append(self.downloadedSessionLog.notes)
-                    self.parseSessionLogObjectId.append(object.objectId! as String)
-                }
+                let name = object["sessionName"] as! String
+                let date = object["date"] as! NSDate
+                let notes = object["notes"] as! String
+                let logObjectId = object.objectId! as String
+                let downloadedSessionLog = SessionLog(name: name, date: date, notes: notes, parseObjectId: logObjectId)
+                
+                heroDisplayed?.addSessionLog(downloadedSessionLog)
             }
         }
-    }
-    
-    func populateSessionLogs() {
-        for (index,_) in parseSessionLogName.enumerate() {
-            heroDisplayed?.addSessionLog(SessionLog(name: parseSessionLogName[index], date: parseSessionLogDate[index], notes: parseSessionLogNotes[index], parseObjectId: parseSessionLogObjectId[index]))
-        }
+        sessionLogTable.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,14 +68,15 @@ class HeroSessionLogViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCellWithIdentifier("sessionLogCell")
         let cellColor = UIColor.clearColor()
         let disclosureImage = UIImage(named: "arrow16x16")
+        let sortedSessionLogs = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }
         cell?.backgroundColor = cellColor
         cell?.textLabel?.backgroundColor = cellColor
         cell?.detailTextLabel?.backgroundColor = cellColor
         cell?.imageView?.backgroundColor = cellColor
         cell?.accessoryView = UIImageView(image: disclosureImage)
-        cell?.textLabel!.text = heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].name
+        cell?.textLabel!.text = sortedSessionLogs[indexPath.row].name
         cell!.textLabel!.font = UIFont.boldSystemFontOfSize(17)
-        cell?.detailTextLabel!.text = downloadedSessionLog.stringFromDate(heroDisplayed!.log.sort { $0.date.compare($1.date) == .OrderedAscending }[indexPath.row].date)
+        cell?.detailTextLabel!.text = SessionLog().stringFromDate(sortedSessionLogs[indexPath.row].date)
         cell!.detailTextLabel!.font = UIFont.boldSystemFontOfSize(11)
         return cell!
     }
