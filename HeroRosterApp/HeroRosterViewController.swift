@@ -14,24 +14,6 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
    
     var userRoster = Roster()
     var activeUser = PFUser.currentUser()
-    var downloadedHero = Hero()
-    var downloadedGmSessionLog = GmSessionLog()
-    var parseHeroName = [String]()
-    var parseHeroNumber = [String]()
-    var parseHeroClass = [String]()
-    var parseHeroRace = [String]()
-    var parseHeroGender = [String]()
-    var parseHeroLevel = [String]()
-    var parseHeroFaction = [String]()
-    var parseHeroPrestigePoints = [String]()
-    var parseHeroUsedLogNames: [String] = []
-    var parseHeroObjectId = [String]()
-    var parseHeroLogIds = [[String]]()
-    var parseGmSessionLogName = [String]()
-    var parseGmSessionLogDate = [NSDate]()
-    var parseGmSessionLogNotes = [String]()
-    var parseGmSessionLogObjectId = [String]()
-    var parseGmSessionLogCreditForHero = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,35 +68,21 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     func parseTheDownloadedHeros(downloadedHeros: [PFObject]) {
         dispatch_async(dispatch_get_main_queue()) {
             for object in downloadedHeros {
-                self.downloadedHero.name = object["name"] as! String
-                self.downloadedHero.number = object["number"] as! String
-                self.downloadedHero.heroClass = object["heroClass"] as! String
-                self.downloadedHero.race = object["race"] as! String
-                self.downloadedHero.gender = object["gender"] as! String
-                self.downloadedHero.level = object["level"] as! String
-                self.downloadedHero.faction = object["faction"] as! String
-                self.downloadedHero.prestigePoints = object["prestigePoints"] as! String
-                self.downloadedHero.logIds = object["logIds"] as! [String]
+                let name = object["name"] as! String
+                let number = object["number"] as! String
+                let heroClass = object["heroClass"] as! String
+                let race = object["race"] as! String
+                let gender = object["gender"] as! String
+                let level = object["level"] as! String
+                let faction = object["faction"] as! String
+                let prestigePoints = object["prestigePoints"] as! String
+                let heroObjectId = object.objectId! as String
+                let logIds = object["logIds"] as! [String]
+                let downloadedHero = Hero(name: name, number: number, heroClass: heroClass, race: race, gender: gender, level: level, faction: faction, prestigePoints: prestigePoints, log: [], parseObjectId: heroObjectId, logIds: logIds)
                 
-                self.parseHeroName.append(self.downloadedHero.name)
-                self.parseHeroNumber.append(self.downloadedHero.number)
-                self.parseHeroClass.append(self.downloadedHero.heroClass)
-                self.parseHeroRace.append(self.downloadedHero.race)
-                self.parseHeroGender.append(self.downloadedHero.gender)
-                self.parseHeroLevel.append(self.downloadedHero.level)
-                self.parseHeroFaction.append(self.downloadedHero.faction)
-                self.parseHeroPrestigePoints.append(self.downloadedHero.prestigePoints)
-                self.parseHeroObjectId.append(object.objectId! as String)
-                self.parseHeroLogIds.append(self.downloadedHero.logIds)
+                self.userRoster.addHeroToRoster(downloadedHero)
             }
-            self.populateUserRoster()
             self.heroRosterTable.reloadData()
-        }
-    }
-    
-    func populateUserRoster() {
-        for (index,_) in parseHeroName.enumerate() {
-            userRoster.addHeroToRoster(Hero(name: parseHeroName[index], number: parseHeroNumber[index], heroClass: parseHeroClass[index], race: parseHeroRace[index], gender: parseHeroGender[index], level: parseHeroLevel[index], faction: parseHeroFaction[index], prestigePoints: parseHeroPrestigePoints[index], log: [], parseObjectId: parseHeroObjectId[index], logIds: parseHeroLogIds[index]))
         }
     }
     
@@ -134,24 +102,15 @@ class HeroRosterViewController: UIViewController, UINavigationBarDelegate, UITab
     func parseTheDownloadedGmSessionLogs(downloadedGmSessionLogs: [PFObject]) {
         dispatch_async(dispatch_get_main_queue()) {
             for object in downloadedGmSessionLogs {
-                self.downloadedGmSessionLog.name = object["sessionName"] as! String
-                self.downloadedGmSessionLog.date = object["date"] as! NSDate
-                self.downloadedGmSessionLog.notes = object["notes"] as! String
-                self.downloadedGmSessionLog.creditForHero = object["creditForHero"] as! String
+                let name = object["sessionName"] as! String
+                let date = object["date"] as! NSDate
+                let notes = object["notes"] as! String
+                let gmSessionLogObjectId = object.objectId! as String
+                let creditForHero = object["creditForHero"] as! String
+                let downloadedGmSessionLog = GmSessionLog(name: name, date: date, notes: notes, parseObjectId: gmSessionLogObjectId, creditForHero: creditForHero)
                 
-                self.parseGmSessionLogName.append(self.downloadedGmSessionLog.name)
-                self.parseGmSessionLogDate.append(self.downloadedGmSessionLog.date)
-                self.parseGmSessionLogNotes.append(self.downloadedGmSessionLog.notes)
-                self.parseGmSessionLogObjectId.append(object.objectId! as String)
-                self.parseGmSessionLogCreditForHero.append(self.downloadedGmSessionLog.creditForHero)
+                self.userRoster.addGmSessionLog(downloadedGmSessionLog)
             }
-            self.populateGmSessionLogs()
-        }
-    }
-    
-    func populateGmSessionLogs() {
-        for (index,_) in parseGmSessionLogName.enumerate() {
-            userRoster.addGmSessionLog(GmSessionLog(name: parseGmSessionLogName[index], date: parseGmSessionLogDate[index], notes: parseGmSessionLogNotes[index], parseObjectId: parseGmSessionLogObjectId[index], creditForHero: parseGmSessionLogCreditForHero[index]))
         }
     }
 
