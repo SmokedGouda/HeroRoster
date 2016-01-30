@@ -19,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId(applicationId, clientKey: clientID)
+        let parseConfiguration = ParseClientConfiguration { (ParseMutableClientConfiguration) -> Void in
+            ParseMutableClientConfiguration.applicationId = applicationId
+            ParseMutableClientConfiguration.clientKey = clientID
+            ParseMutableClientConfiguration.server = "https://api.parse.com/1"
+        }
+        
+        Parse.initializeWithConfiguration(parseConfiguration)
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         PFUser.logOut()
